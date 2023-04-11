@@ -2,7 +2,24 @@
 # -*- frozen_string_literal: true -*-
 # -*- warn_indent: true -*-
 
+require "sidekiq/web"
+require "sidekiq-scheduler/web"
+
 Rails.application.routes.draw do
+  Sidekiq::Web.use(Rack::Auth::Basic) do |user, password|
+    Rack::Utils.secure_compare(
+      ::Digest::SHA256.hexdigest(user),
+      ::Digest::SHA256.hexdigest(Rails.application.credentials.config[:SIDEKIQ_USER])
+    ) &
+    Rack::Utils.secure_compare(
+      ::Digest::SHA256.hexdigest(password),
+      ::Digest::SHA256.hexdigest(Rails.application.credentials.config[:SIDEKIQ_PASSWORD])
+    )
+  end
+
+  mount ActionCable.server => "/cable"
+  mount Sidekiq::Web => "/sidekiq"
+
   favicon_redirect = redirect do |_params, _request|
     ActionController::Base.helpers.asset_url(::Invoika::Favicon.main)
   end
