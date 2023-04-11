@@ -3,4 +3,9 @@
 # -*- warn_indent: true -*-
 
 class ApplicationController < ActionController::Base
+  protect_from_forgery with: :exception, prepend: true
+
+  layout proc { false if request.xhr? }
+
+  include Pagy::Backend
 end
