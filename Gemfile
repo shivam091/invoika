@@ -28,6 +28,9 @@ gem "pundit"
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
 
+# Bootstrap form builder
+gem "bootstrap_form"
+
 # State machines
 gem "aasm", "~> 5"
 
