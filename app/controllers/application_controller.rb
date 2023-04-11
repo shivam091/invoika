@@ -7,5 +7,20 @@ class ApplicationController < ActionController::Base
 
   layout proc { false if request.xhr? }
 
-  include Pagy::Backend
+  include Pagy::Backend,
+          WithoutTimestamps
+
+  rescue_from ActionController::InvalidAuthenticityToken do |exception|
+    if user_signed_in?
+      sign_out(current_user)
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
+  before_action :authenticate_user!
+
+  def render_flash
+    turbo_stream.update(:flash, partial: "shared/flash_messages")
+  end
 end
