@@ -8,4 +8,5 @@ module Invoika
   require base_path + "/bullet"
   require base_path + "/regex"
   require base_path + "/utils"
+  require base_path + "/sql/functions"
 end
