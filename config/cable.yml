@@ -1,0 +1,11 @@
+development:
+  adapter: redis
+  url: <%= Rails.application.credentials.config[:REDIS_URL] %>
+
+test:
+  adapter: test
+
+production:
+  adapter: redis
+  url: <%= Rails.application.credentials.config[:REDIS_URL] %>
+  channel_prefix: invoika_production
