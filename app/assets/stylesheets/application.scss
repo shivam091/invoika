@@ -124,7 +124,7 @@ a {
   font-size: 0.875rem !important;
   border-radius: 0.25rem;
 }
-.form-label, .form-check-label {
+:not(.form-floating) > .form-label, .form-check-label {
   font-weight: 600;
   vertical-align: middle;
 }
