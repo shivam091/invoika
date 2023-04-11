@@ -3,4 +3,5 @@
 # -*- warn_indent: true -*-
 
 module ApplicationHelper
+  include Pagy::Frontend
 end
