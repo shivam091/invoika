@@ -46,7 +46,6 @@ class User::PasswordsController < Devise::PasswordsController
   # PUT|PATCH /auth/password
   def update
     super do |resource|
-      debugger
       if resource.valid?
         resource.touch(:last_password_updated_at)
       end
