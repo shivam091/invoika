@@ -33,6 +33,17 @@ class User < ApplicationRecord
 
   belongs_to :role
 
+  scope :with_role, -> (role_name) do
+    role_table = ::Role.arel_table
+    user_table = ::User.arel_table
+    join = user_table.join(role_table)
+     .on(user_table[:role_id].eq(role_table[:id]))
+     .join_sources
+   joins(join).where(role_table[:name].eq(role_name))
+  end
+  scope :admins, -> { with_role("admin") }
+  scope :clients, -> { with_role("client") }
+
   class << self
     def with_email(email)
       iwhere(email: email).first
@@ -83,6 +94,30 @@ class User < ApplicationRecord
 
   def active_for_authentication?
     super && is_active?
+  end
+
+  def admin?
+    self.has_role?("admin")
+  end
+
+  def client?
+    self.has_role?("client")
+  end
+
+  def has_role?(role)
+    role.eql?(self.role.name)
+  end
+
+  def has_any_role?(*roles)
+    roles.include?(self.role.name)
+  end
+
+  def has_no_role?(role)
+    !has_role?(role)
+  end
+
+  def has_no_roles?(*roles)
+    !has_any_role?(*roles)
   end
 
   private
