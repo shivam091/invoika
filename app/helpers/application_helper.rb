@@ -101,6 +101,13 @@ module ApplicationHelper
     t(key, scope: "button_texts")
   end
 
+  # <% title @post.title %>
+  def title(*text)
+    title_text = []
+    title_text << [text]
+    content_for :title, title_text.join(" &middot; ").html_safe
+  end
+
   def secret_reveal_button(for_devise_views: false)
     classes = for_devise_views ? "btn-secret-reveal" : "btn btn-secondary"
 
