@@ -40,7 +40,7 @@ class User::SessionsController < Devise::SessionsController
 
   def check_email_and_password_present
     if params[:user][:email].blank? || params[:user][:password].blank?
-      set_flash_message!(:error, :missing_email_or_password)
+      set_flash_message!(:alert, :missing_email_or_password)
       redirect_to new_user_session_path and return
     end
   end
