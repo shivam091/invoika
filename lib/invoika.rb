@@ -6,4 +6,5 @@ module Invoika
   base_path = File.expand_path("../invoika", __FILE__)
 
   require base_path + "/bullet"
+  require base_path + "/regex"
 end
