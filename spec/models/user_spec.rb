@@ -2,6 +2,9 @@
 # -*- frozen_string_literal: true -*-
 # -*- warn_indent: true -*-
 
-["admin", "client"].each do |role_name|
-  ::Role.safe_find_or_create_by(name: role_name)
+# spec/models/user_spec.rb
+
+require "spec_helper"
+
+RSpec.describe User, type: :model do
 end
