@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_11_052554) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_11_130607) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
+    t.check_constraint "char_length(name::text) <= 55", name: "chk_859b734ae2"
+    t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_ac03779a47"
+  end
 
 end
