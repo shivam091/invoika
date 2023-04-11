@@ -81,6 +81,10 @@ class User < ApplicationRecord
     reset_password_sent_at.present? && reset_password_sent_at >= THROTTLE_RESET_PERIOD.minute.ago
   end
 
+  def active_for_authentication?
+    super && is_active?
+  end
+
   private
 
   def password_present?
