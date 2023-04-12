@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_11_131003) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_12_114322) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "countries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "iso2"
+    t.boolean "is_active", default: true
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["is_active"], name: "index_countries_on_is_active"
+    t.index ["iso2"], name: "index_countries_on_iso2", unique: true
+    t.index ["name"], name: "index_countries_on_name", unique: true
+    t.check_constraint "char_length(iso2::text) = 2", name: "chk_1e56054f5a"
+    t.check_constraint "char_length(name::text) <= 55", name: "chk_68ab57466f"
+    t.check_constraint "iso2 IS NOT NULL AND iso2::text <> ''::text", name: "chk_b1bf328063"
+    t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_03b9f57701"
+    t.check_constraint "upper(iso2::text) = iso2::text", name: "chk_91b43fb014"
+  end
 
   create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
