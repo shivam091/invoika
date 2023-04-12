@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_12_114322) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_12_115334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -38,6 +38,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_114322) do
     t.index ["name"], name: "index_roles_on_name", unique: true
     t.check_constraint "char_length(name::text) <= 55", name: "chk_859b734ae2"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_ac03779a47"
+  end
+
+  create_table "states", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "country_id"
+    t.string "name"
+    t.boolean "is_active", default: true
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["country_id"], name: "index_states_on_country_id"
+    t.index ["is_active"], name: "index_states_on_is_active"
+    t.index ["name"], name: "index_states_on_name", unique: true
+    t.check_constraint "char_length(name::text) <= 255", name: "chk_50193cd74b"
+    t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_35a985ea22"
   end
 
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -87,5 +100,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_114322) do
     t.check_constraint "sign_in_count IS NOT NULL", name: "chk_fc2e3b8e41"
   end
 
+  add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict
   add_foreign_key "users", "roles", name: "fk_users_role_id_on_roles", on_delete: :restrict
 end
