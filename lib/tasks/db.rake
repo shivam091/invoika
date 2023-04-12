@@ -11,6 +11,8 @@ namespace :invoika do
     desc "Seeds the database with default data"
     task seed: :environment do
       begin
+        Rake::Task["invoika:db:seed_countries"].invoke
+        Rake::Task["invoika:db:seed_states"].invoke
       rescue Exception => e
         raise "Database seeding is aborted due to internal errors!"
       end
