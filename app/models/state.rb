@@ -7,7 +7,7 @@ class State < ApplicationRecord
 
   validates :name,
             presence: true,
-            uniqueness: true,
+            uniqueness: {scope: :country_id},
             length: {maximum: 255},
             reduce: true
 

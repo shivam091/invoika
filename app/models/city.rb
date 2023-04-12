@@ -7,7 +7,7 @@ class City < ApplicationRecord
 
   validates :name,
             presence: true,
-            uniqueness: true,
+            uniqueness: {scope: :state_id},
             length: {maximum: 255},
             reduce: true
 
