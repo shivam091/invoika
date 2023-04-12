@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_12_115334) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_12_123440) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "state_id"
+    t.string "name"
+    t.boolean "is_active", default: true
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["is_active"], name: "index_cities_on_is_active"
+    t.index ["name"], name: "index_cities_on_name", unique: true
+    t.index ["state_id"], name: "index_cities_on_state_id"
+    t.check_constraint "char_length(name::text) <= 255", name: "chk_36cde11ecb"
+    t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_00fc9436f5"
+  end
 
   create_table "countries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -100,6 +113,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_115334) do
     t.check_constraint "sign_in_count IS NOT NULL", name: "chk_fc2e3b8e41"
   end
 
+  add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
   add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict
   add_foreign_key "users", "roles", name: "fk_users_role_id_on_roles", on_delete: :restrict
 end
