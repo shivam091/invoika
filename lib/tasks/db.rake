@@ -13,6 +13,7 @@ namespace :invoika do
       begin
         Rake::Task["invoika:db:seed_countries"].invoke
         Rake::Task["invoika:db:seed_states"].invoke
+        Rake::Task["invoika:db:seed_cities"].invoke
       rescue Exception => e
         raise "Database seeding is aborted due to internal errors!"
       end
