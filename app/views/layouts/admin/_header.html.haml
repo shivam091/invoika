@@ -1,0 +1,24 @@
+= render_if_exists("layouts/shared/header_navigation") do
+  #navbar.navbar-collapse.collapse
+    %ul.navbar-nav.me-auto.order-1
+      %li.nav-item
+        = link_to "javascript:void(0)", class: "nav-link d-inline-flex align-items-center gap-1" do
+          = external_svg_tag("svgs/home.svg")
+          = t(".home")
+      %li.nav-item
+        = link_to "javascript:void(0)", class: "nav-link d-inline-flex align-items-center gap-1" do
+          = external_svg_tag("svgs/users.svg")
+          = t(".clients")
+      %li.nav-item
+        = link_to "javascript:void(0)", class: "nav-link d-inline-flex align-items-center gap-1" do
+          = external_svg_tag("svgs/file.svg")
+          = t(".invoices")
+      %li.nav-item
+        = link_to "javascript:void(0)", class: "nav-link d-inline-flex align-items-center gap-1" do
+          = external_svg_tag("svgs/quote.svg")
+          = t(".quotes")
+    %ul.navbar-nav.d-none.d-lg-flex.ms-2.order-3
+      = render_if_exists("layouts/admin/menu")
+    %ul.navbar-nav.d-lg-none
+      %li.nav-item-divider
+      = render_if_exists("layouts/admin/menu")

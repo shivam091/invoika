@@ -1,0 +1,20 @@
+.nav-scroller.shadow-sm.border-bottom.bg-light
+  %nav.nav.nav-underline{aria: {label: t(".secondary_navigation")}}
+    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+      = external_svg_tag("svgs/table.svg")
+      = t(".categories")
+    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+      = external_svg_tag("svgs/cube.svg")
+      = t(".products")
+    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+      = external_svg_tag("svgs/list.svg")
+      = t(".transactions")
+    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+      = external_svg_tag("svgs/credit-card.svg")
+      = t(".payments")
+    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+      = external_svg_tag("svgs/report.svg")
+      = t(".reports")
+    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+      = external_svg_tag("svgs/template.svg")
+      = t(".invoice_templates")
