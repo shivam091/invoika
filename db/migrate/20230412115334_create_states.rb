@@ -13,12 +13,14 @@ class CreateStates < Invoika::Database::Migration[1.0]
                      on_delete: :restrict
                    },
                    index: {using: :btree}
-      t.string :name, index: {using: :btree, unique: true}
+      t.string :name
       t.boolean :is_active, default: true, index: {using: :btree}
 
       t.not_null_and_empty_constraint :name
 
       t.length_constraint :name, less_than_or_equal_to: 255
+
+      t.index [:name, :country_id], using: :btree, unique: true
 
       t.timestamps_with_timezone null: false
     end

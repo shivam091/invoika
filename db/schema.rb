@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_123440) do
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.index ["is_active"], name: "index_cities_on_is_active"
-    t.index ["name"], name: "index_cities_on_name", unique: true
+    t.index ["name", "state_id"], name: "index_cities_on_name_and_state_id", unique: true
     t.index ["state_id"], name: "index_cities_on_state_id"
     t.check_constraint "char_length(name::text) <= 255", name: "chk_36cde11ecb"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_00fc9436f5"
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_123440) do
     t.timestamptz "updated_at", null: false
     t.index ["country_id"], name: "index_states_on_country_id"
     t.index ["is_active"], name: "index_states_on_is_active"
-    t.index ["name"], name: "index_states_on_name", unique: true
+    t.index ["name", "country_id"], name: "index_states_on_name_and_country_id", unique: true
     t.check_constraint "char_length(name::text) <= 255", name: "chk_50193cd74b"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_35a985ea22"
   end
