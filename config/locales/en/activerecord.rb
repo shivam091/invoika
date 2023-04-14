@@ -6,6 +6,19 @@
   en: {
     activerecord: {
       attributes: {
+        user: {
+          first_name: "First name",
+          last_name: "Last name",
+          remember_me: "Keep me signed in",
+          password: "Password",
+          password_confirmation: "Password confirmation",
+          current_password: "Current password",
+          email: "Email address",
+          unconfirmed_email: "Unconfirmed email address",
+          mobile_number: "Mobile number",
+          is_banned: "Is banned",
+          is_active: "Is active",
+        },
       },
       help_texts: {
       },

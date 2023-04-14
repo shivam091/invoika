@@ -74,7 +74,7 @@
         signed_in: "Hi %{user_name}, welcome to Invoika!",
         signed_out: "You are successfully signed out.",
         already_signed_out: "You are already signed out of your account. Please sign in again.",
-        missing_email_or_password: "Please enter your mobile number/email and password",
+        missing_email_or_password: "Please enter your email and password",
       },
       unlocks: {
         send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes.",

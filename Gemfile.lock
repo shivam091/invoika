@@ -88,6 +88,9 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.6, < 3)
       sassc-rails (>= 2.0.0)
+    bootstrap_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     builder (3.2.4)
     bullet (7.0.7)
       activesupport (>= 3.0.0)
@@ -400,6 +403,7 @@ DEPENDENCIES
   awesome_print (~> 1.8)
   bootsnap
   bootstrap (~> 5.2.3)
+  bootstrap_form
   bullet
   capybara
   database_cleaner

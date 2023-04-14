@@ -40,4 +40,16 @@ Rails.application.routes.draw do
                unlocks: "user/unlocks",
                registrations: "user/registrations"
              }
+
+  authenticated :user do
+    namespace :admin do
+      resource :dashboard, only: :show
+    end
+
+    namespace :client do
+      resource :dashboard, only: :show
+    end
+  end
+  
+  root to: "root#index"
 end
