@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   concern :shareable do
     resource :dashboard, only: :show
-    resource :profile, only: [:edit, :update]
+    resource :profile, only: [:show, :edit, :update]
   end
 
   authenticated :user do

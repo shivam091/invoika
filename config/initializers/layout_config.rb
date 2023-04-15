@@ -10,6 +10,9 @@ Invoika::Application.configure do
     User::PasswordsController.layout  "devise"
 
     Admin::BaseController.layout      "admin"
+    Admin::ProfilesController.layout  "admin"
+
     Client::BaseController.layout     "client"
+    Client::ProfilesController.layout "client"
   end
 end
