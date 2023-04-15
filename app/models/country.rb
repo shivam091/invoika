@@ -18,6 +18,7 @@ class Country < ApplicationRecord
             reduce: true
 
   has_many :states, dependent: :restrict_with_exception
+  has_many :addresses, dependent: :restrict_with_exception
 
   default_scope -> { order_name_asc }
 end

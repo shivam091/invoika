@@ -11,6 +11,8 @@ class City < ApplicationRecord
             length: {maximum: 255},
             reduce: true
 
+  has_many :addresses, dependent: :restrict_with_exception
+
   belongs_to :state, inverse_of: :cities
 
   default_scope -> { order_name_asc }

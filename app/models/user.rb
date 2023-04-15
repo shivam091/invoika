@@ -31,6 +31,8 @@ class User < ApplicationRecord
             presence: true,
             reduce: true
 
+  has_one :address, as: :addressable, dependent: :destroy
+
   belongs_to :role
 
   scope :with_role, -> (role_name) do
@@ -118,6 +120,10 @@ class User < ApplicationRecord
 
   def has_no_roles?(*roles)
     !has_any_role?(*roles)
+  end
+
+  def address
+    super.presence || build_address
   end
 
   private

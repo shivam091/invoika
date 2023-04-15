@@ -12,6 +12,7 @@ class State < ApplicationRecord
             reduce: true
 
   has_many :cities, dependent: :restrict_with_exception
+  has_many :addresses, dependent: :restrict_with_exception
 
   belongs_to :country, inverse_of: :states
 
