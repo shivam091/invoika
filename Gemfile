@@ -20,7 +20,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 
 # Flexible authentication solution for Rails with Warden
-gem "devise", "4.9.0"
+gem "devise", "4.9.2"
 
 # Authorization
 gem "pundit"
