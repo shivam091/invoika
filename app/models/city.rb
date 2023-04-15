@@ -3,7 +3,7 @@
 # -*- warn_indent: true -*-
 
 class City < ApplicationRecord
-  include Filterable, Sortable
+  include Filterable, Sortable, Toggleable
 
   validates :name,
             presence: true,
@@ -16,4 +16,10 @@ class City < ApplicationRecord
   belongs_to :state, inverse_of: :cities
 
   default_scope -> { order_name_asc }
+
+  class << self
+    def select_options
+      active.pluck(:name, :id)
+    end
+  end
 end
