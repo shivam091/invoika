@@ -18,6 +18,7 @@
       go_to_home: "Go to home",
       previous_page: "Previous page",
       import: "Import",
+      update_profile: "Update profile",
     }
   }
 }
