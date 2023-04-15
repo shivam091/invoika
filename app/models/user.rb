@@ -46,6 +46,8 @@ class User < ApplicationRecord
   scope :admins, -> { with_role("admin") }
   scope :clients, -> { with_role("client") }
 
+  accepts_nested_attributes_for :address, update_only: true
+
   class << self
     def with_email(email)
       iwhere(email: email).first
