@@ -21,6 +21,10 @@ class User < ApplicationRecord
   attribute :password_expires_at, default: DEFAULT_PASSWORD_EXPIRY_PERIOD
   attribute :password_automatically_set, default: false
 
+  validates :first_name, :last_name,
+            presence: true,
+            length: {maximum: 55},
+            reduce: true
   validates :password,
             presence: true,
             password: true,
