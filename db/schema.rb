@@ -200,7 +200,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_141513) do
   add_foreign_key "addresses", "cities", name: "fk_addresses_city_id_on_cities", on_delete: :restrict
   add_foreign_key "addresses", "countries", name: "fk_addresses_country_id_on_countries", on_delete: :restrict
   add_foreign_key "addresses", "states", name: "fk_addresses_state_id_on_states", on_delete: :restrict
-  add_foreign_key "categories", "users", name: "fk_taxes_user_id_on_users", on_delete: :cascade
+  add_foreign_key "categories", "users", name: "fk_categories_user_id_on_users", on_delete: :cascade
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
   add_foreign_key "request_logs", "users", name: "fk_request_logs_user_id_on_users", on_delete: :nullify
   add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict

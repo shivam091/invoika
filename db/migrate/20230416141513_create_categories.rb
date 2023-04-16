@@ -9,7 +9,7 @@ class CreateCategories < Invoika::Database::Migration[1.0]
                    type: :uuid,
                    foreign_key: {
                      to_table: :users,
-                     name: :fk_taxes_user_id_on_users,
+                     name: :fk_categories_user_id_on_users,
                      on_delete: :cascade
                    },
                    index: {using: :btree}
