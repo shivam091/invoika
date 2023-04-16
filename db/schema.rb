@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_130817) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_131037) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -119,6 +119,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_130817) do
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_35a985ea22"
   end
 
+  create_table "taxes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.string "name"
+    t.float "rate", default: 0.0
+    t.enum "type", default: "exclusive", enum_type: "tax_types"
+    t.boolean "is_active", default: false
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["name", "user_id"], name: "index_taxes_on_name_and_user_id", unique: true
+    t.index ["user_id"], name: "index_taxes_on_user_id"
+    t.check_constraint "char_length(name::text) <= 55", name: "chk_c811ca3563"
+    t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_120abec347"
+    t.check_constraint "rate > 0.0::double precision", name: "chk_bc230f82fd"
+    t.check_constraint "rate IS NOT NULL", name: "chk_b82d270488"
+    t.check_constraint "type = ANY (ARRAY['inclusive'::tax_types, 'exclusive'::tax_types])", name: "chk_ca117584dc"
+    t.check_constraint "type IS NOT NULL", name: "chk_93dc44aed5"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email"
     t.string "encrypted_password"
@@ -172,5 +190,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_130817) do
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
   add_foreign_key "request_logs", "users", name: "fk_request_logs_user_id_on_users", on_delete: :nullify
   add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict
+  add_foreign_key "taxes", "users", name: "fk_taxes_user_id_on_users", on_delete: :cascade
   add_foreign_key "users", "roles", name: "fk_users_role_id_on_roles", on_delete: :restrict
 end
