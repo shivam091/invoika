@@ -17,6 +17,8 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path
     end
   end
+  rescue_from ActiveRecord::RecordNotFound, with: :not_found
+  rescue_from ActionController::RoutingError, with: :not_found
 
   before_action :authenticate_user!
 
@@ -33,5 +35,9 @@ class ApplicationController < ActionController::Base
 
   def render_flash
     turbo_stream.update(:flash, partial: "shared/flash_messages")
+  end
+
+  def not_found
+    render "errors/not_found", status: :not_found, layout: "error"
   end
 end

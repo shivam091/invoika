@@ -50,6 +50,8 @@ Rails.application.routes.draw do
       resource :dashboard, only: :show
     end
   end
-  
+
   root to: "root#index"
+
+  get "*unmatched_route", to: "application#not_found", format: false
 end
