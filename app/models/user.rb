@@ -33,6 +33,7 @@ class User < ApplicationRecord
 
   has_one :address, as: :addressable, dependent: :destroy
   has_many :taxes, dependent: :destroy
+  has_many :categories, dependent: :destroy
 
   has_many :request_logs, dependent: :nullify
 

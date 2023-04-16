@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_131037) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_141513) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -41,6 +41,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_131037) do
     t.check_constraint "char_length(address2::text) <= 100", name: "chk_9d9af86e34"
     t.check_constraint "char_length(postal_code::text) <= 20", name: "chk_39c4bcf78a"
     t.check_constraint "country_id IS NOT NULL", name: "chk_f7e0314437"
+  end
+
+  create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.string "name"
+    t.integer "products_count", default: 0
+    t.boolean "is_active", default: false
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["name", "user_id"], name: "index_categories_on_name_and_user_id", unique: true
+    t.index ["user_id"], name: "index_categories_on_user_id"
+    t.check_constraint "char_length(name::text) <= 55", name: "chk_17134c75a0"
+    t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_df1d197345"
   end
 
   create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -187,6 +200,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_131037) do
   add_foreign_key "addresses", "cities", name: "fk_addresses_city_id_on_cities", on_delete: :restrict
   add_foreign_key "addresses", "countries", name: "fk_addresses_country_id_on_countries", on_delete: :restrict
   add_foreign_key "addresses", "states", name: "fk_addresses_state_id_on_states", on_delete: :restrict
+  add_foreign_key "categories", "users", name: "fk_taxes_user_id_on_users", on_delete: :cascade
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
   add_foreign_key "request_logs", "users", name: "fk_request_logs_user_id_on_users", on_delete: :nullify
   add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict
