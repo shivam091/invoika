@@ -39,7 +39,11 @@ class User < ApplicationRecord
 
   has_one :address, as: :addressable, dependent: :destroy
 
+  has_many :request_logs, dependent: :nullify
+
   belongs_to :role
+
+  delegate :name, to: :role, prefix: true
 
   scope :with_role, -> (role_name) do
     role_table = ::Role.arel_table
@@ -115,11 +119,11 @@ class User < ApplicationRecord
   end
 
   def has_role?(role)
-    role.eql?(self.role.name)
+    role.eql?(self.role_name)
   end
 
   def has_any_role?(*roles)
-    roles.include?(self.role.name)
+    roles.include?(self.role_name)
   end
 
   def has_no_role?(role)
