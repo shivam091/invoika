@@ -17,6 +17,7 @@
           payments: "Payments",
           reports: "Reports",
           invoice_templates: "Invoice templates",
+          taxes: "Taxes",
         },
         menu: {
           hello_username: "Hello %{username}",
