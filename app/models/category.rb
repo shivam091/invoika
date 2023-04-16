@@ -18,9 +18,11 @@ class Category < ApplicationRecord
             presence: true,
             numericality: {
               only_integer: true,
-              greater_than: 0
+              greater_than_or_equal_to: 0
             },
             reduce: true
+
+  has_many :products, dependent: :restrict_with_exception
 
   belongs_to :user, inverse_of: :categories
 end

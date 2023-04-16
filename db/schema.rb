@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_141513) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_161056) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -83,6 +83,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_141513) do
     t.check_constraint "iso2 IS NOT NULL AND iso2::text <> ''::text", name: "chk_b1bf328063"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_03b9f57701"
     t.check_constraint "upper(iso2::text) = iso2::text", name: "chk_91b43fb014"
+  end
+
+  create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id"
+    t.uuid "category_id"
+    t.string "name"
+    t.string "code"
+    t.text "description"
+    t.money "unit_price", scale: 2, default: "0.0"
+    t.money "sell_price", scale: 2, default: "0.0"
+    t.boolean "is_active", default: false
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["code", "user_id"], name: "index_products_on_code_and_user_id", unique: true
+    t.index ["name", "user_id"], name: "index_products_on_name_and_user_id", unique: true
+    t.index ["user_id"], name: "index_products_on_user_id"
+    t.check_constraint "char_length(code::text) <= 15", name: "chk_a39680f5ff"
+    t.check_constraint "char_length(description) <= 1000", name: "chk_a25291fb10"
+    t.check_constraint "char_length(name::text) <= 55", name: "chk_f40320f388"
+    t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_0a202cf2e7"
+    t.check_constraint "sell_price <= unit_price", name: "sell_price_lteq_unit_price"
+    t.check_constraint "sell_price IS NOT NULL", name: "chk_173f7aabf6"
+    t.check_constraint "unit_price > 0.0::money", name: "unit_price_gt_zero"
+    t.check_constraint "unit_price IS NOT NULL", name: "chk_8b63405e7f"
   end
 
   create_table "request_logs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -202,6 +227,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_141513) do
   add_foreign_key "addresses", "states", name: "fk_addresses_state_id_on_states", on_delete: :restrict
   add_foreign_key "categories", "users", name: "fk_categories_user_id_on_users", on_delete: :cascade
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
+  add_foreign_key "products", "categories", name: "fk_products_category_id_on_categories", on_delete: :restrict
+  add_foreign_key "products", "users", name: "fk_products_user_id_on_users", on_delete: :cascade
   add_foreign_key "request_logs", "users", name: "fk_request_logs_user_id_on_users", on_delete: :nullify
   add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict
   add_foreign_key "taxes", "users", name: "fk_taxes_user_id_on_users", on_delete: :cascade
