@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_15_141548) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_104107) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -66,6 +66,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_141548) do
     t.check_constraint "iso2 IS NOT NULL AND iso2::text <> ''::text", name: "chk_b1bf328063"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_03b9f57701"
     t.check_constraint "upper(iso2::text) = iso2::text", name: "chk_91b43fb014"
+  end
+
+  create_table "request_logs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "uuid"
+    t.string "uri"
+    t.string "method"
+    t.string "session_id"
+    t.string "session_private_id"
+    t.inet "remote_address"
+    t.boolean "is_xhr", default: false
+    t.jsonb "ip_info", default: "{}"
+    t.uuid "user_id"
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["ip_info"], name: "index_request_logs_on_ip_info", using: :gin
+    t.index ["remote_address"], name: "index_request_logs_on_remote_address"
+    t.index ["session_id"], name: "index_request_logs_on_session_id"
+    t.index ["user_id"], name: "index_request_logs_on_user_id"
+    t.index ["uuid"], name: "index_request_logs_on_uuid"
+    t.check_constraint "ip_info IS NOT NULL", name: "chk_a67eeb00f0"
+    t.check_constraint "method IS NOT NULL AND method::text <> ''::text", name: "chk_38d4d060e5"
+    t.check_constraint "remote_address IS NOT NULL", name: "chk_67128961e9"
+    t.check_constraint "upper(method::text) = method::text", name: "chk_0d055b4e69"
+    t.check_constraint "uri IS NOT NULL AND uri::text <> ''::text", name: "chk_562eebdf81"
+    t.check_constraint "uuid IS NOT NULL AND uuid::text <> ''::text", name: "chk_a48d3e7955"
   end
 
   create_table "roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -141,6 +166,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_141548) do
   add_foreign_key "addresses", "countries", name: "fk_addresses_country_id_on_countries", on_delete: :restrict
   add_foreign_key "addresses", "states", name: "fk_addresses_state_id_on_states", on_delete: :restrict
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
+  add_foreign_key "request_logs", "users", name: "fk_request_logs_user_id_on_users", on_delete: :nullify
   add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict
   add_foreign_key "users", "roles", name: "fk_users_role_id_on_roles", on_delete: :restrict
 end
