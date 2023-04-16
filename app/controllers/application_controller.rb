@@ -20,6 +20,9 @@ class ApplicationController < ActionController::Base
   end
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::RoutingError, with: :not_found
+  rescue_from ActiveRecord::DeleteRestrictionError do |exception|
+    redirect_to :back, alert: exception.message
+  end
 
   before_action :authenticate_user!
 
