@@ -29,4 +29,6 @@ class Tax < ApplicationRecord
             reduce: true
 
   belongs_to :user, inverse_of: :taxes
+
+  default_scope -> { order_name_asc }
 end

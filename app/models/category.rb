@@ -25,4 +25,6 @@ class Category < ApplicationRecord
   has_many :products, dependent: :restrict_with_exception
 
   belongs_to :user, inverse_of: :categories
+
+  default_scope -> { order_name_asc }
 end
