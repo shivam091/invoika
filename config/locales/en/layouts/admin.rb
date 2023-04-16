@@ -17,6 +17,7 @@
           payments: "Payments",
           reports: "Reports",
           invoice_templates: "Invoice templates",
+          email_templates: "Email templates",
           taxes: "Taxes",
         },
         menu: {
