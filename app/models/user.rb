@@ -30,10 +30,12 @@ class User < ApplicationRecord
             password: true,
             length: {in: 8..20},
             confirmation: {case_sensitive: false},
-            reduce: true
+            reduce: true,
+            if: :password_required?
   validates :password_confirmation,
             presence: true,
-            reduce: true
+            reduce: true,
+            if: :password_required?
 
   has_one :address, as: :addressable, dependent: :destroy
 
