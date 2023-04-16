@@ -33,6 +33,8 @@ class User < ApplicationRecord
 
   has_one :address, as: :addressable, dependent: :destroy
 
+  has_many :request_logs, dependent: :nullify
+
   belongs_to :role
 
   scope :with_role, -> (role_name) do
