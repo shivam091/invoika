@@ -4,6 +4,12 @@
 
 class Admin::CategoriesController < Admin::BaseController
 
+  # GET /admin/categories
+  def index
+    @categories = current_user.categories
+    @pagy, @categories = pagy(@categories)
+  end
+
   # GET /admin/categories/active
   def active
     @categories = current_user.categories.active
