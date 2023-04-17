@@ -85,6 +85,18 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to admin_products_path
   end
 
+  # PATCH /admin/products/:uuid/deactivate
+  def activate
+    response = ::Products::ActivateService.(@product)
+    @product = response.payload[:product]
+    if response.success?
+      flash[:notice] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_products_path
+  end
+
   private
 
   def find_product
