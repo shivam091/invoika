@@ -112,7 +112,7 @@ class Admin::CategoriesController < Admin::BaseController
   private
 
   def find_category
-    @category = current_user.categories.find(params[:uuid])
+    @category = current_user.categories.find(params.fetch(:uuid))
   end
 
   def category_params
