@@ -85,6 +85,18 @@ class Admin::TaxesController < Admin::BaseController
     redirect_to admin_taxes_path
   end
 
+  # PATCH /admin/taxes/:uuid/deactivate
+  def deactivate
+    response = ::Taxes::DeactivateService.(@tax)
+    @tax = response.payload[:tax]
+    if response.success?
+      flash[:warning] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_taxes_path
+  end
+
   private
 
   def find_tax
