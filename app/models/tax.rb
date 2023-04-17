@@ -3,6 +3,8 @@
 # -*- warn_indent: true -*-
 
 class Tax < ApplicationRecord
+  include Sortable, Filterable, Toggleable
+
   self.inheritance_column = :_type_disabled
 
   enum type: {
