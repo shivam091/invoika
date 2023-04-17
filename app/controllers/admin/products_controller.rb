@@ -73,6 +73,18 @@ class Admin::ProductsController < Admin::BaseController
     end
   end
 
+  # DELETE /admin/products/:uuid
+  def destroy
+    response = ::Products::DestroyService.(@product)
+    @product = response.payload[:product]
+    if response.success?
+      flash[:info] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_products_path
+  end
+
   private
 
   def find_product
