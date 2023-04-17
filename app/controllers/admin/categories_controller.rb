@@ -73,6 +73,18 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
+  # DELETE /admin/shifts/:uuid
+  def destroy
+    response = ::Categories::DestroyService.(@category)
+    @category = response.payload[:category]
+    if response.success?
+      flash[:info] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_categories_path
+  end
+
   private
 
   def find_category
