@@ -15,4 +15,10 @@ class Admin::TaxesController < Admin::BaseController
     @taxes = current_user.taxes.active
     @pagy, @taxes = pagy(@taxes)
   end
+
+  # GET /admin/taxes/inactive
+  def inactive
+    @taxes = current_user.taxes.inactive
+    @pagy, @taxes = pagy(@taxes)
+  end
 end
