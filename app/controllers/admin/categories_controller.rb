@@ -73,12 +73,24 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
-  # DELETE /admin/shifts/:uuid
+  # DELETE /admin/categories/:uuid
   def destroy
     response = ::Categories::DestroyService.(@category)
     @category = response.payload[:category]
     if response.success?
       flash[:info] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_categories_path
+  end
+
+  # PATCH /admin/categories/:uuid/deactivate
+  def deactivate
+    response = ::Categories::DeactivateService.(@category)
+    @category = response.payload[:category]
+    if response.success?
+      flash[:warning] = response.message
     else
       flash[:alert] = response.message
     end
