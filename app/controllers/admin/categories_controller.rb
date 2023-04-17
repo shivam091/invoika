@@ -9,4 +9,10 @@ class Admin::CategoriesController < Admin::BaseController
     @categories = current_user.categories.active
     @pagy, @categories = pagy(@categories)
   end
+
+  # GET /admin/categories/inactive
+  def inactive
+    @categories = current_user.categories.inactive
+    @pagy, @categories = pagy(@categories)
+  end
 end
