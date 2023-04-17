@@ -5,7 +5,7 @@
 class Category < ApplicationRecord
   include Sortable, Filterable, Toggleable
 
-  attribute :is_active, default: 0
+  attribute :is_active, default: false
   attribute :products_count, default: 0
 
   validates :name,

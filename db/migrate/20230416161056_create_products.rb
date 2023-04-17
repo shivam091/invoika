@@ -37,6 +37,8 @@ class CreateProducts < Invoika::Database::Migration[1.0]
       t.length_constraint :code, less_than_or_equal_to: 15
       t.length_constraint :description, less_than_or_equal_to: 1000
 
+      t.uppercase_constraint :code
+
       t.check_constraint "unit_price > CAST(0.0 AS MONEY)", name: "unit_price_gt_zero"
       t.check_constraint "sell_price <= unit_price", name: "sell_price_lteq_unit_price"
 

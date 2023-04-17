@@ -16,6 +16,7 @@ class Product < ApplicationRecord
             reduce: true
   validates :code,
             presence: true,
+            uppercase: true,
             uniqueness: {scope: :user_id},
             length: {maximum: 15},
             reduce: true
@@ -31,11 +32,11 @@ class Product < ApplicationRecord
             reduce: true
   validates :sell_price,
             presence: true,
-            numericality: {greater_than_or_equal_to: :unit_price},
+            numericality: {less_than_or_equal_to: :unit_price},
             reduce: true
 
   belongs_to :user, inverse_of: :products
-  belongs_to :category, inverse_of: :products
+  belongs_to :category, inverse_of: :products, counter_cache: :products_count
 
   delegate :name, to: :category, prefix: true
   delegate :full_name, to: :user, prefix: true

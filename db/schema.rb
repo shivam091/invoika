@@ -108,6 +108,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_161056) do
     t.check_constraint "sell_price IS NOT NULL", name: "chk_173f7aabf6"
     t.check_constraint "unit_price > 0.0::money", name: "unit_price_gt_zero"
     t.check_constraint "unit_price IS NOT NULL", name: "chk_8b63405e7f"
+    t.check_constraint "upper(code::text) = code::text", name: "chk_61699c1d3a"
   end
 
   create_table "request_logs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
