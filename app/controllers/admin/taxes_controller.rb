@@ -4,6 +4,8 @@
 
 class Admin::TaxesController < Admin::BaseController
 
+  before_action :find_tax, except: [:index, :active, :inactive, :new, :create]
+
   # GET /admin/taxes
   def index
     @taxes = current_user.taxes
@@ -47,7 +49,35 @@ class Admin::TaxesController < Admin::BaseController
     end
   end
 
+  # GET /admin/taxes/:uuid/edit
+  def edit
+  end
+
+  # PUT/PATCH /admin/taxes/:uuid
+  def update
+    response = ::Taxes::UpdateService.(@tax, tax_params)
+    @tax = response.payload[:tax]
+    if response.success?
+      flash[:notice] = response.message
+      redirect_to admin_taxes_path
+    else
+      flash.now[:alert] = response.message
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:tax_form, partial: "admin/taxes/form"),
+            render_flash
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   private
+
+  def find_tax
+    @tax = current_user.taxes.find(params.fetch(:uuid))
+  end
 
   def tax_params
     params.require(:tax).permit(:name, :rate, :type, :is_active)
