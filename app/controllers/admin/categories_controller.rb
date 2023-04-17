@@ -4,6 +4,8 @@
 
 class Admin::CategoriesController < Admin::BaseController
 
+  before_action :find_category, except: [:index, :active, :inactive, :new, :create]
+
   # GET /admin/categories
   def index
     @categories = current_user.categories
@@ -47,7 +49,35 @@ class Admin::CategoriesController < Admin::BaseController
     end
   end
 
+  # GET /admin/categories/:uuid/edit
+  def edit
+  end
+
+  # PUT/PATCH /admin/categories/:uuid
+  def update
+    response = ::Categories::UpdateService.(@category, category_params)
+    @category = response.payload[:category]
+    if response.success?
+      flash[:notice] = response.message
+      redirect_to admin_categories_path
+    else
+      flash.now[:alert] = response.message
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:category_form, partial: "admin/categories/form"),
+            render_flash
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   private
+
+  def find_category
+    @category = current_user.categories.find(params[:uuid])
+  end
 
   def category_params
     params.require(:category).permit(:name, :is_active)
