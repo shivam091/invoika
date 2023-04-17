@@ -63,6 +63,7 @@ Rails.application.routes.draw do
       concerns :shareable
 
       resources :categories, except: :show, param: :uuid, concerns: :toggleable
+      resources :taxes, except: :show, param: :uuid, concerns: :toggleable
     end
 
     namespace :client do
