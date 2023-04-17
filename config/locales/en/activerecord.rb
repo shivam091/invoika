@@ -19,6 +19,28 @@
           is_banned: "Is banned",
           is_active: "Is active",
         },
+        country: {
+          name: "Name",
+          is_active: "Is active",
+        },
+        state: {
+          name: "Name",
+          country_id: "Country",
+          is_active: "Is active",
+        },
+        city: {
+          name: "Name",
+          state_id: "State",
+          is_active: "Is active",
+        },
+        address: {
+          address1: "Flat, House no., Building, Company, Apartment, P.O. box, c/o",
+          address2: "Area, Street, Sector, Village, Suite, or Floor",
+          city_id: "Town, City, Suburb, or Area",
+          state_id: "State, Province, County, or Territory",
+          country_id: "Country",
+          postal_code: "Postal code, Postcode, or PIN code",
+        },
         tax: {
           name: "Name",
           rate: "Rate",

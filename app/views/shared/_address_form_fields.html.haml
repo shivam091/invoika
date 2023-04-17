@@ -1,0 +1,16 @@
+.row
+  .col-sm-12.col-md-6.col-lg-6
+    = form.text_field :address1
+  .col-sm-12.col-md-6.col-lg-6
+    = form.text_field :address2
+  .col-sm-12.col-md-6.col-lg-4
+    = form.select :country_id, options_for_select(::Country.select_options, form.object.country_id),
+      {include_blank: t(".select_country")}
+  .col-sm-12.col-md-6.col-lg-4
+    = form.select :state_id, options_for_select(::State.select_options, form.object.state_id),
+      {include_blank: t(".select_state")}
+  .col-sm-12.col-md-6.col-lg-4
+    = form.select :city_id, options_for_select(::City.select_options, form.object.city_id),
+      {include_blank: t(".select_city")}
+  .col-sm-12.col-md-6.col-lg-4
+    = form.text_field :postal_code

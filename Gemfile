@@ -20,7 +20,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 
 # Flexible authentication solution for Rails with Warden
-gem "devise", "4.9.0"
+gem "devise", "4.9.2"
 
 # Authorization
 gem "pundit"
@@ -35,7 +35,7 @@ gem "bootstrap_form"
 gem "aasm", "~> 5"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+gem "turbo-rails", "~> 1.3"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"

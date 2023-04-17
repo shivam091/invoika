@@ -41,13 +41,18 @@ Rails.application.routes.draw do
                registrations: "user/registrations"
              }
 
+  concern :shareable do
+    resource :dashboard, only: :show
+    resource :profile, only: [:show, :edit, :update]
+  end
+
   authenticated :user do
     namespace :admin do
-      resource :dashboard, only: :show
+      concerns :shareable
     end
 
     namespace :client do
-      resource :dashboard, only: :show
+      concerns :shareable
     end
   end
 
