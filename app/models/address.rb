@@ -26,9 +26,9 @@ class Address < ApplicationRecord
   belongs_to :state, inverse_of: :addresses
   belongs_to :city, inverse_of: :addresses
 
-  delegate :name, to: :country, prefix: true
-  delegate :name, to: :state, prefix: true
-  delegate :name, to: :city, prefix: true
+  delegate :name, to: :country, prefix: true, allow_nil: true
+  delegate :name, to: :state, prefix: true, allow_nil: true
+  delegate :name, to: :city, prefix: true, allow_nil: true
 
   def humanize
     [
