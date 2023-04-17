@@ -16,7 +16,6 @@ class Product < ApplicationRecord
             reduce: true
   validates :code,
             presence: true,
-            uppercase: true,
             uniqueness: {scope: :user_id},
             length: {maximum: 15},
             reduce: true
