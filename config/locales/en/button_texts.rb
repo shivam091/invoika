@@ -19,6 +19,9 @@
       previous_page: "Previous page",
       import: "Import",
       update_profile: "Update profile",
+      new_category: "New category",
+      create_category: "Create category",
+      update_category: "Update category",
     }
   }
 }
