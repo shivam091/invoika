@@ -86,6 +86,18 @@ class Admin::TaxesController < Admin::BaseController
   end
 
   # PATCH /admin/taxes/:uuid/deactivate
+  def activate
+    response = ::Taxes::ActivateService.(@tax)
+    @tax = response.payload[:tax]
+    if response.success?
+      flash[:notice] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_taxes_path
+  end
+
+  # PATCH /admin/taxes/:uuid/deactivate
   def deactivate
     response = ::Taxes::DeactivateService.(@tax)
     @tax = response.payload[:tax]
