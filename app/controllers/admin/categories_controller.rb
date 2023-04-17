@@ -86,6 +86,18 @@ class Admin::CategoriesController < Admin::BaseController
   end
 
   # PATCH /admin/categories/:uuid/deactivate
+  def activate
+    response = ::Categories::ActivateService.(@category)
+    @category = response.payload[:category]
+    if response.success?
+      flash[:notice] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_categories_path
+  end
+
+  # PATCH /admin/categories/:uuid/deactivate
   def deactivate
     response = ::Categories::DeactivateService.(@category)
     @category = response.payload[:category]
