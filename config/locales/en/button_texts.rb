@@ -22,6 +22,9 @@
       new_category: "New category",
       create_category: "Create category",
       update_category: "Update category",
+      new_tax: "New tax",
+      create_tax: "Create tax",
+      update_tax: "Update tax",
     }
   }
 }
