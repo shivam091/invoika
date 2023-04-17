@@ -46,9 +46,23 @@ Rails.application.routes.draw do
     resource :profile, only: [:show, :edit, :update]
   end
 
+  concern :toggleable do
+    collection do
+      get :active
+      get :inactive
+    end
+
+    member do
+      patch :activate
+      patch :deactivate
+    end
+  end
+
   authenticated :user do
     namespace :admin do
       concerns :shareable
+
+      resources :categories, except: :show, concerns: :toggleable
     end
 
     namespace :client do
