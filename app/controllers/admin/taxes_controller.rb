@@ -73,6 +73,18 @@ class Admin::TaxesController < Admin::BaseController
     end
   end
 
+  # DELETE /admin/taxes/:uuid
+  def destroy
+    response = ::Taxes::DestroyService.(@tax)
+    @tax = response.payload[:tax]
+    if response.success?
+      flash[:info] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_taxes_path
+  end
+
   private
 
   def find_tax
