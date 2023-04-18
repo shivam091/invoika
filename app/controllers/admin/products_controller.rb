@@ -8,25 +8,24 @@ class Admin::ProductsController < Admin::BaseController
 
   # GET /admin/products
   def index
-    @products = current_user.products
-    @pagy, @products = pagy(@products)
+    @pagy, @products = pagy(products)
   end
 
   # GET /admin/products/active
   def active
-    @products = current_user.products.active
+    @products = products.active
     @pagy, @products = pagy(@products)
   end
 
   # GET /admin/products/inactive
   def inactive
-    @products = current_user.products.inactive
+    @products = products.inactive
     @pagy, @products = pagy(@products)
   end
 
   # GET /admin/products/new
   def new
-    @product = current_user.products.build
+    @product = products.build
   end
 
   # POST /admin/products
@@ -111,8 +110,12 @@ class Admin::ProductsController < Admin::BaseController
 
   private
 
+  def products
+    current_user.products
+  end
+
   def find_product
-    @product = current_user.products.find(params.fetch(:uuid))
+    @product = products.find(params.fetch(:uuid))
   end
 
   def product_params
