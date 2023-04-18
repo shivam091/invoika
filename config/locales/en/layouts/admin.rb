@@ -19,6 +19,7 @@
           invoice_templates: "Invoice templates",
           email_templates: "Email templates",
           taxes: "Taxes",
+          settings: "Settings",
         },
         menu: {
           hello_username: "Hello %{username}",
