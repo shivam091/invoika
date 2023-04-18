@@ -38,6 +38,7 @@ class User < ApplicationRecord
             if: :password_required?
 
   has_one :address, as: :addressable, dependent: :destroy
+  has_one :user_preference, dependent: :destroy, autosave: true
   has_many :taxes, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :products, dependent: :destroy
@@ -59,7 +60,15 @@ class User < ApplicationRecord
   scope :admins, -> { with_role("admin") }
   scope :clients, -> { with_role("client") }
 
+  delegate :preferred_locale, :preferred_locale=,
+           :preferred_time_zone, :preferred_time_zone=,
+           :preferred_screen_mode, :preferred_screen_mode=,
+           :preferred_color_scheme, :preferred_color_scheme=,
+           :enable_notifications, :enable_notifications=,
+           to: :user_preference
+
   accepts_nested_attributes_for :address, update_only: true
+  accepts_nested_attributes_for :user_preference, update_only: true
 
   class << self
     def with_email(email)
@@ -139,6 +148,10 @@ class User < ApplicationRecord
 
   def address
     super.presence || build_address
+  end
+
+  def user_preference
+    super.presence || build_user_preference
   end
 
   private

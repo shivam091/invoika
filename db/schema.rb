@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_18_171639) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_18_171828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -177,6 +177,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_171639) do
     t.check_constraint "type IS NOT NULL", name: "chk_93dc44aed5"
   end
 
+  create_table "user_preferences", primary_key: "user_id", id: :uuid, default: nil, force: :cascade do |t|
+    t.string "preferred_locale"
+    t.string "preferred_time_zone"
+    t.enum "preferred_color_scheme", enum_type: "color_schemes"
+    t.enum "preferred_screen_mode", default: "windowed", enum_type: "screen_modes"
+    t.boolean "enable_notifications", default: true
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["user_id"], name: "index_user_preferences_on_user_id", unique: true
+    t.check_constraint "preferred_color_scheme = ANY (ARRAY['light'::color_schemes, 'dark'::color_schemes])", name: "chk_b21cd8fa5b"
+    t.check_constraint "preferred_color_scheme IS NOT NULL", name: "chk_09687af08f"
+    t.check_constraint "preferred_locale IS NOT NULL AND preferred_locale::text <> ''::text", name: "chk_8ec726d46e"
+    t.check_constraint "preferred_screen_mode = ANY (ARRAY['windowed'::screen_modes, 'full_screen'::screen_modes])", name: "chk_e52e1a0da8"
+    t.check_constraint "preferred_screen_mode IS NOT NULL", name: "chk_bc64cb8116"
+    t.check_constraint "preferred_time_zone IS NOT NULL AND preferred_time_zone::text <> ''::text", name: "chk_4b34a64a45"
+    t.check_constraint "user_id IS NOT NULL", name: "chk_22c6689bf0"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email"
     t.string "encrypted_password"
@@ -234,5 +252,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_18_171639) do
   add_foreign_key "request_logs", "users", name: "fk_request_logs_user_id_on_users", on_delete: :nullify
   add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict
   add_foreign_key "taxes", "users", name: "fk_taxes_user_id_on_users", on_delete: :cascade
+  add_foreign_key "user_preferences", "users", name: "fk_user_preferences_user_id_on_users", on_delete: :cascade
   add_foreign_key "users", "roles", name: "fk_users_role_id_on_roles", on_delete: :restrict
 end
