@@ -1,32 +1,33 @@
-= bootstrap_form_with model: [:admin, @product] do |form|
-  .row
-    .col-sm-12.col-md-6.col-lg-4
-      = form.text_field :name, data: {controller: "autofocus"}
-    .col-sm-12.col-md-6.col-lg-4
-      = form.select :category_id, options_for_select(::Category.select_options, form.object.category_id),
-        {include_blank: t(".select_category")}
-    .col-sm-12.col-md-6.col-lg-4
-      = form.text_field :code
-    .col-12
-      = form.text_area :description
-    .col-sm-12.col-md-6.col-lg-4
-      = form.number_field :unit_price
-    .col-sm-12.col-md-6.col-lg-4
-      = form.number_field :sell_price
-  .row
-    .col-sm-12.col-md-6.col-lg-4
-      = form.check_box :is_active, switch: true
-  .actions
-    - if form.object.new_record?
-      = button_tag type: :submit, class: "btn btn-primary" do
-        = external_svg_tag("svgs/plus.svg")
-        %span.d-block.d-lg-none= button_text("create")
-        %span.d-none.d-lg-block= button_text("create_product")
-    - if form.object.persisted?
-      = button_tag type: :submit, class: "btn btn-primary" do
-        = external_svg_tag("svgs/floppy.svg")
-        %span.d-block.d-lg-none= button_text("update")
-        %span.d-none.d-lg-block= button_text("update_product")
-    = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->remote-modal#hide"} do
-      = external_svg_tag("svgs/cancel.svg")
-      = button_text("cancel")
+= turbo_frame_tag :product_form do
+  = bootstrap_form_with model: [:admin, @product] do |form|
+    .row
+      .col-sm-12.col-md-6.col-lg-4
+        = form.text_field :name, data: {controller: "autofocus"}
+      .col-sm-12.col-md-6.col-lg-4
+        = form.select :category_id, options_for_select(::Category.select_options, form.object.category_id),
+          {include_blank: t(".select_category")}
+      .col-sm-12.col-md-6.col-lg-4
+        = form.text_field :code
+      .col-12
+        = form.text_area :description
+      .col-sm-12.col-md-6.col-lg-4
+        = form.number_field :unit_price
+      .col-sm-12.col-md-6.col-lg-4
+        = form.number_field :sell_price
+    .row
+      .col-sm-12.col-md-6.col-lg-4
+        = form.check_box :is_active, switch: true
+    .actions
+      - if form.object.new_record?
+        = button_tag type: :submit, class: "btn btn-primary" do
+          = external_svg_tag("svgs/plus.svg")
+          %span.d-block.d-lg-none= button_text("create")
+          %span.d-none.d-lg-block= button_text("create_product")
+      - if form.object.persisted?
+        = button_tag type: :submit, class: "btn btn-primary" do
+          = external_svg_tag("svgs/floppy.svg")
+          %span.d-block.d-lg-none= button_text("update")
+          %span.d-none.d-lg-block= button_text("update_product")
+      = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->remote-modal#hide"} do
+        = external_svg_tag("svgs/cancel.svg")
+        = button_text("cancel")
