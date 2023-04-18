@@ -27,4 +27,10 @@ class Category < ApplicationRecord
   belongs_to :user, inverse_of: :categories
 
   default_scope -> { order_name_asc }
+
+  class << self
+    def select_options
+      active.pluck(:name, :id)
+    end
+  end
 end

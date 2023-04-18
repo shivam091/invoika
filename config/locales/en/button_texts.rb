@@ -19,6 +19,15 @@
       previous_page: "Previous page",
       import: "Import",
       update_profile: "Update profile",
+      new_category: "New category",
+      create_category: "Create category",
+      update_category: "Update category",
+      new_tax: "New tax",
+      create_tax: "Create tax",
+      update_tax: "Update tax",
+      new_product: "New product",
+      create_product: "Create product",
+      update_product: "Update product",
     }
   }
 }

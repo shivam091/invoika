@@ -3,11 +3,13 @@
 # -*- warn_indent: true -*-
 
 class Product < ApplicationRecord
-  include Sortable, Filterable, Toggleable
+  include Sortable, Filterable, Toggleable, UpcaseAttribute
 
   attribute :unit_price, default: 0.0
   attribute :sell_price, default: 0.0
   attribute :is_active, default: false
+
+  upcase_attributes! :code
 
   validates :name,
             presence: true,
@@ -16,7 +18,6 @@ class Product < ApplicationRecord
             reduce: true
   validates :code,
             presence: true,
-            uppercase: true,
             uniqueness: {scope: :user_id},
             length: {maximum: 15},
             reduce: true
