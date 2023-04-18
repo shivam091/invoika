@@ -77,7 +77,7 @@ class Admin::CategoriesController < Admin::BaseController
     response = ::Categories::DestroyService.(@category)
     @category = response.payload[:category]
     if response.success?
-      flash[:info] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end
@@ -101,7 +101,7 @@ class Admin::CategoriesController < Admin::BaseController
     response = ::Categories::DeactivateService.(@category)
     @category = response.payload[:category]
     if response.success?
-      flash[:warning] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end

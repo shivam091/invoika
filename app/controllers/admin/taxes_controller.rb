@@ -77,7 +77,7 @@ class Admin::TaxesController < Admin::BaseController
     response = ::Taxes::DestroyService.(@tax)
     @tax = response.payload[:tax]
     if response.success?
-      flash[:info] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end
@@ -101,7 +101,7 @@ class Admin::TaxesController < Admin::BaseController
     response = ::Taxes::DeactivateService.(@tax)
     @tax = response.payload[:tax]
     if response.success?
-      flash[:warning] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end

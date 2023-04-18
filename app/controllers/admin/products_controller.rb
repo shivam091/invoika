@@ -77,7 +77,7 @@ class Admin::ProductsController < Admin::BaseController
     response = ::Products::DestroyService.(@product)
     @product = response.payload[:product]
     if response.success?
-      flash[:info] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end
@@ -101,7 +101,7 @@ class Admin::ProductsController < Admin::BaseController
     response = ::Products::DeactivateService.(@product)
     @product = response.payload[:product]
     if response.success?
-      flash[:warning] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end
