@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_090427) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_19_122756) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -111,6 +111,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_090427) do
     t.check_constraint "sell_price IS NOT NULL", name: "chk_173f7aabf6"
     t.check_constraint "unit_price > 0.0::money", name: "unit_price_gt_zero"
     t.check_constraint "unit_price IS NOT NULL", name: "chk_8b63405e7f"
+  end
+
+  create_table "quote_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "quote_id"
+    t.uuid "product_id"
+    t.integer "quantity", default: 1
+    t.money "unit_price", scale: 2
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["product_id"], name: "index_quote_items_on_product_id"
+    t.index ["quote_id"], name: "index_quote_items_on_quote_id"
+    t.check_constraint "product_id IS NOT NULL", name: "chk_fe1089dd48"
+    t.check_constraint "quantity IS NOT NULL", name: "chk_6e356c8343"
+    t.check_constraint "quote_id IS NOT NULL", name: "chk_99638b2d83"
+    t.check_constraint "unit_price IS NOT NULL", name: "chk_49d7f64bf8"
   end
 
   create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -263,6 +278,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_090427) do
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
   add_foreign_key "products", "categories", name: "fk_products_category_id_on_categories", on_delete: :restrict
   add_foreign_key "products", "users", name: "fk_products_user_id_on_users", on_delete: :cascade
+  add_foreign_key "quote_items", "products", name: "fk_quote_items_product_id_on_products", on_delete: :restrict
+  add_foreign_key "quote_items", "quotes", name: "fk_quote_items_quote_id_on_quotes", on_delete: :cascade
   add_foreign_key "quotes", "users", column: "client_id", name: "fk_quotes_client_id_on_users", on_delete: :nullify
   add_foreign_key "quotes", "users", name: "fk_quotes_user_id_on_users", on_delete: :cascade
   add_foreign_key "request_logs", "users", name: "fk_request_logs_user_id_on_users", on_delete: :nullify
