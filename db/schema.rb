@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_083637) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_19_083646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -18,6 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_083637) do
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "discount_types", [["flat", "percentage"]]
+  create_enum "invoice_statuses", [["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]]
   create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "not_accepted"]]
   create_enum "tax_types", [["inclusive", "exclusive"]]
 
