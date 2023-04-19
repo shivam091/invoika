@@ -36,6 +36,8 @@ class Product < ApplicationRecord
             numericality: {less_than_or_equal_to: :unit_price},
             reduce: true
 
+  has_many :quote_items, dependent: :restrict_with_exception
+
   belongs_to :user, inverse_of: :products
   belongs_to :category, inverse_of: :products, counter_cache: :products_count
 

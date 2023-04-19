@@ -47,13 +47,27 @@ class Quote < ApplicationRecord
             allow_blank: true,
             reduce: true
 
+  has_many :quote_items, dependent: :destroy
+
   belongs_to :client, class_name: "::User", inverse_of: :quotes
   belongs_to :user, inverse_of: :created_quotes
 
   delegate :full_name, to: :client, prefix: true
   delegate :full_name, to: :user, prefix: true
 
+  accepts_nested_attributes_for :quote_items,
+                                allow_destroy: true,
+                                reject_if: :reject_quote_item?
+
   private
+
+  def reject_quote_item?
+    [
+      attributes[:product_id],
+      attributes[:quantity],
+      attributes[:unit_price]
+    ].any?(&:blank?)
+  end
 
   def discount_required?
     discount_type.present?
