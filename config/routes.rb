@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   concern :shareable do
     resource :dashboard, only: :show
     resource :profile, only: [:show, :edit, :update]
-    resources :quotes do
+    resources :quotes, param: :uuid do
       collection do
         get :draft
         get :converted
