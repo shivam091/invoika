@@ -54,6 +54,30 @@ class QuotesController < ApplicationController
     end
   end
 
+  # GET /(:role)/quotes/:uuid/edit
+  def edit
+  end
+
+  # PUT/PATCH /(:role)/quotes/:uuid
+  def update
+    response = ::Quotes::UpdateService.(@quote, quote_params)
+    @quote = response.payload[:quote]
+    if response.success?
+      flash[:notice] = response.message
+      redirect_to helpers.quotes_path
+    else
+      flash.now[:alert] = response.message
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:quote_form, partial: "quotes/form"),
+            render_flash
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   # DELETE /(:role)/quotes/:uuid
   def destroy
     response = ::Quotes::DestroyService.(@quote)
