@@ -4,6 +4,8 @@
 
 class Quote < ApplicationRecord
 
+  include Sortable
+
   enum discount_type: {
     flat: "flat",
     percentage: "percentage"
@@ -52,10 +54,12 @@ class Quote < ApplicationRecord
   belongs_to :client, class_name: "::User", inverse_of: :quotes
   belongs_to :user, inverse_of: :created_quotes
 
-  after_initialize :set_code
+  after_initialize :set_code, if: :new_record?
 
   delegate :full_name, to: :client, prefix: true
   delegate :full_name, to: :user, prefix: true
+
+  default_scope -> { order_created_desc }
 
   accepts_nested_attributes_for :quote_items,
                                 allow_destroy: true,
@@ -77,9 +81,8 @@ class Quote < ApplicationRecord
   def reject_quote_item?(attributes)
     [
       attributes[:product_id],
-      attributes[:quantity],
       attributes[:unit_price]
-    ].all?(&:blank?)
+    ].all?(&:blank?) && attributes[:quantity] != 1
   end
 
   def discount_required?
