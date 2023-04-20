@@ -7,9 +7,9 @@
         %li.nav-item
           = link_to t(".draft"), draft_quotes_path, class: "flex-sm-fill text-sm-center nav-link #{active_when(current_action?("draft"))}"
         %li.nav-item
-          = link_to t(".converted"), "javascript:void(0)", class: "flex-sm-fill text-sm-center nav-link #{active_when(current_action?("converted"))}"
+          = link_to t(".converted"), converted_quotes_path, class: "flex-sm-fill text-sm-center nav-link #{active_when(current_action?("converted"))}"
         %li.nav-item
-          = link_to t(".accepted"), "javascript:void(0)", class: "flex-sm-fill text-sm-center nav-link #{active_when(current_action?("accepted"))}"
+          = link_to t(".accepted"), accepted_quotes_path, class: "flex-sm-fill text-sm-center nav-link #{active_when(current_action?("accepted"))}"
       = link_to new_quote_path, class: "btn btn-primary" do
         = external_svg_tag("svgs/plus.svg")
         %span.d-block.d-lg-none= button_text("new")

@@ -15,6 +15,18 @@ class QuotesController < ApplicationController
     @pagy, @quotes = pagy(@quotes)
   end
 
+  # GET /(:role)/quotes/converted
+  def converted
+    @quotes = quotes.converted
+    @pagy, @quotes = pagy(@quotes)
+  end
+
+  # GET /(:role)/quotes/accepted
+  def accepted
+    @quotes = quotes.accepted
+    @pagy, @quotes = pagy(@quotes)
+  end
+
   private
 
   def quotes
