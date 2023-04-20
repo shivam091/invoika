@@ -26,8 +26,8 @@
           %td= quote.due_date.to_fs(:long)
           %td= enum_i18n(::Quote, :statuses, quote.status)
           %td.actions
-            = link_to external_svg_tag("svgs/pencil.svg"), edit_admin_quote_path(quote), class: "btn btn-sm btn-secondary"
-            = link_to external_svg_tag("svgs/trash.svg"), admin_quote_path(quote), class: "btn btn-sm btn-danger",
+            = link_to external_svg_tag("svgs/pencil.svg"), edit_quote_path(quote), class: "btn btn-sm btn-secondary"
+            = link_to external_svg_tag("svgs/trash.svg"), quote_path(quote), class: "btn btn-sm btn-danger",
               data: {turbo_confirm: t(".delete_quote_confirmation_text"), turbo_method: :delete}
       - end.empty?
         %tr
