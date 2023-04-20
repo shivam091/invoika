@@ -45,4 +45,10 @@ class Product < ApplicationRecord
   delegate :full_name, to: :user, prefix: true
 
   default_scope -> { order_name_asc }
+
+  class << self
+    def select_options
+      active.pluck(:name, :id)
+    end
+  end
 end
