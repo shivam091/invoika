@@ -1,0 +1,15 @@
+%tr.quote-item-form-wrapper{data: {new_record: form.object.new_record?}}
+  %td
+    = form.hidden_field :id, value: form.object.id
+    = form.hidden_field :_destroy
+    = form.select :product_id, options_for_select(::Product.select_options, form.object.product_id),
+      {include_blank: t(".select_product"), skip_label: true, wrapper_class: "mb-0"}
+  %td
+    = form.number_field :quantity, skip_label: true, wrapper_class: "mb-0"
+  %td
+    = form.text_field :unit_price, skip_label: true, wrapper_class: "mb-0"
+  %td
+    %span.text-center= form.object.total_amount
+  %td
+    = button_tag :remove, class: "btn btn-sm btn-danger", data: {action: "click->nested-forms#removeAssociation"} do
+      = external_svg_tag("svgs/trash.svg")

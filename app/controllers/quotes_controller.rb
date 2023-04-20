@@ -29,6 +29,31 @@ class QuotesController < ApplicationController
     @pagy, @quotes = pagy(@quotes)
   end
 
+  # GET /(:role)/quotes/new
+  def new
+    @quote = current_user.created_quotes.build
+  end
+
+  # POST /(:role)/quotes
+  def create
+    response = ::Quotes::CreateService.(current_user, quote_params)
+    @quote = response.payload[:quote]
+    if response.success?
+      flash[:notice] = response.message
+      redirect_to helpers.quotes_path
+    else
+      flash.now[:alert] = response.message
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:quote_form, partial: "quotes/form"),
+            render_flash
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   # DELETE /(:role)/quotes/:uuid
   def destroy
     response = ::Quotes::DestroyService.(@quote)
@@ -49,5 +74,26 @@ class QuotesController < ApplicationController
 
   def find_quote
     @quote = quotes.find(params.fetch(:uuid))
+  end
+
+  def quote_params
+    params.require(:quote).permit(
+      :client_id,
+      :code,
+      :quote_date,
+      :due_date,
+      :status,
+      :discount,
+      :discount_type,
+      :notes,
+      :terms,
+      quote_items_attributes: [
+        :id,
+        :_destroy,
+        :product_id,
+        :quantity,
+        :unit_price
+      ]
+    )
   end
 end

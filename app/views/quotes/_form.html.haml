@@ -1,0 +1,38 @@
+= turbo_frame_tag :quote_form do
+  = bootstrap_form_with model: quote_object(@quote) do |form|
+    .row
+      .col-sm-12.col-md-6.col-lg-4
+        = form.select :client_id, options_for_select(::User.clients.select_options, form.object.client_id),
+          {include_blank: t(".select_client")}
+      .col-sm-12.col-md-6.col-lg-4
+        = form.text_field :code
+      .col-sm-12.col-md-6.col-lg-4
+        = form.date_field :quote_date
+      .col-sm-12.col-md-6.col-lg-4
+        = form.date_field :due_date
+      .col-sm-12.col-md-6.col-lg-4
+        = form.select :status, enum_options_for_select(::Quote, :statuses), {include_blank: t(".select_status")}
+      .col-sm-12.col-md-6.col-lg-4
+        = form.number_field :discount
+      .col-sm-12.col-md-6.col-lg-4
+        = form.select :discount_type, enum_options_for_select(::Quote, :discount_types), {include_blank: t(".select_discount_type")}
+    = render_if_exists("quotes/quote_items", locals: {form:})
+    .row
+      .col-12.col-lg-6
+        = form.text_area :notes
+      .col-12.col-lg-6
+        = form.text_area :terms
+    .actions
+      - if form.object.new_record?
+        = button_tag type: :submit, class: "btn btn-primary" do
+          = external_svg_tag("svgs/plus.svg")
+          %span.d-block.d-lg-none= button_text("create")
+          %span.d-none.d-lg-block= button_text("create_quote")
+      - if form.object.persisted?
+        = button_tag type: :submit, class: "btn btn-primary" do
+          = external_svg_tag("svgs/floppy.svg")
+          %span.d-block.d-lg-none= button_text("update")
+          %span.d-none.d-lg-block= button_text("update_quote")
+      = link_to quotes_path, class: "btn btn-secondary" do
+        = external_svg_tag("svgs/cancel.svg")
+        = button_text("cancel")
