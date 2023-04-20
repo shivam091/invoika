@@ -6,7 +6,18 @@ class QuotesController < ApplicationController
 
   # GET /(:role)/quotes
   def index
-    @quotes = ::Quote.accessible(current_user)
+    @pagy, @quotes = pagy(quotes)
+  end
+
+  # GET /(:role)/quotes/draft
+  def draft
+    @quotes = quotes.draft
     @pagy, @quotes = pagy(@quotes)
+  end
+
+  private
+
+  def quotes
+    ::Quote.accessible(current_user)
   end
 end
