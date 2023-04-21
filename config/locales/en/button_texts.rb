@@ -25,6 +25,12 @@
       new_tax: "New tax",
       create_tax: "Create tax",
       update_tax: "Update tax",
+      new_product: "New product",
+      create_product: "Create product",
+      update_product: "Update product",
+      new_quote: "New quote",
+      create_quote: "Create quote",
+      update_quote: "Update quote",
     }
   }
 }

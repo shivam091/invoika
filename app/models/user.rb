@@ -41,6 +41,8 @@ class User < ApplicationRecord
   has_many :taxes, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :products, dependent: :destroy
+  has_many :quotes, foreign_key: :client_id, dependent: :nullify
+  has_many :created_quotes, class_name: "::Quote", dependent: :destroy
 
   has_many :request_logs, dependent: :nullify
 
@@ -98,6 +100,10 @@ class User < ApplicationRecord
 
       record.email = email
       record
+    end
+
+    def select_options
+      all.collect { |user| [user.full_name, user.id] }
     end
   end
 

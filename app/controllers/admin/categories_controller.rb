@@ -8,25 +8,24 @@ class Admin::CategoriesController < Admin::BaseController
 
   # GET /admin/categories
   def index
-    @categories = current_user.categories
-    @pagy, @categories = pagy(@categories)
+    @pagy, @categories = pagy(categories)
   end
 
   # GET /admin/categories/active
   def active
-    @categories = current_user.categories.active
+    @categories = categories.active
     @pagy, @categories = pagy(@categories)
   end
 
   # GET /admin/categories/inactive
   def inactive
-    @categories = current_user.categories.inactive
+    @categories = categories.inactive
     @pagy, @categories = pagy(@categories)
   end
 
   # GET /admin/categories/new
   def new
-    @category = current_user.categories.build
+    @category = categories.build
   end
 
   # POST /admin/categories
@@ -78,7 +77,7 @@ class Admin::CategoriesController < Admin::BaseController
     response = ::Categories::DestroyService.(@category)
     @category = response.payload[:category]
     if response.success?
-      flash[:info] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end
@@ -102,7 +101,7 @@ class Admin::CategoriesController < Admin::BaseController
     response = ::Categories::DeactivateService.(@category)
     @category = response.payload[:category]
     if response.success?
-      flash[:warning] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end
@@ -111,8 +110,12 @@ class Admin::CategoriesController < Admin::BaseController
 
   private
 
+  def categories
+    current_user.categories
+  end
+
   def find_category
-    @category = current_user.categories.find(params.fetch(:uuid))
+    @category = categories.find(params.fetch(:uuid))
   end
 
   def category_params

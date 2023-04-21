@@ -33,7 +33,7 @@ class User::PasswordsController < Devise::PasswordsController
 
       if user.present?
         unless user.reset_password_period_valid?
-          flash[:warning] = t(:token_expired, scope: translation_scope)
+          flash[:alert] = t(:token_expired, scope: translation_scope)
           redirect_to new_user_password_path(email: user.email)
         end
       else

@@ -48,8 +48,8 @@ module FlashMessagesHelper
 
   def icon_for(msg_type)
     {
-      notice: "check-circle",
-      alert: "error-circle",
+      notice: "face-smile",
+      alert: "face-frown",
       warning: "exclamation-triangle",
       info: "info-circle"
     }.with_indifferent_access[msg_type]

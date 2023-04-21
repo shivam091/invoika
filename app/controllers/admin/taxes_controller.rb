@@ -8,25 +8,24 @@ class Admin::TaxesController < Admin::BaseController
 
   # GET /admin/taxes
   def index
-    @taxes = current_user.taxes
-    @pagy, @taxes = pagy(@taxes)
+    @pagy, @taxes = pagy(taxes)
   end
 
   # GET /admin/taxes/active
   def active
-    @taxes = current_user.taxes.active
+    @taxes = taxes.active
     @pagy, @taxes = pagy(@taxes)
   end
 
   # GET /admin/taxes/inactive
   def inactive
-    @taxes = current_user.taxes.inactive
+    @taxes = taxes.inactive
     @pagy, @taxes = pagy(@taxes)
   end
 
   # GET /admin/taxes/new
   def new
-    @tax = current_user.taxes.build
+    @tax = taxes.build
   end
 
   # POST /admin/taxes
@@ -78,7 +77,7 @@ class Admin::TaxesController < Admin::BaseController
     response = ::Taxes::DestroyService.(@tax)
     @tax = response.payload[:tax]
     if response.success?
-      flash[:info] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end
@@ -102,7 +101,7 @@ class Admin::TaxesController < Admin::BaseController
     response = ::Taxes::DeactivateService.(@tax)
     @tax = response.payload[:tax]
     if response.success?
-      flash[:warning] = response.message
+      flash[:notice] = response.message
     else
       flash[:alert] = response.message
     end
@@ -111,8 +110,12 @@ class Admin::TaxesController < Admin::BaseController
 
   private
 
+  def taxes
+    current_user.taxes
+  end
+
   def find_tax
-    @tax = current_user.taxes.find(params.fetch(:uuid))
+    @tax = taxes.find(params.fetch(:uuid))
   end
 
   def tax_params

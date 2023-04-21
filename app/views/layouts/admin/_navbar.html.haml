@@ -3,7 +3,7 @@
     = link_to active_admin_categories_path, class: "nav-link d-flex px-2 align-items-center #{active_when(current_controller?("admin/categories"))}" do
       = external_svg_tag("svgs/table.svg")
       = t(".categories")
-    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+    = link_to active_admin_products_path, class: "nav-link d-flex px-2 align-items-center #{active_when(current_controller?("admin/products"))}" do
       = external_svg_tag("svgs/cube.svg")
       = t(".products")
     = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
@@ -24,3 +24,6 @@
     = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
       = external_svg_tag("svgs/template.svg")
       = t(".invoice_templates")
+    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+      = external_svg_tag("svgs/cogs.svg")
+      = t(".settings")

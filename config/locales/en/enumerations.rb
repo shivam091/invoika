@@ -11,6 +11,19 @@
           exclusive: "Exclusive",
         }
       },
+      quote: {
+        discount_types: {
+          flat: "Flat",
+          percentage: "Percentage"
+        },
+        statuses: {
+          draft: "Draft",
+          converted: "Converted",
+          pending: "Pending",
+          accepted: "Accepted",
+          rejected: "Rejected"
+        }
+      }
     }
   }
 }

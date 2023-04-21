@@ -44,6 +44,13 @@ Rails.application.routes.draw do
   concern :shareable do
     resource :dashboard, only: :show
     resource :profile, only: [:show, :edit, :update]
+    resources :quotes, param: :uuid do
+      collection do
+        get :draft
+        get :converted
+        get :accepted
+      end
+    end
   end
 
   concern :toggleable do
@@ -64,6 +71,7 @@ Rails.application.routes.draw do
 
       resources :categories, except: :show, param: :uuid, concerns: :toggleable
       resources :taxes, except: :show, param: :uuid, concerns: :toggleable
+      resources :products, param: :uuid, concerns: :toggleable
     end
 
     namespace :client do
