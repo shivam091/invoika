@@ -2,8 +2,7 @@
 # -*- frozen_string_literal: true -*-
 # -*- warn_indent: true -*-
 
-class QuoteItem < ApplicationRecord
-
+class InvoiceItem < ApplicationRecord
   attribute :quantity, default: 1
   attribute :total_amount, default: 0
 
@@ -17,6 +16,14 @@ class QuoteItem < ApplicationRecord
             numericality: true,
             reduce: true
 
-  belongs_to :quote, inverse_of: :quote_items, touch: true
-  belongs_to :product, inverse_of: :quote_items
+  belongs_to :invoice, inverse_of: :invoice_items, touch: true
+  belongs_to :product, inverse_of: :invoice_items
+
+  before_save :remove_blank_elements_from_tax_ids
+
+  private
+
+  def remove_blank_elements_from_tax_ids
+    self.tax_ids = self.tax_ids.reject(&:blank?)
+  end
 end

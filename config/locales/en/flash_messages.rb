@@ -91,6 +91,20 @@
           error: "Quote could not be destroyed.",
         },
       },
+      invoices: {
+        create: {
+          success: "Invoice was successfully created.",
+          error: "Invoice could not be created.",
+        },
+        update: {
+          success: "Invoice was successfully updated.",
+          error: "Invoice could not be updated.",
+        },
+        destroy: {
+          success: "Invoice was successfully destroyed.",
+          error: "Invoice could not be destroyed.",
+        },
+      },
     }
   }
 }

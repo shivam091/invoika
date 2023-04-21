@@ -116,4 +116,10 @@ module ApplicationHelper
       concat(external_svg_tag("svgs/eye-hidden.svg", class: "d-none", data: {secret_reveal_target: "icon"}))
     end
   end
+
+  def currencies
+    Money::Currency.all.collect do |currency|
+      ["#{currency.name} (#{currency.symbol})", currency.id.upcase.to_s]
+    end
+  end
 end
