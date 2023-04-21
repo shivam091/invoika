@@ -10,7 +10,7 @@
           = external_svg_tag("svgs/users.svg")
           = t(".clients")
       %li.nav-item
-        = link_to "javascript:void(0)", class: "nav-link d-inline-flex align-items-center gap-1" do
+        = link_to admin_invoices_path, class: "nav-link d-inline-flex align-items-center gap-1 #{active_when(current_controller?("admin/invoices"))}" do
           = external_svg_tag("svgs/file.svg")
           = t(".invoices")
       %li.nav-item
