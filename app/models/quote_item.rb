@@ -17,6 +17,6 @@ class QuoteItem < ApplicationRecord
             numericality: true,
             reduce: true
 
-  belongs_to :quote, inverse_of: :quote_items
+  belongs_to :quote, inverse_of: :quote_items, touch: true
   belongs_to :product, inverse_of: :quote_items
 end

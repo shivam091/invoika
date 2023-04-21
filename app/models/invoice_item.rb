@@ -16,7 +16,7 @@ class InvoiceItem < ApplicationRecord
             numericality: true,
             reduce: true
 
-  belongs_to :invoice, inverse_of: :invoice_items
+  belongs_to :invoice, inverse_of: :invoice_items, touch: true
   belongs_to :product, inverse_of: :invoice_items
 
   before_save :remove_blank_elements_from_tax_ids
