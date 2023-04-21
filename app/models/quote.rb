@@ -4,20 +4,22 @@
 
 class Quote < ApplicationRecord
 
+  include Sortable
+
   enum discount_type: {
     flat: "flat",
     percentage: "percentage"
   }
 
-  enum quote_status: {
+  enum status: {
     draft: "draft",
     converted: "converted",
     pending: "pending",
     accepted: "accepted",
-    not_accepted: "not_accepted"
+    rejected: "rejected"
   }
 
-  attribute :status, :enum, default: quote_statuses[:draft]
+  attribute :status, :enum, default: statuses[:draft]
   attribute :discount_type, :enum, default: discount_types[:flat]
 
   validates :client_id, :user_id, presence: true, reduce: true
@@ -33,7 +35,7 @@ class Quote < ApplicationRecord
             reduce: true
   validates :status,
             presence: true,
-            inclusion: {in: quote_statuses.values},
+            inclusion: {in: statuses.values},
             reduce: true
   validates :discount_type,
             inclusion: {in: discount_types.values},
@@ -52,21 +54,35 @@ class Quote < ApplicationRecord
   belongs_to :client, class_name: "::User", inverse_of: :quotes
   belongs_to :user, inverse_of: :created_quotes
 
+  after_initialize :set_code, if: :new_record?
+
   delegate :full_name, to: :client, prefix: true
   delegate :full_name, to: :user, prefix: true
+
+  default_scope -> { order_created_desc }
 
   accepts_nested_attributes_for :quote_items,
                                 allow_destroy: true,
                                 reject_if: :reject_quote_item?
 
+  class << self
+    def accessible(user)
+      return where(client_id: user.id) if user.client?
+      all
+    end
+  end
+
   private
 
-  def reject_quote_item?
+  def set_code
+    self.code = SecureRandom.alphanumeric(8).upcase
+  end
+
+  def reject_quote_item?(attributes)
     [
       attributes[:product_id],
-      attributes[:quantity],
       attributes[:unit_price]
-    ].any?(&:blank?)
+    ].all?(&:blank?) && attributes[:quantity] != 1
   end
 
   def discount_required?

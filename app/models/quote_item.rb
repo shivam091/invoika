@@ -5,6 +5,7 @@
 class QuoteItem < ApplicationRecord
 
   attribute :quantity, default: 1
+  attribute :total_amount, default: 0
 
   validates :product_id, presence: true, reduce: true
   validates :quantity,

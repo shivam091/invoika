@@ -6,7 +6,7 @@
           = external_svg_tag("svgs/home.svg")
           = t(".home")
       %li.nav-item
-        = link_to "javascript:void(0)", class: "nav-link d-inline-flex align-items-center gap-1" do
+        = link_to client_quotes_path, class: "nav-link d-inline-flex align-items-center gap-1 #{active_when(current_controller?("client/quotes"))}" do
           = external_svg_tag("svgs/quote.svg")
           = t(".quotes")
       %li.nav-item

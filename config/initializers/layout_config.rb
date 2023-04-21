@@ -11,8 +11,10 @@ Invoika::Application.configure do
 
     Admin::BaseController.layout      "admin"
     Admin::ProfilesController.layout  "admin"
+    Admin::QuotesController.layout    "admin"
 
     Client::BaseController.layout     "client"
     Client::ProfilesController.layout "client"
+    Client::QuotesController.layout   "client"
   end
 end

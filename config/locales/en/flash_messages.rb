@@ -77,6 +77,20 @@
           error: "Product '%{product_name}' could not be deactivated.",
         }
       },
+      quotes: {
+        create: {
+          success: "Quote was successfully created.",
+          error: "Quote could not be created.",
+        },
+        update: {
+          success: "Quote was successfully updated.",
+          error: "Quote could not be updated.",
+        },
+        destroy: {
+          success: "Quote was successfully destroyed.",
+          error: "Quote could not be destroyed.",
+        },
+      },
     }
   }
 }

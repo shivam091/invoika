@@ -101,6 +101,10 @@ class User < ApplicationRecord
       record.email = email
       record
     end
+
+    def select_options
+      all.collect { |user| [user.full_name, user.id] }
+    end
   end
 
   def full_name

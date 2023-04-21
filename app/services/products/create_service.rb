@@ -25,7 +25,7 @@ class Products::CreateService < ApplicationService
       )
     else
       ::ServiceResponse.error(
-        message: t("categories.create.error"),
+        message: t("products.create.error"),
         payload: {product: product}
       )
     end
