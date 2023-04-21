@@ -26,7 +26,7 @@ class Quotes::CreateService < ApplicationService
       )
     else
       ::ServiceResponse.error(
-        message: t("categories.create.error"),
+        message: t("quotes.create.error"),
         payload: {quote: quote}
       )
     end
