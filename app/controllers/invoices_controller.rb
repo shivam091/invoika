@@ -84,6 +84,18 @@ class InvoicesController < ApplicationController
     end
   end
 
+  # DELETE /(:role)/invoices/:uuid
+  def destroy
+    response = ::Invoices::DestroyService.(@invoice)
+    @invoice = response.payload[:invoice]
+    if response.success?
+      flash[:notice] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to helpers.invoices_path
+  end
+
   private
 
   def invoices
