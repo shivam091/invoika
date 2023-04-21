@@ -21,7 +21,7 @@
           converted: "Converted",
           pending: "Pending",
           accepted: "Accepted",
-          not_accepted: "Not accepted"
+          rejected: "Rejected"
         }
       }
     }

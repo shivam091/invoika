@@ -16,7 +16,7 @@ class Quote < ApplicationRecord
     converted: "converted",
     pending: "pending",
     accepted: "accepted",
-    not_accepted: "not_accepted"
+    rejected: "rejected"
   }
 
   attribute :status, :enum, default: statuses[:draft]

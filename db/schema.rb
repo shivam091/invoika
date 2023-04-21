@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_122756) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_023411) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_122756) do
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "discount_types", [["flat", "percentage"]]
   create_enum "invoice_statuses", [["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]]
-  create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "not_accepted"]]
+  create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "rejected"]]
   create_enum "tax_types", [["inclusive", "exclusive"]]
 
   create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -155,7 +155,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_122756) do
     t.check_constraint "due_date >= quote_date", name: "chk_due_date_gteq_quote_date"
     t.check_constraint "due_date IS NOT NULL", name: "chk_b0d4171069"
     t.check_constraint "quote_date IS NOT NULL", name: "chk_2250cfed48"
-    t.check_constraint "status = ANY (ARRAY['draft'::quote_statuses, 'converted'::quote_statuses, 'pending'::quote_statuses, 'accepted'::quote_statuses, 'not_accepted'::quote_statuses])", name: "chk_7beafe70a2"
+    t.check_constraint "status = ANY (ARRAY['draft'::quote_statuses, 'converted'::quote_statuses, 'pending'::quote_statuses, 'accepted'::quote_statuses, 'rejected'::quote_statuses])", name: "chk_7beafe70a2"
     t.check_constraint "user_id IS NOT NULL", name: "chk_db23b7d882"
   end
 
