@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_21_041210) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -86,6 +86,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_041210) do
     t.check_constraint "iso2 IS NOT NULL AND iso2::text <> ''::text", name: "chk_b1bf328063"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_03b9f57701"
     t.check_constraint "upper(iso2::text) = iso2::text", name: "chk_91b43fb014"
+  end
+
+  create_table "invoice_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "invoice_id"
+    t.uuid "product_id"
+    t.integer "quantity", default: 1
+    t.money "unit_price", scale: 2
+    t.uuid "tax_ids", default: [], array: true
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["invoice_id"], name: "index_invoice_items_on_invoice_id"
+    t.index ["product_id"], name: "index_invoice_items_on_product_id"
+    t.check_constraint "invoice_id IS NOT NULL", name: "chk_0adf177e72"
+    t.check_constraint "product_id IS NOT NULL", name: "chk_ce126e28bd"
+    t.check_constraint "quantity IS NOT NULL", name: "chk_37e358a3cb"
+    t.check_constraint "unit_price IS NOT NULL", name: "chk_da198cd4b0"
   end
 
   create_table "invoices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -316,6 +332,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_041210) do
   add_foreign_key "addresses", "states", name: "fk_addresses_state_id_on_states", on_delete: :restrict
   add_foreign_key "categories", "users", name: "fk_categories_user_id_on_users", on_delete: :cascade
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
+  add_foreign_key "invoice_items", "invoices", name: "fk_invoice_items_invoice_id_on_invoices", on_delete: :cascade
+  add_foreign_key "invoice_items", "products", name: "fk_invoice_items_product_id_on_products", on_delete: :restrict
   add_foreign_key "invoices", "users", column: "client_id", name: "fk_invoices_client_id_on_users", on_delete: :nullify
   add_foreign_key "invoices", "users", name: "fk_invoices_user_id_on_users", on_delete: :cascade
   add_foreign_key "products", "categories", name: "fk_products_category_id_on_categories", on_delete: :restrict
