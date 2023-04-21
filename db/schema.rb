@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_21_023411) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_21_041210) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -86,6 +86,46 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_023411) do
     t.check_constraint "iso2 IS NOT NULL AND iso2::text <> ''::text", name: "chk_b1bf328063"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_03b9f57701"
     t.check_constraint "upper(iso2::text) = iso2::text", name: "chk_91b43fb014"
+  end
+
+  create_table "invoices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "client_id"
+    t.uuid "user_id"
+    t.string "code"
+    t.date "invoice_date"
+    t.date "due_date"
+    t.enum "status", default: "draft", enum_type: "invoice_statuses"
+    t.string "currency"
+    t.float "discount"
+    t.enum "discount_type", default: "flat", enum_type: "discount_types"
+    t.text "terms"
+    t.text "notes"
+    t.boolean "is_recurred", default: false
+    t.integer "recurring_cycle"
+    t.uuid "tax_ids", default: [], array: true
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["client_id"], name: "index_invoices_on_client_id"
+    t.index ["code", "user_id"], name: "index_invoices_on_code_and_user_id", unique: true
+    t.index ["discount_type"], name: "index_invoices_on_discount_type"
+    t.index ["is_recurred"], name: "index_invoices_on_is_recurred"
+    t.index ["status"], name: "index_invoices_on_status"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
+    t.check_constraint "NOT discount IS NOT NULL OR discount_type IS NOT NULL", name: "chk_89d1f2f5e2"
+    t.check_constraint "NOT discount_type IS NOT NULL OR discount IS NOT NULL", name: "chk_a8b865798a"
+    t.check_constraint "NOT is_recurred IS TRUE OR recurring_cycle IS NOT NULL", name: "chk_cc9c8e2c41"
+    t.check_constraint "char_length(code::text) <= 15", name: "chk_c7c07b85de"
+    t.check_constraint "char_length(notes) <= 1000", name: "chk_4cbae24169"
+    t.check_constraint "char_length(terms) <= 1000", name: "chk_85e9e8be38"
+    t.check_constraint "client_id IS NOT NULL", name: "chk_ea62469dfa"
+    t.check_constraint "code IS NOT NULL AND code::text <> ''::text", name: "chk_924a9da806"
+    t.check_constraint "currency IS NOT NULL AND currency::text <> ''::text", name: "chk_f561bdbdaf"
+    t.check_constraint "discount_type = ANY (ARRAY['flat'::discount_types, 'percentage'::discount_types])", name: "chk_afbdabbd82"
+    t.check_constraint "due_date >= invoice_date", name: "chk_due_date_gteq_invoice_date"
+    t.check_constraint "due_date IS NOT NULL", name: "chk_ca757536a4"
+    t.check_constraint "invoice_date IS NOT NULL", name: "chk_165db585b6"
+    t.check_constraint "status = ANY (ARRAY['draft'::invoice_statuses, 'unpaid'::invoice_statuses, 'paid'::invoice_statuses, 'partially_paid'::invoice_statuses, 'processing'::invoice_statuses, 'overdue'::invoice_statuses, 'void'::invoice_statuses, 'uncollectible'::invoice_statuses])", name: "chk_df4579007e"
+    t.check_constraint "user_id IS NOT NULL", name: "chk_e6dd38ae40"
   end
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -276,6 +316,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_023411) do
   add_foreign_key "addresses", "states", name: "fk_addresses_state_id_on_states", on_delete: :restrict
   add_foreign_key "categories", "users", name: "fk_categories_user_id_on_users", on_delete: :cascade
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
+  add_foreign_key "invoices", "users", column: "client_id", name: "fk_invoices_client_id_on_users", on_delete: :nullify
+  add_foreign_key "invoices", "users", name: "fk_invoices_user_id_on_users", on_delete: :cascade
   add_foreign_key "products", "categories", name: "fk_products_category_id_on_categories", on_delete: :restrict
   add_foreign_key "products", "users", name: "fk_products_user_id_on_users", on_delete: :cascade
   add_foreign_key "quote_items", "products", name: "fk_quote_items_product_id_on_products", on_delete: :restrict
