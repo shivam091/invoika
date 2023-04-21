@@ -27,6 +27,12 @@ class InvoicesController < ApplicationController
     @pagy, @invoices = pagy(@invoices)
   end
 
+  # GET /(:role)/invoices/overdue
+  def overdue
+    @invoices = invoices.overdue
+    @pagy, @invoices = pagy(@invoices)
+  end
+
   private
 
   def invoices
