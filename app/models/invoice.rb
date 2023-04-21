@@ -56,6 +56,8 @@ class Invoice < ApplicationRecord
             reduce: true,
             if: :is_recurred?
 
+  has_many :invoice_items, dependent: :destroy
+
   belongs_to :client, class_name: "::User", inverse_of: :invoices
   belongs_to :user, inverse_of: :created_invoices
 
@@ -65,6 +67,10 @@ class Invoice < ApplicationRecord
   delegate :full_name, to: :user, prefix: true
 
   default_scope -> { order_created_desc }
+
+  accepts_nested_attributes_for :invoice_items,
+                                allow_destroy: true,
+                                reject_if: :reject_invoice_item?
 
   class << self
     def accessible(user)
@@ -85,5 +91,12 @@ class Invoice < ApplicationRecord
 
   def discount_type_required?
     discount.present?
+  end
+
+  def reject_invoice_item?(attributes)
+    [
+      attributes[:product_id],
+      attributes[:unit_price]
+    ].all?(&:blank?) && attributes[:quantity] != 1
   end
 end
