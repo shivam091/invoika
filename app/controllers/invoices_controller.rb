@@ -15,6 +15,12 @@ class InvoicesController < ApplicationController
     @pagy, @invoices = pagy(@invoices)
   end
 
+  # GET /(:role)/invoices/paid
+  def paid
+    @invoices = invoices.paid
+    @pagy, @invoices = pagy(@invoices)
+  end
+
   private
 
   def invoices
