@@ -42,6 +42,8 @@ class Product < ApplicationRecord
   belongs_to :user, inverse_of: :products
   belongs_to :category, inverse_of: :products, counter_cache: :products_count
 
+  after_initialize :set_code, if: :new_record?
+
   delegate :name, to: :category, prefix: true
   delegate :full_name, to: :user, prefix: true
 
@@ -51,5 +53,11 @@ class Product < ApplicationRecord
     def select_options
       active.pluck(:name, :id)
     end
+  end
+
+  private
+
+  def set_code
+    self.code = SecureRandom.alphanumeric(8).upcase
   end
 end
