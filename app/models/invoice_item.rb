@@ -18,4 +18,12 @@ class InvoiceItem < ApplicationRecord
 
   belongs_to :invoice, inverse_of: :invoice_items
   belongs_to :product, inverse_of: :invoice_items
+
+  before_save :remove_blank_elements_from_tax_ids
+
+  private
+
+  def remove_blank_elements_from_tax_ids
+    self.tax_ids = self.tax_ids.reject(&:blank?)
+  end
 end

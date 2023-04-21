@@ -55,6 +55,9 @@ class Invoice < ApplicationRecord
             presence: true,
             reduce: true,
             if: :is_recurred?
+  validates :currency,
+            presence: true,
+            reduce: true
 
   has_many :invoice_items, dependent: :destroy
 
@@ -62,6 +65,7 @@ class Invoice < ApplicationRecord
   belongs_to :user, inverse_of: :created_invoices
 
   after_initialize :set_code, if: :new_record?
+  before_save :remove_blank_elements_from_tax_ids
 
   delegate :full_name, to: :client, prefix: true
   delegate :full_name, to: :user, prefix: true
@@ -98,5 +102,9 @@ class Invoice < ApplicationRecord
       attributes[:product_id],
       attributes[:unit_price]
     ].all?(&:blank?) && attributes[:quantity] != 1
+  end
+
+  def remove_blank_elements_from_tax_ids
+    self.tax_ids = self.tax_ids.reject(&:blank?)
   end
 end
