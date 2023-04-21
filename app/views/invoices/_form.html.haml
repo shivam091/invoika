@@ -4,8 +4,8 @@
       .col-sm-12.col-md-6.col-lg-4
         = form.select :client_id, options_for_select(::User.clients.select_options, form.object.client_id),
           {include_blank: t(".select_client")}, data: {controller: "autofocus"}
-      .col-sm-12.col-md-6.col-lg-4
-        = form.text_field :code
+      .col-sm-12.col-md-6.col-lg-4{data: {controller: "random-string-generator"}}
+        = form.text_field :code, append: generate_random_code_button, data: {random_string_generator_target: "field"}
       .col-sm-12.col-md-6.col-lg-4
         = form.date_field :invoice_date
       .col-sm-12.col-md-6.col-lg-4
