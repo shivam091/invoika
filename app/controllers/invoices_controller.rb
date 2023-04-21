@@ -33,9 +33,60 @@ class InvoicesController < ApplicationController
     @pagy, @invoices = pagy(@invoices)
   end
 
+  # GET /(:role)/invoices/new
+  def new
+    @invoice = current_user.created_invoices.build
+  end
+
+  # POST /(:role)/invoices
+  def create
+    response = ::Invoices::CreateService.(current_user, invoice_params)
+    @invoice = response.payload[:invoice]
+    if response.success?
+      flash[:notice] = response.message
+      redirect_to helpers.invoices_path
+    else
+      flash.now[:alert] = response.message
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:invoice_form, partial: "invoices/form"),
+            render_flash
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   private
 
   def invoices
     ::Invoice.accessible(current_user)
+  end
+
+  def invoice_params
+    params.require(:invoice).permit(
+      :client_id,
+      :code,
+      :invoice_date,
+      :due_date,
+      :status,
+      :discount,
+      :discount_type,
+      :notes,
+      :terms,
+      :is_recurred,
+      :recurring_cycle,
+      :currency,
+      tax_ids: [],
+      invoice_items_attributes: [
+        :id,
+        :_destroy,
+        :product_id,
+        :quantity,
+        :unit_price,
+        tax_ids: []
+      ]
+    )
   end
 end
