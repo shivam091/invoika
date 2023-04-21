@@ -4,6 +4,8 @@
 
 class InvoicesController < ApplicationController
 
+  before_action :find_invoice, only: [:edit, :update, :destroy]
+
   # GET /(:role)/invoices
   def index
     @pagy, @invoices = pagy(invoices)
@@ -58,10 +60,38 @@ class InvoicesController < ApplicationController
     end
   end
 
+  # GET /(:role)/invoices/:uuid/edit
+  def edit
+  end
+
+  # PUT/PATCH /(:role)/invoices/:uuid
+  def update
+    response = ::Invoices::UpdateService.(@invoice, invoice_params)
+    @invoice = response.payload[:invoice]
+    if response.success?
+      flash[:notice] = response.message
+      redirect_to helpers.invoices_path
+    else
+      flash.now[:alert] = response.message
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:invoice_form, partial: "invoices/form"),
+            render_flash
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   private
 
   def invoices
     ::Invoice.accessible(current_user)
+  end
+
+  def find_invoice
+    @invoice = invoices.find(params.fetch(:uuid))
   end
 
   def invoice_params
