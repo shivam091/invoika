@@ -44,6 +44,9 @@
         select_client: "Select client",
         select_status: "Select status",
         select_discount_type: "Select discount type",
+        subtotal: "Subtotal:",
+        discount: " Discount:",
+        total: "Total:"
       },
       quote_items: {
         product: "Product",

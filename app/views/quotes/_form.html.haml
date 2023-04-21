@@ -3,7 +3,7 @@
     .row
       .col-sm-12.col-md-6.col-lg-4
         = form.select :client_id, options_for_select(::User.clients.select_options, form.object.client_id),
-          {include_blank: t(".select_client")}
+          {include_blank: t(".select_client")}, data: {controller: "autofocus"}
       .col-sm-12.col-md-6.col-lg-4
         = form.text_field :code
       .col-sm-12.col-md-6.col-lg-4
@@ -12,11 +12,35 @@
         = form.date_field :due_date
       .col-sm-12.col-md-6.col-lg-4
         = form.select :status, enum_options_for_select(::Quote, :statuses), {include_blank: t(".select_status")}
-      .col-sm-12.col-md-6.col-lg-4
-        = form.number_field :discount
-      .col-sm-12.col-md-6.col-lg-4
-        = form.select :discount_type, enum_options_for_select(::Quote, :discount_types), {include_blank: t(".select_discount_type")}
-    = render_if_exists("quotes/quote_items", locals: {form:})
+    %hr
+    %div{data: {controller: "nested-forms", nested_forms_wrapper_selector_value: ".quote-item-form-wrapper"}}
+      = render_if_exists("quotes/quote_items", locals: {form:})
+    %hr
+    .row.mt-2
+      .col-lg-7.col-sm-12.mt-2.mt-lg-0.align-right-for-full-screen
+        .input-group
+          = form.number_field :discount, oninput: "validity.valid || (value = value.replace(/[e\\+\\-]/gi, ''))",
+            pattern: "^\\d*(\\.\\d{0,2})?$", step: ".01", min: 0, style: "width: 270px !important;"
+          = form.select :discount_type, enum_options_for_select(::Quote, :discount_types), {include_blank: t(".select_discount_type")},
+            style: "width: 260px !important;"
+      .col-xxl-3.col-lg-5.col-md-6.ms-md-auto.mt-2.mb-2
+        %table.table.table-borderless.box-shadow-none
+          %tbody
+            %tr
+              %td.fw-bold.ps-0= t(".subtotal")
+              %td.text-black-50.text-end.pe-0
+                %span €
+                %span 0.00
+            %tr
+              %td.fw-bold.ps-0= t(".discount")
+              %td.text-black-50.text-end.pe-0
+                %span €
+                %span 0.00
+            %tr
+              %td.fw-bold.ps-0= t(".total")
+              %td.text-black-50.text-end.pe-0
+                %span €
+                %span 0.00
     .row
       .col-12.col-lg-6
         = form.text_area :notes

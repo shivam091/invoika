@@ -1,21 +1,24 @@
-%table.table{data: {controller: "nested-forms", nested_forms_wrapper_selector_value: ".quote-item-form-wrapper"}}
-  %thead
-    %tr
-      %th{scope: "col"}= t(".product")
-      %th{scope: "col"}= t(".quantity")
-      %th{scope: "col"}= t(".unit_price")
-      %th{scope: "col"}= t(".amount")
-      %th{scope: "col"}= t(".actions")
-  %tbody
-    %template{data: {nested_forms_target: "template"}}
-      = form.fields_for :quote_items, form.object.quote_items.build, child_index: "NEW_RECORD" do |quote_item_fields|
+.col-12.text-end.mb-lg-10.mb-3
+  = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->nested-forms#addAssociation"} do
+    = external_svg_tag("svgs/plus.svg")
+    = button_text("add")
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th{scope: "col", width: "25px"} #
+        %th{scope: "col"}
+          %span.required= t(".product")
+        %th{scope: "col"}
+          %span.required= t(".quantity")
+        %th{scope: "col"}
+          %span.required= t(".unit_price")
+        %th{scope: "col"}= t(".amount")
+        %th{scope: "col", width: "25px"}= t(".actions")
+    %tbody
+      %template{data: {nested_forms_target: "template"}}
+        = form.fields_for :quote_items, form.object.quote_items.build, child_index: "NEW_RECORD" do |quote_item_fields|
+          = render_if_exists("quotes/quote_item_form", locals: {form: quote_item_fields})
+      = form.fields_for :quote_items do |quote_item_fields|
         = render_if_exists("quotes/quote_item_form", locals: {form: quote_item_fields})
-    = form.fields_for :quote_items do |quote_item_fields|
-      = render_if_exists("quotes/quote_item_form", locals: {form: quote_item_fields})
-    %tr{data: {nested_forms_target: "target"}}
-  %tfoot
-    %tr
-      %td{colspan: ::QuoteItem.columns.count}
-        = button_tag type: :button, class: "btn btn-sm btn-secondary", data: {action: "click->nested-forms#addAssociation"} do
-          = external_svg_tag("svgs/plus.svg")
-          = button_text("add")
+      %tr{data: {nested_forms_target: "target"}}
