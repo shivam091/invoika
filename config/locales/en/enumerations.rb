@@ -23,6 +23,22 @@
           accepted: "Accepted",
           rejected: "Rejected"
         }
+      },
+      invoice: {
+        discount_types: {
+          flat: "Flat",
+          percentage: "Percentage"
+        },
+        statuses: {
+          draft: "Draft",
+          unpaid: "Unpaid",
+          paid: "Paid",
+          partially_paid: "Partially paid",
+          processing: "Processing",
+          overdue: "Overdue",
+          void: "Void",
+          uncollectible: "Uncollectible"
+        }
       }
     }
   }

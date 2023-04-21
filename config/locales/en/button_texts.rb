@@ -31,6 +31,9 @@
       new_quote: "New quote",
       create_quote: "Create quote",
       update_quote: "Update quote",
+      new_invoice: "New invoice",
+      create_invoice: "Create invoice",
+      update_invoice: "Update invoice",
     }
   }
 }

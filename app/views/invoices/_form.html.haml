@@ -1,0 +1,53 @@
+= turbo_frame_tag :invoice_form do
+  = bootstrap_form_with model: invoice_object(@invoice) do |form|
+    .row
+      .col-sm-12.col-md-6.col-lg-4
+        = form.select :client_id, options_for_select(::User.clients.select_options, form.object.client_id),
+          {include_blank: t(".select_client")}, data: {controller: "autofocus"}
+      .col-sm-12.col-md-6.col-lg-4
+        = form.text_field :code
+      .col-sm-12.col-md-6.col-lg-4
+        = form.date_field :invoice_date
+      .col-sm-12.col-md-6.col-lg-4
+        = form.date_field :due_date
+      .col-sm-12.col-md-6.col-lg-4
+        = form.select :status, enum_options_for_select(::Invoice, :statuses), {include_blank: t(".select_status")}
+      .col-sm-12.col-md-6.col-lg-4.mt-2r
+        = form.check_box :is_recurred, switch: true
+      .col-sm-12.col-md-6.col-lg-4
+        = form.number_field :recurring_cycle, oninput: "validity.valid || (value = value.replace(/[e\+\-]/gi, ''))"
+      .col-sm-12.col-md-6.col-lg-4
+        = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
+    %hr
+    %div{data: {controller: "nested-forms", nested_forms_wrapper_selector_value: ".invoice-item-form-wrapper"}}
+      = render_if_exists("invoices/invoice_items", locals: {form:})
+    %hr
+    .row.mt-2
+      .col-lg-7.col-sm-12.mt-2.mt-lg-0.align-right-for-full-screen
+        .input-group
+          = form.number_field :discount, oninput: "validity.valid || (value = value.replace(/[e\\+\\-]/gi, ''))",
+            pattern: "^\\d*(\\.\\d{0,2})?$", step: ".01", min: 0, style: "width: 270px !important;"
+          = form.select :discount_type, enum_options_for_select(::Invoice, :discount_types), {include_blank: t(".select_discount_type")},
+            style: "width: 260px !important;"
+        = form.select :tax_ids, options_for_select(::Tax.select_options, form.object.tax_ids),
+          {include_blank: t(".select_taxes")}, multiple: true, size: 1, style: "width: 530px !important;"
+      = render_if_exists("invoices/invoice_summary")
+    .row
+      .col-12.col-lg-6
+        = form.text_area :notes
+      .col-12.col-lg-6
+        = form.text_area :terms
+    .actions
+      - if form.object.new_record?
+        = button_tag type: :submit, class: "btn btn-primary" do
+          = external_svg_tag("svgs/plus.svg")
+          %span.d-block.d-lg-none= button_text("create")
+          %span.d-none.d-lg-block= button_text("create_invoice")
+      - if form.object.persisted?
+        = button_tag type: :submit, class: "btn btn-primary" do
+          = external_svg_tag("svgs/floppy.svg")
+          %span.d-block.d-lg-none= button_text("update")
+          %span.d-none.d-lg-block= button_text("update_invoice")
+      = link_to invoices_path, class: "btn btn-secondary" do
+        = external_svg_tag("svgs/cancel.svg")
+        = button_text("cancel")

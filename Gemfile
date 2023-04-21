@@ -34,6 +34,9 @@ gem "bootstrap_form"
 # State machines
 gem "aasm", "~> 5"
 
+# Library for dealing with money and currency conversion
+gem "money"
+
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails", "~> 1.3"
 

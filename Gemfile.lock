@@ -202,6 +202,8 @@ GEM
     mini_magick (4.12.0)
     mini_mime (1.1.2)
     minitest (5.18.0)
+    money (6.16.0)
+      i18n (>= 0.6.4, <= 2)
     msgpack (1.7.0)
     multipart-post (2.3.0)
     net-imap (0.3.4)
@@ -417,6 +419,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
+  money
   pagy (~> 5.1)
   passenger (>= 5.0.25)
   pg (~> 1.1)

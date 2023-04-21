@@ -51,6 +51,14 @@ Rails.application.routes.draw do
         get :accepted
       end
     end
+    resources :invoices, param: :uuid do
+      collection do
+        get :draft
+        get :unpaid
+        get :paid
+        get :overdue
+      end
+    end
   end
 
   concern :toggleable do
