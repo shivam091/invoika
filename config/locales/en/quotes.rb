@@ -46,7 +46,8 @@
         select_discount_type: "Select discount type",
         subtotal: "Subtotal:",
         discount: " Discount:",
-        total: "Total:"
+        total: "Total:",
+        generate_code: "Generate code",
       },
       quote_items: {
         product: "Product",

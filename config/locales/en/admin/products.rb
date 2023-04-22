@@ -40,6 +40,7 @@
         },
         form: {
           select_category: "Select category",
+          generate_code: "Generate code",
         }
       }
     }

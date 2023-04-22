@@ -2,6 +2,7 @@ import * as Turbo from "@hotwired/turbo-rails";
 import "popper";
 import * as Bootstrap from "bootstrap";
 import "controllers";
+import "invoika/prototype-extensions";
 
 document.addEventListener("turbo:render", () => {
   "use strict";

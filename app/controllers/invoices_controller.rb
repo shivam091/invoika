@@ -99,7 +99,7 @@ class InvoicesController < ApplicationController
   private
 
   def invoices
-    ::Invoice.accessible(current_user)
+    ::Invoice.accessible(current_user).includes(:client)
   end
 
   def find_invoice
