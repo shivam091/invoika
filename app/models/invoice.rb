@@ -66,6 +66,7 @@ class Invoice < ApplicationRecord
 
   after_initialize :set_code, if: :new_record?
   before_save :remove_blank_elements_from_tax_ids
+  before_validation :remove_recurring_cycle, unless: :is_recurred?
 
   delegate :full_name, to: :client, prefix: true
   delegate :full_name, to: :user, prefix: true
@@ -106,5 +107,9 @@ class Invoice < ApplicationRecord
 
   def remove_blank_elements_from_tax_ids
     self.tax_ids = self.tax_ids.reject(&:blank?)
+  end
+
+  def remove_recurring_cycle
+    self.recurring_cycle = nil
   end
 end
