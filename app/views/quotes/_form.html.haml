@@ -1,11 +1,11 @@
 = turbo_frame_tag :quote_form do
-  = bootstrap_form_with model: quote_object(@quote) do |form|
+  = bootstrap_form_with model: quote_object(@quote), data: {controller: "discount-field"} do |form|
     .row
       .col-sm-12.col-md-6.col-lg-4
         = form.select :client_id, options_for_select(::User.clients.select_options, form.object.client_id),
           {include_blank: t(".select_client")}, data: {controller: "autofocus"}
-      .col-sm-12.col-md-6.col-lg-4
-        = form.text_field :code
+      .col-sm-12.col-md-6.col-lg-4{data: {controller: "random-string-generator"}}
+        = form.text_field :code, append: generate_random_code_button, data: {random_string_generator_target: "field"}
       .col-sm-12.col-md-6.col-lg-4
         = form.date_field :quote_date
       .col-sm-12.col-md-6.col-lg-4
@@ -20,9 +20,10 @@
       .col-lg-7.col-sm-12.mt-2.mt-lg-0.align-right-for-full-screen
         .input-group
           = form.number_field :discount, oninput: "validity.valid || (value = value.replace(/[e\\+\\-]/gi, ''))",
-            pattern: "^\\d*(\\.\\d{0,2})?$", step: ".01", min: 0, style: "width: 270px !important;"
+            pattern: "^\\d*(\\.\\d{0,2})?$", step: ".01", min: 0, style: "width: 270px !important;", data: {discount_field_target: "discount"},
+            readonly: (form.object.discount_type.nil?), disabled: (form.object.discount_type.nil?)
           = form.select :discount_type, enum_options_for_select(::Quote, :discount_types), {include_blank: t(".select_discount_type")},
-            style: "width: 260px !important;"
+            style: "width: 260px !important;", data: {discount_field_target: "discountType", action: "change->discount-field#toggleDiscountField"}
       .col-xxl-3.col-lg-5.col-md-6.ms-md-auto.mt-2.mb-2
         %table.table.table-borderless.box-shadow-none
           %tbody

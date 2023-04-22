@@ -1,23 +1,24 @@
 = turbo_frame_tag :invoice_form do
-  = bootstrap_form_with model: invoice_object(@invoice) do |form|
+  = bootstrap_form_with model: invoice_object(@invoice), data: {controller: "discount-field recurring-cycle-field"} do |form|
     .row
       .col-sm-12.col-md-6.col-lg-4
         = form.select :client_id, options_for_select(::User.clients.select_options, form.object.client_id),
           {include_blank: t(".select_client")}, data: {controller: "autofocus"}
-      .col-sm-12.col-md-6.col-lg-4
-        = form.text_field :code
+      .col-sm-12.col-md-6.col-lg-4{data: {controller: "random-string-generator"}}
+        = form.text_field :code, append: generate_random_code_button, data: {random_string_generator_target: "field"}
       .col-sm-12.col-md-6.col-lg-4
         = form.date_field :invoice_date
       .col-sm-12.col-md-6.col-lg-4
         = form.date_field :due_date
       .col-sm-12.col-md-6.col-lg-4
         = form.select :status, enum_options_for_select(::Invoice, :statuses), {include_blank: t(".select_status")}
-      .col-sm-12.col-md-6.col-lg-4.mt-2r
-        = form.check_box :is_recurred, switch: true
-      .col-sm-12.col-md-6.col-lg-4
-        = form.number_field :recurring_cycle, oninput: "validity.valid || (value = value.replace(/[e\+\-]/gi, ''))"
       .col-sm-12.col-md-6.col-lg-4
         = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
+      .col-sm-12.col-md-6.col-lg-4.mt-2r.mb-2
+        = form.check_box :is_recurred, switch: true, data: {recurring_cycle_field_target: "isRecurred", action: "change->recurring-cycle-field#toggleRecurringCycle"}
+      .col-sm-12.col-md-6.col-lg-4{style: "display: #{form.object.is_recurred? ? 'block' : 'none'};", data: {recurring_cycle_field_target: "recurringCycleWrapper"}}
+        = form.number_field :recurring_cycle, oninput: "validity.valid || (value = value.replace(/[e\+\-]/gi, ''))",
+          data: {recurring_cycle_field_target: "recurringCycle"}
     %hr
     %div{data: {controller: "nested-forms", nested_forms_wrapper_selector_value: ".invoice-item-form-wrapper"}}
       = render_if_exists("invoices/invoice_items", locals: {form:})
@@ -26,9 +27,10 @@
       .col-lg-7.col-sm-12.mt-2.mt-lg-0.align-right-for-full-screen
         .input-group
           = form.number_field :discount, oninput: "validity.valid || (value = value.replace(/[e\\+\\-]/gi, ''))",
-            pattern: "^\\d*(\\.\\d{0,2})?$", step: ".01", min: 0, style: "width: 270px !important;"
+            pattern: "^\\d*(\\.\\d{0,2})?$", step: ".01", min: 0, style: "width: 270px !important;", data: {discount_field_target: "discount"},
+            readonly: (form.object.discount_type.nil?), disabled: (form.object.discount_type.nil?)
           = form.select :discount_type, enum_options_for_select(::Invoice, :discount_types), {include_blank: t(".select_discount_type")},
-            style: "width: 260px !important;"
+            style: "width: 260px !important;", data: {discount_field_target: "discountType", action: "change->discount-field#toggleDiscountField"}
         = form.select :tax_ids, options_for_select(::Tax.select_options, form.object.tax_ids),
           {include_blank: t(".select_taxes")}, multiple: true, size: 1, style: "width: 530px !important;"
       = render_if_exists("invoices/invoice_summary")
