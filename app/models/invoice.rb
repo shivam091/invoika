@@ -4,7 +4,9 @@
 
 class Invoice < ApplicationRecord
 
-  include Sortable
+  include Sortable, NullifyIfBlank
+
+  nullify_if_blank :discount_type
 
   enum discount_type: {
     flat: "flat",
@@ -23,7 +25,7 @@ class Invoice < ApplicationRecord
   }
 
   attribute :status, :enum, default: statuses[:draft]
-  attribute :discount_type, :enum, default: discount_types[:flat]
+  attribute :discount_type, :enum, default: nil
 
   validates :client_id, :user_id, presence: true, reduce: true
   validates :code,
@@ -67,6 +69,7 @@ class Invoice < ApplicationRecord
   after_initialize :set_code, if: :new_record?
   before_save :remove_blank_elements_from_tax_ids
   before_validation :remove_recurring_cycle, unless: :is_recurred?
+  before_validation :remove_discount, unless: :discount_required?
 
   delegate :full_name, to: :client, prefix: true
   delegate :full_name, to: :user, prefix: true
@@ -111,5 +114,9 @@ class Invoice < ApplicationRecord
 
   def remove_recurring_cycle
     self.recurring_cycle = nil
+  end
+
+  def remove_discount
+    self.discount = nil
   end
 end
