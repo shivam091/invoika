@@ -97,7 +97,8 @@ class QuotesController < ApplicationController
   end
 
   def find_quote
-    @quote = quotes.find(params.fetch(:uuid))
+    @quote = quotes.find_by(code: params.fetch(:code))
+    raise ActiveRecord::RecordNotFound if @quote.nil?
   end
 
   def quote_params

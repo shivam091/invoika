@@ -55,6 +55,10 @@ class Product < ApplicationRecord
     end
   end
 
+  def to_param
+    self.code
+  end
+
   private
 
   def set_code
