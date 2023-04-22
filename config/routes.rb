@@ -44,6 +44,21 @@ Rails.application.routes.draw do
   concern :shareable do
     resource :dashboard, only: :show
     resource :profile, only: [:show, :edit, :update]
+    resources :quotes, param: :uuid do
+      collection do
+        get :draft
+        get :converted
+        get :accepted
+      end
+    end
+    resources :invoices, param: :uuid do
+      collection do
+        get :draft
+        get :unpaid
+        get :paid
+        get :overdue
+      end
+    end
   end
 
   concern :toggleable do

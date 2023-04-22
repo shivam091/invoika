@@ -445,3 +445,24 @@ div[class^="rails-bootstrap-forms"] select, div[class*="rails-bootstrap-forms"] 
   display: inline-block;
   width: auto;
 }
+@media (min-width: 1439px) {
+  .align-right-for-full-screen {
+    position: absolute !important;
+    right: 0 !important;
+  }
+}
+#quote_discount, #invoice_discount {
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  margin-right: 1px;
+}
+#quote_discount_type, #invoice_discount_type {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.mt-2r {
+  margin-top: 2.2rem;
+}
+.form-select[multiple], .form-select[size]:not([size="1"]) {
+  height: 35px !important;
+}

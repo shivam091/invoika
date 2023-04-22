@@ -77,6 +77,34 @@
           error: "Product '%{product_name}' could not be deactivated.",
         }
       },
+      quotes: {
+        create: {
+          success: "Quote was successfully created.",
+          error: "Quote could not be created.",
+        },
+        update: {
+          success: "Quote was successfully updated.",
+          error: "Quote could not be updated.",
+        },
+        destroy: {
+          success: "Quote was successfully destroyed.",
+          error: "Quote could not be destroyed.",
+        },
+      },
+      invoices: {
+        create: {
+          success: "Invoice was successfully created.",
+          error: "Invoice could not be created.",
+        },
+        update: {
+          success: "Invoice was successfully updated.",
+          error: "Invoice could not be updated.",
+        },
+        destroy: {
+          success: "Invoice was successfully destroyed.",
+          error: "Invoice could not be destroyed.",
+        },
+      },
     }
   }
 }

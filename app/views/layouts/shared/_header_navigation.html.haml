@@ -4,6 +4,19 @@
       .col-lg-6.col-12.d-flex.justify-content-center.justify-content-lg-start
         = render_if_exists("shared/live_clock")
       .col-lg-6.col-12.d-none.d-lg-flex.justify-content-center.justify-content-lg-end
+        .list-unstyled.d-flex.align-items-center
+          .d-inline-block.middle-dot-divider
+            = link_to "javascript:void(0)", class: "text-dark text-decoration-none", title: t(".change_to_dark_mode") do
+              = external_svg_tag("svgs/moon.svg", height: "16px", width: "16px")
+          .d-inline-block.middle-dot-divider
+            = link_to "javascript:void(0)", class: "text-dark text-decoration-none", title: t(".change_to_full_screen_mode") do
+              = external_svg_tag("svgs/screen-full.svg", height: "16px", width: "16px")
+          .d-inline-block.middle-dot-divider
+            = link_to "javascript:void(0)", class: "text-dark text-decoration-none" do
+              = external_svg_tag("svgs/bell-ringing.svg", height: "16px", width: "16px")
+          .d-inline-block.middle-dot-divider
+            = link_to "javascript:void(0)", class: "text-dark text-decoration-none" do
+              = t(".change_language")
   %nav.navbar.navbar-light.bg-light.navbar-expand-lg.divider{aria: {label: t(".main_navigation")}}
     .container-fluid
       = link_to "", root_path, class: "invoika-logo"

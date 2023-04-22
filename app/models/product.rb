@@ -36,6 +36,9 @@ class Product < ApplicationRecord
             numericality: {less_than_or_equal_to: :unit_price},
             reduce: true
 
+  has_many :quote_items, dependent: :restrict_with_exception
+  has_many :invoice_items, dependent: :restrict_with_exception
+
   belongs_to :user, inverse_of: :products
   belongs_to :category, inverse_of: :products, counter_cache: :products_count
 
@@ -43,4 +46,10 @@ class Product < ApplicationRecord
   delegate :full_name, to: :user, prefix: true
 
   default_scope -> { order_name_asc }
+
+  class << self
+    def select_options
+      active.pluck(:name, :id)
+    end
+  end
 end

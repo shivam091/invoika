@@ -74,9 +74,7 @@ label.is-invalid {
 .was-validated .form-check-input:invalid~.form-check-label, .form-check-input.is-invalid~.form-check-label {
   color: var(--color-danger-fg);
 }
-.form-label.required::after,
-.form-floating label.required::after,
-.form-check:not(.form-check-inline) .form-check-label.required::after {
+.required::after {
   color: var(--color-danger-fg);
   content: "*";
   padding-left: .25rem;
