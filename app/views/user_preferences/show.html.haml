@@ -1,0 +1,28 @@
+= title(t(".title"))
+.card.card-primary.border.border-primary
+  .card-body
+    .widget
+      .widget-header.d-flex.align-items-center.justify-content-between
+        .d-block
+          .widget-title
+            = t(".account_preferences")
+          .widget-help= t(".edit_account_preferences")
+        = link_to edit_user_preference_path, class: "btn btn-secondary" do
+          = external_svg_tag("svgs/pencil.svg")
+          = button_text("edit")
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".preferred_language")
+          .widget-row-body= current_user.preferred_locale
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".preferred_time_zone")
+          .widget-row-body= current_user.preferred_time_zone
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".preferred_color_scheme")
+          .widget-row-body= enum_i18n(::UserPreference, :color_schemes, current_user.preferred_color_scheme)
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".preferred_screen_mode")
+          .widget-row-body= enum_i18n(::UserPreference, :screen_codes, current_user.preferred_screen_mode)
