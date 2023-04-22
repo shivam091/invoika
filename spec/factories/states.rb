@@ -4,6 +4,7 @@
 
 FactoryBot.define do
   factory :state do
-
+    name { Faker::Address.state }
+    association :country
   end
 end
