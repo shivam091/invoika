@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_22_060924) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -70,6 +70,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
     t.index ["state_id"], name: "index_cities_on_state_id"
     t.check_constraint "char_length(name::text) <= 255", name: "chk_36cde11ecb"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_00fc9436f5"
+  end
+
+  create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone_number"
+    t.string "fax_number"
+    t.string "registrant_name"
+    t.date "established_on"
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["email"], name: "index_companies_on_email", unique: true
+    t.index ["fax_number"], name: "index_companies_on_fax_number", unique: true
+    t.index ["phone_number"], name: "index_companies_on_phone_number", unique: true
+    t.check_constraint "char_length(email::text) <= 55", name: "chk_28c823da3e"
+    t.check_constraint "char_length(fax_number::text) <= 32", name: "chk_bd2320dae2"
+    t.check_constraint "char_length(name::text) <= 155", name: "chk_666adc8aa3"
+    t.check_constraint "char_length(phone_number::text) <= 32", name: "chk_4ced3f2015"
+    t.check_constraint "char_length(registrant_name::text) <= 155", name: "chk_177b2625c0"
+    t.check_constraint "email IS NOT NULL AND email::text <> ''::text", name: "chk_a69e9e4aa1"
+    t.check_constraint "established_on <= CURRENT_DATE", name: "chk_established_on_lteq_today"
+    t.check_constraint "established_on IS NOT NULL", name: "chk_d67d8e256d"
+    t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_e3f6972337"
+    t.check_constraint "phone_number IS NOT NULL AND phone_number::text <> ''::text", name: "chk_9e70bcb5be"
+    t.check_constraint "registrant_name IS NOT NULL AND registrant_name::text <> ''::text", name: "chk_d1d496f6c1"
   end
 
   create_table "countries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
