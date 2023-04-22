@@ -26,6 +26,7 @@
           sign_out: "Sign out",
           your_account: "Your account",
           your_profile: "Your profile",
+          your_company: "Your company"
         },
         footer: {
         },

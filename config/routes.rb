@@ -77,6 +77,8 @@ Rails.application.routes.draw do
     namespace :admin do
       concerns :shareable
 
+      resource :company, except: [:new, :create, :destroy]
+
       resources :categories, except: :show, param: :uuid, concerns: :toggleable
       resources :taxes, except: :show, param: :uuid, concerns: :toggleable
       resources :products, param: :code, concerns: :toggleable
