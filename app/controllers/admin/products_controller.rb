@@ -115,7 +115,8 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def find_product
-    @product = products.find(params.fetch(:uuid))
+    @product = products.find_by(code: params.fetch(:code))
+    raise ActiveRecord::RecordNotFound if @product.nil?
   end
 
   def product_params
