@@ -9,5 +9,6 @@ pin "popper", to: "popper.js", preload: true
 pin "bootstrap", to: "bootstrap.min.js", preload: true
 pin "moment", to: "https://ga.jspm.io/npm:moment@2.29.4/moment.js"
 
+pin_all_from "app/javascript/invoika", under: "invoika"
 pin_all_from "app/javascript/controllers", under: "controllers"
 pin "application", preload: true

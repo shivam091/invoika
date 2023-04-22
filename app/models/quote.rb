@@ -4,7 +4,9 @@
 
 class Quote < ApplicationRecord
 
-  include Sortable
+  include Sortable, NullifyIfBlank
+
+  nullify_if_blank :discount_type
 
   enum discount_type: {
     flat: "flat",
@@ -20,7 +22,7 @@ class Quote < ApplicationRecord
   }
 
   attribute :status, :enum, default: statuses[:draft]
-  attribute :discount_type, :enum, default: discount_types[:flat]
+  attribute :discount_type, :enum, default: nil
 
   validates :client_id, :user_id, presence: true, reduce: true
   validates :code,
@@ -55,6 +57,7 @@ class Quote < ApplicationRecord
   belongs_to :user, inverse_of: :created_quotes
 
   after_initialize :set_code, if: :new_record?
+  before_validation :remove_discount, unless: :discount_required?
 
   delegate :full_name, to: :client, prefix: true
   delegate :full_name, to: :user, prefix: true
@@ -91,5 +94,9 @@ class Quote < ApplicationRecord
 
   def discount_type_required?
     discount.present?
+  end
+
+  def remove_discount
+    self.discount = nil
   end
 end
