@@ -12,12 +12,12 @@
         = form.date_field :due_date
       .col-sm-12.col-md-6.col-lg-4
         = form.select :status, enum_options_for_select(::Invoice, :statuses), {include_blank: t(".select_status")}
-      .col-sm-12.col-md-6.col-lg-4.mt-2r
-        = form.check_box :is_recurred, switch: true
-      .col-sm-12.col-md-6.col-lg-4
-        = form.number_field :recurring_cycle, oninput: "validity.valid || (value = value.replace(/[e\+\-]/gi, ''))"
       .col-sm-12.col-md-6.col-lg-4
         = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
+      .col-sm-12.col-md-6.col-lg-4.mt-2r.mb-2
+        = form.check_box :is_recurred, switch: true, data: {controller: "recurring-cycle-field", action: "change->recurring-cycle-field#toggleRecurringCycle"}
+      .col-sm-12.col-md-6.col-lg-4#recurring_cycle_period{style: "display: #{form.object.is_recurred? ? 'block' : 'none'};"}
+        = form.number_field :recurring_cycle, oninput: "validity.valid || (value = value.replace(/[e\+\-]/gi, ''))"
     %hr
     %div{data: {controller: "nested-forms", nested_forms_wrapper_selector_value: ".invoice-item-form-wrapper"}}
       = render_if_exists("invoices/invoice_items", locals: {form:})
