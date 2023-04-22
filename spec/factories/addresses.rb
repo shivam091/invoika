@@ -4,6 +4,11 @@
 
 FactoryBot.define do
   factory :address do
-
+    address1 { Faker::Address.street_address }
+    postal_code { Faker::Address.postcode }
+    association :city
+    association :state
+    association :country
+    association :addressable
   end
 end

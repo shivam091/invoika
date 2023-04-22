@@ -113,6 +113,9 @@ group :development, :test do
 
   # Pretty print your Ruby objects with style -- in full color and with proper indentation
   gem "awesome_print", "~> 1.8"
+
+  # Generate realistic test data
+  gem "faker"
 end
 
 group :development do
