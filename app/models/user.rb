@@ -38,17 +38,11 @@ class User < ApplicationRecord
             if: :password_required?
 
   has_one :address, as: :addressable, dependent: :destroy
-  has_many :taxes, dependent: :destroy
-  has_many :categories, dependent: :destroy
-  has_many :products, dependent: :destroy
-  has_many :quotes, foreign_key: :client_id, dependent: :nullify
-  has_many :created_quotes, class_name: "::Quote", dependent: :destroy
-  has_many :invoices, foreign_key: :client_id, dependent: :nullify
-  has_many :created_invoices, class_name: "::Invoice", dependent: :destroy
 
   has_many :request_logs, dependent: :nullify
 
   belongs_to :role
+  belongs_to :company
 
   delegate :name, to: :role, prefix: true
 
