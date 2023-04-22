@@ -40,6 +40,8 @@ class User < ApplicationRecord
   has_one :address, as: :addressable, dependent: :destroy
 
   has_many :request_logs, dependent: :nullify
+  has_many :invoices, dependent: :nullify
+  has_many :quotes, dependent: :nullify
 
   belongs_to :role
   belongs_to :company

@@ -9,6 +9,6 @@ class Company < ApplicationRecord
   has_many :taxes, dependent: :destroy
   has_many :categories, dependent: :destroy
   has_many :products, dependent: :destroy
-  has_many :quotes, foreign_key: :client_id, dependent: :destroy
-  has_many :invoices, foreign_key: :client_id, dependent: :destroy
+  has_many :quotes, dependent: :destroy
+  has_many :invoices, dependent: :destroy
 end
