@@ -10,10 +10,10 @@ class Category < ApplicationRecord
 
   validates :name,
             presence: true,
-            uniqueness: {scope: :user_id},
+            uniqueness: {scope: :company_id},
             length: {maximum: 55},
             reduce: true
-  validates :user_id, presence: true, reduce: true
+  validates :company_id, presence: true, reduce: true
   validates :products_count,
             presence: true,
             numericality: {
@@ -24,7 +24,7 @@ class Category < ApplicationRecord
 
   has_many :products, dependent: :restrict_with_exception
 
-  belongs_to :user, inverse_of: :categories
+  belongs_to :company, inverse_of: :categories
 
   default_scope -> { order_name_asc }
 

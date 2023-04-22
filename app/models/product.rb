@@ -13,12 +13,12 @@ class Product < ApplicationRecord
 
   validates :name,
             presence: true,
-            uniqueness: {scope: :user_id},
+            uniqueness: {scope: :company_id},
             length: {maximum: 55},
             reduce: true
   validates :code,
             presence: true,
-            uniqueness: {scope: :user_id},
+            uniqueness: {scope: :company_id},
             length: {maximum: 15},
             reduce: true
   validates :description,
@@ -26,7 +26,7 @@ class Product < ApplicationRecord
             allow_nil: true,
             allow_blank: true,
             reduce: true
-  validates :user_id, :category_id, presence: true, reduce: true
+  validates :company_id, :category_id, presence: true, reduce: true
   validates :unit_price,
             presence: true,
             numericality: {greater_than: 0.0},
@@ -39,13 +39,13 @@ class Product < ApplicationRecord
   has_many :quote_items, dependent: :restrict_with_exception
   has_many :invoice_items, dependent: :restrict_with_exception
 
-  belongs_to :user, inverse_of: :products
+  belongs_to :company, inverse_of: :products
   belongs_to :category, inverse_of: :products, counter_cache: :products_count
 
   after_initialize :set_code, if: :new_record?
 
   delegate :name, to: :category, prefix: true
-  delegate :full_name, to: :user, prefix: true
+  delegate :name, to: :company, prefix: true
 
   default_scope -> { order_name_asc }
 
@@ -53,6 +53,10 @@ class Product < ApplicationRecord
     def select_options
       active.pluck(:name, :id)
     end
+  end
+
+  def to_param
+    self.code
   end
 
   private

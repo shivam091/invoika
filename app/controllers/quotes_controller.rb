@@ -31,12 +31,12 @@ class QuotesController < ApplicationController
 
   # GET /(:role)/quotes/new
   def new
-    @quote = current_user.created_quotes.build
+    @quote = quotes.build
   end
 
   # POST /(:role)/quotes
   def create
-    response = ::Quotes::CreateService.(current_user, quote_params)
+    response = ::Quotes::CreateService.(@company, quote_params)
     @quote = response.payload[:quote]
     if response.success?
       flash[:notice] = response.message
@@ -97,7 +97,8 @@ class QuotesController < ApplicationController
   end
 
   def find_quote
-    @quote = quotes.find(params.fetch(:uuid))
+    @quote = quotes.find_by(code: params.fetch(:code))
+    raise ActiveRecord::RecordNotFound if @quote.nil?
   end
 
   def quote_params

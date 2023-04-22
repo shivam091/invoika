@@ -1,0 +1,40 @@
+= title(t(".title"))
+.card.card-primary.border.border-primary
+  .card-body
+    .widget
+      .widget-header.d-flex.align-items-center.justify-content-between
+        .d-block
+          .widget-title
+            = t(".your_company")
+          .widget-help= t(".edit_company_details")
+        = link_to edit_admin_company_path, class: "btn btn-secondary" do
+          = external_svg_tag("svgs/pencil.svg")
+          = button_text("edit")
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".name")
+          .widget-row-body= @company.name
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".email")
+          .widget-row-body= @company.email
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".phone_number")
+          .widget-row-body= @company.phone_number
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".fax_number")
+          .widget-row-body= @company.fax_number
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".registrant_name")
+          .widget-row-body= @company.registrant_name
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".established_on")
+          .widget-row-body= @company.established_on.to_fs(:long)
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".address")
+          .widget-row-body= @company.address.humanize
