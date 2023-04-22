@@ -27,10 +27,10 @@ class Invoice < ApplicationRecord
   attribute :status, :enum, default: statuses[:draft]
   attribute :discount_type, :enum, default: nil
 
-  validates :client_id, :user_id, presence: true, reduce: true
+  validates :client_id, :company_id, presence: true, reduce: true
   validates :code,
             presence: true,
-            uniqueness: {scope: :user_id},
+            uniqueness: {scope: :company_id},
             length: {maximum: 15},
             reduce: true
   validates :invoice_date, presence: true, reduce: true
@@ -64,7 +64,7 @@ class Invoice < ApplicationRecord
   has_many :invoice_items, dependent: :destroy
 
   belongs_to :client, class_name: "::User", inverse_of: :invoices
-  belongs_to :user, inverse_of: :created_invoices
+  belongs_to :company, inverse_of: :invoices
 
   after_initialize :set_code, if: :new_record?
   before_save :remove_blank_elements_from_tax_ids
@@ -72,7 +72,7 @@ class Invoice < ApplicationRecord
   before_validation :remove_discount, unless: :discount_required?
 
   delegate :full_name, to: :client, prefix: true
-  delegate :full_name, to: :user, prefix: true
+  delegate :name, to: :company, prefix: true
 
   default_scope -> { order_created_desc }
 
@@ -82,8 +82,8 @@ class Invoice < ApplicationRecord
 
   class << self
     def accessible(user)
-      return where(client_id: user.id) if user.client?
-      all
+      return user.company.invoices.where(client_id: user.id) if user.client?
+      user.company.invoices
     end
   end
 

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend,
           WithoutTimestamps
 
-  rescue_from Exception, with: :internal_server_error
+  # rescue_from Exception, with: :internal_server_error
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
     if user_signed_in?
       sign_out(current_user)
@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   before_action :authenticate_user!
+  before_action :set_company, if: :user_signed_in?
 
   helper_method def root_path
     case
@@ -43,6 +44,10 @@ class ApplicationController < ActionController::Base
 
   def not_found
     render "errors/not_found", status: :not_found, layout: "error"
+  end
+
+  def set_company
+    @company = current_user.company
   end
 
   private
