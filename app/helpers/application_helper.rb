@@ -117,6 +117,13 @@ module ApplicationHelper
     end
   end
 
+  def generate_random_code_button
+    button_tag(type: :button, class: "btn btn-secondary", title: t(".generate_code"),
+      data: {action: "click->random-string-generator#generateRandomString"}) do
+      concat(external_svg_tag("svgs/refresh.svg"))
+    end
+  end
+
   def currencies
     Money::Currency.all.collect do |currency|
       ["#{currency.name} (#{currency.symbol})", currency.id.upcase.to_s]

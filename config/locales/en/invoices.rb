@@ -51,6 +51,7 @@
         select_discount_type: "Select discount type",
         select_taxes: "Select taxes",
         select_currency: "Select currency",
+        generate_code: "Generate code",
       },
       invoice_items: {
         product: "Product",
