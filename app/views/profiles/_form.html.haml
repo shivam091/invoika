@@ -3,7 +3,7 @@
     = t(".profile_details")
   .row
     .col-sm-12.col-md-6.col-lg-4
-      = form.text_field :first_name
+      = form.text_field :first_name, data: {controller: "autofocus"}
     .col-sm-12.col-md-6.col-lg-4
       = form.text_field :last_name
   .subheader

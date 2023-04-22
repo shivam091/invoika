@@ -40,4 +40,10 @@ class Company < ApplicationRecord
   has_many :products, dependent: :destroy
   has_many :quotes, dependent: :destroy
   has_many :invoices, dependent: :destroy
+
+  accepts_nested_attributes_for :address, update_only: true
+
+  def address
+    super.presence || build_address
+  end
 end
