@@ -5,20 +5,20 @@
 class CreateQuotes < Invoika::Database::Migration[1.0]
   def change
     create_table_with_constraints :quotes, id: :uuid do |t|
+      t.references :company,
+                   type: :uuid,
+                   foreign_key: {
+                     to_table: :companies,
+                     name: :fk_quotes_company_id_on_companies,
+                     on_delete: :cascade
+                   },
+                   index: {using: :btree}
       t.references :client,
                    type: :uuid,
                    foreign_key: {
                      to_table: :users,
                      name: :fk_quotes_client_id_on_users,
                      on_delete: :nullify
-                   },
-                   index: {using: :btree}
-      t.references :user,
-                   type: :uuid,
-                   foreign_key: {
-                     to_table: :users,
-                     name: :fk_quotes_user_id_on_users,
-                     on_delete: :cascade
                    },
                    index: {using: :btree}
       t.string :code
@@ -30,8 +30,7 @@ class CreateQuotes < Invoika::Database::Migration[1.0]
       t.text :terms
       t.text :notes
 
-      t.not_null_constraint :client_id
-      t.not_null_constraint :user_id
+      t.not_null_constraint :company_id
       t.not_null_constraint :quote_date
       t.not_null_constraint :due_date
       t.not_null_constraint :discount, if: "discount_type IS NOT NULL"
@@ -48,7 +47,7 @@ class CreateQuotes < Invoika::Database::Migration[1.0]
       t.inclusion_constraint :status, in: ["draft", "converted", "pending", "accepted", "not_accepted"]
       t.inclusion_constraint :discount_type, in: ["flat", "percentage"]
 
-      t.index [:code, :user_id], using: :btree, unique: true
+      t.index [:code, :company_id], using: :btree, unique: true
 
       t.timestamps_with_timezone null: false
     end

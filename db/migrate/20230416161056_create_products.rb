@@ -5,11 +5,11 @@
 class CreateProducts < Invoika::Database::Migration[1.0]
   def change
     create_table_with_constraints :products, id: :uuid do |t|
-      t.references :user,
+      t.references :company,
                    type: :uuid,
                    foreign_key: {
-                     to_table: :users,
-                     name: :fk_products_user_id_on_users,
+                     to_table: :companies,
+                     name: :fk_products_company_id_on_companies,
                      on_delete: :cascade
                    },
                    index: {using: :btree}
@@ -30,6 +30,8 @@ class CreateProducts < Invoika::Database::Migration[1.0]
 
       t.not_null_and_empty_constraint :name
 
+      t.not_null_constraint :company_id
+
       t.not_null_constraint :unit_price
       t.not_null_constraint :sell_price
 
@@ -40,8 +42,8 @@ class CreateProducts < Invoika::Database::Migration[1.0]
       t.check_constraint "unit_price > CAST(0.0 AS MONEY)", name: "unit_price_gt_zero"
       t.check_constraint "sell_price <= unit_price", name: "sell_price_lteq_unit_price"
 
-      t.index [:name, :user_id], using: :btree, unique: true
-      t.index [:code, :user_id], using: :btree, unique: true
+      t.index [:name, :company_id], using: :btree, unique: true
+      t.index [:code, :company_id], using: :btree, unique: true
 
       t.timestamps_with_timezone null: false
     end

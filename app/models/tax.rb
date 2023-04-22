@@ -17,10 +17,10 @@ class Tax < ApplicationRecord
 
   validates :name,
             presence: true,
-            uniqueness: {scope: :user_id},
+            uniqueness: {scope: :company_id},
             length: {maximum: 55},
             reduce: true
-  validates :user_id, presence: true, reduce: true
+  validates :company_id, presence: true, reduce: true
   validates :rate,
             presence: true,
             numericality: {greater_than: 0.0},
@@ -30,7 +30,7 @@ class Tax < ApplicationRecord
             inclusion: {in: types.values},
             reduce: true
 
-  belongs_to :user, inverse_of: :taxes
+  belongs_to :company, inverse_of: :taxes
 
   default_scope -> { order_name_asc }
 

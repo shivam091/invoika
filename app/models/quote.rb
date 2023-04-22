@@ -24,10 +24,10 @@ class Quote < ApplicationRecord
   attribute :status, :enum, default: statuses[:draft]
   attribute :discount_type, :enum, default: nil
 
-  validates :client_id, :user_id, presence: true, reduce: true
+  validates :client_id, :company_id, presence: true, reduce: true
   validates :code,
             presence: true,
-            uniqueness: {scope: :user_id},
+            uniqueness: {scope: :company_id},
             length: {maximum: 15},
             reduce: true
   validates :quote_date, presence: true, reduce: true
@@ -54,13 +54,13 @@ class Quote < ApplicationRecord
   has_many :quote_items, dependent: :destroy
 
   belongs_to :client, class_name: "::User", inverse_of: :quotes
-  belongs_to :user, inverse_of: :created_quotes
+  belongs_to :company, inverse_of: :quotes
 
   after_initialize :set_code, if: :new_record?
   before_validation :remove_discount, unless: :discount_required?
 
   delegate :full_name, to: :client, prefix: true
-  delegate :full_name, to: :user, prefix: true
+  delegate :name, to: :company, prefix: true
 
   default_scope -> { order_created_desc }
 
@@ -70,9 +70,13 @@ class Quote < ApplicationRecord
 
   class << self
     def accessible(user)
-      return where(client_id: user.id) if user.client?
-      all
+      return user.company.quotes.where(client_id: user.id) if user.client?
+      user.company.quotes
     end
+  end
+
+  def to_param
+    self.code
   end
 
   private

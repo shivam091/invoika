@@ -18,10 +18,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "color_schemes", [["dark", "light"]]
-  create_enum "screen_modes", [["windowed", "full_screen"]]
   create_enum "discount_types", [["flat", "percentage"]]
   create_enum "invoice_statuses", [["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]]
   create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "rejected"]]
+  create_enum "screen_modes", [["windowed", "full_screen"]]
   create_enum "tax_types", [["inclusive", "exclusive"]]
 
   create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -49,15 +49,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
   end
 
   create_table "categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id"
+    t.uuid "company_id"
     t.string "name"
     t.integer "products_count", default: 0
     t.boolean "is_active", default: false
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.index ["name", "user_id"], name: "index_categories_on_name_and_user_id", unique: true
-    t.index ["user_id"], name: "index_categories_on_user_id"
+    t.index ["company_id"], name: "index_categories_on_company_id"
+    t.index ["name", "company_id"], name: "index_categories_on_name_and_company_id", unique: true
     t.check_constraint "char_length(name::text) <= 55", name: "chk_17134c75a0"
+    t.check_constraint "company_id IS NOT NULL", name: "chk_38450fc49e"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_df1d197345"
   end
 
@@ -72,6 +73,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
     t.index ["state_id"], name: "index_cities_on_state_id"
     t.check_constraint "char_length(name::text) <= 255", name: "chk_36cde11ecb"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_00fc9436f5"
+  end
+
+  create_table "companies", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "phone_number"
+    t.string "fax_number"
+    t.string "registrant_name"
+    t.date "established_on"
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["email"], name: "index_companies_on_email", unique: true
+    t.index ["fax_number"], name: "index_companies_on_fax_number", unique: true
+    t.index ["phone_number"], name: "index_companies_on_phone_number", unique: true
+    t.check_constraint "char_length(email::text) <= 55", name: "chk_28c823da3e"
+    t.check_constraint "char_length(fax_number::text) <= 32", name: "chk_bd2320dae2"
+    t.check_constraint "char_length(name::text) <= 155", name: "chk_666adc8aa3"
+    t.check_constraint "char_length(phone_number::text) <= 32", name: "chk_4ced3f2015"
+    t.check_constraint "char_length(registrant_name::text) <= 155", name: "chk_177b2625c0"
+    t.check_constraint "email IS NOT NULL AND email::text <> ''::text", name: "chk_a69e9e4aa1"
+    t.check_constraint "established_on <= CURRENT_DATE", name: "chk_established_on_lteq_today"
+    t.check_constraint "established_on IS NOT NULL", name: "chk_d67d8e256d"
+    t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_e3f6972337"
+    t.check_constraint "phone_number IS NOT NULL AND phone_number::text <> ''::text", name: "chk_9e70bcb5be"
+    t.check_constraint "registrant_name IS NOT NULL AND registrant_name::text <> ''::text", name: "chk_d1d496f6c1"
   end
 
   create_table "countries", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -107,8 +133,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
   end
 
   create_table "invoices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "company_id"
     t.uuid "client_id"
-    t.uuid "user_id"
     t.string "code"
     t.date "invoice_date"
     t.date "due_date"
@@ -124,30 +150,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.index ["client_id"], name: "index_invoices_on_client_id"
-    t.index ["code", "user_id"], name: "index_invoices_on_code_and_user_id", unique: true
+    t.index ["code", "company_id"], name: "index_invoices_on_code_and_company_id", unique: true
+    t.index ["company_id"], name: "index_invoices_on_company_id"
     t.index ["discount_type"], name: "index_invoices_on_discount_type"
     t.index ["is_recurred"], name: "index_invoices_on_is_recurred"
     t.index ["status"], name: "index_invoices_on_status"
-    t.index ["user_id"], name: "index_invoices_on_user_id"
     t.check_constraint "NOT discount IS NOT NULL OR discount_type IS NOT NULL", name: "chk_89d1f2f5e2"
     t.check_constraint "NOT discount_type IS NOT NULL OR discount IS NOT NULL", name: "chk_a8b865798a"
     t.check_constraint "NOT is_recurred IS TRUE OR recurring_cycle IS NOT NULL", name: "chk_cc9c8e2c41"
     t.check_constraint "char_length(code::text) <= 15", name: "chk_c7c07b85de"
     t.check_constraint "char_length(notes) <= 1000", name: "chk_4cbae24169"
     t.check_constraint "char_length(terms) <= 1000", name: "chk_85e9e8be38"
-    t.check_constraint "client_id IS NOT NULL", name: "chk_ea62469dfa"
     t.check_constraint "code IS NOT NULL AND code::text <> ''::text", name: "chk_924a9da806"
+    t.check_constraint "company_id IS NOT NULL", name: "chk_678e4c5428"
     t.check_constraint "currency IS NOT NULL AND currency::text <> ''::text", name: "chk_f561bdbdaf"
     t.check_constraint "discount_type = ANY (ARRAY['flat'::discount_types, 'percentage'::discount_types])", name: "chk_afbdabbd82"
     t.check_constraint "due_date >= invoice_date", name: "chk_due_date_gteq_invoice_date"
     t.check_constraint "due_date IS NOT NULL", name: "chk_ca757536a4"
     t.check_constraint "invoice_date IS NOT NULL", name: "chk_165db585b6"
     t.check_constraint "status = ANY (ARRAY['draft'::invoice_statuses, 'unpaid'::invoice_statuses, 'paid'::invoice_statuses, 'partially_paid'::invoice_statuses, 'processing'::invoice_statuses, 'overdue'::invoice_statuses, 'void'::invoice_statuses, 'uncollectible'::invoice_statuses])", name: "chk_df4579007e"
-    t.check_constraint "user_id IS NOT NULL", name: "chk_e6dd38ae40"
   end
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id"
+    t.uuid "company_id"
     t.uuid "category_id"
     t.string "name"
     t.string "code"
@@ -158,12 +183,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["code", "user_id"], name: "index_products_on_code_and_user_id", unique: true
-    t.index ["name", "user_id"], name: "index_products_on_name_and_user_id", unique: true
-    t.index ["user_id"], name: "index_products_on_user_id"
+    t.index ["code", "company_id"], name: "index_products_on_code_and_company_id", unique: true
+    t.index ["company_id"], name: "index_products_on_company_id"
+    t.index ["name", "company_id"], name: "index_products_on_name_and_company_id", unique: true
     t.check_constraint "char_length(code::text) <= 15", name: "chk_a39680f5ff"
     t.check_constraint "char_length(description) <= 1000", name: "chk_a25291fb10"
     t.check_constraint "char_length(name::text) <= 55", name: "chk_f40320f388"
+    t.check_constraint "company_id IS NOT NULL", name: "chk_31398a365b"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_0a202cf2e7"
     t.check_constraint "sell_price <= unit_price", name: "sell_price_lteq_unit_price"
     t.check_constraint "sell_price IS NOT NULL", name: "chk_173f7aabf6"
@@ -187,8 +213,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
   end
 
   create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "company_id"
     t.uuid "client_id"
-    t.uuid "user_id"
     t.string "code"
     t.date "quote_date"
     t.date "due_date"
@@ -200,21 +226,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.index ["client_id"], name: "index_quotes_on_client_id"
-    t.index ["code", "user_id"], name: "index_quotes_on_code_and_user_id", unique: true
-    t.index ["user_id"], name: "index_quotes_on_user_id"
+    t.index ["code", "company_id"], name: "index_quotes_on_code_and_company_id", unique: true
+    t.index ["company_id"], name: "index_quotes_on_company_id"
     t.check_constraint "NOT discount IS NOT NULL OR discount_type IS NOT NULL", name: "chk_139a0e61cb"
     t.check_constraint "NOT discount_type IS NOT NULL OR discount IS NOT NULL", name: "chk_21ec9f3ae2"
     t.check_constraint "char_length(code::text) <= 15", name: "chk_506fb1e130"
     t.check_constraint "char_length(notes) <= 1000", name: "chk_a7a378d842"
     t.check_constraint "char_length(terms) <= 1000", name: "chk_643f9aa96a"
-    t.check_constraint "client_id IS NOT NULL", name: "chk_2dc40f9244"
     t.check_constraint "code IS NOT NULL AND code::text <> ''::text", name: "chk_10664e013c"
+    t.check_constraint "company_id IS NOT NULL", name: "chk_22d8e514ce"
     t.check_constraint "discount_type = ANY (ARRAY['flat'::discount_types, 'percentage'::discount_types])", name: "chk_6b2988274f"
     t.check_constraint "due_date >= quote_date", name: "chk_due_date_gteq_quote_date"
     t.check_constraint "due_date IS NOT NULL", name: "chk_b0d4171069"
     t.check_constraint "quote_date IS NOT NULL", name: "chk_2250cfed48"
     t.check_constraint "status = ANY (ARRAY['draft'::quote_statuses, 'converted'::quote_statuses, 'pending'::quote_statuses, 'accepted'::quote_statuses, 'rejected'::quote_statuses])", name: "chk_7beafe70a2"
-    t.check_constraint "user_id IS NOT NULL", name: "chk_db23b7d882"
   end
 
   create_table "request_logs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -265,16 +290,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
   end
 
   create_table "taxes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id"
+    t.uuid "company_id"
     t.string "name"
     t.float "rate", default: 0.0
     t.enum "type", default: "exclusive", enum_type: "tax_types"
     t.boolean "is_active", default: false
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.index ["name", "user_id"], name: "index_taxes_on_name_and_user_id", unique: true
-    t.index ["user_id"], name: "index_taxes_on_user_id"
+    t.index ["company_id"], name: "index_taxes_on_company_id"
+    t.index ["name", "company_id"], name: "index_taxes_on_name_and_company_id", unique: true
     t.check_constraint "char_length(name::text) <= 55", name: "chk_c811ca3563"
+    t.check_constraint "company_id IS NOT NULL", name: "chk_4a452a180b"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_120abec347"
     t.check_constraint "rate > 0.0::double precision", name: "chk_bc230f82fd"
     t.check_constraint "rate IS NOT NULL", name: "chk_b82d270488"
@@ -327,8 +353,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
     t.boolean "is_active", default: false
     t.boolean "is_banned", default: false
     t.uuid "role_id"
+    t.uuid "company_id"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["mobile_number"], name: "index_users_on_mobile_number", unique: true
@@ -338,6 +366,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
     t.check_constraint "char_length(first_name::text) <= 55", name: "chk_c231bcb127"
     t.check_constraint "char_length(last_name::text) <= 55", name: "chk_2123b67efb"
     t.check_constraint "char_length(mobile_number::text) <= 32", name: "chk_9a467af0b9"
+    t.check_constraint "company_id IS NOT NULL", name: "chk_9d872040a7"
     t.check_constraint "email IS NOT NULL AND email::text <> ''::text", name: "chk_004c265d57"
     t.check_constraint "encrypted_password IS NOT NULL AND encrypted_password::text <> ''::text", name: "chk_e1cfcf7283"
     t.check_constraint "failed_attempts IS NOT NULL", name: "chk_973db23f5c"
@@ -350,21 +379,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
   add_foreign_key "addresses", "cities", name: "fk_addresses_city_id_on_cities", on_delete: :restrict
   add_foreign_key "addresses", "countries", name: "fk_addresses_country_id_on_countries", on_delete: :restrict
   add_foreign_key "addresses", "states", name: "fk_addresses_state_id_on_states", on_delete: :restrict
-  add_foreign_key "categories", "users", name: "fk_categories_user_id_on_users", on_delete: :cascade
+  add_foreign_key "categories", "companies", name: "fk_categories_company_id_on_companies", on_delete: :cascade
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
   add_foreign_key "invoice_items", "invoices", name: "fk_invoice_items_invoice_id_on_invoices", on_delete: :cascade
   add_foreign_key "invoice_items", "products", name: "fk_invoice_items_product_id_on_products", on_delete: :restrict
+  add_foreign_key "invoices", "companies", name: "fk_invoices_company_id_on_companies", on_delete: :cascade
   add_foreign_key "invoices", "users", column: "client_id", name: "fk_invoices_client_id_on_users", on_delete: :nullify
-  add_foreign_key "invoices", "users", name: "fk_invoices_user_id_on_users", on_delete: :cascade
   add_foreign_key "products", "categories", name: "fk_products_category_id_on_categories", on_delete: :restrict
-  add_foreign_key "products", "users", name: "fk_products_user_id_on_users", on_delete: :cascade
+  add_foreign_key "products", "companies", name: "fk_products_company_id_on_companies", on_delete: :cascade
   add_foreign_key "quote_items", "products", name: "fk_quote_items_product_id_on_products", on_delete: :restrict
   add_foreign_key "quote_items", "quotes", name: "fk_quote_items_quote_id_on_quotes", on_delete: :cascade
+  add_foreign_key "quotes", "companies", name: "fk_quotes_company_id_on_companies", on_delete: :cascade
   add_foreign_key "quotes", "users", column: "client_id", name: "fk_quotes_client_id_on_users", on_delete: :nullify
-  add_foreign_key "quotes", "users", name: "fk_quotes_user_id_on_users", on_delete: :cascade
   add_foreign_key "request_logs", "users", name: "fk_request_logs_user_id_on_users", on_delete: :nullify
   add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict
-  add_foreign_key "taxes", "users", name: "fk_taxes_user_id_on_users", on_delete: :cascade
+  add_foreign_key "taxes", "companies", name: "fk_taxes_company_id_on_companies", on_delete: :cascade
   add_foreign_key "user_preferences", "users", name: "fk_user_preferences_user_id_on_users", on_delete: :cascade
+  add_foreign_key "users", "companies", name: "fk_users_company_id_on_companies", on_delete: :restrict
   add_foreign_key "users", "roles", name: "fk_users_role_id_on_roles", on_delete: :restrict
 end

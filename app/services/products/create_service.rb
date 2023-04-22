@@ -3,8 +3,8 @@
 # -*- warn_indent: true -*-
 
 class Products::CreateService < ApplicationService
-  def initialize(user, product_attributes)
-    @user = user
+  def initialize(company, product_attributes)
+    @company = company
     @product_attributes = product_attributes.dup
   end
 
@@ -14,10 +14,10 @@ class Products::CreateService < ApplicationService
 
   private
 
-  attr_reader :user, :product_attributes
+  attr_reader :company, :product_attributes
 
   def create_product
-    product = user.products.build(product_attributes)
+    product = company.products.build(product_attributes)
     if product.save
       ::ServiceResponse.success(
         message: t("products.create.success", product_name: product.name),
