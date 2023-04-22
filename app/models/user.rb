@@ -36,6 +36,7 @@ class User < ApplicationRecord
             presence: true,
             reduce: true,
             if: :password_required?
+  validates :company_id, presence: true, reduce: true
 
   has_one :address, as: :addressable, dependent: :destroy
 
