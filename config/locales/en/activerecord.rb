@@ -104,6 +104,14 @@
           unit_price: "Unit price",
           tax_ids: "Taxes",
         },
+        company: {
+          name: "Name",
+          email: "Email",
+          phone_number: "Phone number",
+          fax_number: "Fax number",
+          registrant_name: "Registrant name",
+          established_on: "Established on",
+        },
       },
       help_texts: {
       },
