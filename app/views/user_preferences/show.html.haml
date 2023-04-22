@@ -13,7 +13,7 @@
       .widget-row.d-flex
         .flex-auto
           .widget-row-title= t(".preferred_language")
-          .widget-row-body= current_user.preferred_locale
+          .widget-row-body= Invoika::I18n.humanized_locale(current_user.preferred_locale)
       .widget-row.d-flex
         .flex-auto
           .widget-row-title= t(".preferred_time_zone")
@@ -25,4 +25,4 @@
       .widget-row.d-flex
         .flex-auto
           .widget-row-title= t(".preferred_screen_mode")
-          .widget-row-body= enum_i18n(::UserPreference, :screen_codes, current_user.preferred_screen_mode)
+          .widget-row-body= enum_i18n(::UserPreference, :screen_modes, current_user.preferred_screen_mode)
