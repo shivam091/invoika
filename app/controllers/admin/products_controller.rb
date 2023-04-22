@@ -30,7 +30,7 @@ class Admin::ProductsController < Admin::BaseController
 
   # POST /admin/products
   def create
-    response = ::Products::CreateService.(current_user, product_params)
+    response = ::Products::CreateService.(@company, product_params)
     @product = response.payload[:product]
     if response.success?
       flash[:notice] = response.message
@@ -111,11 +111,12 @@ class Admin::ProductsController < Admin::BaseController
   private
 
   def products
-    current_user.products
+    @company.products
   end
 
   def find_product
-    @product = products.find(params.fetch(:uuid))
+    @product = products.find_by(code: params.fetch(:code))
+    raise ActiveRecord::RecordNotFound if @product.nil?
   end
 
   def product_params

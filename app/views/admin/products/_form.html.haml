@@ -28,6 +28,6 @@
           = external_svg_tag("svgs/floppy.svg")
           %span.d-block.d-lg-none= button_text("update")
           %span.d-none.d-lg-block= button_text("update_product")
-      = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->remote-modal#hide"} do
+      = link_to admin_products_path, class: "btn btn-secondary" do
         = external_svg_tag("svgs/cancel.svg")
         = button_text("cancel")

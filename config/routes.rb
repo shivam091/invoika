@@ -44,14 +44,14 @@ Rails.application.routes.draw do
   concern :shareable do
     resource :dashboard, only: :show
     resource :profile, only: [:show, :edit, :update]
-    resources :quotes, param: :uuid do
+    resources :quotes, param: :code do
       collection do
         get :draft
         get :converted
         get :accepted
       end
     end
-    resources :invoices, param: :uuid do
+    resources :invoices, param: :code do
       collection do
         get :draft
         get :unpaid
@@ -77,9 +77,11 @@ Rails.application.routes.draw do
     namespace :admin do
       concerns :shareable
 
+      resource :company, except: [:new, :create, :destroy]
+
       resources :categories, except: :show, param: :uuid, concerns: :toggleable
       resources :taxes, except: :show, param: :uuid, concerns: :toggleable
-      resources :products, param: :uuid, concerns: :toggleable
+      resources :products, param: :code, concerns: :toggleable
     end
 
     namespace :client do

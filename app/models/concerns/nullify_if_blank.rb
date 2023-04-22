@@ -1,3 +1,7 @@
+# -*- encoding: utf-8 -*-
+# -*- frozen_string_literal: true -*-
+# -*- warn_indent: true -*-
+
 # Helper that sets attributes to nil prior to validation if they
 # are blank (are false, empty or contain only whitespace), to avoid
 # unnecessarily persisting empty strings.

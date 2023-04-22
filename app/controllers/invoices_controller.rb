@@ -37,12 +37,12 @@ class InvoicesController < ApplicationController
 
   # GET /(:role)/invoices/new
   def new
-    @invoice = current_user.created_invoices.build
+    @invoice = invoices.build
   end
 
   # POST /(:role)/invoices
   def create
-    response = ::Invoices::CreateService.(current_user, invoice_params)
+    response = ::Invoices::CreateService.(@company, invoice_params)
     @invoice = response.payload[:invoice]
     if response.success?
       flash[:notice] = response.message
@@ -103,7 +103,8 @@ class InvoicesController < ApplicationController
   end
 
   def find_invoice
-    @invoice = invoices.find(params.fetch(:uuid))
+    @invoice = invoices.find_by(code: params.fetch(:code))
+    raise ActiveRecord::RecordNotFound if @invoice.nil?
   end
 
   def invoice_params

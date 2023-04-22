@@ -11,6 +11,12 @@
           error: "Your profile could not be updated."
         }
       },
+      companies: {
+        update: {
+          success: "Your company was successfully updated.",
+          error: "Your company could not be updated."
+        }
+      },
       categories: {
         create: {
           success: "Category '%{category_name}' was successfully created.",
