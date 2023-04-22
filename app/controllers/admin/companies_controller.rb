@@ -3,4 +3,8 @@
 # -*- warn_indent: true -*-
 
 class Admin::CompaniesController < Admin::BaseController
+
+  # GET /admin/company
+  def show
+  end
 end
