@@ -56,10 +56,11 @@ module Invoika
       ::I18n.locale = locale_string
     end
 
-    def with_locale(locale_string)
+    def with_locale(locale_string, &block)
       original_locale = locale
 
       self.locale = locale_string
+      yield
     ensure
       self.locale = original_locale
     end

@@ -18,6 +18,7 @@ class UserPreferences::UpdateService < ApplicationService
 
   def update_preferences
     if user.update(preference_attributes)
+      ::Invoika::I18n.locale = user.preferred_locale
       ::ServiceResponse.success(
         message: t("preferences.update.success"),
         payload: {user: user}

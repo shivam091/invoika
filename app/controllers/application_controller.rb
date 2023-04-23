@@ -27,6 +27,8 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_company, if: :user_signed_in?
 
+  around_action :set_locale
+
   helper_method def root_path
     case
     when user_signed_in?
@@ -54,5 +56,13 @@ class ApplicationController < ActionController::Base
 
   def internal_server_error
     render "errors/internal_server_error", status: :internal_server_error, layout: "error"
+  end
+
+  def set_locale(&block)
+    if user_signed_in?
+      Invoika::I18n.with_user_locale(current_user, &block)
+    else
+      Invoika::I18n.with_default_locale(&block)
+    end
   end
 end
