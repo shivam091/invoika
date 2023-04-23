@@ -23,7 +23,3 @@
         .flex-auto
           .widget-row-title= t(".preferred_color_scheme")
           .widget-row-body= enum_i18n(::UserPreference, :color_schemes, current_user.preferred_color_scheme)
-      .widget-row.d-flex
-        .flex-auto
-          .widget-row-title= t(".preferred_screen_mode")
-          .widget-row-body= enum_i18n(::UserPreference, :screen_modes, current_user.preferred_screen_mode)

@@ -63,7 +63,6 @@ class User < ApplicationRecord
 
   delegate :preferred_locale, :preferred_locale=,
            :preferred_time_zone, :preferred_time_zone=,
-           :preferred_screen_mode, :preferred_screen_mode=,
            :preferred_color_scheme, :preferred_color_scheme=,
            :enable_notifications, :enable_notifications=,
            to: :user_preference

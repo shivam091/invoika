@@ -39,7 +39,6 @@ class UserPreferencesController < ApplicationController
         :preferred_locale,
         :preferred_time_zone,
         :preferred_color_scheme,
-        :preferred_screen_mode,
         :enable_notifications,
         :postal_code
       ]

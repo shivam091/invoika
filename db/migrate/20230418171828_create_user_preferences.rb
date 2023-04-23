@@ -17,7 +17,6 @@ class CreateUserPreferences < Invoika::Database::Migration[1.0]
       t.string :preferred_locale
       t.string :preferred_time_zone
       t.enum :preferred_color_scheme, enum_type: :color_schemes
-      t.enum :preferred_screen_mode, enum_type: :screen_modes, default: "windowed"
       t.boolean :enable_notifications, default: true
 
       t.not_null_and_empty_constraint :preferred_locale
@@ -25,9 +24,7 @@ class CreateUserPreferences < Invoika::Database::Migration[1.0]
 
       t.not_null_constraint :user_id
       t.not_null_constraint :preferred_color_scheme
-      t.not_null_constraint :preferred_screen_mode
 
-      t.inclusion_constraint :preferred_screen_mode, in: ["windowed", "full_screen"]
       t.inclusion_constraint :preferred_color_scheme, in: ["light", "dark"]
 
       t.timestamps_with_timezone null: false

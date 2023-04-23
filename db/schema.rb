@@ -21,7 +21,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
   create_enum "discount_types", [["flat", "percentage"]]
   create_enum "invoice_statuses", [["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]]
   create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "rejected"]]
-  create_enum "screen_modes", [["windowed", "full_screen"]]
   create_enum "tax_types", [["inclusive", "exclusive"]]
 
   create_table "addresses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -312,7 +311,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
     t.string "preferred_locale"
     t.string "preferred_time_zone"
     t.enum "preferred_color_scheme", enum_type: "color_schemes"
-    t.enum "preferred_screen_mode", default: "windowed", enum_type: "screen_modes"
     t.boolean "enable_notifications", default: true
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
@@ -320,8 +318,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_062412) do
     t.check_constraint "preferred_color_scheme = ANY (ARRAY['light'::color_schemes, 'dark'::color_schemes])", name: "chk_b21cd8fa5b"
     t.check_constraint "preferred_color_scheme IS NOT NULL", name: "chk_09687af08f"
     t.check_constraint "preferred_locale IS NOT NULL AND preferred_locale::text <> ''::text", name: "chk_8ec726d46e"
-    t.check_constraint "preferred_screen_mode = ANY (ARRAY['windowed'::screen_modes, 'full_screen'::screen_modes])", name: "chk_e52e1a0da8"
-    t.check_constraint "preferred_screen_mode IS NOT NULL", name: "chk_bc64cb8116"
     t.check_constraint "preferred_time_zone IS NOT NULL AND preferred_time_zone::text <> ''::text", name: "chk_4b34a64a45"
     t.check_constraint "user_id IS NOT NULL", name: "chk_22c6689bf0"
   end

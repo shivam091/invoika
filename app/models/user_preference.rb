@@ -8,12 +8,6 @@ class UserPreference < ApplicationRecord
     light: "light"
   }
 
-  enum screen_mode: {
-    windowed: "windowed",
-    full_screen: "full_screen"
-  }
-
-  attribute :preferred_screen_mode, :enum, default: screen_modes[:windowed]
   attribute :preferred_color_scheme, :enum, default: color_schemes[:light]
   attribute :preferred_locale, default: "en"
   attribute :preferred_time_zone, default: "Asia/Kolkata"
@@ -23,10 +17,6 @@ class UserPreference < ApplicationRecord
   validates :preferred_color_scheme,
             presence: true,
             inclusion: {in: color_schemes.values},
-            reduce: true
-  validates :preferred_screen_mode,
-            presence: true,
-            inclusion: {in: screen_modes.values},
             reduce: true
   validates :preferred_time_zone,
             presence: true,

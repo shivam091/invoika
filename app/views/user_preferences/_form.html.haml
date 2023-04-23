@@ -13,13 +13,7 @@
       .col-sm-12.col-md-6.col-lg-4
         = user_preference_form.time_zone_select :preferred_time_zone, nil, include_blank: t(".select_time_zone")
       .col-sm-12.col-md-6.col-lg-4
-        = user_preference_form.form_group :preferred_screen_mode, label: {text: ""} do
-          .row.g-2
-            - enum_options_for_select(::UserPreference, :screen_modes).each do |screen_mode|
-              .col-3.mt-3
-                = user_preference_form.radio_button :preferred_screen_mode, screen_mode.last, label: screen_mode.first, inline: true, wrapper_class: "me-0"
-      .col-sm-12.col-md-6.col-lg-4
-        = user_preference_form.form_group :preferred_screen_mode, label: {text: ""} do
+        = user_preference_form.form_group :enable_notifications, label: {text: ""} do
           .mt-2
             = user_preference_form.check_box :enable_notifications, switch: true
   .actions

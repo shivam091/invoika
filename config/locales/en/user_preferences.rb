@@ -12,7 +12,6 @@
         preferred_language: "Preferred language",
         preferred_time_zone: "Preferred time zone",
         preferred_color_scheme: "Preferred color scheme",
-        preferred_screen_mode: "Preferred screen mode",
       },
       edit: {
         title: "Edit account preferences"
