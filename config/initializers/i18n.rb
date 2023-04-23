@@ -8,7 +8,7 @@
 Invoika::Application.config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml,yaml}")]
 
 # Whitelist locales available for the application
-Invoika::Application.config.i18n.available_locales = [:en]
+Invoika::Application.config.i18n.available_locales = Invoika::I18n.selectable_locales.keys
 
 # Set default locale of the application
 # Rails will fallback to config.i18n.default_locale translation
