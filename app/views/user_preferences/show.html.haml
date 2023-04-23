@@ -13,11 +13,12 @@
       .widget-row.d-flex
         .flex-auto
           .widget-row-title= t(".preferred_language")
-          .widget-row-body= Invoika::I18n.humanized_locale(current_user.preferred_locale)
+          .widget-row-body= Invoika::I18n.selectable_locales[current_user.preferred_locale]
       .widget-row.d-flex
         .flex-auto
           .widget-row-title= t(".preferred_time_zone")
-          .widget-row-body= current_user.preferred_time_zone
+          .widget-row-body
+            = "#{ActiveSupport::TimeZone::MAPPING[current_user.preferred_time_zone]} (#{current_user.preferred_time_zone})"
       .widget-row.d-flex
         .flex-auto
           .widget-row-title= t(".preferred_color_scheme")

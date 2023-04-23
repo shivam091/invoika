@@ -1,8 +1,8 @@
 = bootstrap_form_for current_user, url: user_preference_path, html: {enctype: "multipart/form-data"} do |form|
-  = form.fields_for :user_preference do |user_preference_form|
+  = form.fields_for :user_preference, include_id: false do |user_preference_form|
     .row
       .col-sm-12.col-md-6.col-lg-4
-        = user_preference_form.select :preferred_locale, available_languages,
+        = user_preference_form.select :preferred_locale, selectable_locales_with_translation_level(2),
           {include_blank: t(".select_preferred_language")}, data: {controller: "autofocus"}
       .col-sm-12.col-md-6.col-lg-4
         = user_preference_form.form_group :preferred_color_scheme, label: {text: ""} do
@@ -11,7 +11,7 @@
               .col-3.mt-3
                 = user_preference_form.radio_button :preferred_color_scheme, color_scheme.last, label: color_scheme.first, inline: true, wrapper_class: "me-0"
       .col-sm-12.col-md-6.col-lg-4
-        = user_preference_form.time_zone_select :preferred_time_zone, ActiveSupport::TimeZone.all, include_blank: t(".select_time_zone")
+        = user_preference_form.time_zone_select :preferred_time_zone, nil, include_blank: t(".select_time_zone")
       .col-sm-12.col-md-6.col-lg-4
         = user_preference_form.form_group :preferred_screen_mode, label: {text: ""} do
           .row.g-2
