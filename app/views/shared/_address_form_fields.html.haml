@@ -1,16 +1,16 @@
-.row
+.row{data: {controller: "location", location_state_url_value: states_url, location_city_url_value: cities_url}}
   .col-sm-12.col-md-6.col-lg-6
     = form.text_field :address1
   .col-sm-12.col-md-6.col-lg-6
     = form.text_field :address2
   .col-sm-12.col-md-6.col-lg-4
     = form.select :country_id, options_for_select(::Country.select_options, form.object.country_id),
-      {include_blank: t(".select_country")}
+      {include_blank: t(".select_country")}, data: {location_target: "countrySelect", action: "change->location#fetchStates"}
   .col-sm-12.col-md-6.col-lg-4
-    = form.select :state_id, options_for_select(::State.select_options, form.object.state_id),
-      {include_blank: t(".select_state")}
+    = form.select :state_id, state_options(form.object), {include_blank: t(".select_state")},
+      data: {location_target: "stateSelect", action: "change->location#fetchCities"}
   .col-sm-12.col-md-6.col-lg-4
-    = form.select :city_id, options_for_select(::City.select_options, form.object.city_id),
-      {include_blank: t(".select_city")}
+    = form.select :city_id, city_options(form.object), {include_blank: t(".select_city")},
+      data: {location_target: "citySelect"}
   .col-sm-12.col-md-6.col-lg-4
     = form.text_field :postal_code

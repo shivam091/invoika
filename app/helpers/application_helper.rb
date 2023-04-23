@@ -129,4 +129,20 @@ module ApplicationHelper
       ["#{currency.name} (#{currency.symbol})", currency.id.upcase.to_s]
     end
   end
+
+  def city_options(object)
+    if object.state_id.present?
+      options_for_select(object.state.cities.select_options, object.city_id)
+    else
+      []
+    end
+  end
+
+  def state_options(object)
+    if object.country_id.present?
+      options_for_select(object.country.states.select_options, object.state_id)
+    else
+      []
+    end
+  end
 end
