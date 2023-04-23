@@ -12,7 +12,7 @@
             = link_to "javascript:void(0)", class: "text-dark text-decoration-none" do
               = external_svg_tag("svgs/bell-ringing.svg", height: "16px", width: "16px")
           .d-inline-block.middle-dot-divider
-            = link_to "javascript:void(0)", class: "text-dark text-decoration-none" do
+            = link_to change_locale_path, class: "text-dark text-decoration-none", data: {turbo_frame: :remote_modal} do
               = t(".change_language")
   %nav.navbar.navbar-light.bg-light.navbar-expand-lg.divider{aria: {label: t(".main_navigation")}}
     .container-fluid

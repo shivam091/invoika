@@ -31,6 +31,30 @@ class UserPreferencesController < ApplicationController
     end
   end
 
+  # GET /(:role)/preference/change-locale
+  def change_locale
+  end
+
+  # PATCH /(:role)/preference/update-locale
+  def update_locale
+    response = ::UserPreferences::UpdateLocaleService.(current_user, locale_attributes)
+    @user = response.payload[:user]
+    if response.success?
+      flash[:notice] = response.message
+      redirect_to request.referrer
+    else
+      flash.now[:alert] = response.message
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:change_locale_form, partial: "user_preferences/change_locale_form"),
+            render_flash
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   private
 
   def preference_params
@@ -41,6 +65,14 @@ class UserPreferencesController < ApplicationController
         :preferred_color_scheme,
         :enable_notifications,
         :postal_code
+      ]
+    )
+  end
+
+  def locale_attributes
+    params.require(:user).permit(
+      user_preference_attributes: [
+        :preferred_locale,
       ]
     )
   end

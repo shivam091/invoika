@@ -8,7 +8,7 @@ module Invoika
 
     AVAILABLE_LANGUAGES = {
       de: "German - Deutsch",
-      en: "English - English",
+      en: "English",
       es: "Spanish - Español",
       fr: "French - Français",
       ru: "Russian - Русский",

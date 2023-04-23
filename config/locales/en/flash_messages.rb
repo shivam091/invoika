@@ -21,6 +21,10 @@
         update: {
           success: "Your account preferences was successfully updated.",
           error: "Your account preferences could not be updated."
+        },
+        update_locale: {
+          success: "Langauge was successfully updated.",
+          error: "Langauge could not be updated."
         }
       },
       categories: {

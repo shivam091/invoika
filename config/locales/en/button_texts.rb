@@ -36,6 +36,7 @@
       new_invoice: "New invoice",
       create_invoice: "Create invoice",
       update_invoice: "Update invoice",
+      update_language: "Update language",
     }
   }
 }
