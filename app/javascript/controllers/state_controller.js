@@ -6,7 +6,6 @@ export default class extends Controller {
   static targets = ["countrySelect", "stateSelect"]
   static values = {
     url: String,
-    param: String,
     selected: String
   }
 
@@ -18,7 +17,7 @@ export default class extends Controller {
     event?.preventDefault();
 
     let params = new URLSearchParams();
-    params.append(this.paramValue, this.countrySelectTarget.selectedOptions[0].value);
+    params.append("country_id", this.countrySelectTarget.selectedOptions[0].value);
     params.append("target", this.stateSelectTarget.id);
     params.append("selected", this.selectedValue);
 
