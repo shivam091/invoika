@@ -17,6 +17,12 @@
           error: "Your company could not be updated."
         }
       },
+      preferences: {
+        update: {
+          success: "Your account preferences was successfully updated.",
+          error: "Your account preferences could not be updated."
+        }
+      },
       categories: {
         create: {
           success: "Category '%{category_name}' was successfully created.",

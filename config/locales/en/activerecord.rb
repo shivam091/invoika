@@ -19,6 +19,13 @@
           is_banned: "Is banned",
           is_active: "Is active",
         },
+        user_preference: {
+          preferred_locale: "Preferred language",
+          preferred_color_scheme: "Preferred color scheme",
+          preferred_time_zone: "Preferred time zone",
+          preferred_screen_mode: "Preferred screen mode",
+          enable_notifications: "Enable notifications",
+        },
         country: {
           name: "Name",
           is_active: "Is active",

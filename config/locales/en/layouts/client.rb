@@ -20,6 +20,7 @@
           sign_out: "Sign out",
           your_account: "Your account",
           your_profile: "Your profile",
+          your_account_preferences: "Your account preferences",
         },
         footer: {
         },

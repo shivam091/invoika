@@ -11,6 +11,16 @@
           exclusive: "Exclusive",
         }
       },
+      user_preference: {
+        color_schemes: {
+          dark: "Dark",
+          light: "Light"
+        },
+        screen_modes: {
+          windowed: "Windowed",
+          full_screen: "Full screen"
+        }
+      },
       quote: {
         discount_types: {
           flat: "Flat",
