@@ -91,5 +91,7 @@ Rails.application.routes.draw do
 
   root to: "root#index"
 
+  resources :states, only: :index
+
   get "*unmatched_route", to: "application#not_found", format: false
 end
