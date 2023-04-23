@@ -7,8 +7,7 @@ class CitiesController < ApplicationController
   # GET /cities
   def index
     state = ::State.find(params[:state_id])
-    @target, @selected = params[:target], params[:selected]
-    @cities = state.cities.active
+    @city_target, @cities = params[:city_target], state.cities
 
     respond_to do |format|
       format.turbo_stream

@@ -1,2 +1,4 @@
-= turbo_stream.update @target do
-  = options_for_select(@states.pluck(:name, :id), @selected)
+= turbo_stream.update @state_target do
+  = options_for_select(@states.select_options)
+= turbo_stream.update @city_target do
+  = options_for_select(@cities.select_options)

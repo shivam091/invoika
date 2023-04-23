@@ -7,8 +7,8 @@ class StatesController < ApplicationController
   # GET /states
   def index
     country = ::Country.find(params[:country_id])
-    @target, @selected = params[:target], params[:selected]
-    @states = country.states.active
+    @state_target, @city_target = params[:state_target], params[:city_target]
+    @states, @cities = country.states, country.states.first.cities
 
     respond_to do |format|
       format.turbo_stream
