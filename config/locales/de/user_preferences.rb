@@ -6,7 +6,7 @@
   de: {
     user_preferences: {
       form: {
-        translated: "übersetzt"
+        language_translation_percentage: "%{language} (%{percent_translated} übersetzt)"
       }
     }
   }

@@ -6,7 +6,7 @@
   ru: {
     user_preferences: {
       form: {
-        translated: "переведено"
+        language_translation_percentage: "%{language} (%{percent_translated} переведено)"
       }
     }
   }

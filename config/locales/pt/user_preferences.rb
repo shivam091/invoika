@@ -6,7 +6,7 @@
   pt: {
     user_preferences: {
       form: {
-        translated: "traduzida"
+        language_translation_percentage: "%{language} (%{percent_translated} traduzida)"
       }
     }
   }

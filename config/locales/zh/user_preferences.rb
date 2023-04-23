@@ -6,7 +6,7 @@
   zh: {
     user_preferences: {
       form: {
-        translated: "翻译的"
+        language_translation_percentage: "%{language} (%{percent_translated} 翻译的)"
       }
     }
   }
