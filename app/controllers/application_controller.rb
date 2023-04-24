@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_company, if: :user_signed_in?
 
-  around_action :set_locale
+  around_action :set_locale, :set_time_zone
 
   helper_method def root_path
     case
@@ -59,6 +59,14 @@ class ApplicationController < ActionController::Base
       Invoika::I18n.with_user_locale(current_user, &block)
     else
       Invoika::I18n.with_default_locale(&block)
+    end
+  end
+
+  def set_time_zone(&block)
+    if user_signed_in?
+      Time.use_zone(current_user.preferred_time_zone, &block)
+    else
+      Time.use_zone(Time.zone_default, &block)
     end
   end
 
