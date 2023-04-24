@@ -3,5 +3,7 @@
 # -*- warn_indent: true -*-
 
 class UserPreferencesController < ApplicationController
-  
+  # GET /(:role)/preference
+  def show
+  end
 end
