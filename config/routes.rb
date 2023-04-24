@@ -44,6 +44,14 @@ Rails.application.routes.draw do
   concern :shareable do
     resource :dashboard, only: :show
     resource :profile, only: [:show, :edit, :update]
+    resource :user_preference, path: "preference", only: [:show, :edit, :update] do
+      collection do
+        get :change_locale, path: "change-locale"
+        patch :update_locale, path: "update-locale"
+        patch :update_color_scheme, path: "update-color-scheme"
+      end
+    end
+
     resources :quotes, param: :code do
       collection do
         get :draft
@@ -90,6 +98,9 @@ Rails.application.routes.draw do
   end
 
   root to: "root#index"
+
+  resources :states, only: :index
+  resources :cities, only: :index
 
   get "*unmatched_route", to: "application#not_found", format: false
 end

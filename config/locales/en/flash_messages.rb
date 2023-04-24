@@ -17,6 +17,20 @@
           error: "Your company could not be updated."
         }
       },
+      preferences: {
+        update: {
+          success: "Your preferences was successfully updated.",
+          error: "Your preferences could not be updated."
+        },
+        update_locale: {
+          success: "Langauge was successfully updated.",
+          error: "Langauge could not be updated."
+        },
+        update_color_scheme: {
+          success: "Color scheme was successfully updated.",
+          error: "Color scheme could not be updated."
+        }
+      },
       categories: {
         create: {
           success: "Category '%{category_name}' was successfully created.",

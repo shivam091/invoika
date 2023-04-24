@@ -1,0 +1,26 @@
+= bootstrap_form_for current_user, url: user_preference_path, html: {enctype: "multipart/form-data"} do |form|
+  = form.fields_for :user_preference, include_id: false do |user_preference_form|
+    .row
+      .col-sm-12.col-md-6.col-lg-4
+        = user_preference_form.select :preferred_locale, selectable_locales_with_translation_level(2),
+          {include_blank: t(".select_preferred_language")}, data: {controller: "autofocus"}
+      .col-sm-12.col-md-6.col-lg-4
+        = user_preference_form.form_group :preferred_color_scheme, label: {text: ""} do
+          .row.g-2
+            - enum_options_for_select(::UserPreference, :color_schemes).each do |color_scheme|
+              .col-3.mt-3
+                = user_preference_form.radio_button :preferred_color_scheme, color_scheme.last, label: color_scheme.first, inline: true, wrapper_class: "me-0"
+      .col-sm-12.col-md-6.col-lg-4
+        = user_preference_form.time_zone_select :preferred_time_zone, nil, include_blank: t(".select_time_zone")
+      .col-sm-12.col-md-6.col-lg-4
+        = user_preference_form.form_group :enable_notifications, label: {text: ""} do
+          .mt-2
+            = user_preference_form.check_box :enable_notifications, switch: true
+  .actions
+    = button_tag type: :submit, class: "btn btn-primary" do
+      = external_svg_tag("svgs/floppy.svg")
+      %span.d-block.d-lg-none= button_text("update")
+      %span.d-none.d-lg-block= button_text("update_preferences")
+    = link_to user_preference_path, class: "btn btn-secondary" do
+      = external_svg_tag("svgs/arrow-left.svg")
+      = button_text("go_back")

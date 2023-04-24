@@ -39,6 +39,7 @@ class User < ApplicationRecord
   validates :company_id, presence: true, reduce: true
 
   has_one :address, as: :addressable, dependent: :destroy
+  has_one :user_preference, dependent: :destroy, autosave: true
 
   has_many :request_logs, dependent: :nullify
   has_many :invoices, dependent: :nullify
@@ -60,7 +61,14 @@ class User < ApplicationRecord
   scope :admins, -> { with_role("admin") }
   scope :clients, -> { with_role("client") }
 
+  delegate :preferred_locale, :preferred_locale=,
+           :preferred_time_zone, :preferred_time_zone=,
+           :preferred_color_scheme, :preferred_color_scheme=,
+           :enable_notifications, :enable_notifications=,
+           to: :user_preference
+
   accepts_nested_attributes_for :address, update_only: true
+  accepts_nested_attributes_for :user_preference, update_only: true
 
   class << self
     def with_email(email)
@@ -144,6 +152,19 @@ class User < ApplicationRecord
 
   def address
     super.presence || build_address
+  end
+
+  def user_preference
+    super.presence || build_user_preference
+  end
+
+  def update_color_scheme
+    if preferred_color_scheme.eql?(::UserPreference.color_schemes[:dark])
+      self.preferred_color_scheme = ::UserPreference.color_schemes[:light]
+    else
+      self.preferred_color_scheme = ::UserPreference.color_schemes[:dark]
+    end
+    self.save
   end
 
   private

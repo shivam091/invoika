@@ -7,6 +7,8 @@
       %h6.dropdown-header.fw-bold= t(".your_account")
     %li
       = link_to t(".your_profile"), client_profile_path, class: "dropdown-item"
+    %li
+      = link_to t(".your_preferences"), client_user_preference_path, class: "dropdown-item"
     %li.dropdown-divider
     %li
       = link_to t(".sign_out"), destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete}

@@ -1,0 +1,25 @@
+= title(t(".title"))
+.card.card-primary.border.border-primary
+  .card-body
+    .widget
+      .widget-header.d-flex.align-items-center.justify-content-between
+        .d-block
+          .widget-title
+            = t(".preferences")
+          .widget-help= t(".edit_preferences")
+        = link_to edit_user_preference_path, class: "btn btn-secondary" do
+          = external_svg_tag("svgs/pencil.svg")
+          = button_text("edit")
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".preferred_language")
+          .widget-row-body= Invoika::I18n.selectable_locales[current_user.preferred_locale]
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".preferred_time_zone")
+          .widget-row-body
+            = "#{ActiveSupport::TimeZone::MAPPING[current_user.preferred_time_zone]} (#{current_user.preferred_time_zone})"
+      .widget-row.d-flex
+        .flex-auto
+          .widget-row-title= t(".preferred_color_scheme")
+          .widget-row-body= enum_i18n(::UserPreference, :color_schemes, current_user.preferred_color_scheme)
