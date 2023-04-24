@@ -44,7 +44,12 @@ Rails.application.routes.draw do
   concern :shareable do
     resource :dashboard, only: :show
     resource :profile, only: [:show, :edit, :update]
-    resource :user_preference, path: "preference", only: [:show, :edit, :update]
+    resource :user_preference, path: "preference", only: [:show, :edit, :update] do
+      collection do
+        get :change_locale, path: "change-locale"
+        patch :update_locale, path: "update-locale"
+      end
+    end
 
     resources :quotes, param: :code do
       collection do
