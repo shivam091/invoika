@@ -158,6 +158,15 @@ class User < ApplicationRecord
     super.presence || build_user_preference
   end
 
+  def update_color_scheme
+    if preferred_color_scheme.eql?(::UserPreference.color_schemes[:dark])
+      self.preferred_color_scheme = ::UserPreference.color_schemes[:light]
+    else
+      self.preferred_color_scheme = ::UserPreference.color_schemes[:dark]
+    end
+    self.save
+  end
+
   private
 
   def password_present?

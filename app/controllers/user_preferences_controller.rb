@@ -55,6 +55,18 @@ class UserPreferencesController < ApplicationController
     end
   end
 
+  # PATCH /(:role)/preference/update-color-scheme
+  def update_color_scheme
+    response = ::UserPreferences::UpdateColorSchemeService.(current_user)
+    @user = response.payload[:user]
+    if response.success?
+      flash[:notice] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to request.referrer
+  end
+
   private
 
   def preference_params

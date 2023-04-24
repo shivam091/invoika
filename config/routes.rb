@@ -48,6 +48,7 @@ Rails.application.routes.draw do
       collection do
         get :change_locale, path: "change-locale"
         patch :update_locale, path: "update-locale"
+        patch :update_color_scheme, path: "update-color-scheme"
       end
     end
 

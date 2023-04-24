@@ -31,6 +31,13 @@ module UserPreferencesHelper
     end
   end
 
+  def update_color_scheme_path
+    case
+    when current_user.admin? then update_color_scheme_admin_user_preference_path
+    when current_user.client? then update_color_scheme_client_user_preference_path
+    end
+  end
+
   def selectable_locales_with_translation_level(minimum_level = Invoika::I18n::MINIMUM_TRANSLATION_LEVEL)
     Invoika::I18n.selectable_locales(minimum_level).map do |code, language|
       [

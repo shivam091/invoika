@@ -6,8 +6,14 @@
       .col-lg-6.col-12.d-none.d-lg-flex.justify-content-center.justify-content-lg-end
         .list-unstyled.d-flex.align-items-center
           .d-inline-block.middle-dot-divider
-            = link_to "javascript:void(0)", class: "text-dark text-decoration-none", title: t(".change_to_dark_mode") do
-              = external_svg_tag("svgs/moon.svg", height: "16px", width: "16px")
+            - if current_user.preferred_color_scheme.eql?(::UserPreference.color_schemes[:light])
+              = link_to update_color_scheme_path, class: "text-dark text-decoration-none",
+                title: t(".change_to_dark_mode"), data: {turbo_method: :patch} do
+                = external_svg_tag("svgs/moon.svg", height: "16px", width: "16px")
+            - else
+              = link_to update_color_scheme_path, class: "text-dark text-decoration-none",
+                title: t(".change_to_light_mode"), data: {turbo_method: :patch} do
+                = external_svg_tag("svgs/sun.svg", height: "16px", width: "16px")
           .d-inline-block.middle-dot-divider
             = link_to "javascript:void(0)", class: "text-dark text-decoration-none", title: t(".change_to_full_screen_mode") do
               = external_svg_tag("svgs/screen-full.svg", height: "16px", width: "16px")
