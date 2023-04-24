@@ -6,17 +6,19 @@
 
 Invoika::Application.configure do
   config.to_prepare do
-    User::SessionsController.layout   "devise"
-    User::PasswordsController.layout  "devise"
+    User::SessionsController.layout          "devise"
+    User::PasswordsController.layout         "devise"
 
-    Admin::BaseController.layout      "admin"
-    Admin::ProfilesController.layout  "admin"
-    Admin::QuotesController.layout    "admin"
-    Admin::InvoicesController.layout  "admin"
+    Admin::BaseController.layout             "admin"
+    Admin::ProfilesController.layout         "admin"
+    Admin::UserPreferencesController.layout  "admin"
+    Admin::QuotesController.layout           "admin"
+    Admin::InvoicesController.layout         "admin"
 
-    Client::BaseController.layout     "client"
-    Client::ProfilesController.layout "client"
-    Client::QuotesController.layout   "client"
-    Client::InvoicesController.layout "client"
+    Client::BaseController.layout            "client"
+    Client::ProfilesController.layout        "client"
+    Client::UserPreferencesController.layout "client"
+    Client::QuotesController.layout          "client"
+    Client::InvoicesController.layout        "client"
   end
 end

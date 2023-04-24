@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   concern :shareable do
     resource :dashboard, only: :show
     resource :profile, only: [:show, :edit, :update]
+    resource :user_preference, path: "preference", only: [:show, :edit, :update]
+
     resources :quotes, param: :code do
       collection do
         get :draft
