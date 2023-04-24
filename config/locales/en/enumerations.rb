@@ -11,6 +11,12 @@
           exclusive: "Exclusive",
         }
       },
+      user_preference: {
+        color_schemes: {
+          dark: "Dark",
+          light: "Light"
+        },
+      },
       quote: {
         discount_types: {
           flat: "Flat",

@@ -19,6 +19,8 @@
       previous_page: "Previous page",
       import: "Import",
       update_profile: "Update profile",
+      update_preferences: "Update preferences",
+      update_language: "Update language",
       update_company: "Update company",
       new_category: "New category",
       create_category: "Create category",
