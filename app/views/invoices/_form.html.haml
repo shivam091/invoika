@@ -14,8 +14,10 @@
         = form.select :status, enum_options_for_select(::Invoice, :statuses), {include_blank: t(".select_status")}
       .col-sm-12.col-md-6.col-lg-4
         = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
-      .col-sm-12.col-md-6.col-lg-4.mt-2r.mb-2
-        = form.check_box :is_recurred, switch: true, data: {recurring_cycle_field_target: "isRecurred", action: "change->recurring-cycle-field#toggleRecurringCycle"}
+      .col-sm-12.col-md-6.col-lg-4.mb-2
+        = form.form_group :is_recurred, label: {text: ""} do
+          .mt-2
+            = form.check_box :is_recurred, switch: true, data: {recurring_cycle_field_target: "isRecurred", action: "change->recurring-cycle-field#toggleRecurringCycle"}
       .col-sm-12.col-md-6.col-lg-4{style: "display: #{form.object.is_recurred? ? 'block' : 'none'};", data: {recurring_cycle_field_target: "recurringCycleWrapper"}}
         = form.number_field :recurring_cycle, oninput: "validity.valid || (value = value.replace(/[e\+\-]/gi, ''))",
           data: {recurring_cycle_field_target: "recurringCycle"}
@@ -31,8 +33,9 @@
             readonly: (form.object.discount_type.nil?), disabled: (form.object.discount_type.nil?)
           = form.select :discount_type, enum_options_for_select(::Invoice, :discount_types), {include_blank: t(".select_discount_type")},
             style: "width: 260px !important;", data: {discount_field_target: "discountType", action: "change->discount-field#toggleDiscountField"}
-        = form.select :tax_ids, options_for_select(::Tax.select_options, form.object.tax_ids),
-          {include_blank: t(".select_taxes")}, multiple: true, size: 1, style: "width: 530px !important;"
+        .col-5
+          = form.select :tax_ids, options_for_select(::Tax.select_options, form.object.tax_ids),
+            {include_blank: t(".select_taxes")}, multiple: true, size: 1
       = render_if_exists("invoices/invoice_summary")
     .row
       .col-12.col-lg-6

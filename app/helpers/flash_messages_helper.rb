@@ -24,11 +24,6 @@ module FlashMessagesHelper
           concat(tag.div(msg))
           concat(tag.button("", class: "btn-close", "data-bs-dismiss" => "alert", "aria-label" => "Close"))
         end.html_safe
-        # text = content_tag(:div,
-        #   content_tag(:button, "", class: "btn-close", "data-bs-dismiss" => "alert", "aria-label" => "Close") +
-        #     "<div class='alert-icon alert-icon-#{color_for(msg_type)}'> #{external_svg_tag("svgs/#{icon_for(msg_type)}.svg", width: "35px", height: "35px", fill: "currentColor")} </div>".html_safe +
-        #     "<div class='alert-message'>#{msg}</div>".html_safe,
-        #     class: "alert alert-#{color_for(msg_type)} alert-dismissible fade show")
         flash_messages << text if msg
       end
     end

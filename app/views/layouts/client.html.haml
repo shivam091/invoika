@@ -22,7 +22,7 @@
       .clearfix
       %main.container-fluid.p-2
         = turbo_frame_tag :flash do
-          = render_if_exists "shared/flash_messages"
+          = render_if_exists("shared/flash_messages")
         = yield
       .clearfix
       = render_if_exists("layouts/client/footer")

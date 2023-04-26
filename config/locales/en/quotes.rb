@@ -44,10 +44,12 @@
         select_client: "Select client",
         select_status: "Select status",
         select_discount_type: "Select discount type",
+        generate_code: "Generate code",
+      },
+      quote_summary: {
         subtotal: "Subtotal:",
         discount: " Discount:",
         total: "Total:",
-        generate_code: "Generate code",
       },
       quote_items: {
         product: "Product",

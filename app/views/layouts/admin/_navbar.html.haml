@@ -1,29 +1,29 @@
-.nav-scroller.shadow-sm.border-bottom.bg-light
+.nav-scroller.shadow-sm.border-bottom
   %nav.nav.nav-underline{aria: {label: t(".secondary_navigation")}}
-    = link_to active_admin_categories_path, class: "nav-link d-flex px-2 align-items-center #{active_when(current_controller?("admin/categories"))}" do
+    = link_to active_admin_categories_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("admin/categories"))}" do
       = external_svg_tag("svgs/table.svg")
       = t(".categories")
-    = link_to active_admin_products_path, class: "nav-link d-flex px-2 align-items-center #{active_when(current_controller?("admin/products"))}" do
+    = link_to active_admin_products_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("admin/products"))}" do
       = external_svg_tag("svgs/cube.svg")
       = t(".products")
-    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+    = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/list.svg")
       = t(".transactions")
-    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+    = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/credit-card.svg")
       = t(".payments")
-    = link_to active_admin_taxes_path, class: "nav-link d-flex px-2 align-items-center #{active_when(current_controller?("admin/taxes"))}" do
+    = link_to active_admin_taxes_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("admin/taxes"))}" do
       = external_svg_tag("svgs/percentage.svg")
       = t(".taxes")
-    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+    = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/report.svg")
       = t(".reports")
-    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+    = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/envelope.svg")
       = t(".email_templates")
-    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+    = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/template.svg")
       = t(".invoice_templates")
-    = link_to "javascript:void(0)", class: "nav-link d-flex px-2 align-items-center" do
+    = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/cogs.svg")
       = t(".settings")
