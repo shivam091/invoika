@@ -23,10 +23,10 @@
       },
       quote: {
         client: "Client",
-        code: "Code",
         quote_date: "Quote date",
         due_date: "Due date",
         status: "Status",
+        amount: "Amount",
         actions: "Actions",
         no_converted_quotes_display: "There are no converted quotes to display.",
         no_draft_quotes_to_display: "There are no quotes in draft to display.",
