@@ -8,9 +8,9 @@
           %th{width: "25px", scope: "col"}
             = check_box_tag "checkbox", nil, false, class: "form-check-input", data: {select_all_checkbox_target: "selectAllCheckbox"}
         %th{scope: "col"}= t(".client")
-        %th{scope: "col"}= t(".code")
         %th{scope: "col"}= t(".quote_date")
         %th{scope: "col"}= t(".due_date")
+        %th{scope: "col"}= t(".amount")
         %th{scope: "col"}= t(".status")
         %th{width: "25px", scope: "col"}= t(".actions")
     %tbody
@@ -20,18 +20,29 @@
             = (@pagy.offset + index)
           %td
             = check_box_tag "quote_ids[]", quote.id, false, class: "form-check-input", data: {select_all_checkbox_target: "checkbox"}
-          %td.fw-bold= quote.client_full_name
-          %td= quote.code
-          %td= quote.quote_date.to_fs(:long)
-          %td= quote.due_date.to_fs(:long)
-          %td= enum_i18n(::Quote, :statuses, quote.status)
+          %td
+            .d-flex.align-items-center.justify-content-start
+              = external_svg_tag("svgs/missing_user_avatar.svg", height: 64, width: 64, class: "me-2")
+              .d-flex.flex-column
+                .row
+                  .col-lg-12
+                    = link_to quote.client_full_name, "javascript:void(0)", class: "me-1 fw-bold"
+                    = badge_tag quote.code, {color: ::Invoika::Color.of("#006B75FF")}, {href: "javascript:void(0)"}
+                %span.text-muted.text-start
+                  = quote.client_email
+          %td= badge_tag quote.quote_date.to_fs(:long), {color: ::Invoika::Color.of("#145DA0FF")}
+          %td= quote_due_date_badge(quote)
+          %td
+            - currency = Money::Currency.new("INR")
+            = number_to_currency(0.00, unit: currency.symbol)
+          %td= quote_status_badge(quote)
           %td.actions
             = link_to external_svg_tag("svgs/pencil.svg"), edit_quote_path(quote), class: "btn btn-sm btn-secondary"
             = link_to external_svg_tag("svgs/trash.svg"), quote_path(quote), class: "btn btn-sm btn-danger",
               data: {turbo_confirm: t(".delete_quote_confirmation_text"), turbo_method: :delete}
       - end.empty?
         %tr
-          %td.fw-bold{colspan: ::Quote.columns.count}
+          %td.fw-bold.text-center{colspan: ::Quote.columns.count}
             - if current_action?("converted")
               = t(".no_converted_quotes_display")
             - elsif current_action?("draft")
