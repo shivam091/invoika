@@ -1,0 +1,31 @@
+.card .card-body {
+  border-radius: 0.25rem;
+}
+.card .card-header ~ .card-body {
+  border-radius: 0;
+}
+.card-header, .card-body, .card-footer {
+  padding: .5rem .5rem;
+}
+.card-primary {
+  border-bottom-width: 4px !important;
+}
+.card-title {
+  margin-bottom: 0rem;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.card-header {
+  font-weight: 700;
+}
+.card-body {
+  background-color: var(--color-canvas-default);
+  color: var(--color-fg-default);
+}
+.card-header, .card-footer {
+  background-color: var(--color-canvas-subtle);
+  border-top: 1px solid var(--color-border-default) !important;
+}
+.card-title {
+  font-size: 1rem;
+}

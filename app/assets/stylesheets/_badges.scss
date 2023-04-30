@@ -1,0 +1,20 @@
+[data-bs-theme="dark"] {
+  .badge {
+    --perceived-lightness: calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255);
+    --lightness-switch: max(0, min(calc((var(--perceived-lightness) - var(--badge-lightness-threshold)) * -1000), 1));
+    --lighten-by: calc(((var(--badge-lightness-threshold) - var(--perceived-lightness)) * 100) * var(--lightness-switch));
+    background: rgba(var(--label-r), var(--label-g), var(--label-b), var(--badge-background-alpha));
+    color: hsl(var(--label-h), calc(var(--label-s) * 1%), calc((var(--label-l) + var(--lighten-by)) * 1%));
+    border: 1px solid hsla(var(--label-h), calc(var(--label-s) * 1%), calc((var(--label-l) + var(--lighten-by)) * 1%), var(--badge-border-alpha));
+  }
+}
+[data-bs-theme="light"] {
+  .badge {
+    --perceived-lightness: calc(((var(--label-r) * 0.2126) + (var(--label-g) * 0.7152) + (var(--label-b) * 0.0722)) / 255);
+    --lightness-switch: max(0, min(calc((var(--perceived-lightness) - var(--badge-lightness-threshold)) * -1000), 1));
+    --badge-border-alpha: max(0, min(calc((var(--perceived-lightness) - var(--border-threshold)) * 100), 1));
+    background: rgb(var(--label-r), var(--label-g), var(--label-b));
+    color: hsl(0, 0%, calc(var(--lightness-switch) * 100%));
+    border: 1px solid hsla(var(--label-h), calc(var(--label-s) * 1%), calc((var(--label-l) - 25) * 1%), var(--badge-border-alpha));
+  }
+}

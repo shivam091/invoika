@@ -11,7 +11,7 @@ ruby "3.2.2"
 gem "rails", "7.0.4.3"
 
 # Add bootstrap support
-gem "bootstrap", "~> 5.2.3"
+gem "bootstrap", "~> 5.3.0.alpha3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
