@@ -65,4 +65,25 @@ module InvoicesHelper
     when current_user.client? then [:client, invoice]
     end
   end
+
+  def invoice_due_date_badge(invoice)
+    color = case
+            when invoice.due_date.past? then "#31080eff"
+            when invoice.due_date.future? then "#43FF2CFF"
+            else "#FF8300FF"
+            end
+    due_date = invoice.due_date.to_fs(:long)
+    badge_tag due_date, {color: ::Invoika::Color.of(color)}
+  end
+
+  def invoice_status_badge(invoice)
+    color = case
+            when invoice.overdue? then "#31080eff"
+            when invoice.paid? then "#43FF2CFF"
+            when invoice.partially_paid? then "#FF8300FF"
+            else "#FFFFFFFF"
+            end
+    status = enum_i18n(::Invoice, :statuses, invoice.status)
+    badge_tag status, {color: ::Invoika::Color.of(color)}
+  end
 end

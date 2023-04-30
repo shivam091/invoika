@@ -59,7 +59,7 @@ class Quote < ApplicationRecord
   after_initialize :set_code, if: :new_record?
   before_validation :remove_discount, unless: :discount_required?
 
-  delegate :full_name, to: :client, prefix: true
+  delegate :full_name, :email, to: :client, prefix: true
   delegate :name, to: :company, prefix: true
 
   default_scope -> { order_created_desc }

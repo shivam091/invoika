@@ -14,6 +14,9 @@
   -ms-touch-action: manipulation;
   touch-action: manipulation;
   padding: 0.5rem 0.5rem;
+  appearance: button;
+  -webkit-appearance: button;
+  -moz-appearance: button;
 }
 .btn, .btn:hover, .btn:focus {
   color: var(--btn-fg-color) !important;

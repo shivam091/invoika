@@ -64,8 +64,11 @@ body {
 }
 a {
   color: var(--color-accent-fg);
-  -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  text-decoration: none;
+  filter: brightness(100%);
+}
+a:link {
+  transition: none;
 }
 .middle-dot-divider {
   @include middle-dot-divider;
@@ -159,4 +162,8 @@ fieldset {
 }
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   color: var(--color-fg-default);
+}
+.recurring-cycle-icon {
+  margin-left: 0.25rem;
+  font-size: 15px;
 }

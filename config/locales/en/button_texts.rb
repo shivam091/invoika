@@ -13,6 +13,7 @@
       create: "Create",
       edit: "Edit",
       update: "Update",
+      delete: "Delete",
       cancel: "Cancel",
       go_back: "Go back",
       go_to_home: "Go to home",

@@ -10,7 +10,6 @@
   color: var(--color-fg-default);
   white-space: nowrap;
   padding: .75rem .75rem;
-  text-align: center !important;
   vertical-align: middle !important;
 }
 .table td {
@@ -33,15 +32,15 @@
 thead input[type="checkbox"], tbody input[type="checkbox"] {
   margin-top: -2px;
 }
-thead, tbody, tfoot, tr, td, th {
-  border-width: 1px;
-}
 .table-responsive {
   overflow-y: hidden;
 }
 td input, td textarea, td select {
   width: 100px;
 }
-.table-borderless tr, .table-borderless td, .table-borderless th, .table-borderless tbody, .table-borderless thead {
+.table-borderless thead, .table-borderless tbody, .table-borderless tfoot, .table-borderless tr, .table-borderless td, .table-borderless th {
   border-width: 0;
+}
+.table-bordered thead, .table-bordered tbody, .table-bordered tfoot, .table-bordered tr, .table-bordered td, .table-bordered th {
+  border-width: 1px;
 }

@@ -58,4 +58,25 @@ module QuotesHelper
     when current_user.client? then [:client, quote]
     end
   end
+
+  def quote_due_date_badge(quote)
+    color = case
+            when quote.due_date.past? then "#31080eff"
+            when quote.due_date.future? then "#43FF2CFF"
+            else "#FF8300FF"
+            end
+    due_date = quote.due_date.to_fs(:long)
+    badge_tag due_date, {color: ::Invoika::Color.of(color)}
+  end
+
+  def quote_status_badge(quote)
+    color = case
+            when quote.rejected? then "#31080eff"
+            when quote.converted? then "#43FF2CFF"
+            when quote.draft? then "#145DA0FF"
+            else "#FFFFFFFF"
+            end
+    status = enum_i18n(::Quote, :statuses, quote.status)
+    badge_tag status, {color: ::Invoika::Color.of(color)}
+  end
 end

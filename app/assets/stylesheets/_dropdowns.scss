@@ -6,6 +6,10 @@
   -webkit-box-shadow: 0 .25rem .5rem var(--color-dropdown-shadow);
   font-size: 0.875rem;
 }
+.dropdown-menu.show {
+  max-height: 30rem;
+  overflow: visible;
+}
 .dropdown-toggle::after {
   color: currentColor;
   transform: rotate(0deg);
@@ -25,14 +29,137 @@
   color: var(--color-dropdown-hover-text);
   background-color: var(--color-dropdown-hover-bg);
 }
+.dropdown-item {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+}
 .dropdown-menu::before, .dropdown-menu::after {
   position: absolute;
   display: inline-block;
   content: "";
 }
-.dropdown-menu.show {
-  max-height: 30rem;
-  overflow-y: overlay;
+.dropdown-menu[data-popper-placement="left-start"]::before {
+  top: 8px;
+  right: -17px;
+  border: 8px solid transparent;
+  border-left-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="left-start"]::after {
+  top: 9px;
+  right: -14px;
+  border: 7px solid transparent;
+  border-left-color: var(--color-canvas-overlay);
+}
+.dropdown-menu[data-popper-placement="left-end"]::before {
+  bottom: 8px;
+  right: -17px;
+  border: 8px solid transparent;
+  border-left-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="left-end"]::after {
+  bottom: 9px;
+  right: -14px;
+  border: 7px solid transparent;
+  border-left-color: var(--color-canvas-overlay);
+}
+.dropdown-menu[data-popper-placement="right-end"]::before {
+  bottom: 8px;
+  left: -17px;
+  border: 8px solid transparent;
+  border-right-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="right-end"]::after {
+  bottom: 9px;
+  left: -14px;
+  border: 7px solid transparent;
+  border-right-color: var(--color-canvas-overlay);
+}
+.dropdown-menu[data-popper-placement="right-start"]::before {
+  top: 8px;
+  left: -17px;
+  border: 8px solid transparent;
+  border-right-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="right-start"]::after {
+  top: 9px;
+  left: -14px;
+  border: 7px solid transparent;
+  border-right-color: var(--color-canvas-overlay);
+}
+.dropdown-menu[data-popper-placement="bottom"]::before, .dropdown-menu[data-bs-popper="static"]::before {
+  top: -17px;
+  left: 49.5%;
+  border: 8px solid transparent;
+  border-bottom-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="bottom"]::after, .dropdown-menu[data-bs-popper="static"]::after {
+  top: -14px;
+  left: 50%;
+  border: 7px solid transparent;
+  border-bottom-color: var(--color-canvas-overlay);
+}
+.dropdown-menu[data-popper-placement="top"]::before {
+  bottom: -17px;
+  left: 49.5%;
+  border: 8px solid transparent;
+  border-top-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="top"]::after {
+  bottom: -14px;
+  left: 50%;
+  border: 7px solid transparent;
+  border-top-color: var(--color-canvas-overlay);
+}
+.dropdown-menu[data-popper-placement="top-start"]::before {
+  bottom: -17px;
+  left: 9px;
+  border: 8px solid transparent;
+  border-top-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="top-start"]::after {
+  bottom: -14px;
+  left: 10px;
+  border: 7px solid transparent;
+  border-top-color: var(--color-canvas-overlay);
+}
+.dropdown-menu[data-popper-placement="bottom-start"]::before {
+  top: -17px;
+  left: 9px;
+  border: 8px solid transparent;
+  border-bottom-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="bottom-start"]::after {
+  top: -14px;
+  left: 10px;
+  border: 7px solid transparent;
+  border-bottom-color: var(--color-canvas-overlay);
+}
+.dropdown-menu[data-popper-placement="bottom-end"]::before {
+  top: -17px;
+  right: 9px;
+  border: 8px solid transparent;
+  border-bottom-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="bottom-end"]::after {
+  top: -14px;
+  right: 10px;
+  border: 7px solid transparent;
+  border-bottom-color: var(--color-canvas-overlay);
+}
+.dropdown-menu[data-popper-placement="top-end"]::before {
+  bottom: -17px;
+  right: 9px;
+  border: 8px solid transparent;
+  border-top-color: var(--color-border-default);
+}
+.dropdown-menu[data-popper-placement="top-end"]::after {
+  bottom: -14px;
+  right: 10px;
+  border: 7px solid transparent;
+  border-top-color: var(--color-canvas-overlay);
+}
+header .dropdown-menu.show {
   animation-duration: 0.3s;
   -webkit-animation-duration: 0.3s;
   animation-fill-mode: both;
@@ -45,4 +172,8 @@
   padding: 0rem 1rem 0.5rem 1rem;
   color: var(--color-fg-muted);
   font-weight: 400;
+}
+.dropdown-item-danger:hover, .dropdown-item-danger:focus {
+  color: var(--color-fg-on-emphasis) !important;
+  background: var(--color-danger-emphasis) !important;
 }
