@@ -1,0 +1,17 @@
+.alert {
+  margin-bottom: 0.5rem;
+}
+.alert-success {
+  border: 1px solid var(--color-success-muted);
+  border-right: .25rem solid var(--color-success-muted);
+  border-left: .25rem solid var(--color-success-muted);
+  color: var(--color-success-fg);
+  background-image: linear-gradient(var(--color-success-subtle), var(--color-success-subtle));
+}
+.alert-danger {
+  border: 1px solid var(--color-danger-muted);
+  border-right: .25rem solid var(--color-danger-muted);
+  border-left: .25rem solid var(--color-danger-muted);
+  color: var(--color-danger-fg);
+  background-image: linear-gradient(var(--color-danger-subtle), var(--color-danger-subtle));
+}
