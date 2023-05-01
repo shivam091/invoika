@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_01_051146) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -140,7 +140,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_051146) do
     t.date "invoice_date"
     t.date "due_date"
     t.enum "status", default: "draft", enum_type: "invoice_statuses"
-    t.string "currency"
+    t.string "currency", default: "INR"
     t.float "discount"
     t.enum "discount_type", default: "flat", enum_type: "discount_types"
     t.text "terms"
