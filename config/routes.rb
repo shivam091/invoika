@@ -102,5 +102,5 @@ Rails.application.routes.draw do
   resources :states, only: :index
   resources :cities, only: :index
 
-  get "*unmatched_route", to: "application#not_found", format: false
+  match "*unmatched_route", to: "application#not_found", via: :all, constraints: ::UnmatchedRouteConstraint.new
 end
