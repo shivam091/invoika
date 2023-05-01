@@ -21,7 +21,7 @@ module Invoika
         def add_not_empty_constraint(table, column_name, options = {})
           add_check_constraint(
             table,
-            not_empty_constraint_definitions(column_name),
+            not_empty_constraint_definitions(column_name, options),
             name: not_empty_constraint_name(table, column_name, name: options.delete(:name))
           )
         end

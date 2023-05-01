@@ -14,6 +14,8 @@
       = form.text_field :registrant_name
     .col-sm-12.col-md-6.col-lg-4
       = form.date_field :established_on
+    .col-sm-12.col-md-6.col-lg-4
+      = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
   .subheader
     = t(".address")
   = form.fields_for :address, include_id: false do |address_form_fields|

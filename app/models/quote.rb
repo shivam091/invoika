@@ -4,7 +4,7 @@
 
 class Quote < ApplicationRecord
 
-  include Sortable, NullifyIfBlank
+  include Sortable, NullifyIfBlank, ActsAsMoney
 
   nullify_if_blank :discount_type
 

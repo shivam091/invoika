@@ -42,6 +42,7 @@ class Admin::CompaniesController < Admin::BaseController
       :fax_number,
       :registrant_name,
       :established_on,
+      :currency,
       address_attributes: [
         :address1,
         :address2,

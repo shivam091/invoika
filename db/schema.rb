@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -111,6 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.date "established_on"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
+    t.string "currency", default: "INR"
     t.index ["email"], name: "index_companies_on_email", unique: true
     t.index ["fax_number"], name: "index_companies_on_fax_number", unique: true
     t.index ["phone_number"], name: "index_companies_on_phone_number", unique: true
@@ -119,6 +120,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.check_constraint "char_length(name::text) <= 155", name: "chk_666adc8aa3"
     t.check_constraint "char_length(phone_number::text) <= 32", name: "chk_4ced3f2015"
     t.check_constraint "char_length(registrant_name::text) <= 155", name: "chk_177b2625c0"
+    t.check_constraint "currency IS NOT NULL AND currency::text <> ''::text", name: "chk_afdbc7beef"
     t.check_constraint "email IS NOT NULL AND email::text <> ''::text", name: "chk_a69e9e4aa1"
     t.check_constraint "established_on <= CURRENT_DATE", name: "chk_established_on_lteq_today"
     t.check_constraint "established_on IS NOT NULL", name: "chk_d67d8e256d"
@@ -166,7 +168,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.date "invoice_date"
     t.date "due_date"
     t.enum "status", default: "draft", enum_type: "invoice_statuses"
-    t.string "currency"
+    t.string "currency", default: "INR"
     t.float "discount"
     t.enum "discount_type", default: "flat", enum_type: "discount_types"
     t.text "terms"
@@ -209,6 +211,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.boolean "is_active", default: false
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
+    t.string "currency", default: "INR"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["code", "company_id"], name: "index_products_on_code_and_company_id", unique: true
     t.index ["company_id"], name: "index_products_on_company_id"
@@ -217,6 +220,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.check_constraint "char_length(description) <= 1000", name: "chk_a25291fb10"
     t.check_constraint "char_length(name::text) <= 55", name: "chk_f40320f388"
     t.check_constraint "company_id IS NOT NULL", name: "chk_31398a365b"
+    t.check_constraint "currency IS NOT NULL AND currency::text <> ''::text", name: "chk_1e9c039c7f"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_0a202cf2e7"
     t.check_constraint "sell_price <= unit_price", name: "sell_price_lteq_unit_price"
     t.check_constraint "sell_price IS NOT NULL", name: "chk_173f7aabf6"
@@ -252,6 +256,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.text "notes"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
+    t.string "currency", default: "INR"
     t.index ["client_id"], name: "index_quotes_on_client_id"
     t.index ["code", "company_id"], name: "index_quotes_on_code_and_company_id", unique: true
     t.index ["company_id"], name: "index_quotes_on_company_id"
@@ -262,6 +267,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.check_constraint "char_length(terms) <= 1000", name: "chk_643f9aa96a"
     t.check_constraint "code IS NOT NULL AND code::text <> ''::text", name: "chk_10664e013c"
     t.check_constraint "company_id IS NOT NULL", name: "chk_22d8e514ce"
+    t.check_constraint "currency IS NOT NULL AND currency::text <> ''::text", name: "chk_56c2f45421"
     t.check_constraint "discount_type = ANY (ARRAY['flat'::discount_types, 'percentage'::discount_types])", name: "chk_6b2988274f"
     t.check_constraint "due_date >= quote_date", name: "chk_due_date_gteq_quote_date"
     t.check_constraint "due_date IS NOT NULL", name: "chk_b0d4171069"
