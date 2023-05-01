@@ -11,6 +11,8 @@
       .col-sm-12.col-md-6.col-lg-4
         = form.date_field :due_date
       .col-sm-12.col-md-6.col-lg-4
+        = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
+      .col-sm-12.col-md-6.col-lg-4
         = form.select :status, enum_options_for_select(::Quote, :statuses), {include_blank: t(".select_status")}
     %hr
     %div{data: {controller: "nested-forms", nested_forms_wrapper_selector_value: ".quote-item-form-wrapper"}}

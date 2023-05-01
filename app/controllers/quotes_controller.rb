@@ -112,6 +112,7 @@ class QuotesController < ApplicationController
       :discount_type,
       :notes,
       :terms,
+      :currency,
       quote_items_attributes: [
         :id,
         :_destroy,
