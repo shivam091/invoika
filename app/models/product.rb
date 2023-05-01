@@ -3,7 +3,7 @@
 # -*- warn_indent: true -*-
 
 class Product < ApplicationRecord
-  include Sortable, Filterable, Toggleable, UpcaseAttribute
+  include Sortable, Filterable, Toggleable, UpcaseAttribute, ActsAsMoney
 
   attribute :unit_price, default: 0.0
   attribute :sell_price, default: 0.0
@@ -42,7 +42,7 @@ class Product < ApplicationRecord
   belongs_to :company, inverse_of: :products
   belongs_to :category, inverse_of: :products, counter_cache: :products_count
 
-  after_initialize :set_code, if: :new_record?
+  after_initialize :set_code, :set_currency, if: :new_record?
 
   delegate :name, to: :category, prefix: true
   delegate :name, to: :company, prefix: true
@@ -60,6 +60,10 @@ class Product < ApplicationRecord
   end
 
   private
+
+  def set_currency
+    self.currency = self.company.currency
+  end
 
   def set_code
     self.code = SecureRandom.alphanumeric(8).upcase

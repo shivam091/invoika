@@ -23,8 +23,8 @@
           %td.fw-bold= product.name
           %td= product.code
           %td= product.category_name
-          %td= product.unit_price
-          %td= product.sell_price
+          %td= number_to_currency(product.unit_price, unit: product.currency.symbol)
+          %td= number_to_currency(product.sell_price, unit: product.currency.symbol)
           %td.actions
             = link_to external_svg_tag("svgs/pencil.svg"), edit_admin_product_path(product), class: "btn btn-sm btn-secondary"
             - if product.is_active?
