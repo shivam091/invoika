@@ -16,6 +16,7 @@
           fax_number: "Fax number",
           registrant_name: "Registrant name",
           established_on: "Established on",
+          default_currency: "Default currency",
           address: "Address",
         },
         edit: {
@@ -24,6 +25,7 @@
         form: {
           company_details: "Company details",
           address: "Address",
+          select_currency: "Select currency",
         },
       }
     }

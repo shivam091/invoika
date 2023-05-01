@@ -81,6 +81,7 @@
           discount_type: "Discount type",
           terms: "Terms",
           notes: "Notes",
+          currency: "Currency",
         },
         quote_item: {
           quote_id: "Quote",
@@ -117,6 +118,7 @@
           fax_number: "Fax number",
           registrant_name: "Registrant name",
           established_on: "Established on",
+          currency: "Default currency",
         },
       },
       help_texts: {
