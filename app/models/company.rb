@@ -4,6 +4,8 @@
 
 class Company < ApplicationRecord
 
+  include ActsAsMoney
+
   validates :name,
             presence: true,
             length: {maximum: 155},

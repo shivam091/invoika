@@ -20,6 +20,10 @@
           .widget-row-body= @company.email
       .widget-row.d-flex
         .flex-auto
+          .widget-row-title= t(".default_currency")
+          .widget-row-body= "#{@company.currency.name} (#{@company.currency.symbol})"
+      .widget-row.d-flex
+        .flex-auto
           .widget-row-title= t(".phone_number")
           .widget-row-body= @company.phone_number
       .widget-row.d-flex
