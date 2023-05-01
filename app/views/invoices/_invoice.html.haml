@@ -37,8 +37,7 @@
           %td= badge_tag invoice.invoice_date.to_fs(:long), {color: ::Invoika::Color.of("#145DA0FF")}
           %td= invoice_due_date_badge(invoice)
           %td
-            - currency = Money::Currency.new(invoice.currency)
-            = number_to_currency(0.00, unit: currency.symbol)
+            = number_to_currency(0.00, unit: invoice.currency.symbol)
           %td
           %td= invoice_status_badge(invoice)
           %td.actions
