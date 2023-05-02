@@ -23,7 +23,8 @@
             = check_box_tag "invoice_ids[]", invoice.id, false, class: "form-check-input", data: {select_all_checkbox_target: "checkbox"}
           %td
             .d-flex.align-items-center.justify-content-start
-              = external_svg_tag("svgs/missing_user_avatar.svg", height: 64, width: 64, class: "me-2")
+              .image.image-circle.image-mini.border.me-2
+                = image_tag invoice.client.avatar_url, class: "img-fluid"
               .d-flex.flex-column
                 .row
                   .col-lg-12

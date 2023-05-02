@@ -93,7 +93,7 @@ class QuotesController < ApplicationController
   private
 
   def quotes
-    ::Quote.accessible(current_user)
+    ::Quote.accessible(current_user).includes(:client)
   end
 
   def find_quote
