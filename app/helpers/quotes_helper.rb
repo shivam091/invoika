@@ -61,8 +61,8 @@ module QuotesHelper
 
   def quote_due_date_badge(quote)
     color = case
-            when quote.due_date.past? then "#31080eff"
-            when quote.due_date.future? then "#43FF2CFF"
+            when quote.due_date.past? then "#B60205FF"
+            when quote.due_date.future? then "#0E8A16FF"
             else "#FF8300FF"
             end
     due_date = quote.due_date.to_fs(:long)
@@ -71,8 +71,8 @@ module QuotesHelper
 
   def quote_status_badge(quote)
     color = case
-            when quote.rejected? then "#31080eff"
-            when quote.converted? then "#43FF2CFF"
+            when quote.rejected? then "#B60205FF"
+            when quote.converted? then "#0E8A16FF"
             when quote.draft? then "#145DA0FF"
             else "#FFFFFFFF"
             end
