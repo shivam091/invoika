@@ -3,7 +3,7 @@
 # -*- warn_indent: true -*-
 
 class User < ApplicationRecord
-  include CaseSensitivity, StripAttribute, DowncaseAttribute
+  include CaseSensitivity, StripAttribute, DowncaseAttribute, Validatable
 
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :validatable, :timeoutable, :trackable
@@ -15,6 +15,11 @@ class User < ApplicationRecord
 
   THROTTLE_RESET_PERIOD = 2
   DEFAULT_PASSWORD_EXPIRY_PERIOD = 1.months.from_now
+  IMAGE_MIN_SIZE = 10.kilobytes.freeze
+  IMAGE_MAX_SIZE = 500.kilobytes.freeze
+  IMAGE_CONTENT_TYPES = ["png", "jpeg", "jpg"].freeze
+  IMAGE_MIN_WIDTH, IMAGE_MIN_HEIGHT = 32.freeze, 32.freeze
+  IMAGE_MAX_WIDTH, IMAGE_MAX_HEIGHT = 1280.freeze, 1280.freeze
 
   attribute :is_active, default: false
   attribute :is_banned, default: false
@@ -37,9 +42,19 @@ class User < ApplicationRecord
             reduce: true,
             if: :password_required?
   validates :company_id, presence: true, reduce: true
+  validates :avatar,
+            content_type: IMAGE_CONTENT_TYPES,
+            size: {between: IMAGE_MIN_SIZE..IMAGE_MAX_SIZE},
+            dimension: {
+              width: {in: IMAGE_MIN_WIDTH..IMAGE_MAX_WIDTH},
+              height: {in: IMAGE_MIN_HEIGHT..IMAGE_MAX_HEIGHT}
+            },
+            reduce: true
 
   has_one :address, as: :addressable, dependent: :destroy
   has_one :user_preference, dependent: :destroy, autosave: true
+
+  has_one_attached :avatar, dependent: :purge_later
 
   has_many :request_logs, dependent: :nullify
   has_many :invoices, dependent: :nullify
@@ -165,6 +180,14 @@ class User < ApplicationRecord
       self.preferred_color_scheme = ::UserPreference.color_schemes[:dark]
     end
     self.save
+  end
+
+  def avatar_url
+    if self.avatar.attached?
+      self.avatar.blob.url
+    else
+      "svgs/missing_user_avatar.svg"
+    end
   end
 
   private

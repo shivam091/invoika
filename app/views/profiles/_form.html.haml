@@ -1,4 +1,4 @@
-= bootstrap_form_for current_user, url: profile_path, html: {enctype: "multipart/form-data"} do |form|
+= bootstrap_form_for current_user, url: profile_path, html: {enctype: "multipart/form-data"}, data: {controller: "image-preview"} do |form|
   .subheader
     = t(".profile_details")
   .row
@@ -6,6 +6,23 @@
       = form.text_field :first_name, data: {controller: "autofocus"}
     .col-sm-12.col-md-6.col-lg-4
       = form.text_field :last_name
+  .row
+    .col-sm-12.col-md-6.col-lg-4
+      = form.label :avatar, t(".guidelines_for_avatar"), class: "form-label"
+      = render_if_exists("shared/image_upload_file_guidelines", locals: {object: ::User})
+      - if form.object.avatar.attached? && form.object.persisted?
+        = form.hidden_field :avatar, value: form.object.avatar.signed_id
+      = form.file_field :avatar, accept: "image/jpeg,image/png", data: {action: "change->image-preview#readURL"}
+    .col-sm-12.col-md-6.col-lg-4
+      = form.label :preview, t(".preview"), class: "form-label"
+      = image_tag form.object.avatar_url, class: "image-preview", data: {image_preview_target: "output"}
+      - if form.object.avatar.attached? && form.object.valid_attribute?(:avatar)
+        %ul.list-unstyled.d-flex.align-items-center
+          %li.d-inline-block.middle-dot-divider
+            = form.object.avatar.blob.filename
+          %li.d-inline-block.middle-dot-divider
+            = link_to t(".remove_avatar"), remove_avatar_profile_path,
+              data: {turbo_method: :delete, turbo_confirm: t(".remove_avatar_confirmation_text")}
   .subheader
     = t(".address")
   = form.fields_for :address, form.object.address, include_id: false do |address_form_fields|

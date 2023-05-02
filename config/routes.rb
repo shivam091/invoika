@@ -43,7 +43,9 @@ Rails.application.routes.draw do
 
   concern :shareable do
     resource :dashboard, only: :show
-    resource :profile, only: [:show, :edit, :update]
+    resource :profile, only: [:show, :edit, :update] do
+      delete :remove_avatar, path: "remove-avatar", on: :member
+    end
     resource :user_preference, path: "preference", only: [:show, :edit, :update] do
       collection do
         get :change_locale, path: "change-locale"
