@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_user!
   before_action :set_company, if: :user_signed_in?
+  before_action :set_active_storage_current_host
 
   around_action :set_locale, :set_time_zone
 
@@ -72,5 +73,9 @@ class ApplicationController < ActionController::Base
 
   def internal_server_error
     render "errors/internal_server_error", status: :internal_server_error, layout: "error"
+  end
+
+  def set_active_storage_current_host
+    ActiveStorage::Current.url_options = {protocol: request.protocol, host: request.host, port: request.port}
   end
 end

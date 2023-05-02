@@ -111,7 +111,7 @@ class Admin::ProductsController < Admin::BaseController
   private
 
   def products
-    @company.products
+    @company.products.with_attached_image
   end
 
   def find_product
@@ -127,7 +127,8 @@ class Admin::ProductsController < Admin::BaseController
       :unit_price,
       :sell_price,
       :category_id,
-      :is_active
+      :is_active,
+      :image
     )
   end
 end

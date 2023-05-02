@@ -8,7 +8,6 @@
           %th{width: "25px", scope: "col"}
             = check_box_tag "checkbox", nil, false, class: "form-check-input", data: {select_all_checkbox_target: "selectAllCheckbox"}
         %th{scope: "col"}= t(".name")
-        %th{scope: "col"}= t(".code")
         %th{scope: "col"}= t(".category")
         %th{scope: "col"}= t(".unit_price")
         %th{scope: "col"}= t(".sell_price")
@@ -20,8 +19,13 @@
             = (@pagy.offset + index)
           %td
             = check_box_tag "product_ids[]", product.id, false, class: "form-check-input", data: {select_all_checkbox_target: "checkbox"}
-          %td.fw-bold= product.name
-          %td= product.code
+          %td
+            .d-flex.align-items-center
+              .image.image-circle.image-mini.border.me-2
+                = image_tag product.image_url, class: "img-fluid"
+              .d-flex.flex-column
+                = link_to product.name, "javascript:void(0)", class: "fw-bold"
+                = product.code
           %td= product.category_name
           %td= number_to_currency(product.unit_price, unit: product.currency.symbol)
           %td= number_to_currency(product.sell_price, unit: product.currency.symbol)

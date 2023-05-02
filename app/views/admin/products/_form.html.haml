@@ -1,7 +1,7 @@
 = turbo_frame_tag :product_form do
-  = bootstrap_form_with model: [:admin, @product] do |form|
+  = bootstrap_form_with model: [:admin, @product], data: {controller: "image-preview"} do |form|
     .row
-      .col-sm-12.col-md-6.col-lg-4
+      .col-sm-12.col-md-12.col-lg-4
         = form.text_field :name, data: {controller: "autofocus"}
       .col-sm-12.col-md-6.col-lg-4
         = form.select :category_id, options_for_select(::Category.select_options, form.object.category_id),
@@ -11,12 +11,22 @@
       .col-12
         = form.text_area :description
       .col-sm-12.col-md-6.col-lg-4
-        = form.number_field :unit_price
+        = form.number_field :unit_price, append: @product.currency.symbol
       .col-sm-12.col-md-6.col-lg-4
-        = form.number_field :sell_price
-    .row
+        = form.number_field :sell_price, append: @product.currency.symbol
+      .col-sm-12.col-md-12.col-lg-4
+        = form.form_group :is_active, label: {text: "&nbsp;".html_safe} do
+          .mt-2
+            = form.check_box :is_active, switch: true
       .col-sm-12.col-md-6.col-lg-4
-        = form.check_box :is_active, switch: true
+        = form.label :image, t(".guidelines_for_image"), class: "form-label"
+        = render_if_exists("shared/image_upload_file_guidelines", locals: {object: ::Product})
+        - if form.object.image.attached? && form.object.persisted?
+          = form.hidden_field :image, value: form.object.image.signed_id
+        = form.file_field :image, accept: "image/jpeg,image/png", data: {action: "change->image-preview#readURL"}
+      .col-sm-12.col-md-6.col-lg-4
+        = form.label :preview, t(".preview"), class: "form-label"
+        = image_tag @product.image_url, class: "image-preview", data: {image_preview_target: "output"}
     .actions
       - if form.object.new_record?
         = button_tag type: :submit, class: "btn btn-primary" do
