@@ -27,6 +27,11 @@
       .col-sm-12.col-md-6.col-lg-4
         = form.label :preview, t(".preview"), class: "form-label"
         = image_tag @product.image_url, class: "image-preview", data: {image_preview_target: "output"}
+        %ul.list-unstyled.d-flex.align-items-center
+          %li.d-inline-block.middle-dot-divider
+            = @product.image.blob.filename
+          %li.d-inline-block.middle-dot-divider
+            = link_to t(".remove_image"), remove_image_admin_product_path(@product.image.signed_id), data: {turbo_method: :delete, turbo_confirm: t(".remove_image_confirmation_text")}
     .actions
       - if form.object.new_record?
         = button_tag type: :submit, class: "btn btn-primary" do

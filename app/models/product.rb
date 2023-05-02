@@ -71,10 +71,6 @@ class Product < ApplicationRecord
     end
   end
 
-  def to_param
-    self.code
-  end
-
   def image_url
     if self.image.attached?
       self.image.blob.url
