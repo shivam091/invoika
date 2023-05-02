@@ -108,6 +108,18 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to admin_products_path
   end
 
+  # DELETE /admin/products/:uuid/remove-image
+  def remove_image
+    response = ::Products::RemoveImageService.(@product)
+    @product = response.payload[:product]
+    if response.success?
+      flash[:notice] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_products_path
+  end
+
   private
 
   def products

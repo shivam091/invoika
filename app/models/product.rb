@@ -3,7 +3,8 @@
 # -*- warn_indent: true -*-
 
 class Product < ApplicationRecord
-  include Sortable, Filterable, Toggleable, UpcaseAttribute, ActsAsMoney, ActiveStorageValidations
+  include Sortable, Filterable, Toggleable, UpcaseAttribute, ActsAsMoney,
+          ActiveStorageValidations, Validatable
 
   IMAGE_MIN_SIZE = 10.kilobytes.freeze
   IMAGE_MAX_SIZE = 500.kilobytes.freeze
