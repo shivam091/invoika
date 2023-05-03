@@ -1,4 +1,5 @@
 = title(t(".title"))
 .card.card-primary.border.border-primary
   .card-body
-    = render_if_exists("invoices/form")
+    = turbo_frame_tag :invoice_form do
+      = render_if_exists("invoices/form")
