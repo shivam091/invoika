@@ -61,9 +61,11 @@ module QuotesHelper
 
   def quote_due_date_badge(quote)
     color = case
+            when quote.due_date.today? then "#FBDF07FF"
+            when quote.due_date.in?((Date.current + 1.day)..3.days.from_now) then "#FF8300FF"
             when quote.due_date.past? then "#B60205FF"
             when quote.due_date.future? then "#0E8A16FF"
-            else "#FF8300FF"
+            else "#FFFFFFFF"
             end
     due_date = quote.due_date.to_fs(:long)
     badge_tag due_date, {color: ::Invoika::Color.of(color)}
