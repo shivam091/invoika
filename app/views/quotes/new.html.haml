@@ -1,4 +1,5 @@
 = title(t(".title"))
 .card.card-primary.border.border-primary
   .card-body
-    = render_if_exists("quotes/form")
+    = turbo_frame_tag :quote_form do
+      = render_if_exists("quotes/form")

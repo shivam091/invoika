@@ -1,6 +1,6 @@
 .widget {
-  background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
-  border-color: var(--bs-border-color);
+  background-color: var(--color-canvas-default) !important;
+  border-color: var(--color-border-default);
   border-style: solid;
   border-width: 1px;
   border-radius: 6px;
@@ -12,10 +12,10 @@
   font-weight: 600;
   font-size: 1rem;
   word-break: break-word;
-  color: var(--bs-body-color);
+  color: var(--color-fg-default);
 }
 .widget-row-body {
-  color: var(--bs-gray);
+  color: var(--color-fg-muted);
   line-height: 1.5;
   font-size: 0.875rem;
   word-break: break-word;
@@ -23,8 +23,8 @@
 .widget-header {
   padding: 12px;
   margin: -1px -1px 0;
-  background-color: var(--bs-gray-100);
-  border-color: var(--bs-border-color);
+  background-color: var(--color-canvas-subtle);
+  border-color: var(--color-border-default);
   border-style: solid;
   border-width: 1px;
   border-top-left-radius: 6px;
@@ -40,11 +40,11 @@
   font-weight: 700;
 }
 .widget-help {
-  color: var(--bs-gray);
+  color: var(--color-fg-muted);
 }
 .widget-body {
   padding: 12px;
-  border-bottom: 1px solid var(--bs-border-color);
+  border-bottom: 1px solid var(--color-border-default);
   &:last-of-type {
     margin-bottom: -1px;
     border-bottom-right-radius: 6px;
@@ -53,7 +53,7 @@
   .help {
     padding-top: 8px;
     margin: 0;
-    color: var(--bs-gray);
+    color: var(--color-fg-muted);
     text-align: center;
   }
 }
@@ -86,7 +86,7 @@
 .widget-footer {
   padding: 12px;
   margin-top: -1px;
-  border-top-color: var(--bs-border-color);
+  border-top-color: var(--color-border-default);
   border-top-style: solid;
   border-top-width: 1px;
   border-radius: 0 0 6px 6px;

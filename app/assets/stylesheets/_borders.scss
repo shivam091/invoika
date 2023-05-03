@@ -1,0 +1,12 @@
+.border, .border-bottom, .border-top, .border-end, .border-start {
+  border-color: var(--color-border-default) !important;
+}
+.border-primary {
+  border-color: var(--color-accent-emphasis) !important;
+}
+.border-dotted {
+  border-style: dotted;
+}
+.border-dashed {
+  border-style: dashed;
+}

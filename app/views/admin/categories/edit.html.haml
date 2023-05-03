@@ -1,2 +1,3 @@
 = render_modal(title: t(".title")) do
-  = render_if_exists "admin/categories/form"
+  = turbo_frame_tag :category_form do
+    = render_if_exists("admin/categories/form")

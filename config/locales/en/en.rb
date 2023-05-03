@@ -28,5 +28,25 @@
       combo_nav_js: "Page %{page_input} of %{pages}",
       items_selector_js: "Show %{items_input} %{item_name} per page"
     },
+    support: {
+      array: {
+        last_word_connector: ", and ",
+        two_words_connector: " and ",
+        exclusive_last_word_connector: ", or ",
+        exclusive_two_words_connector: " or ",
+        words_connector: ", ",
+      }
+    },
+    file_size_units: [
+      "B",
+      "KB",
+      "MB",
+      "GB",
+      "TB",
+      "PB",
+      "EB",
+      "ZB",
+      "YB"
+    ],
   }
 }

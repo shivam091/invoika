@@ -1,0 +1,46 @@
+.table {
+  margin-bottom: 0rem;
+  border-color: var(--color-border-default) !important;
+  color: var(--color-fg-default) !important;
+}
+.table > :not(:last-child) > :last-child > * {
+  border-bottom-color: var(--color-border-default);
+}
+.table td, .table th {
+  color: var(--color-fg-default);
+  white-space: nowrap;
+  padding: .75rem .75rem;
+  vertical-align: middle !important;
+}
+.table td {
+  background-color: var(--color-canvas-default);
+}
+.table th {
+  background-color: var(--color-canvas-subtle);
+  font-weight: 600;
+  letter-spacing: 1px;
+  white-space: nowrap !important;
+  font-weight: bold !important;
+}
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+  background-color: var(--color-canvas-subtle);
+  color: var(--color-fg-default);
+}
+.table > :not(:first-child) {
+  border-top: 1px solid var(--color-border-default);
+}
+thead input[type="checkbox"], tbody input[type="checkbox"] {
+  margin-top: -2px;
+}
+.table-responsive {
+  overflow-y: hidden;
+}
+td input, td textarea, td select {
+  width: 100px;
+}
+.table-borderless thead, .table-borderless tbody, .table-borderless tfoot, .table-borderless tr, .table-borderless td, .table-borderless th {
+  border-width: 0;
+}
+.table-bordered thead, .table-bordered tbody, .table-bordered tfoot, .table-bordered tr, .table-bordered td, .table-bordered th {
+  border-width: 1px;
+}

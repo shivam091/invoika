@@ -4,7 +4,7 @@
 
 class Invoice < ApplicationRecord
 
-  include Sortable, NullifyIfBlank
+  include Sortable, NullifyIfBlank, ActsAsMoney
 
   nullify_if_blank :discount_type
 
@@ -71,7 +71,7 @@ class Invoice < ApplicationRecord
   before_validation :remove_recurring_cycle, unless: :is_recurred?
   before_validation :remove_discount, unless: :discount_required?
 
-  delegate :full_name, to: :client, prefix: true
+  delegate :full_name, :email, to: :client, prefix: true
   delegate :name, to: :company, prefix: true
 
   default_scope -> { order_created_desc }
@@ -85,10 +85,6 @@ class Invoice < ApplicationRecord
       return user.company.invoices.where(client_id: user.id) if user.client?
       user.company.invoices
     end
-  end
-
-  def to_param
-    self.code
   end
 
   private

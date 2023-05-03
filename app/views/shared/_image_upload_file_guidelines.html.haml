@@ -1,0 +1,15 @@
+- min_file_size = ::FilesHelper::PRETTIFY_FILESIZE.call(object::IMAGE_MIN_SIZE)
+- max_file_size = ::FilesHelper::PRETTIFY_FILESIZE.call(object::IMAGE_MAX_SIZE)
+%dl.list-unstyled
+  %dd
+    = external_svg_tag("svgs/check-mark.svg", height: "16px", width: "16px", class: "fill-green")
+    = t(".maximum_allowed_file_size") % {min_file_size: min_file_size, max_file_size: max_file_size}
+  %dd
+    = external_svg_tag("svgs/check-mark.svg", height: "16px", width: "16px", class: "fill-green")
+    = t(".allowed_image_types") % {allowed_image_types: object::IMAGE_CONTENT_TYPES.to_exclusive_sentence}
+  %dd
+    = external_svg_tag("svgs/check-mark.svg", height: "16px", width: "16px", class: "fill-green")
+    = t(".allowed_image_width") % {allowed_image_min_width: object::IMAGE_MIN_WIDTH, allowed_image_max_width: object::IMAGE_MAX_WIDTH}
+  %dd
+    = external_svg_tag("svgs/check-mark.svg", height: "16px", width: "16px", class: "fill-green")
+    = t(".allowed_image_height") % {allowed_image_min_height: object::IMAGE_MIN_HEIGHT, allowed_image_max_height: object::IMAGE_MAX_HEIGHT}

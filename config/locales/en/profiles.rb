@@ -24,6 +24,10 @@
       form: {
         profile_details: "Profile details",
         address: "Address",
+        remove_avatar: "Remove avatar",
+        remove_avatar_confirmation_text: "Are you sure to remove avatar from your profile?",
+        guidelines_for_avatar: "Guidelines for uploading avatar",
+        preview: "Preview",
       }
     }
   }

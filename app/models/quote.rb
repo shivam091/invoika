@@ -4,7 +4,7 @@
 
 class Quote < ApplicationRecord
 
-  include Sortable, NullifyIfBlank
+  include Sortable, NullifyIfBlank, ActsAsMoney
 
   nullify_if_blank :discount_type
 
@@ -59,7 +59,7 @@ class Quote < ApplicationRecord
   after_initialize :set_code, if: :new_record?
   before_validation :remove_discount, unless: :discount_required?
 
-  delegate :full_name, to: :client, prefix: true
+  delegate :full_name, :email, to: :client, prefix: true
   delegate :name, to: :company, prefix: true
 
   default_scope -> { order_created_desc }
@@ -73,10 +73,6 @@ class Quote < ApplicationRecord
       return user.company.quotes.where(client_id: user.id) if user.client?
       user.company.quotes
     end
-  end
-
-  def to_param
-    self.code
   end
 
   private

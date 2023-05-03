@@ -108,15 +108,26 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to admin_products_path
   end
 
+  # DELETE /admin/products/:uuid/remove-image
+  def remove_image
+    response = ::Products::RemoveImageService.(@product)
+    @product = response.payload[:product]
+    if response.success?
+      flash[:notice] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to admin_products_path
+  end
+
   private
 
   def products
-    @company.products
+    @company.products.with_attached_image
   end
 
   def find_product
-    @product = products.find_by(code: params.fetch(:code))
-    raise ActiveRecord::RecordNotFound if @product.nil?
+    @product = products.find(params.fetch(:uuid))
   end
 
   def product_params
@@ -127,7 +138,8 @@ class Admin::ProductsController < Admin::BaseController
       :unit_price,
       :sell_price,
       :category_id,
-      :is_active
+      :is_active,
+      :image
     )
   end
 end

@@ -16,10 +16,10 @@
     = yield(:stylesheet) if content_for?(:stylesheet)
     = javascript_importmap_tags
     = yield(:javascript) if content_for?(:javascript)
-  %body.d-flex.align-items-center.justify-content-center
+  %body.d-flex.align-items-center.justify-content-center{data: {bs_theme: current_user&.preferred_color_scheme}}
     .clearfix
     %main.container-fluid
       .container
         .error-pages
           = yield
-      = render_if_exists "layouts/error/footer"
+      = render_if_exists("layouts/error/footer")

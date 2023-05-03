@@ -43,7 +43,9 @@ Rails.application.routes.draw do
 
   concern :shareable do
     resource :dashboard, only: :show
-    resource :profile, only: [:show, :edit, :update]
+    resource :profile, only: [:show, :edit, :update] do
+      delete :remove_avatar, path: "remove-avatar", on: :member
+    end
     resource :user_preference, path: "preference", only: [:show, :edit, :update] do
       collection do
         get :change_locale, path: "change-locale"
@@ -52,14 +54,14 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :quotes, param: :code do
+    resources :quotes, param: :uuid do
       collection do
         get :draft
         get :converted
         get :accepted
       end
     end
-    resources :invoices, param: :code do
+    resources :invoices, param: :uuid do
       collection do
         get :draft
         get :unpaid
@@ -89,7 +91,9 @@ Rails.application.routes.draw do
 
       resources :categories, except: :show, param: :uuid, concerns: :toggleable
       resources :taxes, except: :show, param: :uuid, concerns: :toggleable
-      resources :products, param: :code, concerns: :toggleable
+      resources :products, param: :uuid, concerns: :toggleable do
+        delete :remove_image, path: "remove-image", on: :member
+      end
     end
 
     namespace :client do
@@ -102,5 +106,5 @@ Rails.application.routes.draw do
   resources :states, only: :index
   resources :cities, only: :index
 
-  get "*unmatched_route", to: "application#not_found", format: false
+  match "*unmatched_route", to: "application#not_found", via: :all, constraints: ::UnmatchedRouteConstraint.new
 end

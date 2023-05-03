@@ -11,7 +11,7 @@ ruby "3.2.2"
 gem "rails", "7.0.4.3"
 
 # Add bootstrap support
-gem "bootstrap", "~> 5.2.3"
+gem "bootstrap", "~> 5.3.0.alpha3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -81,7 +81,10 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+# gem "image_processing", "~> 1.2"
+
+# Validations for active_storage
+gem "active_storage_validations"
 
 # Image processing library
 gem "ruby-vips"

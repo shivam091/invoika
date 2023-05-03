@@ -1,0 +1,27 @@
+.pagination {
+  margin-bottom: 0;
+}
+.page-item:not(:last-child) {
+  margin-right: 0.25rem;
+}
+.page-item .page-link {
+  border-radius: 0.25rem;
+  color: var(--color-fg-default);
+  background-color: var(--color-canvas-default);
+  border-color: var(--color-border-default);
+  border-width: 1px;
+  border-style: solid;
+}
+.page-link:hover, .page-link:focus, .page-item.active > .page-link {
+  color: var(--color-fg-on-emphasis);
+  background-color: var(--color-accent-emphasis) !important;
+  border-color: transparent;
+  box-shadow: none;
+}
+.page-item.disabled .page-link {
+  color: var(--color-primer-fg-disabled);
+  background-color: var(--color-primer-bg-disabled);
+  border-color: var(--color-border-muted);
+  border-width: 1px;
+  border-style: solid;
+}

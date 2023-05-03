@@ -5,7 +5,7 @@
   padding: 7px;
   padding-bottom: 0;
   background-color: var(--color-danger-subtle);
-  color: var(--bs-body-color);
+  color: var(--color-fg-default);
   margin-bottom: 0.5rem;
   h6 {
     text-align: left;
@@ -28,7 +28,7 @@
   }
 }
 #error-explanation svg {
-  fill: var(--bs-body-color);
+  fill: var(--color-fg-default);
 }
 // Styles for form fields.
 .form-control.is-invalid, .form-select.is-invalid {
@@ -53,8 +53,7 @@
 .is-invalid svg {
   fill: var(--color-danger-fg) !important;
 }
-.form-control.is-invalid:focus, .form-select.is-invalid:focus, .form-check-input.is-invalid:focus,
-.form-floating>.form-control.is-invalid:focus, .form-floating>.form-select.is-invalid:focus {
+.form-control.is-invalid:focus, .form-select.is-invalid:focus, .form-check-input.is-invalid:focus, .form-floating > .form-control.is-invalid:focus, .form-floating > .form-select.is-invalid:focus {
   border-color: var(--color-danger-fg);
   box-shadow: var(--color-invalid-shadow-focus);
   -webkit-box-shadow: var(--color-invalid-shadow-focus);
@@ -71,7 +70,7 @@ label.is-invalid {
   position: absolute !important;
   z-index: -1 !important;
 }
-.was-validated .form-check-input:invalid~.form-check-label, .form-check-input.is-invalid~.form-check-label {
+.was-validated .form-check-input:invalid ~ .form-check-label, .form-check-input.is-invalid ~ .form-check-label {
   color: var(--color-danger-fg);
 }
 .required::after {
@@ -81,6 +80,6 @@ label.is-invalid {
   top: -2px;
   font-weight: bolder;
 }
-.form-check-inline .form-check-input~.invalid-feedback {
+.form-check-inline .form-check-input ~ .invalid-feedback {
   margin-left: 0;
 }
