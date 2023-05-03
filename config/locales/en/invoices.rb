@@ -34,6 +34,8 @@
         recurring_enabled_for_period: "Recurring enabled for %{days} days",
         reminder: "Reminder",
         invoice_url: "Invoice URL",
+        mark_as_void: "Mark as void",
+        mark_as_uncollectible: "Mark as uncollectible",
         status: "Status",
         actions: "Actions",
         no_draft_invoices_to_display: "There are no invoices in draft to display.",

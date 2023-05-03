@@ -59,6 +59,14 @@
                     = external_svg_tag("svgs/link.svg")
                     = t(".invoice_url")
                 %li
+                  = link_to "javascript:void(0)", class: "dropdown-item" do
+                    = external_svg_tag("svgs/cancel.svg")
+                    = t(".mark_as_void")
+                %li
+                  = link_to "javascript:void(0)", class: "dropdown-item" do
+                    = external_svg_tag("svgs/cancel.svg")
+                    = t(".mark_as_uncollectible")
+                %li
                   = link_to invoice_path(invoice), class: "dropdown-item dropdown-item-danger",
                     data: {turbo_confirm: t(".delete_invoice_confirmation_text"), turbo_method: :delete} do
                     = external_svg_tag("svgs/trash.svg")
