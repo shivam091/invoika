@@ -9,7 +9,11 @@
         update: {
           success: "Your profile was successfully updated.",
           error: "Your profile could not be updated."
-        }
+        },
+        remove_avatar: {
+          success: "Your profile avatar was successfully removed.",
+          error: "Your profile avatar could not be removed.",
+        },
       },
       companies: {
         update: {
@@ -95,7 +99,11 @@
         deactivate: {
           success: "Product '%{product_name}' was successfully deactivated.",
           error: "Product '%{product_name}' could not be deactivated.",
-        }
+        },
+        remove_image: {
+          success: "Product image was successfully removed.",
+          error: "Product image could not be removed.",
+        },
       },
       quotes: {
         create: {
