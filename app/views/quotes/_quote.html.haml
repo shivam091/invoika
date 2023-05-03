@@ -42,7 +42,7 @@
               data: {turbo_confirm: t(".delete_quote_confirmation_text"), turbo_method: :delete}
       - end.empty?
         %tr
-          %td.fw-bold.text-center{colspan: ::Quote.columns.count}
+          %td.no-data{colspan: ::Quote.columns.count}
             - if current_action?("converted")
               = t(".no_converted_quotes_display")
             - elsif current_action?("draft")

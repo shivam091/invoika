@@ -65,7 +65,7 @@
                     = button_text(:delete)
       - end.empty?
         %tr
-          %td.fw-bold.text-center{colspan: ::Invoice.columns.count}
+          %td.no-data{colspan: ::Invoice.columns.count}
             - if current_action?("paid")
               = t(".no_paid_invoices_to_display")
             - elsif current_action?("unpaid")

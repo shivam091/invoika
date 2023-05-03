@@ -32,7 +32,7 @@
               data: {turbo_confirm: t(".delete_category_confirmation_text", category_name: category.name), turbo_method: :delete}
       - end.empty?
         %tr
-          %td.fw-bold{colspan: ::Category.columns.count}
+          %td.no-data{colspan: ::Category.columns.count}
             - if current_action?("active")
               = t(".no_active_categories_to_display")
             - elsif current_action?("inactive")

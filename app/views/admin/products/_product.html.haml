@@ -41,7 +41,7 @@
               data: {turbo_confirm: t(".delete_product_confirmation_text", product_name: product.name), turbo_method: :delete}
       - end.empty?
         %tr
-          %td.fw-bold{colspan: ::Product.columns.count}
+          %td.no-data{colspan: ::Product.columns.count}
             - if current_action?("active")
               = t(".no_active_products_to_display")
             - elsif current_action?("inactive")
