@@ -28,6 +28,8 @@
         status: "Status",
         amount: "Amount",
         actions: "Actions",
+        quote_url: "Quote URL",
+        convert_to_invoice: "Convert to invoice",
         no_converted_quotes_display: "There are no converted quotes to display.",
         no_draft_quotes_to_display: "There are no quotes in draft to display.",
         no_accepted_quotes_to_display: "There are no accepted quotes to display.",
