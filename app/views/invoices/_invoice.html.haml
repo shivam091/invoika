@@ -23,7 +23,8 @@
             = check_box_tag "invoice_ids[]", invoice.id, false, class: "form-check-input", data: {select_all_checkbox_target: "checkbox"}
           %td
             .d-flex.align-items-center.justify-content-start
-              = external_svg_tag("svgs/missing_user_avatar.svg", height: 64, width: 64, class: "me-2")
+              .image.image-circle.image-mini.border.me-2
+                = image_tag invoice.client.avatar_url
               .d-flex.flex-column
                 .row
                   .col-lg-12
@@ -44,7 +45,7 @@
             .dropstart
               = link_to "javascript:void(0)", class: "text-default", data: {bs_toggle: "dropdown"}, aria: {expanded: false} do
                 = external_svg_tag("svgs/ellipsis-vertical.svg")
-              %ul.dropdown-menu.dropdown-menu-dark
+              %ul.dropdown-menu
                 %li
                   = link_to edit_invoice_path(invoice), class: "dropdown-item" do
                     = external_svg_tag("svgs/pencil.svg")
@@ -64,7 +65,7 @@
                     = button_text(:delete)
       - end.empty?
         %tr
-          %td.fw-bold.text-center{colspan: ::Invoice.columns.count}
+          %td.no-data{colspan: ::Invoice.columns.count}
             - if current_action?("paid")
               = t(".no_paid_invoices_to_display")
             - elsif current_action?("unpaid")

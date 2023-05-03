@@ -32,12 +32,25 @@ class ProfilesController < ApplicationController
     end
   end
 
+  # PUT|PATCH /(:role)/profile/remove-avatar
+  def remove_avatar
+    response = ::Profiles::RemoveAvatarService.(current_user)
+    @current_user = response.payload[:current_user]
+    if response.success?
+      flash[:notice] = response.message
+    else
+      flash[:alert] = response.message
+    end
+    redirect_to helpers.profile_path
+  end
+
   private
 
   def user_params
     params.require(:user).permit(
       :first_name,
       :last_name,
+      :avatar,
       address_attributes: [
         :address1,
         :address2,

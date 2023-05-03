@@ -6,6 +6,7 @@
 @import "borders";
 @import "tables";
 @import "badges";
+@import "colors";
 @import "alerts";
 @import "widgets";
 @import "modals";
@@ -166,4 +167,33 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 .recurring-cycle-icon {
   margin-left: 0.25rem;
   font-size: 15px;
+}
+.image-preview {
+  display: block;
+  width: 256px;
+  height: 256px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  box-shadow: 0 0px 8px rgba(173,181,189,0.2);
+  border-radius: 0.25rem;
+  border: 1px solid var(--color-border-subtle);
+  background-position: center;
+  margin-bottom: 0.5rem;
+}
+.image {
+  display: inline-block;
+  position: relative;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+.image.image-mini img {
+  width: 64px;
+  height: 64px;
+}
+.image-circle, .image-circle img {
+  border-radius: 50%;
+}
+.no-data {
+  text-align: center;
+  font-weight: bolder;
 }

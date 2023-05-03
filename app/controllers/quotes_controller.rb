@@ -93,12 +93,11 @@ class QuotesController < ApplicationController
   private
 
   def quotes
-    ::Quote.accessible(current_user)
+    ::Quote.accessible(current_user).includes(:client)
   end
 
   def find_quote
-    @quote = quotes.find_by(code: params.fetch(:code))
-    raise ActiveRecord::RecordNotFound if @quote.nil?
+    @quote = quotes.find(params.fetch(:uuid))
   end
 
   def quote_params

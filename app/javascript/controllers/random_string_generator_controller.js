@@ -6,6 +6,6 @@ export default class extends Controller {
 
   generateRandomString(event) {
     event?.preventDefault();
-    this.fieldTarget.value = Math.random().toString(36).toUpperCase().substr(2, 8)
+    this.fieldTarget.value = Math.random().toString(36).toUpperCase().substr(2, 8);
   }
 }

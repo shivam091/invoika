@@ -1,2 +1,3 @@
 = render_modal(title: t(".title")) do
-  = render_if_exists("user_preferences/change_locale_form")
+  = turbo_frame_tag :change_locale_form do
+    = render_if_exists("user_preferences/change_locale_form")

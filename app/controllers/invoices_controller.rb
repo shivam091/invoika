@@ -103,8 +103,7 @@ class InvoicesController < ApplicationController
   end
 
   def find_invoice
-    @invoice = invoices.find_by(code: params.fetch(:code))
-    raise ActiveRecord::RecordNotFound if @invoice.nil?
+    @invoice = invoices.find(params.fetch(:uuid))
   end
 
   def invoice_params

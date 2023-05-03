@@ -1,0 +1,39 @@
+.text-warning {
+  color: var(--color-attention-fg) !important;
+}
+.text-primary {
+  color: var(--color-accent-fg) !important;
+}
+.text-success {
+  color: var(--color-success-fg) !important;
+}
+.text-danger {
+  color: var(--color-danger-fg) !important;
+}
+.text-default {
+  color: var(--color-fg-default) !important;
+}
+.fill-default {
+  fill: var(--color-fg-on-emphasis) !important;
+}
+.fill-orange {
+  fill: var(--color-attention-emphasis) !important;
+}
+.fill-blue {
+  fill: var(--color-accent-emphasis) !important;
+}
+.fill-green {
+  fill: var(--color-success-emphasis) !important;
+}
+.fill-red {
+  fill: var(--color-danger-emphasis) !important;
+}
+.color-bg-subtle {
+  background-color: var(--color-canvas-subtle);
+}
+.color-fg-default {
+  color: var(--color-fg-default);
+}
+.color-fg-subtle {
+  color: var(--color-fg-subtle);
+}

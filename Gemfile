@@ -81,7 +81,10 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+# gem "image_processing", "~> 1.2"
+
+# Validations for active_storage
+gem "active_storage_validations"
 
 # Image processing library
 gem "ruby-vips"
