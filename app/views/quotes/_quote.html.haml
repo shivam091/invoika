@@ -44,28 +44,36 @@
                 %li
                   = link_to edit_quote_path(quote), class: "dropdown-item" do
                     = external_svg_tag("svgs/pencil.svg")
-                    = button_text(:edit)
+                    = button_text("edit")
                 %li
                   = link_to "javascript:void(0)", class: "dropdown-item" do
-                    = external_svg_tag("svgs/alarm-clock.svg")
+                    = external_svg_tag("svgs/envelope.svg")
+                    = button_text("send")
+                %li
+                  = link_to "javascript:void(0)", class: "dropdown-item" do
+                    = external_svg_tag("svgs/download.svg")
+                    = button_text("download")
+                %li
+                  = link_to "javascript:void(0)", class: "dropdown-item" do
+                    = external_svg_tag("svgs/file.svg")
                     = t(".convert_to_invoice")
-                %li
-                  = link_to "javascript:void(0)", class: "dropdown-item" do
-                    = external_svg_tag("svgs/check-mark.svg")
-                    = t(".accept")
-                %li
-                  = link_to "javascript:void(0)", class: "dropdown-item" do
-                    = external_svg_tag("svgs/cancel.svg")
-                    = t(".reject")
                 %li
                   = link_to "javascript:void(0)", class: "dropdown-item" do
                     = external_svg_tag("svgs/link.svg")
                     = t(".quote_url")
                 %li
+                  = link_to "javascript:void(0)", class: "dropdown-item" do
+                    = external_svg_tag("svgs/check-mark.svg")
+                    = button_text("accept")
+                %li
+                  = link_to "javascript:void(0)", class: "dropdown-item" do
+                    = external_svg_tag("svgs/cancel.svg")
+                    = button_text("reject")
+                %li
                   = link_to quote_path(quote), class: "dropdown-item dropdown-item-danger",
                     data: {turbo_confirm: t(".delete_quote_confirmation_text"), turbo_method: :delete} do
                     = external_svg_tag("svgs/trash.svg")
-                    = button_text(:delete)
+                    = button_text("delete")
       - end.empty?
         %tr
           %td.no-data{colspan: ::Quote.columns.count}
