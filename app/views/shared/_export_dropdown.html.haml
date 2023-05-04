@@ -1,0 +1,12 @@
+.dropdown
+  = link_to "javascript:void(0)", class: "d-inline-flex align-items-center gap-1 btn btn-secondary dropdown-toggle",
+    aria: {expanded: false}, data: {bs_toggle: "dropdown"} do
+    = external_svg_tag("svgs/download.svg")
+    = button_text("export")
+  %ul.dropdown-menu.dropdown-menu-end
+    %li
+      = link_to button_text("csv"), url_for(format: :csv), class: "dropdown-item"
+    %li
+      = link_to button_text("xls"), url_for(format: :xls), class: "dropdown-item"
+    %li
+      = link_to button_text("pdf"), url_for(format: :pdf), class: "dropdown-item"

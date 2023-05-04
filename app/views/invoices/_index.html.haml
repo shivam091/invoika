@@ -12,10 +12,12 @@
           = link_to t(".paid"), paid_invoices_path, class: "flex-sm-fill text-sm-center nav-link #{active_when(current_action?("paid"))}"
         %li.nav-item
           = link_to t(".overdue"), overdue_invoices_path, class: "flex-sm-fill text-sm-center nav-link #{active_when(current_action?("overdue"))}"
-      = link_to new_invoice_path, class: "btn btn-primary" do
-        = external_svg_tag("svgs/plus.svg")
-        %span.d-block.d-lg-none= button_text("new")
-        %span.d-none.d-lg-block= button_text("new_invoice")
+      .d-flex.flex-column-reverse.flex-lg-row
+        = render_if_exists("shared/export_dropdown")
+        = link_to new_invoice_path, class: "btn btn-primary ms-0 ms-lg-2 mb-2 mb-lg-0" do
+          = external_svg_tag("svgs/plus.svg")
+          %span.d-block.d-lg-none= button_text("new")
+          %span.d-none.d-lg-block= button_text("new_invoice")
   .card-body{data: {controller: "select-all-checkbox"}}
     = render_if_exists("invoices/invoice")
   - if @pagy.pages > 1
