@@ -36,7 +36,9 @@ class Tax < ApplicationRecord
 
   class << self
     def select_options
-      active.pluck(:name, :id)
+      active.collect do |t|
+        ["#{t.name} (#{t.rate}%)", t.id]
+      end
     end
   end
 end
