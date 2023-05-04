@@ -89,7 +89,7 @@ class Quote < ApplicationRecord
     end
   end
 
-  def total_amount
+  def grand_total
     (sub_total - discount_amount)
   end
 

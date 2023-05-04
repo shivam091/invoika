@@ -8,5 +8,5 @@
         %td.fw-bold.ps-0= t(".discount")
         %td.text-muted.text-end.pe-0= number_to_currency(@quote.discount_amount, unit: @quote.currency.symbol)
       %tr
-        %td.fw-bold.ps-0= t(".total")
-        %td.text-muted.text-end.pe-0= number_to_currency(@quote.total_amount, unit: @quote.currency.symbol)
+        %td.fw-bold.ps-0= t(".grand_total")
+        %td.text-muted.text-end.pe-0= number_to_currency(@quote.grand_total, unit: @quote.currency.symbol)

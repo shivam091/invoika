@@ -113,7 +113,7 @@ class Invoice < ApplicationRecord
     (taxable_amount * percentage) / 100
   end
 
-  def final_amount
+  def grand_total
     (taxable_amount + tax_amount)
   end
 
