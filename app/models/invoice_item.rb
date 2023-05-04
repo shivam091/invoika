@@ -44,7 +44,7 @@ class InvoiceItem < ApplicationRecord
   private
 
   def taxes
-    ::Tax.where(id: tax_ids)
+    ::Tax.where(id: tax_ids, type: ::Tax.types[:exclusive])
   end
 
   def remove_blank_elements_from_tax_ids

@@ -132,7 +132,7 @@ class Invoice < ApplicationRecord
   end
 
   def taxes
-    ::Tax.where(id: tax_ids)
+    ::Tax.where(id: tax_ids, type: ::Tax.types[:exclusive])
   end
 
   def reject_invoice_item?(attributes)
