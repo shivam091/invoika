@@ -22,9 +22,9 @@ class QuoteItem < ApplicationRecord
   def amount
     if product.present?
       if product.sell_price.eql?(unit_price)
-        product.sell_price * quantity
+        (product.sell_price * quantity)
       else
-        unit_price * quantity
+        (unit_price * quantity)
       end
     else
       0.00

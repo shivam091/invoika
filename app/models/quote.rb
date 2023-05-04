@@ -90,7 +90,7 @@ class Quote < ApplicationRecord
   end
 
   def total_amount
-    sub_total - discount_amount
+    (sub_total - discount_amount)
   end
 
   private
