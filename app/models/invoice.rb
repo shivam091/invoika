@@ -87,6 +87,36 @@ class Invoice < ApplicationRecord
     end
   end
 
+  def sub_total
+    invoice_items.sum(&:amount)
+  end
+
+  # Discount is calculated on the selling price, excluding taxes.
+  def discount_amount
+    if flat?
+      discount
+    elsif percentage?
+      (sub_total * discount) / 100
+    else
+      0.00
+    end
+  end
+
+  def taxable_amount
+    (sub_total - discount_amount)
+  end
+
+  # The tax is applied on the amount arrived after subtracting the discount
+  # value from the selling price.
+  def tax_amount
+    percentage = taxes.sum(&:rate)
+    (taxable_amount * percentage) / 100
+  end
+
+  def final_amount
+    (taxable_amount + tax_amount)
+  end
+
   private
 
   def set_code
@@ -99,6 +129,10 @@ class Invoice < ApplicationRecord
 
   def discount_type_required?
     discount.present?
+  end
+
+  def taxes
+    ::Tax.where(id: tax_ids)
   end
 
   def reject_invoice_item?(attributes)

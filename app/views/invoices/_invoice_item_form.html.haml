@@ -15,7 +15,7 @@
     = form.select :tax_ids, options_for_select(::Tax.select_options, form.object.tax_ids),
       {include_blank: t(".select_taxes"), skip_label: true, wrapper_class: "mb-0"}, multiple: true, size: 1
   %td
-    %span.text-center= form.object.total_amount
+    %span.text-center= number_to_currency(form.object.amount, unit: @invoice.currency.symbol)
   %td
     = button_tag :remove, class: "btn btn-sm btn-danger", data: {action: "click->nested-forms#removeAssociation"} do
       = external_svg_tag("svgs/trash.svg")

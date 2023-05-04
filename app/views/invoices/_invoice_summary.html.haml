@@ -3,21 +3,13 @@
     %tbody
       %tr
         %td.fw-bold.ps-0= t(".subtotal")
-        %td.text-muted.text-end.pe-0
-          %span €
-          %span 0.00
+        %td.text-muted.text-end.pe-0= number_to_currency(@invoice.sub_total, unit: @invoice.currency.symbol)
       %tr
         %td.fw-bold.ps-0= t(".discount")
-        %td.text-muted.text-end.pe-0
-          %span €
-          %span 0.00
+        %td.text-muted.text-end.pe-0= number_to_currency(@invoice.discount_amount, unit: @invoice.currency.symbol)
       %tr
         %td.fw-bold.ps-0= t(".tax")
-        %td.text-muted.text-end.pe-0
-          %span €
-          %span 0.00
+        %td.text-muted.text-end.pe-0= number_to_currency(@invoice.tax_amount, unit: @invoice.currency.symbol)
       %tr
         %td.fw-bold.ps-0= t(".total")
-        %td.text-muted.text-end.pe-0
-          %span €
-          %span 0.00
+        %td.text-muted.text-end.pe-0= number_to_currency(@invoice.final_amount, unit: @invoice.currency.symbol)
