@@ -5,7 +5,6 @@
 class QuoteItem < ApplicationRecord
 
   attribute :quantity, default: 1
-  attribute :total_amount, default: 0
 
   validates :product_id, presence: true, reduce: true
   validates :quantity,
@@ -19,4 +18,16 @@ class QuoteItem < ApplicationRecord
 
   belongs_to :quote, inverse_of: :quote_items, touch: true
   belongs_to :product, inverse_of: :quote_items
+
+  def amount
+    if product.present?
+      if product.sell_price.eql?(unit_price)
+        product.sell_price * quantity
+      else
+        unit_price * quantity
+      end
+    else
+      0.00
+    end
+  end
 end

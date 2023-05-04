@@ -75,6 +75,24 @@ class Quote < ApplicationRecord
     end
   end
 
+  def sub_total
+    quote_items.sum(&:amount)
+  end
+
+  def discount_amount
+    if flat?
+      discount
+    elsif percentage?
+      (discount * sub_total) / 100
+    else
+      0.00
+    end
+  end
+
+  def total_amount
+    sub_total - discount_amount
+  end
+
   private
 
   def set_code
