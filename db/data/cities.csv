@@ -1,4 +1,329 @@
 name,state,country
+Eisenstadt,Burgenland,Austria
+GroBpetersdorf,Burgenland,Austria
+Jennersdorf,Burgenland,Austria
+Kemeten,Burgenland,Austria
+Mattersburg,Burgenland,Austria
+Neudorfl,Burgenland,Austria
+Neusiedl am See,Burgenland,Austria
+Oberwart,Burgenland,Austria
+Pinkafeld,Burgenland,Austria
+Rust,Burgenland,Austria
+Maria Rain,Carinthia,Austria
+Poggersdorf,Carinthia,Austria
+Althofen,Karnten,Austria
+Arnoldstein,Karnten,Austria
+Bad Sankt Leonhard,Karnten,Austria
+Bleiburg,Karnten,Austria
+Ebenthal,Karnten,Austria
+Eberndorf,Karnten,Austria
+Feldkirchen,Karnten,Austria
+Ferlach,Karnten,Austria
+Finkenstein,Karnten,Austria
+Friesach,Karnten,Austria
+Hermagor,Karnten,Austria
+Klagenfurt,Karnten,Austria
+Klagenfurt,Karnten,Austria
+Lohnsburg,Karnten,Austria
+Moosburg,Karnten,Austria
+Paternion,Karnten,Austria
+Radentheim,Karnten,Austria
+Sankt Andra,Karnten,Austria
+Sankt Jakob,Karnten,Austria
+Sankt Veit,Karnten,Austria
+Seeboden,Karnten,Austria
+Spittal,Karnten,Austria
+Velden am Worthersee,Karnten,Austria
+Villach,Karnten,Austria
+Volkermarkt,Karnten,Austria
+Wernberg,Karnten,Austria
+Wolfsberg,Karnten,Austria
+Amstetten,Niederosterreich,Austria
+Bad Voslau,Niederosterreich,Austria
+Baden,Niederosterreich,Austria
+Berndorf,Niederosterreich,Austria
+Boheimkirchen,Niederosterreich,Austria
+Bruck an der Leitha,Niederosterreich,Austria
+Brunn,Niederosterreich,Austria
+Deutsch-Wagram,Niederosterreich,Austria
+Ebreichsdorf,Niederosterreich,Austria
+Eggendorf,Niederosterreich,Austria
+Fischamend,Niederosterreich,Austria
+Gablitz,Niederosterreich,Austria
+Ganserndorf,Niederosterreich,Austria
+Gerasdorf,Niederosterreich,Austria
+Gloggnitz,Niederosterreich,Austria
+Gmund,Niederosterreich,Austria
+Greifenstein,Niederosterreich,Austria
+GroB-Enzersdorf,Niederosterreich,Austria
+GroB-Gerungs,Niederosterreich,Austria
+Guntramsdorf,Niederosterreich,Austria
+Haag,Niederosterreich,Austria
+Hainburg,Niederosterreich,Austria
+Heidenreichstein,Niederosterreich,Austria
+Herzogenburg,Niederosterreich,Austria
+Himberg,Niederosterreich,Austria
+Hollabrunn,Niederosterreich,Austria
+Horn,Niederosterreich,Austria
+Klosterneuburg,Niederosterreich,Austria
+Korneuburg,Niederosterreich,Austria
+Kottingbrunn,Niederosterreich,Austria
+Krems,Niederosterreich,Austria
+Laa,Niederosterreich,Austria
+Langenlois,Niederosterreich,Austria
+Langenzersdorf,Niederosterreich,Austria
+Leobendorf,Niederosterreich,Austria
+Leopoldsdorf,Niederosterreich,Austria
+Lilienfeld,Niederosterreich,Austria
+Loipersdorf,Niederosterreich,Austria
+Maria Enzersdorf,Niederosterreich,Austria
+Melk,Niederosterreich,Austria
+Mistelbach,Niederosterreich,Austria
+Modling,Niederosterreich,Austria
+Neulengbach,Niederosterreich,Austria
+Neunkirchen,Niederosterreich,Austria
+Niederleis,Niederosterreich,Austria
+Ober-Grabendorf,Niederosterreich,Austria
+Perchtoldsdorf,Niederosterreich,Austria
+Pernitz,Niederosterreich,Austria
+Pottendorf,Niederosterreich,Austria
+Poysdorf,Niederosterreich,Austria
+Pressbaum,Niederosterreich,Austria
+Purgstall,Niederosterreich,Austria
+Purkersdorf,Niederosterreich,Austria
+Reichenau,Niederosterreich,Austria
+Retz,Niederosterreich,Austria
+Sankt Andra-Wordern,Niederosterreich,Austria
+Sankt Peter in der Au,Niederosterreich,Austria
+Sankt Polten,Niederosterreich,Austria
+Sankt Valentin,Niederosterreich,Austria
+Scheibbs,Niederosterreich,Austria
+Schrems,Niederosterreich,Austria
+Schwechat,Niederosterreich,Austria
+Seitenstetten,Niederosterreich,Austria
+Sollenau,Niederosterreich,Austria
+Stockerau,Niederosterreich,Austria
+Strasshof,Niederosterreich,Austria
+Ternitz,Niederosterreich,Austria
+Traiskirchen,Niederosterreich,Austria
+Traismauer,Niederosterreich,Austria
+Tulln,Niederosterreich,Austria
+Vosendorf,Niederosterreich,Austria
+Waidhofen,Niederosterreich,Austria
+Wiener Neudorf,Niederosterreich,Austria
+Wiener Neustadt,Niederosterreich,Austria
+Wieselburg,Niederosterreich,Austria
+Wilhelmsburg,Niederosterreich,Austria
+Wolkersdorf,Niederosterreich,Austria
+Ybbs,Niederosterreich,Austria
+Ybbsitz,Niederosterreich,Austria
+Zistersdorf,Niederosterreich,Austria
+Zwettl,Niederosterreich,Austria
+Alkoven,Oberosterreich,Austria
+Altheim,Oberosterreich,Austria
+Altmunster,Oberosterreich,Austria
+Andorf,Oberosterreich,Austria
+Ansfelden,Oberosterreich,Austria
+Asten,Oberosterreich,Austria
+Attnang-Puchheim,Oberosterreich,Austria
+Aurolzmunster,Oberosterreich,Austria
+Bad Goisern,Oberosterreich,Austria
+Bad Hall,Oberosterreich,Austria
+Bad Ischl,Oberosterreich,Austria
+Braunau,Oberosterreich,Austria
+Breitenfurt,Oberosterreich,Austria
+Ebensee,Oberosterreich,Austria
+Eferding,Oberosterreich,Austria
+Engerwitzdorf,Oberosterreich,Austria
+Enns,Oberosterreich,Austria
+Feldkirchen an der Donau,Oberosterreich,Austria
+Frankenburg,Oberosterreich,Austria
+Freistadt,Oberosterreich,Austria
+Gallneukirchen,Oberosterreich,Austria
+Garsten,Oberosterreich,Austria
+Gmunden,Oberosterreich,Austria
+Gramastetten,Oberosterreich,Austria
+Grieskirchen,Oberosterreich,Austria
+Gunskirchen,Oberosterreich,Austria
+Horsching,Oberosterreich,Austria
+Kirchdorf an der Krems,Oberosterreich,Austria
+Kremsmunster,Oberosterreich,Austria
+Krenglbach,Oberosterreich,Austria
+Laakirchen,Oberosterreich,Austria
+Lenzing,Oberosterreich,Austria
+Leonding,Oberosterreich,Austria
+Linz,Oberosterreich,Austria
+Loibichl,Oberosterreich,Austria
+Marchtrenk,Oberosterreich,Austria
+Mattighofen,Oberosterreich,Austria
+Mauthausen,Oberosterreich,Austria
+Micheldorf,Oberosterreich,Austria
+Neuhofen an der Krems,Oberosterreich,Austria
+Ohlsdorf,Oberosterreich,Austria
+Ottensheim,Oberosterreich,Austria
+Pasching,Oberosterreich,Austria
+Perg,Oberosterreich,Austria
+Pettenbach,Oberosterreich,Austria
+Pram,Oberosterreich,Austria
+Pregarten,Oberosterreich,Austria
+Puchenau,Oberosterreich,Austria
+Regau,Oberosterreich,Austria
+Ried,Oberosterreich,Austria
+Rohrbach in Oberosterreich,Oberosterreich,Austria
+Rutzenmoos,Oberosterreich,Austria
+Sankt Florian,Oberosterreich,Austria
+Sankt Georgen,Oberosterreich,Austria
+Sankt Marien,Oberosterreich,Austria
+Scharding,Oberosterreich,Austria
+Scharnstein,Oberosterreich,Austria
+Schwertberg,Oberosterreich,Austria
+Seewalchen,Oberosterreich,Austria
+Sierning,Oberosterreich,Austria
+Stadl-Paura,Oberosterreich,Austria
+Steyr,Oberosterreich,Austria
+Steyregg,Oberosterreich,Austria
+Steyrermuhl,Oberosterreich,Austria
+Thalheim,Oberosterreich,Austria
+Timelkam,Oberosterreich,Austria
+Traun,Oberosterreich,Austria
+Vocklabruck,Oberosterreich,Austria
+Vocklamarkt,Oberosterreich,Austria
+Vorchdorf,Oberosterreich,Austria
+Wels,Oberosterreich,Austria
+Wilhering,Oberosterreich,Austria
+Abtenau,Salzburg,Austria
+Anif,Salzburg,Austria
+Bad Gastein,Salzburg,Austria
+Bad Hofgastein,Salzburg,Austria
+Bergheim,Salzburg,Austria
+Bischofshofen,Salzburg,Austria
+Bruck an der GroBglocknerstraB,Salzburg,Austria
+Burmoos,Salzburg,Austria
+Elsbethen,Salzburg,Austria
+Eugendorf,Salzburg,Austria
+Forstau,Salzburg,Austria
+Grodig,Salzburg,Austria
+Hallein,Salzburg,Austria
+Hallwang,Salzburg,Austria
+Henndorf,Salzburg,Austria
+Kuchl,Salzburg,Austria
+Mayrhofen,Salzburg,Austria
+Mittersill,Salzburg,Austria
+Neumarkt,Salzburg,Austria
+Oberndorf,Salzburg,Austria
+Obertrum am See,Salzburg,Austria
+Piesendorf,Salzburg,Austria
+Puch,Salzburg,Austria
+Radstadt,Salzburg,Austria
+Saalfelden,Salzburg,Austria
+Salzburg,Salzburg,Austria
+Sankt Johann im Pongau,Salzburg,Austria
+Seekirchen,Salzburg,Austria
+Sieghartskirchen,Salzburg,Austria
+StraBwalchen,Salzburg,Austria
+Strobl,Salzburg,Austria
+Tamsweg,Salzburg,Austria
+Thalgau,Salzburg,Austria
+Wals-Siezenheim,Salzburg,Austria
+Wolfgangsee,Salzburg,Austria
+Zell am See,Salzburg,Austria
+Albersdorf,Schleswig-Holstein,Austria
+Bad Aussee,Steiermark,Austria
+Barnbach,Steiermark,Austria
+Bruck an der Mur,Steiermark,Austria
+Deutschlandsberg,Steiermark,Austria
+Eisenerz,Steiermark,Austria
+Feldbach,Steiermark,Austria
+Feldkirchen bei Graz,Steiermark,Austria
+Fohnsdorf,Steiermark,Austria
+Frohnleiten,Steiermark,Austria
+Furstenfeld,Steiermark,Austria
+Gleisdorf,Steiermark,Austria
+Gratkorn,Steiermark,Austria
+Graz,Steiermark,Austria
+Hartberg,Steiermark,Austria
+Judenburg,Steiermark,Austria
+Judendorf-StraBengel,Steiermark,Austria
+Kapfenberg,Steiermark,Austria
+Karlsdorf,Steiermark,Austria
+Kindberg,Steiermark,Austria
+Knittelfeld,Steiermark,Austria
+Koflach,Steiermark,Austria
+Krieglach,Steiermark,Austria
+Lannach,Steiermark,Austria
+Leibnitz,Steiermark,Austria
+Leoben,Steiermark,Austria
+Liezen,Steiermark,Austria
+Murzzuschlag,Steiermark,Austria
+Rottenmann,Steiermark,Austria
+Schladming,Steiermark,Austria
+Seiersberg,Steiermark,Austria
+Spielberg,Steiermark,Austria
+Trofaiach,Steiermark,Austria
+Voitsberg,Steiermark,Austria
+Wagna,Steiermark,Austria
+Weiz,Steiermark,Austria
+Zeltweg,Steiermark,Austria
+Deutschfeistritz,Styria,Austria
+Liezen,Styria,Austria
+Sankt Bartholoma,Styria,Austria
+Absam,Tirol,Austria
+Axams,Tirol,Austria
+Ebbs,Tirol,Austria
+Fugen,Tirol,Austria
+Hall,Tirol,Austria
+Haselgehr,Tirol,Austria
+Hopfgarten,Tirol,Austria
+Imst,Tirol,Austria
+Innsbruck,Tirol,Austria
+Jenbach,Tirol,Austria
+Kirchberg,Tirol,Austria
+Kirchbichl,Tirol,Austria
+Kitzbuhel,Tirol,Austria
+Kramsach,Tirol,Austria
+Kufstein,Tirol,Austria
+Landeck,Tirol,Austria
+Lienz,Tirol,Austria
+Matrei,Tirol,Austria
+Neustift im Stubaital,Tirol,Austria
+Reutte,Tirol,Austria
+Rum,Tirol,Austria
+Sankt Johann in Tirol,Tirol,Austria
+Scheffau,Tirol,Austria
+Schwaz,Tirol,Austria
+St. Johann Am Walde,Tirol,Austria
+Telfs,Tirol,Austria
+Vols,Tirol,Austria
+Vomp,Tirol,Austria
+Wattens,Tirol,Austria
+Worgl,Tirol,Austria
+Zirl,Tirol,Austria
+Altach,Vorarlberg,Austria
+Bludenz,Vorarlberg,Austria
+Bregenz,Vorarlberg,Austria
+Chassieu,Vorarlberg,Austria
+Dietmannsried,Vorarlberg,Austria
+Dornbirn,Vorarlberg,Austria
+Feldkirch,Vorarlberg,Austria
+Frastanz,Vorarlberg,Austria
+Gotzis,Vorarlberg,Austria
+Hard,Vorarlberg,Austria
+Hochst,Vorarlberg,Austria
+Hohenems,Vorarlberg,Austria
+Horbranz,Vorarlberg,Austria
+Hufingen,Vorarlberg,Austria
+Lauterach,Vorarlberg,Austria
+Lochau,Vorarlberg,Austria
+Lustenau,Vorarlberg,Austria
+Mittelberg,Vorarlberg,Austria
+Nenzing,Vorarlberg,Austria
+Nuziders,Vorarlberg,Austria
+Rankweil,Vorarlberg,Austria
+Schruns,Vorarlberg,Austria
+Thuringen,Vorarlberg,Austria
+Wolfurt,Vorarlberg,Austria
+Vienna,Wien,Austria
+Wien,Wien,Austria
 Cleveland,Aberdeen,United Kingdom
 Gilberdyke,Aberdeen,United Kingdom
 Llanrwst,Aberdeen,United Kingdom
@@ -14059,7 +14384,7 @@ Hamburg,Hamburg,Germany
 Diekholzen,Hannover,Germany
 Heroldstatt,Heroldstatt,Germany
 ABlar,Hessen,Germany
-Alsbach-H闂佺厧鐡ㄩ悷銊т焊閸愬殗婵°倕鎳廻nlein,Hessen,Germany
+Alsbach-H闂備胶鍘ч悺銊╂偡閵娧傜剨闁告劕娈楀┑掳鍊曢幊寤籲lein,Hessen,Germany
 Alsfeld,Hessen,Germany
 Altenstadt,Hessen,Germany
 Angelburg,Hessen,Germany
