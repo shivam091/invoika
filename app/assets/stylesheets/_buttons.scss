@@ -17,6 +17,7 @@
   appearance: button;
   -webkit-appearance: button;
   -moz-appearance: button;
+  justify-content: center;
 }
 .btn, .btn:hover, .btn:focus {
   color: var(--btn-fg-color) !important;
