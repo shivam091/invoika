@@ -9,7 +9,7 @@ class Quote < ApplicationRecord
   nullify_if_blank :discount_type
 
   enum discount_type: {
-    flat: "flat",
+    fixed: "fixed",
     percentage: "percentage"
   }
 
@@ -23,6 +23,8 @@ class Quote < ApplicationRecord
 
   attribute :status, :enum, default: statuses[:draft]
   attribute :discount_type, :enum, default: nil
+  attribute :quote_date, default: Date.current
+  attribute :due_date, default: (Date.current + 1.day)
 
   validates :client_id, :company_id, presence: true, reduce: true
   validates :code,
@@ -80,7 +82,7 @@ class Quote < ApplicationRecord
   end
 
   def discount_amount
-    if flat?
+    if fixed?
       discount
     elsif percentage?
       (discount * sub_total) / 100
