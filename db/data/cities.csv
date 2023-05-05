@@ -1,4 +1,282 @@
 name,state,country
+Glenfield,Auckland,Australia
+Henderson,Auckland,Australia
+Milford,Auckland,Australia
+Balgowlah,Balgowlah,Australia
+Balmain,Balmain,Australia
+Bankstown,Bankstown,Australia
+Camberwell,Camberwell,Australia
+Caulfield,Caulfield,Australia
+Chatswood,Chatswood,Australia
+Cheltenham,Cheltenham,Australia
+Cherrybrook,Cherrybrook,Australia
+Clayton,Clayton,Australia
+Collingwood,Collingwood,Australia
+Hawthorn,Hawthorn,Australia
+Jannnali,Jannnali,Australia
+Knoxfield,Knoxfield,Australia
+Melbourne,Melbourne,Australia
+South Oakleigh,Melbourne,Australia
+Cottesole,Perth,Australia
+Darch,Perth,Australia
+Mullaloo,Perth,Australia
+Noranda,Perth,Australia
+Osborne Park,Perth,Australia
+Willetton,Perth,Australia
+Acacia Ridge,Queensland,Australia
+Aitkenvale,Queensland,Australia
+Alderley,Queensland,Australia
+Alexander Hills,Queensland,Australia
+Archerfield,Queensland,Australia
+Ashmore,Queensland,Australia
+Atherton,Queensland,Australia
+Ayr,Queensland,Australia
+Beachmere,Queensland,Australia
+Beenleigh,Queensland,Australia
+Beerwah,Queensland,Australia
+Bell,Queensland,Australia
+Belmont,Queensland,Australia
+Biloela,Queensland,Australia
+Birkdale,Queensland,Australia
+Blackwater,Queensland,Australia
+Bongaree,Queensland,Australia
+Bonogin,Queensland,Australia
+Boonah,Queensland,Australia
+Bowen,Queensland,Australia
+Brendale,Queensland,Australia
+Brisbane,Queensland,Australia
+Buddina,Queensland,Australia
+Buderim,Queensland,Australia
+Bundaberg,Queensland,Australia
+Bundall,Queensland,Australia
+Burleigh Heads,Queensland,Australia
+Burpengary,Queensland,Australia
+Cabaland,Queensland,Australia
+Caboolture,Queensland,Australia
+Cairns,Queensland,Australia
+Cairns Northern Beaches,Queensland,Australia
+Caloundra,Queensland,Australia
+Capalaba,Queensland,Australia
+Charters Towers,Queensland,Australia
+Childers,Queensland,Australia
+Cleveland,Queensland,Australia
+Coolum Beach,Queensland,Australia
+Coopers Plain,Queensland,Australia
+Dalby,Queensland,Australia
+Deception Bay,Queensland,Australia
+Eagle Farm,Queensland,Australia
+Eagleby,Queensland,Australia
+Emerald,Queensland,Australia
+Emundi,Queensland,Australia
+Forest Lake,Queensland,Australia
+Gatton,Queensland,Australia
+Gladstone,Queensland,Australia
+Gold Coast,Queensland,Australia
+Gowrie Junction,Queensland,Australia
+Gympie,Queensland,Australia
+Helensvale,Queensland,Australia
+Hervey Bay,Queensland,Australia
+Ingham,Queensland,Australia
+Innisfail,Queensland,Australia
+Ipswich,Queensland,Australia
+Jindalee,Queensland,Australia
+Julatten,Queensland,Australia
+Kawana Waters,Queensland,Australia
+Kingaroy,Queensland,Australia
+Lawnton,Queensland,Australia
+Loganholme,Queensland,Australia
+Mackay,Queensland,Australia
+Mareeba,Queensland,Australia
+Maroochydore,Queensland,Australia
+Maroochydore-Mooloolaba,Queensland,Australia
+Maryborough,Queensland,Australia
+Miami,Queensland,Australia
+Milton,Queensland,Australia
+Molendinar,Queensland,Australia
+Moranbah,Queensland,Australia
+Morayfield,Queensland,Australia
+Mossman,Queensland,Australia
+Mount Glorious,Queensland,Australia
+Mount Isa,Queensland,Australia
+Murarrie,Queensland,Australia
+Nairand Kay,Queensland,Australia
+Nambour,Queensland,Australia
+Nerang,Queensland,Australia
+Nobby Beach,Queensland,Australia
+Noosa Heads,Queensland,Australia
+Noosaville,Queensland,Australia
+Paddington,Queensland,Australia
+Port Douglas,Queensland,Australia
+Robina,Queensland,Australia
+Rockhampton,Queensland,Australia
+Rocklea,Queensland,Australia
+Roma,Queensland,Australia
+Rubyvale,Queensland,Australia
+Sanctuary Cove,Queensland,Australia
+Slade Point,Queensland,Australia
+Southport,Queensland,Australia
+Suburb,Queensland,Australia
+Sunshine Coast,Queensland,Australia
+Tewantin-Noosa,Queensland,Australia
+The Summit,Queensland,Australia
+Toowong,Queensland,Australia
+Toowoomba,Queensland,Australia
+Townsville,Queensland,Australia
+Victoria Point,Queensland,Australia
+Warwick,Queensland,Australia
+Willawong,Queensland,Australia
+Yatala,Queensland,Australia
+Yeppoon,Queensland,Australia
+Zillmere,Queensland,Australia
+Bridgewater-Gagebrook,Tasmania,Australia
+Burnie,Tasmania,Australia
+Burnie-Devonport,Tasmania,Australia
+Glenorchy,Tasmania,Australia
+Hobart,Tasmania,Australia
+Kingston-Blackmans Bay,Tasmania,Australia
+Launceston,Tasmania,Australia
+New Norfolk,Tasmania,Australia
+Rowella,Tasmania,Australia
+Sheffield,Tasmania,Australia
+Ulverstone,Tasmania,Australia
+Templestowe,Templestowe,Australia
+Albion,Victoria,Australia
+Ararat,Victoria,Australia
+Avenel,Victoria,Australia
+Avondale Heights,Victoria,Australia
+Baccus Marsh,Victoria,Australia
+Bairnsdale,Victoria,Australia
+Ballarat,Victoria,Australia
+Balwyn,Victoria,Australia
+Batman,Victoria,Australia
+Bayswater,Victoria,Australia
+Belmont,Victoria,Australia
+Benalla,Victoria,Australia
+Bendigo,Victoria,Australia
+Bentleigh East,Victoria,Australia
+Berwick,Victoria,Australia
+Blackburn,Victoria,Australia
+Blue Mountains,Victoria,Australia
+Boonah,Victoria,Australia
+Boronia,Victoria,Australia
+Box Hill,Victoria,Australia
+Brighton East,Victoria,Australia
+Bundoora,Victoria,Australia
+Campbellfield,Victoria,Australia
+Carlton South,Victoria,Australia
+Caroline Springs,Victoria,Australia
+Castle Hill,Victoria,Australia
+Castlemaine,Victoria,Australia
+Caulfield,Victoria,Australia
+Cheltenham,Victoria,Australia
+Chester,Victoria,Australia
+Clayton South,Victoria,Australia
+Clifton Springs,Victoria,Australia
+Coburg,Victoria,Australia
+Colac,Victoria,Australia
+Collingwood,Victoria,Australia
+Craigieburn,Victoria,Australia
+Cranbourne,Victoria,Australia
+Crib Point,Victoria,Australia
+Dandenong,Victoria,Australia
+Devon Meadows,Victoria,Australia
+Diamond Creek,Victoria,Australia
+Doncaster East,Victoria,Australia
+Doncester,Victoria,Australia
+Donvale,Victoria,Australia
+Echuca-Moama,Victoria,Australia
+Elsternwick,Victoria,Australia
+Eltham,Victoria,Australia
+Fairfield,Victoria,Australia
+Fitzroy,Victoria,Australia
+Frnakston,Victoria,Australia
+Geelong,Victoria,Australia
+Glen Waverley,Victoria,Australia
+Glenorchy,Victoria,Australia
+Hallam,Victoria,Australia
+Hamilton,Victoria,Australia
+Hastings,Victoria,Australia
+Healesville,Victoria,Australia
+Horsham,Victoria,Australia
+Hughesdale,Victoria,Australia
+Ivanhoe,Victoria,Australia
+Keilor,Victoria,Australia
+Kensington,Victoria,Australia
+Kerang,Victoria,Australia
+Kilmore,Victoria,Australia
+Kilsyth,Victoria,Australia
+Kyabram,Victoria,Australia
+Lakes Entrance,Victoria,Australia
+Lalor,Victoria,Australia
+Lara,Victoria,Australia
+Laverton North,Victoria,Australia
+Leopold,Victoria,Australia
+Lower Templestowe,Victoria,Australia
+Maidstone,Victoria,Australia
+Malvern,Victoria,Australia
+Maryborough,Victoria,Australia
+Melbourne,Victoria,Australia
+Melton,Victoria,Australia
+Middle Park,Victoria,Australia
+Mildura,Victoria,Australia
+Mitcham,Victoria,Australia
+Moe-Yallourn,Victoria,Australia
+Moorabbin,Victoria,Australia
+Mordialloc,Victoria,Australia
+Morwell,Victoria,Australia
+Mulgrave,Victoria,Australia
+Murrumbeena,Victoria,Australia
+Neerim South,Victoria,Australia
+Noble Park North,Victoria,Australia
+Notting Hill,Victoria,Australia
+Oak Park,Victoria,Australia
+Ocean Grove-Barwon Heads,Victoria,Australia
+Olinda,Victoria,Australia
+Pakenham,Victoria,Australia
+Park Orchards,Victoria,Australia
+Port Melbourne,Victoria,Australia
+Portland,Victoria,Australia
+Prahran,Victoria,Australia
+Preston,Victoria,Australia
+Pritbourne,Victoria,Australia
+Queenscliff,Victoria,Australia
+Reservoir,Victoria,Australia
+Ringwood,Victoria,Australia
+Rowville,Victoria,Australia
+Sale,Victoria,Australia
+Sandringham,Victoria,Australia
+Scoresby,Victoria,Australia
+Sebastopol,Victoria,Australia
+Seymour,Victoria,Australia
+Shepparton-Mooroopna,Victoria,Australia
+Somerville,Victoria,Australia
+South Yarra,Victoria,Australia
+Southbank,Victoria,Australia
+St. Albans,Victoria,Australia
+St. Kilda East,Victoria,Australia
+Stawell,Victoria,Australia
+Sunbury,Victoria,Australia
+Sunshine West,Victoria,Australia
+Swan Hill,Victoria,Australia
+Tatura,Victoria,Australia
+Thomastown,Victoria,Australia
+Thornbury,Victoria,Australia
+Tongala,Victoria,Australia
+Torquay,Victoria,Australia
+Traralgon,Victoria,Australia
+Tullamarine,Victoria,Australia
+Vermont,Victoria,Australia
+Wangaratta,Victoria,Australia
+Wantirna,Victoria,Australia
+Warragul,Victoria,Australia
+Warrnambool,Victoria,Australia
+Welshpool,Victoria,Australia
+Wendouree,Victoria,Australia
+Wonthaggi,Victoria,Australia
+Woodend,Victoria,Australia
+Yarrawonga-Mulwala,Victoria,Australia
+Yea,Victoria,Australia
+Wheeler,Wheeler,Australia
 Bombuflat,Andaman and Nicobar Islands,India
 Garacharma,Andaman and Nicobar Islands,India
 Port Blair,Andaman and Nicobar Islands,India
@@ -11697,7 +11975,7 @@ Hamburg,Hamburg,Germany
 Diekholzen,Hannover,Germany
 Heroldstatt,Heroldstatt,Germany
 ABlar,Hessen,Germany
-Alsbach-H脙茠脗陇hnlein,Hessen,Germany
+Alsbach-H鑴欒尃鑴楅檱hnlein,Hessen,Germany
 Alsfeld,Hessen,Germany
 Altenstadt,Hessen,Germany
 Angelburg,Hessen,Germany
