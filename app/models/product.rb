@@ -67,8 +67,8 @@ class Product < ApplicationRecord
   default_scope -> { order_name_asc }
 
   class << self
-    def select_options
-      active.pluck(:name, :id)
+    def select_options(user)
+      user.company.products.active.pluck(:name, :id)
     end
   end
 

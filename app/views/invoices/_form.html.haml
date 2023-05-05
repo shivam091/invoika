@@ -35,7 +35,7 @@
         = form.select :discount_type, enum_options_for_select(::Invoice, :discount_types), {include_blank: t(".select_discount_type")},
           style: "width: 260px !important;", data: {discount_field_target: "discountType", action: "change->discount-field#toggleDiscountField"}
       .col-5
-        = form.select :tax_ids, options_for_select(::Tax.select_options, form.object.tax_ids),
+        = form.select :tax_ids, options_for_select(::Tax.select_options(current_user), form.object.tax_ids),
           {include_blank: t(".select_taxes")}, multiple: true, size: 1
     = render_if_exists("invoices/invoice_summary")
   .row

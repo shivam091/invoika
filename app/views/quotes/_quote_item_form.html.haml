@@ -4,7 +4,7 @@
     = form.hidden_field :id, value: form.object.id
     = form.hidden_field :_destroy
   %td
-    = form.select :product_id, options_for_select(::Product.select_options, form.object.product_id),
+    = form.select :product_id, options_for_select(::Product.select_options(current_user), form.object.product_id),
       {include_blank: t(".select_product"), skip_label: true, wrapper_class: "mb-0"}, tabindex: "-1"
   %td
     = form.number_field :quantity, skip_label: true, wrapper_class: "mb-0", min: 1, oninput: "validity.valid||(value=value.replace(/\D+/g, ''))"
