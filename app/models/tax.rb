@@ -35,8 +35,10 @@ class Tax < ApplicationRecord
   default_scope -> { order_name_asc }
 
   class << self
-    def select_options
-      active.pluck(:name, :id)
+    def select_options(user)
+      user.company.taxes.active.collect do |t|
+        ["#{t.name} (#{t.rate}%)", t.id]
+      end
     end
   end
 end

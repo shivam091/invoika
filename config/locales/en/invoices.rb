@@ -75,7 +75,8 @@
         subtotal: "Subtotal:",
         discount: " Discount:",
         tax: "Tax:",
-        total: "Total:"
+        grand_total: "Grant total:",
+        taxable_amount: "Taxable amount",
       },
     }
   }

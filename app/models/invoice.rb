@@ -9,7 +9,7 @@ class Invoice < ApplicationRecord
   nullify_if_blank :discount_type
 
   enum discount_type: {
-    flat: "flat",
+    fixed: "fixed",
     percentage: "percentage"
   }
 
@@ -26,6 +26,8 @@ class Invoice < ApplicationRecord
 
   attribute :status, :enum, default: statuses[:draft]
   attribute :discount_type, :enum, default: nil
+  attribute :invoice_date, default: Date.current
+  attribute :due_date, default: (Date.current + 1.day)
 
   validates :client_id, :company_id, presence: true, reduce: true
   validates :code,
@@ -87,6 +89,36 @@ class Invoice < ApplicationRecord
     end
   end
 
+  def sub_total
+    invoice_items.sum(&:amount)
+  end
+
+  # Discount is calculated on the selling price, excluding taxes.
+  def discount_amount
+    if fixed?
+      discount
+    elsif percentage?
+      (sub_total * discount) / 100
+    else
+      0.00
+    end
+  end
+
+  def taxable_amount
+    (sub_total - discount_amount)
+  end
+
+  # The tax is applied on the amount arrived after subtracting the discount
+  # value from the selling price.
+  def tax_amount
+    percentage = taxes.sum(&:rate)
+    (taxable_amount * percentage) / 100
+  end
+
+  def grand_total
+    (taxable_amount + tax_amount)
+  end
+
   private
 
   def set_code
@@ -99,6 +131,10 @@ class Invoice < ApplicationRecord
 
   def discount_type_required?
     discount.present?
+  end
+
+  def taxes
+    ::Tax.where(id: tax_ids, type: ::Tax.types[:exclusive])
   end
 
   def reject_invoice_item?(attributes)

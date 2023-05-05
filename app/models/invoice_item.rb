@@ -4,7 +4,6 @@
 
 class InvoiceItem < ApplicationRecord
   attribute :quantity, default: 1
-  attribute :total_amount, default: 0
 
   validates :product_id, presence: true, reduce: true
   validates :quantity,
@@ -21,7 +20,32 @@ class InvoiceItem < ApplicationRecord
 
   before_save :remove_blank_elements_from_tax_ids
 
+  def taxable_amount
+    if product.present?
+      if product.sell_price.eql?(unit_price)
+        (product.sell_price * quantity)
+      else
+        (unit_price * quantity)
+      end
+    else
+      0.00
+    end
+  end
+
+  def tax_amount
+    percentage = taxes.sum(&:rate)
+    (taxable_amount * percentage) / 100
+  end
+
+  def amount
+    (taxable_amount + tax_amount)
+  end
+
   private
+
+  def taxes
+    ::Tax.where(id: tax_ids, type: ::Tax.types[:exclusive])
+  end
 
   def remove_blank_elements_from_tax_ids
     self.tax_ids = self.tax_ids.reject(&:blank?)

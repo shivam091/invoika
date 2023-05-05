@@ -25,9 +25,9 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.date :invoice_date
       t.date :due_date
       t.enum :status, enum_type: :invoice_statuses, default: "draft", index: {using: :btree}
-      t.string :currency
+      t.string :currency, default: Money.default_currency.iso_code
       t.float :discount
-      t.enum :discount_type, enum_type: :discount_types, default: "flat", index: {using: :btree}
+      t.enum :discount_type, enum_type: :discount_types, default: "fixed", index: {using: :btree}
       t.text :terms
       t.text :notes
       t.boolean :is_recurred, default: false, index: {using: :btree}
@@ -51,7 +51,7 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.check_constraint "due_date >= invoice_date", name: "chk_due_date_gteq_invoice_date"
 
       t.inclusion_constraint :status, in: ["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]
-      t.inclusion_constraint :discount_type, in: ["flat", "percentage"]
+      t.inclusion_constraint :discount_type, in: ["fixed", "percentage"]
 
       t.index [:code, :company_id], using: :btree, unique: true
 

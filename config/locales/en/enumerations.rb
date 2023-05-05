@@ -19,7 +19,7 @@
       },
       quote: {
         discount_types: {
-          flat: "Flat",
+          fixed: "Fixed",
           percentage: "Percentage"
         },
         statuses: {
@@ -32,7 +32,7 @@
       },
       invoice: {
         discount_types: {
-          flat: "Flat",
+          fixed: "Fixed",
           percentage: "Percentage"
         },
         statuses: {

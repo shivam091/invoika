@@ -14,6 +14,7 @@ class City < ApplicationRecord
   has_many :addresses, dependent: :restrict_with_exception
 
   belongs_to :state, inverse_of: :cities
+  belongs_to :country, inverse_of: :cities
 
   default_scope -> { order_name_asc }
 

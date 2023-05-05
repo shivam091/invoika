@@ -63,6 +63,9 @@ select > option {
   color: var(--color-fg-default);
   background-color: var(--color-canvas-inset);
 }
+select > option[selected] {
+  background-color: var(--color-canvas-overlay);
+}
 fieldset:disabled, [disabled], .form-control:disabled, .form-select:disabled, .form-check-input[disabled] {
   cursor: not-allowed !important;
   filter: alpha(opacity=65);

@@ -52,7 +52,7 @@
       quote_summary: {
         subtotal: "Subtotal:",
         discount: " Discount:",
-        total: "Total:",
+        grand_total: "Grant total:",
       },
       quote_items: {
         product: "Product",

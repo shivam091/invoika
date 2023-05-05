@@ -34,7 +34,7 @@
           %td= badge_tag quote.quote_date.to_fs(:long), {color: ::Invoika::Color.of("#145DA0FF")}
           %td= quote_due_date_badge(quote)
           %td
-            = number_to_currency(0.00, unit: quote.currency.symbol)
+            = number_to_currency(quote.grand_total, unit: quote.currency.symbol)
           %td= quote_status_badge(quote)
           %td.actions
             .dropstart

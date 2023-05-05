@@ -9,10 +9,12 @@
       = form.date_field :invoice_date
     .col-sm-12.col-md-6.col-lg-4
       = form.date_field :due_date
-    .col-sm-12.col-md-6.col-lg-4
-      = form.select :status, enum_options_for_select(::Invoice, :statuses), {include_blank: t(".select_status")}
+    - if form.object.persisted?
+      .col-sm-12.col-md-6.col-lg-4
+        = form.select :status, enum_options_for_select(::Invoice, :statuses), {include_blank: t(".select_status")}
     .col-sm-12.col-md-6.col-lg-4
       = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
+  .row
     .col-sm-12.col-md-6.col-lg-4.mb-2
       = form.form_group :is_recurred, label: {text: ""} do
         .mt-2
@@ -33,7 +35,7 @@
         = form.select :discount_type, enum_options_for_select(::Invoice, :discount_types), {include_blank: t(".select_discount_type")},
           style: "width: 260px !important;", data: {discount_field_target: "discountType", action: "change->discount-field#toggleDiscountField"}
       .col-5
-        = form.select :tax_ids, options_for_select(::Tax.select_options, form.object.tax_ids),
+        = form.select :tax_ids, options_for_select(::Tax.select_options(current_user), form.object.tax_ids),
           {include_blank: t(".select_taxes")}, multiple: true, size: 1
     = render_if_exists("invoices/invoice_summary")
   .row
