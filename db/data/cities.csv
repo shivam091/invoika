@@ -1,4 +1,755 @@
 name,state,country
+Cleveland,Aberdeen,United Kingdom
+Gilberdyke,Aberdeen,United Kingdom
+Llanrwst,Aberdeen,United Kingdom
+Swadlincote,Aberdeen,United Kingdom
+Turriff,Aberdeen,United Kingdom
+Westhill,Aberdeenshire,United Kingdom
+Oban,Argyll,United Kingdom
+Craigavon,Armagh,United Kingdom
+Barton-le-Clay,Bedfordshire,United Kingdom
+Bedford,Bedfordshire,United Kingdom
+Biggleswade,Bedfordshire,United Kingdom
+Caddington,Bedfordshire,United Kingdom
+Flitton,Bedfordshire,United Kingdom
+Flitwick,Bedfordshire,United Kingdom
+Leighton Buzzard,Bedfordshire,United Kingdom
+Marston Moretaine,Bedfordshire,United Kingdom
+Sandy,Bedfordshire,United Kingdom
+Westoning,Bedfordshire,United Kingdom
+Dundonald,Belfast,United Kingdom
+Holywood,Belfast,United Kingdom
+Berkshire,Berkshire,United Kingdom
+Bracknell,Berkshire,United Kingdom
+Littlewick Green,Berkshire,United Kingdom
+Maidenhead,Berkshire,United Kingdom
+Newbury,Berkshire,United Kingdom
+Reading,Berkshire,United Kingdom
+Sandhurst,Berkshire,United Kingdom
+Slough,Berkshire,United Kingdom
+Sunninghill,Berkshire,United Kingdom
+Twyford,Berkshire,United Kingdom
+Windsor,Berkshire,United Kingdom
+Wokingham,Berkshire,United Kingdom
+Woodley,Berkshire,United Kingdom
+Coleshill,Birmingham,United Kingdom
+Edgbaston,Birmingham,United Kingdom
+Hockley,Birmingham,United Kingdom
+Ladywood,Birmingham,United Kingdom
+Nechells,Birmingham,United Kingdom
+Rubery,Birmingham,United Kingdom
+Small Heath,Birmingham,United Kingdom
+Angus,Brechin,United Kingdom
+Bridgnorth,Bridgnorth,United Kingdom
+Avon,Bristol,United Kingdom
+Fishponds,Bristol,United Kingdom
+Henleaze,Bristol,United Kingdom
+Thornbury,Bristol,United Kingdom
+Warmley,Bristol,United Kingdom
+Amersham,Buckinghamshire,United Kingdom
+Aston Clinton,Buckinghamshire,United Kingdom
+Beaconsfield,Buckinghamshire,United Kingdom
+Bletchley,Buckinghamshire,United Kingdom
+Bourne End,Buckinghamshire,United Kingdom
+Buckingham,Buckinghamshire,United Kingdom
+High Wycombe,Buckinghamshire,United Kingdom
+Iver,Buckinghamshire,United Kingdom
+Marlow,Buckinghamshire,United Kingdom
+Milton Keynes,Buckinghamshire,United Kingdom
+Newport Pagnell,Buckinghamshire,United Kingdom
+Piddington,Buckinghamshire,United Kingdom
+Princes Risborough,Buckinghamshire,United Kingdom
+Rowsham,Buckinghamshire,United Kingdom
+Cambridge,Cambridge,United Kingdom
+Ely,Cambridge,United Kingdom
+Huntingdon,Cambridge,United Kingdom
+Peterborough,Cambridge,United Kingdom
+Cambridge,Cambridgeshire,United Kingdom
+Haddenham,Cambridgeshire,United Kingdom
+Sawtry,Cambridgeshire,United Kingdom
+Wisbech,Cambridgeshire,United Kingdom
+Alderley Edge,Cheshire,United Kingdom
+Altrincham,Cheshire,United Kingdom
+Betley,Cheshire,United Kingdom
+Cheadle Gatley,Cheshire,United Kingdom
+Cheadle Hulme,Cheshire,United Kingdom
+Crewe,Cheshire,United Kingdom
+Dukinfield,Cheshire,United Kingdom
+Holmes Chapel,Cheshire,United Kingdom
+Hyde,Cheshire,United Kingdom
+Knuntsford,Cheshire,United Kingdom
+Knutsford,Cheshire,United Kingdom
+Lymm,Cheshire,United Kingdom
+Malpas,Cheshire,United Kingdom
+Merseyside,Cheshire,United Kingdom
+Middlewich,Cheshire,United Kingdom
+Mobberley,Cheshire,United Kingdom
+Nantwich,Cheshire,United Kingdom
+Saltney,Cheshire,United Kingdom
+Sandbach,Cheshire,United Kingdom
+Stalybridge,Cheshire,United Kingdom
+Stockport,Cheshire,United Kingdom
+Tarporley,Cheshire,United Kingdom
+Timperley,Cheshire,United Kingdom
+Widnes,Cheshire,United Kingdom
+Winsford,Cheshire,United Kingdom
+Redcar,Cleveland,United Kingdom
+Stockton-on-Tees,Cleveland,United Kingdom
+Conwy,Conwy,United Kingdom
+Llandudno,Conwy,United Kingdom
+Bude,Cornwall,United Kingdom
+Camborne,Cornwall,United Kingdom
+Fowey,Cornwall,United Kingdom
+Hayle,Cornwall,United Kingdom
+Helston,Cornwall,United Kingdom
+Launceston,Cornwall,United Kingdom
+Liskeard,Cornwall,United Kingdom
+Looe,Cornwall,United Kingdom
+Mevegissey,Cornwall,United Kingdom
+Newquay,Cornwall,United Kingdom
+Penryn,Cornwall,United Kingdom
+Penzance,Cornwall,United Kingdom
+St. Ives,Cornwall,United Kingdom
+Truro,Cornwall,United Kingdom
+Wadebridge,Cornwall,United Kingdom
+Holbrooks,Coventry,United Kingdom
+Askam-in-Furness,Cumbria,United Kingdom
+Flookburgh,Cumbria,United Kingdom
+Grasmere,Cumbria,United Kingdom
+Kendal,Cumbria,United Kingdom
+Keswick,Cumbria,United Kingdom
+Kirkby Stephen,Cumbria,United Kingdom
+Milnthorpe,Cumbria,United Kingdom
+Penrith,Cumbria,United Kingdom
+Ulverston,Cumbria,United Kingdom
+Windermere,Cumbria,United Kingdom
+Denbigh,Denbighshire,United Kingdom
+Ashbourne,Derby,United Kingdom
+Buxton,Derby,United Kingdom
+Chesterfield,Derby,United Kingdom
+Eckington,Derby,United Kingdom
+Bakewell,Derbyshire,United Kingdom
+Belper,Derbyshire,United Kingdom
+Breaston,Derbyshire,United Kingdom
+Derby,Derbyshire,United Kingdom
+Ilkeston,Derbyshire,United Kingdom
+Matlock,Derbyshire,United Kingdom
+Ripley,Derbyshire,United Kingdom
+Axminster,Devon,United Kingdom
+Barnstaple,Devon,United Kingdom
+Beaworthy,Devon,United Kingdom
+Bideford,Devon,United Kingdom
+Bovey Tracey,Devon,United Kingdom
+Braunton,Devon,United Kingdom
+Brixham,Devon,United Kingdom
+Chudleigh,Devon,United Kingdom
+Crediton,Devon,United Kingdom
+Dalwood,Devon,United Kingdom
+Dartmouth,Devon,United Kingdom
+Dawlish,Devon,United Kingdom
+Exeter,Devon,United Kingdom
+Exmouth,Devon,United Kingdom
+Great Torrington,Devon,United Kingdom
+Holsworthy,Devon,United Kingdom
+Kingsbridge,Devon,United Kingdom
+Modbury,Devon,United Kingdom
+Newton Abbot,Devon,United Kingdom
+Okehampton,Devon,United Kingdom
+Plymouth,Devon,United Kingdom
+Plympton,Devon,United Kingdom
+Salcombe,Devon,United Kingdom
+Tiverton,Devon,United Kingdom
+Torquay,Devon,United Kingdom
+Totnes,Devon,United Kingdom
+Winkleigh,Devon,United Kingdom
+Woodburyd,Devon,United Kingdom
+Yelverton,Devon,United Kingdom
+Didcot,Didcot,United Kingdom
+Beaminster,Dorset,United Kingdom
+Blandford Forum,Dorset,United Kingdom
+Christchurch,Dorset,United Kingdom
+Dorset,Dorset,United Kingdom
+Poole,Dorset,United Kingdom
+Sherborne,Dorset,United Kingdom
+Sturminster Newton,Dorset,United Kingdom
+Swanage,Dorset,United Kingdom
+Verwood,Dorset,United Kingdom
+Wimborne,Dorset,United Kingdom
+Alexandria,Dunbartonshire,United Kingdom
+Crook,Durham,United Kingdom
+Spennymoor,Durham,United Kingdom
+Barking,Essex,United Kingdom
+Basildon,Essex,United Kingdom
+Brentwood,Essex,United Kingdom
+Cambrridge,Essex,United Kingdom
+Canvey Island,Essex,United Kingdom
+Chelmsford,Essex,United Kingdom
+Clacton-on-Sea,Essex,United Kingdom
+Colchester,Essex,United Kingdom
+Dagenham,Essex,United Kingdom
+Dunmow,Essex,United Kingdom
+Epping,Essex,United Kingdom
+Essex,Essex,United Kingdom
+Grays,Essex,United Kingdom
+Harlow,Essex,United Kingdom
+Ilford,Essex,United Kingdom
+Ingatestone,Essex,United Kingdom
+Leigh on Sea,Essex,United Kingdom
+Rainham,Essex,United Kingdom
+Romford,Essex,United Kingdom
+Saffron Walden,Essex,United Kingdom
+Stansted,Essex,United Kingdom
+Wickford,Essex,United Kingdom
+Ballinamallard,Fermanagh,United Kingdom
+Kirkcaldy,Fife,United Kingdom
+Ewloe,Flintshire,United Kingdom
+Greenfield,Flintshire,United Kingdom
+Imperial Wharf,Fulham,United Kingdom
+Kirton-in-Lindsey,Gainsborough,United Kingdom
+Berkeley,Glocestershire,United Kingdom
+Cheltenham,Glocestershire,United Kingdom
+Churchham,Glocestershire,United Kingdom
+Cirencester,Glocestershire,United Kingdom
+East Kilbride,Glocestershire,United Kingdom
+Gloucester,Glocestershire,United Kingdom
+Lechlade,Glocestershire,United Kingdom
+Lydney,Glocestershire,United Kingdom
+Moreton in Marsh,Glocestershire,United Kingdom
+Stroud,Glocestershire,United Kingdom
+Tewkesbury,Glocestershire,United Kingdom
+Blackwood,Gwent,United Kingdom
+Blaenavon,Gwent,United Kingdom
+Newport,Gwent,United Kingdom
+Tredegar,Gwent,United Kingdom
+Aldershot,Hampshire,United Kingdom
+Alton,Hampshire,United Kingdom
+Andover,Hampshire,United Kingdom
+Bordon,Hampshire,United Kingdom
+Botley,Hampshire,United Kingdom
+Fareham,Hampshire,United Kingdom
+Farnborough,Hampshire,United Kingdom
+Fleet,Hampshire,United Kingdom
+Fordingbridge,Hampshire,United Kingdom
+Havant,Hampshire,United Kingdom
+Hayling Island,Hampshire,United Kingdom
+Hook,Hampshire,United Kingdom
+Isle of wight,Hampshire,United Kingdom
+Liphook,Hampshire,United Kingdom
+Longparish,Hampshire,United Kingdom
+Old Bishopstoke,Hampshire,United Kingdom
+Petersfield,Hampshire,United Kingdom
+Portsmouth,Hampshire,United Kingdom
+Ringwood,Hampshire,United Kingdom
+Romsey,Hampshire,United Kingdom
+South Harting,Hampshire,United Kingdom
+Southampton,Hampshire,United Kingdom
+Waterlooville,Hampshire,United Kingdom
+West Wellow,Hampshire,United Kingdom
+Winchester,Hampshire,United Kingdom
+Lymington,Hants,United Kingdom
+Pennington,Hants,United Kingdom
+Southampton,Hants,United Kingdom
+Kington,Herefordshire,United Kingdom
+Ledbury,Herefordshire,United Kingdom
+Leominster,Herefordshire,United Kingdom
+Saint Albans,Herefordshire,United Kingdom
+Barnet,Hertfordshire,United Kingdom
+Bishops Stortford,Hertfordshire,United Kingdom
+Borehamwood,Hertfordshire,United Kingdom
+Brookmans Park,Hertfordshire,United Kingdom
+Bushey,Hertfordshire,United Kingdom
+Cheshunt,Hertfordshire,United Kingdom
+Cuffley,Hertfordshire,United Kingdom
+Elstree,Hertfordshire,United Kingdom
+Hemel Hempstead,Hertfordshire,United Kingdom
+Hertfordshire,Hertfordshire,United Kingdom
+Kings Langley,Hertfordshire,United Kingdom
+Much Hadham,Hertfordshire,United Kingdom
+Radlett,Hertfordshire,United Kingdom
+Rickmansworth,Hertfordshire,United Kingdom
+Royston,Hertfordshire,United Kingdom
+Stevenage,Hertfordshire,United Kingdom
+Waltham Cross,Hertfordshire,United Kingdom
+Watford,Hertfordshire,United Kingdom
+Welwyn,Hertfordshire,United Kingdom
+Newmarket,Kenford,United Kingdom
+Ashford,Kent,United Kingdom
+Beckenham,Kent,United Kingdom
+Bromley,Kent,United Kingdom
+Brookland,Kent,United Kingdom
+Charing,Kent,United Kingdom
+Chatam,Kent,United Kingdom
+Crayford,Kent,United Kingdom
+Edenbridge,Kent,United Kingdom
+Erith,Kent,United Kingdom
+Faversham,Kent,United Kingdom
+Five Oak Green,Kent,United Kingdom
+Folkestone,Kent,United Kingdom
+Gillingham,Kent,United Kingdom
+Gravesend,Kent,United Kingdom
+Hartlip,Kent,United Kingdom
+Hayes,Kent,United Kingdom
+Herne Bay,Kent,United Kingdom
+Hythe,Kent,United Kingdom
+Lenham,Kent,United Kingdom
+Maidstone,Kent,United Kingdom
+Minster,Kent,United Kingdom
+New Romney,Kent,United Kingdom
+Orpington,Kent,United Kingdom
+Paddock Wood,Kent,United Kingdom
+Royal Tunbridge Wells,Kent,United Kingdom
+Sandwich,Kent,United Kingdom
+Sheerness,Kent,United Kingdom
+Sidcup,Kent,United Kingdom
+Sittingbourne,Kent,United Kingdom
+Staplehurst,Kent,United Kingdom
+Tunbridge Wells,Kent,United Kingdom
+West Malling,Kent,United Kingdom
+Westerham,Kent,United Kingdom
+Whitstable,Kent,United Kingdom
+Canterbury,Kent,United Kingdom
+Ayrshire,Kilmarnock,United Kingdom
+Airdrie,Lanarkshire,United Kingdom
+Glasgow,Lanarkshire,United Kingdom
+Accrington,Lancashire,United Kingdom
+Blackburn,Lancashire,United Kingdom
+Blackpool,Lancashire,United Kingdom
+Burnley,Lancashire,United Kingdom
+Clayton-Le-Moors,Lancashire,United Kingdom
+Cleveleys,Lancashire,United Kingdom
+Darwen,Lancashire,United Kingdom
+Gisburn,Lancashire,United Kingdom
+Glasgow,Lancashire,United Kingdom
+Greater Manchester,Lancashire,United Kingdom
+Hamilton,Lancashire,United Kingdom
+Kirkby Lonsdale,Lancashire,United Kingdom
+Leyland,Lancashire,United Kingdom
+Littleborough,Lancashire,United Kingdom
+Lytham St Annes,Lancashire,United Kingdom
+Nelson,Lancashire,United Kingdom
+Oldham,Lancashire,United Kingdom
+Out Rawcliffe,Lancashire,United Kingdom
+Padiham,Lancashire,United Kingdom
+Preston,Lancashire,United Kingdom
+Rochdale,Lancashire,United Kingdom
+Rossendale,Lancashire,United Kingdom
+Tarleton,Lancashire,United Kingdom
+Todmorden,Lancashire,United Kingdom
+West Lancashire,Lancashire,United Kingdom
+Coalville,Leicestershire,United Kingdom
+Fleckney,Leicestershire,United Kingdom
+Leicester,Leicestershire,United Kingdom
+Loughborough,Leicestershire,United Kingdom
+Lutterworth,Leicestershire,United Kingdom
+Market Harborough,Leicestershire,United Kingdom
+Tur Langton,Leicestershire,United Kingdom
+Alford,Lincolnshire,United Kingdom
+Bourne,Lincolnshire,United Kingdom
+Casewick,Lincolnshire,United Kingdom
+Digby,Lincolnshire,United Kingdom
+Gainsborough,Lincolnshire,United Kingdom
+Grimsby,Lincolnshire,United Kingdom
+Immingham,Lincolnshire,United Kingdom
+Laceby,Lincolnshire,United Kingdom
+Lincoln,Lincolnshire,United Kingdom
+Louth,Lincolnshire,United Kingdom
+Market Deeping,Lincolnshire,United Kingdom
+Market Rasen,Lincolnshire,United Kingdom
+Spalding,Lincolnshire,United Kingdom
+Spilsby,Lincolnshire,United Kingdom
+Swinderby,Lincolnshire,United Kingdom
+Thurlby,Lincolnshire,United Kingdom
+Witham St Hughs,Lincolnshire,United Kingdom
+Llanymynech,Llanymynech,United Kingdom
+Abbeywood,London,United Kingdom
+Aldgate,London,United Kingdom
+Alperton,London,United Kingdom
+Castledawson,London,United Kingdom
+Edmonton,London,United Kingdom
+Enfield,London,United Kingdom
+Forest Gate,London,United Kingdom
+Greenwich,London,United Kingdom
+Hainault,London,United Kingdom
+Hampstead,London,United Kingdom
+Harrow Weald,London,United Kingdom
+Hendon,London,United Kingdom
+Kensington,London,United Kingdom
+Leyton,London,United Kingdom
+London,London,United Kingdom
+Magherafelt,London,United Kingdom
+Mill Hill,London,United Kingdom
+Southwark,London,United Kingdom
+Suffolk,London,United Kingdom
+Sulham,London,United Kingdom
+Victoria,London,United Kingdom
+Walthamstow,London,United Kingdom
+Wandsworth,London,United Kingdom
+Wembley,London,United Kingdom
+Wimbledon,London,United Kingdom
+Woolwich,London,United Kingdom
+Ludlow,Ludlow,United Kingdom
+Manchester,Manchester,United Kingdom
+Prestwich,Manchester,United Kingdom
+Salford,Manchester,United Kingdom
+Swinton,Manchester,United Kingdom
+Worsley,Manchester,United Kingdom
+Mayfair,Mayfair,United Kingdom
+Southport,Merseyside,United Kingdom
+Brentford,Middlesex,United Kingdom
+Brimsdown,Middlesex,United Kingdom
+Drayton,Middlesex,United Kingdom
+Edgware,Middlesex,United Kingdom
+Feltham,Middlesex,United Kingdom
+Greenford,Middlesex,United Kingdom
+Hampton,Middlesex,United Kingdom
+Harmondsworth,Middlesex,United Kingdom
+Harrow,Middlesex,United Kingdom
+Hayes,Middlesex,United Kingdom
+Isleworth,Middlesex,United Kingdom
+Northolt,Middlesex,United Kingdom
+Northwood,Middlesex,United Kingdom
+Perivale,Middlesex,United Kingdom
+Pinner,Middlesex,United Kingdom
+Ruislip,Middlesex,United Kingdom
+Ruislip Manor,Middlesex,United Kingdom
+South Harrow,Middlesex,United Kingdom
+Southall,Middlesex,United Kingdom
+Staines,Middlesex,United Kingdom
+Stamore,Middlesex,United Kingdom
+Stanmore,Middlesex,United Kingdom
+Stanwell,Middlesex,United Kingdom
+Sunbury,Middlesex,United Kingdom
+Teddington,Middlesex,United Kingdom
+Twickenham,Middlesex,United Kingdom
+Uxbridge,Middlesex,United Kingdom
+Watford,Middlesex,United Kingdom
+Wembley,Middlesex,United Kingdom
+West Drayton,Middlesex,United Kingdom
+Wraysbury,Middlesex,United Kingdom
+Hounslow,Middlesex,United Kingdom
+Mildenhall,Mildenhall,United Kingdom
+Abergavenny,Monmouthshire,United Kingdom
+Monmouth,Monmouthshire,United Kingdom
+Attleborough,Newton Stewart,United Kingdom
+Bacton,Newton Stewart,United Kingdom
+Briston,Newton Stewart,United Kingdom
+Dereham,Newton Stewart,United Kingdom
+Diss,Newton Stewart,United Kingdom
+Downham Market,Newton Stewart,United Kingdom
+Fakenham,Newton Stewart,United Kingdom
+Garboldisham,Newton Stewart,United Kingdom
+Gayton,Newton Stewart,United Kingdom
+Glandford,Newton Stewart,United Kingdom
+Great Yarmouth,Newton Stewart,United Kingdom
+Heacham,Newton Stewart,United Kingdom
+Hopton,Newton Stewart,United Kingdom
+Kings Lynn,Newton Stewart,United Kingdom
+Little Cressingham,Newton Stewart,United Kingdom
+Norwich,Newton Stewart,United Kingdom
+Sheringham,Newton Stewart,United Kingdom
+Thetford,Newton Stewart,United Kingdom
+Trunch,Newton Stewart,United Kingdom
+Winordhan,Newton Stewart,United Kingdom
+Wymondham,Newton Stewart,United Kingdom
+Daventry,Northamptonshire,United Kingdom
+Irthlingborough,Northamptonshire,United Kingdom
+Middleton Cheney,Northamptonshire,United Kingdom
+Oundle,Northamptonshire,United Kingdom
+Towcester,Northamptonshire,United Kingdom
+Welford,Northamptonshire,United Kingdom
+Wellingborough,Northamptonshire,United Kingdom
+Woodford Halse,Northamptonshire,United Kingdom
+Brackley,Northants,United Kingdom
+Desborough,Northants,United Kingdom
+Weedon,Northants,United Kingdom
+Bedlington,Northumberland,United Kingdom
+Corbridge,Northumberland,United Kingdom
+Cramlington,Northumberland,United Kingdom
+Morpeth,Northumberland,United Kingdom
+Northumberland,Northumberland,United Kingdom
+Ponteland,Northumberland,United Kingdom
+Wooler,Northumberland,United Kingdom
+Burton Joyce,Nottinghamshire,United Kingdom
+Cotgraves,Nottinghamshire,United Kingdom
+Gonalston,Nottinghamshire,United Kingdom
+Mansfield,Nottinghamshire,United Kingdom
+Newark,Nottinghamshire,United Kingdom
+Nottingham,Nottinghamshire,United Kingdom
+Pennyfoot Street,Nottinghamshire,United Kingdom
+Sandiacre,Nottinghamshire,United Kingdom
+Southwell,Nottinghamshire,United Kingdom
+Whatton,Nottinghamshire,United Kingdom
+Bampton,Oxford,United Kingdom
+Banbury,Oxford,United Kingdom
+Bicester,Oxford,United Kingdom
+Blewbury,Oxford,United Kingdom
+Cheltenham,Oxford,United Kingdom
+Chipping Norton,Oxford,United Kingdom
+Drayton,Oxford,United Kingdom
+Eynsham,Oxford,United Kingdom
+Farringdon,Oxford,United Kingdom
+Henely on Thames,Oxford,United Kingdom
+Henley-on-Thames,Oxford,United Kingdom
+Oxford,Oxford,United Kingdom
+Shenington,Oxford,United Kingdom
+Thame,Oxford,United Kingdom
+Wantage,Oxford,United Kingdom
+Builth Wells,Powys,United Kingdom
+Knighton,Powys,United Kingdom
+Llanbrynmair,Powys,United Kingdom
+New town,Powys,United Kingdom
+Newtown,Powys,United Kingdom
+Rhaeadr,Powys,United Kingdom
+Welshpool,Powys,United Kingdom
+Hill of Fearn,Roos-shire,United Kingdom
+Shoreham,SUSSEX,United Kingdom
+Sark,Sark,United Kingdom
+Aberdeen,Scotland,United Kingdom
+Alloa,Scotland,United Kingdom
+Alness,Scotland,United Kingdom
+Annan,Scotland,United Kingdom
+Arbroath,Scotland,United Kingdom
+Ardrossan,Scotland,United Kingdom
+Armadale,Scotland,United Kingdom
+Ayr,Scotland,United Kingdom
+Bathgate,Scotland,United Kingdom
+Blairgowrie,Scotland,United Kingdom
+Blantyre-Hamilton,Scotland,United Kingdom
+Boness,Scotland,United Kingdom
+Bonnybridge,Scotland,United Kingdom
+Broxburn,Scotland,United Kingdom
+Broxham,Scotland,United Kingdom
+Buckhaven,Scotland,United Kingdom
+Burntisland,Scotland,United Kingdom
+Carluke,Scotland,United Kingdom
+Carnoustie,Scotland,United Kingdom
+Coatbridge,Scotland,United Kingdom
+Cowdenbeath,Scotland,United Kingdom
+Cumbernauld,Scotland,United Kingdom
+Cumnock,Scotland,United Kingdom
+Cupar,Scotland,United Kingdom
+Dalbeattie,Scotland,United Kingdom
+Dalkeith,Scotland,United Kingdom
+Dingwall,Scotland,United Kingdom
+Dumbarton,Scotland,United Kingdom
+Dumfries,Scotland,United Kingdom
+Dundee,Scotland,United Kingdom
+Dunfermline,Scotland,United Kingdom
+Dunoon,Scotland,United Kingdom
+East Kilbride,Scotland,United Kingdom
+Edimburah,Scotland,United Kingdom
+Edinburgh,Scotland,United Kingdom
+Elgin,Scotland,United Kingdom
+Ellon,Scotland,United Kingdom
+Erskine,Scotland,United Kingdom
+Falkirk,Scotland,United Kingdom
+Forfar,Scotland,United Kingdom
+Forres,Scotland,United Kingdom
+Fort William,Scotland,United Kingdom
+Fraserburgh,Scotland,United Kingdom
+Galashiels,Scotland,United Kingdom
+Galston-Newmilns,Scotland,United Kingdom
+Girvan,Scotland,United Kingdom
+Glasgow,Scotland,United Kingdom
+Glenrothes,Scotland,United Kingdom
+Greengairs,Scotland,United Kingdom
+Greenock,Scotland,United Kingdom
+Haddington,Scotland,United Kingdom
+Hawick,Scotland,United Kingdom
+Helensburgh,Scotland,United Kingdom
+Insch,Scotland,United Kingdom
+Inverkeithing-Dalgety Bay,Scotland,United Kingdom
+Inverness,Scotland,United Kingdom
+Inverurie,Scotland,United Kingdom
+Irvine,Scotland,United Kingdom
+Isle of Lewis,Scotland,United Kingdom
+Kilmarnock,Scotland,United Kingdom
+Kilsyth,Scotland,United Kingdom
+Kilwinning,Scotland,United Kingdom
+Kirkcaldy,Scotland,United Kingdom
+Kirkintilloch-Lenzie,Scotland,United Kingdom
+Kirkwall,Scotland,United Kingdom
+Lanark,Scotland,United Kingdom
+Largs,Scotland,United Kingdom
+Larkhall,Scotland,United Kingdom
+Lerwick,Scotland,United Kingdom
+Linlithgow,Scotland,United Kingdom
+Livingston,Scotland,United Kingdom
+Loanhead,Scotland,United Kingdom
+Montrose,Scotland,United Kingdom
+Motherwell,Scotland,United Kingdom
+Nairn,Scotland,United Kingdom
+Newtown Saint Boswells,Scotland,United Kingdom
+Paisley,Scotland,United Kingdom
+Penicuik,Scotland,United Kingdom
+Perth,Scotland,United Kingdom
+Peterhead,Scotland,United Kingdom
+Saint Andrews,Scotland,United Kingdom
+Selkirkshire,Scotland,United Kingdom
+Shotts,Scotland,United Kingdom
+Stirling,Scotland,United Kingdom
+Stonehaven,Scotland,United Kingdom
+Stornoway,Scotland,United Kingdom
+Stranraer,Scotland,United Kingdom
+Tranent,Scotland,United Kingdom
+Troon,Scotland,United Kingdom
+Whitburn,Scotland,United Kingdom
+Bishops Castle,Shropshire,United Kingdom
+Bridgnorth,Shropshire,United Kingdom
+Bucknell,Shropshire,United Kingdom
+Drayton,Shropshire,United Kingdom
+Greete,Shropshire,United Kingdom
+Hinstock,Shropshire,United Kingdom
+Jackfield,Shropshire,United Kingdom
+Ludlow,Shropshire,United Kingdom
+Much Wenlock,Shropshire,United Kingdom
+Oswestry,Shropshire,United Kingdom
+Ryton,Shropshire,United Kingdom
+Shifnal,Shropshire,United Kingdom
+Shrewsbury,Shropshire,United Kingdom
+Telford,Shropshire,United Kingdom
+Whitchurch,Shropshire,United Kingdom
+Bath,Somerset,United Kingdom
+Brent Knoll,Somerset,United Kingdom
+Castle Cary,Somerset,United Kingdom
+Shepton Mallet,Somerset,United Kingdom
+Somerset,Somerset,United Kingdom
+Taunton,Somerset,United Kingdom
+Wedmore,Somerset,United Kingdom
+Wellington,Somerset,United Kingdom
+Weston-super-Mare,Somerset,United Kingdom
+Burton-on-Trent,Staffordshire,United Kingdom
+Hednesford,Staffordshire,United Kingdom
+Stoke on Trent,Staffordshire,United Kingdom
+Stone,Staffordshire,United Kingdom
+Strabane,Strabane,United Kingdom
+Bury St Edmunds,Suffolk,United Kingdom
+Felixstowe,Suffolk,United Kingdom
+Haverhill,Suffolk,United Kingdom
+Leiston,Suffolk,United Kingdom
+Lowestoft,Suffolk,United Kingdom
+Stowmarket,Suffolk,United Kingdom
+Sudbury,Suffolk,United Kingdom
+Woodbridge,Suffolk,United Kingdom
+Ashtead,Surrey,United Kingdom
+Bagshot,Surrey,United Kingdom
+Betchworth,Surrey,United Kingdom
+Bletchingley,Surrey,United Kingdom
+Carshalton,Surrey,United Kingdom
+Chertsey,Surrey,United Kingdom
+Claygate,Surrey,United Kingdom
+Croydon,Surrey,United Kingdom
+Dorking,Surrey,United Kingdom
+Effingham,Surrey,United Kingdom
+Epsom,Surrey,United Kingdom
+Farnham,Surrey,United Kingdom
+Haslemere,Surrey,United Kingdom
+Kingston Upon Thames,Surrey,United Kingdom
+Leatherhead,Surrey,United Kingdom
+Mitcham,Surrey,United Kingdom
+New Malden,Surrey,United Kingdom
+Redhill,Surrey,United Kingdom
+Richmond,Surrey,United Kingdom
+Salfords,Surrey,United Kingdom
+Shepperton,Surrey,United Kingdom
+Stoneleigh,Surrey,United Kingdom
+Surbiton,Surrey,United Kingdom
+Surrey,Surrey,United Kingdom
+Tadworth,Surrey,United Kingdom
+Walton on Thames,Surrey,United Kingdom
+West Molesey,Surrey,United Kingdom
+Wisley,Surrey,United Kingdom
+Woking,Surrey,United Kingdom
+Brighton,Sussex,United Kingdom
+Henfield,Sussex,United Kingdom
+Sussex,Sussex,United Kingdom
+Worthing,Sussex,United Kingdom
+Twickenham,Twickenham,United Kingdom
+Omagh,Tyrone,United Kingdom
+Santaquin,Utah,United Kingdom
+Aberdare,Wales,United Kingdom
+Aberystwyth,Wales,United Kingdom
+Barry,Wales,United Kingdom
+Brecon,Wales,United Kingdom
+Bridgend,Wales,United Kingdom
+Brynmawr,Wales,United Kingdom
+Caernarfon,Wales,United Kingdom
+Caerphily,Wales,United Kingdom
+Caldicot,Wales,United Kingdom
+Cardiff,Wales,United Kingdom
+Carmarthen,Wales,United Kingdom
+Colwyn Bay,Wales,United Kingdom
+Connahs Quay,Wales,United Kingdom
+Cwmbran,Wales,United Kingdom
+Dolgellau,Wales,United Kingdom
+Ebbw Vale,Wales,United Kingdom
+Gaerwen,Wales,United Kingdom
+Gwynedd,Wales,United Kingdom
+Haverfordwest,Wales,United Kingdom
+Isle of Anglesey,Wales,United Kingdom
+Islwyn,Wales,United Kingdom
+Llandrindod Wells,Wales,United Kingdom
+Llanelli,Wales,United Kingdom
+Llangefni,Wales,United Kingdom
+Maesteg,Wales,United Kingdom
+Merthyr Tydfil,Wales,United Kingdom
+Mold,Wales,United Kingdom
+Mountain Ash-Abercynon,Wales,United Kingdom
+Neath,Wales,United Kingdom
+Newport,Wales,United Kingdom
+Pembrokeshire,Wales,United Kingdom
+Penarth,Wales,United Kingdom
+Pencader,Wales,United Kingdom
+Pontypool,Wales,United Kingdom
+Pontypridd,Wales,United Kingdom
+Port Talbot,Wales,United Kingdom
+Queensferry,Wales,United Kingdom
+Rhondda,Wales,United Kingdom
+Rhyl,Wales,United Kingdom
+Ruthin,Wales,United Kingdom
+Shotton-Hawarden,Wales,United Kingdom
+St. Asaph,Wales,United Kingdom
+Swansea,Wales,United Kingdom
+West Glamorgan,Wales,United Kingdom
+Wrexham,Wales,United Kingdom
+Alcester,Warwickshire,United Kingdom
+Coventry,Warwickshire,United Kingdom
+Henley in Arden,Warwickshire,United Kingdom
+Nuneaton,Warwickshire,United Kingdom
+Pershore,Warwickshire,United Kingdom
+Southam,Warwickshire,United Kingdom
+Warwick,Warwickshire,United Kingdom
+Whissendine,Whissendine,United Kingdom
+Amesbury,Wiltshire,United Kingdom
+Bradford on Avon,Wiltshire,United Kingdom
+Calne,Wiltshire,United Kingdom
+Chippenham,Wiltshire,United Kingdom
+Corsham,Wiltshire,United Kingdom
+Cosham,Wiltshire,United Kingdom
+Devizes,Wiltshire,United Kingdom
+Downton,Wiltshire,United Kingdom
+Malmesbury,Wiltshire,United Kingdom
+Marlborough,Wiltshire,United Kingdom
+Melksham,Wiltshire,United Kingdom
+Pewsey,Wiltshire,United Kingdom
+Salisbury,Wiltshire,United Kingdom
+Southwick,Wiltshire,United Kingdom
+Swindon,Wiltshire,United Kingdom
+Warminster,Wiltshire,United Kingdom
+Westbury,Wiltshire,United Kingdom
+Winnersh,Wokingham,United Kingdom
+Evesham,Worcestershire,United Kingdom
+Hartlebury,Worcestershire,United Kingdom
+Kidderminster,Worcestershire,United Kingdom
+Pershore,Worcestershire,United Kingdom
+Redditch,Worcestershire,United Kingdom
+Worcester,Worcestershire,United Kingdom
+Caergwrle,Wrexham,United Kingdom
+Ruabon,Wrexham,United Kingdom
+Neuffen,Wurttemberg,United Kingdom
+Beverley,Yorkshire,United Kingdom
+Malton,Yorkshire,United Kingdom
+Mexborough,Yorkshire,United Kingdom
 Auckland,Auckland,New Zealand
 Helensville,Auckland,New Zealand
 Henderson,Auckland,New Zealand
@@ -13308,7 +14059,7 @@ Hamburg,Hamburg,Germany
 Diekholzen,Hannover,Germany
 Heroldstatt,Heroldstatt,Germany
 ABlar,Hessen,Germany
-Alsbach-H闁煎瓨鐟ㄧ亸鍐嚇濡ゅ懏hnlein,Hessen,Germany
+Alsbach-H闂佺厧鐡ㄩ悷銊т焊閸愬殗婵°倕鎳廻nlein,Hessen,Germany
 Alsfeld,Hessen,Germany
 Altenstadt,Hessen,Germany
 Angelburg,Hessen,Germany
