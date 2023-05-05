@@ -13,6 +13,14 @@ class CreateCities < Invoika::Database::Migration[1.0]
                      on_delete: :restrict
                    },
                    index: {using: :btree}
+      t.references :country,
+                   type: :uuid,
+                   foreign_key: {
+                     to_table: :countries,
+                     name: :fk_cities_country_id_on_countries,
+                     on_delete: :restrict
+                   },
+                   index: {using: :btree}
       t.string :name
       t.boolean :is_active, default: true, index: {using: :btree}
 

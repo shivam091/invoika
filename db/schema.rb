@@ -91,10 +91,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
 
   create_table "cities", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "state_id"
+    t.uuid "country_id"
     t.string "name"
     t.boolean "is_active", default: true
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
+    t.index ["country_id"], name: "index_cities_on_country_id"
     t.index ["is_active"], name: "index_cities_on_is_active"
     t.index ["name", "state_id"], name: "index_cities_on_name_and_state_id", unique: true
     t.index ["state_id"], name: "index_cities_on_state_id"
@@ -412,6 +414,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
   add_foreign_key "addresses", "countries", name: "fk_addresses_country_id_on_countries", on_delete: :restrict
   add_foreign_key "addresses", "states", name: "fk_addresses_state_id_on_states", on_delete: :restrict
   add_foreign_key "categories", "companies", name: "fk_categories_company_id_on_companies", on_delete: :cascade
+  add_foreign_key "cities", "countries", name: "fk_cities_country_id_on_countries", on_delete: :restrict
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
   add_foreign_key "invoice_items", "invoices", name: "fk_invoice_items_invoice_id_on_invoices", on_delete: :cascade
   add_foreign_key "invoice_items", "products", name: "fk_invoice_items_product_id_on_products", on_delete: :restrict

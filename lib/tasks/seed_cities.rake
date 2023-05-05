@@ -10,9 +10,11 @@ namespace :invoika do
     task seed_cities: :environment do
       CSV.foreach("#{Rails.root}/db/data/cities.csv", headers: true) do |row|
         begin
-          state = ::State.unscope(where: :is_active).find_by(name: row["state"])
+          country = ::Country.unscope(where: :is_active).find_by(name: row["country"])
+          state = country.states.unscope(where: :is_active).find_by(name: row["state"])
           state.cities.unscope(where: :is_active).safe_find_or_create_by(name: row["name"]) do |city|
             city.is_active = true
+            city.country = country
             puts "City --> [#{row["name"]}] is added successfully."
           end
         rescue Exception => e
