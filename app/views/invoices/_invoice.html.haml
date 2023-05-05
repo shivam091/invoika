@@ -42,10 +42,10 @@
           %td
           %td= invoice_status_badge(invoice)
           %td.actions
-            .dropstart
+            .dropdown
               = link_to "javascript:void(0)", class: "text-default", data: {bs_toggle: "dropdown"}, aria: {expanded: false} do
                 = external_svg_tag("svgs/ellipsis-vertical.svg")
-              %ul.dropdown-menu
+              %ul.dropdown-menu.dropdown-menu-end
                 %li
                   = link_to edit_invoice_path(invoice), class: "dropdown-item" do
                     = external_svg_tag("svgs/pencil.svg")

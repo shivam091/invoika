@@ -1,5 +1,6 @@
 .modal-header {
   font-weight: 700;
+  border-bottom: 1px solid var(--color-border-default) !important;
 }
 .modal-content {
   background-color: var(--color-canvas-default);
@@ -10,6 +11,8 @@
 }
 .modal-header, .modal-footer {
   background-color: var(--color-canvas-subtle);
+}
+.modal-footer {
   border-top: 1px solid var(--color-border-default) !important;
 }
 .modal-title {
