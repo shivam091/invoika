@@ -26,9 +26,12 @@ class CreateQuotes < Invoika::Database::Migration[1.0]
       t.date :due_date
       t.enum :status, enum_type: :quote_statuses, default: "draft"
       t.float :discount
-      t.enum :discount_type, enum_type: :discount_types, default: "flat"
+      t.enum :discount_type, enum_type: :discount_types, default: "fixed"
       t.text :terms
       t.text :notes
+      t.string :currency, default: Money.default_currency.iso_code
+
+      t.not_null_and_empty_constraint :currency
 
       t.not_null_constraint :company_id
       t.not_null_constraint :quote_date
@@ -44,8 +47,8 @@ class CreateQuotes < Invoika::Database::Migration[1.0]
 
       t.check_constraint "due_date >= quote_date", name: "chk_due_date_gteq_quote_date"
 
-      t.inclusion_constraint :status, in: ["draft", "converted", "pending", "accepted", "not_accepted"]
-      t.inclusion_constraint :discount_type, in: ["flat", "percentage"]
+      t.inclusion_constraint :status, in: ["draft", "converted", "pending", "accepted", "rejected"]
+      t.inclusion_constraint :discount_type, in: ["fixed", "percentage"]
 
       t.index [:code, :company_id], using: :btree, unique: true
 

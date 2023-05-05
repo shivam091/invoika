@@ -26,9 +26,11 @@ class CreateProducts < Invoika::Database::Migration[1.0]
       t.text :description
       t.money :unit_price, default: 0.0
       t.money :sell_price, default: 0.0
+      t.string :currency, default: Money.default_currency.iso_code
       t.boolean :is_active, default: false
 
       t.not_null_and_empty_constraint :name
+      t.not_null_and_empty_constraint :currency
 
       t.not_null_constraint :company_id
 

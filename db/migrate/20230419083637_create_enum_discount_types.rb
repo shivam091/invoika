@@ -4,6 +4,6 @@
 
 class CreateEnumDiscountTypes < Invoika::Database::Migration[1.0]
   def change
-    create_enum :discount_types, [:flat, :percentage]
+    create_enum :discount_types, [:fixed, :percentage]
   end
 end

@@ -9,7 +9,7 @@ class CreateEnumQuoteStatuses < Invoika::Database::Migration[1.0]
                                    :converted,
                                    :pending,
                                    :accepted,
-                                   :not_accepted
+                                   :rejected
                                  ]
   end
 end

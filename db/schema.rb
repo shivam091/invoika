@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
   create_enum "color_schemes", [["dark", "light"]]
-  create_enum "discount_types", [["flat", "percentage"]]
+  create_enum "discount_types", [["fixed", "percentage"]]
   create_enum "invoice_statuses", [["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]]
   create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "rejected"]]
   create_enum "tax_types", [["inclusive", "exclusive"]]
@@ -109,9 +109,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
     t.string "fax_number"
     t.string "registrant_name"
     t.date "established_on"
+    t.string "currency", default: "INR"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.string "currency", default: "INR"
     t.index ["email"], name: "index_companies_on_email", unique: true
     t.index ["fax_number"], name: "index_companies_on_fax_number", unique: true
     t.index ["phone_number"], name: "index_companies_on_phone_number", unique: true
@@ -170,7 +170,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
     t.enum "status", default: "draft", enum_type: "invoice_statuses"
     t.string "currency", default: "INR"
     t.float "discount"
-    t.enum "discount_type", default: "flat", enum_type: "discount_types"
+    t.enum "discount_type", default: "fixed", enum_type: "discount_types"
     t.text "terms"
     t.text "notes"
     t.boolean "is_recurred", default: false
@@ -193,7 +193,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
     t.check_constraint "code IS NOT NULL AND code::text <> ''::text", name: "chk_924a9da806"
     t.check_constraint "company_id IS NOT NULL", name: "chk_678e4c5428"
     t.check_constraint "currency IS NOT NULL AND currency::text <> ''::text", name: "chk_f561bdbdaf"
-    t.check_constraint "discount_type = ANY (ARRAY['flat'::discount_types, 'percentage'::discount_types])", name: "chk_afbdabbd82"
+    t.check_constraint "discount_type = ANY (ARRAY['fixed'::discount_types, 'percentage'::discount_types])", name: "chk_afbdabbd82"
     t.check_constraint "due_date >= invoice_date", name: "chk_due_date_gteq_invoice_date"
     t.check_constraint "due_date IS NOT NULL", name: "chk_ca757536a4"
     t.check_constraint "invoice_date IS NOT NULL", name: "chk_165db585b6"
@@ -208,10 +208,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
     t.text "description"
     t.money "unit_price", scale: 2, default: "0.0"
     t.money "sell_price", scale: 2, default: "0.0"
+    t.string "currency", default: "INR"
     t.boolean "is_active", default: false
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.string "currency", default: "INR"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["code", "company_id"], name: "index_products_on_code_and_company_id", unique: true
     t.index ["company_id"], name: "index_products_on_company_id"
@@ -251,12 +251,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
     t.date "due_date"
     t.enum "status", default: "draft", enum_type: "quote_statuses"
     t.float "discount"
-    t.enum "discount_type", default: "flat", enum_type: "discount_types"
+    t.enum "discount_type", default: "fixed", enum_type: "discount_types"
     t.text "terms"
     t.text "notes"
+    t.string "currency", default: "INR"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
-    t.string "currency", default: "INR"
     t.index ["client_id"], name: "index_quotes_on_client_id"
     t.index ["code", "company_id"], name: "index_quotes_on_code_and_company_id", unique: true
     t.index ["company_id"], name: "index_quotes_on_company_id"
@@ -268,7 +268,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_01_061449) do
     t.check_constraint "code IS NOT NULL AND code::text <> ''::text", name: "chk_10664e013c"
     t.check_constraint "company_id IS NOT NULL", name: "chk_22d8e514ce"
     t.check_constraint "currency IS NOT NULL AND currency::text <> ''::text", name: "chk_56c2f45421"
-    t.check_constraint "discount_type = ANY (ARRAY['flat'::discount_types, 'percentage'::discount_types])", name: "chk_6b2988274f"
+    t.check_constraint "discount_type = ANY (ARRAY['fixed'::discount_types, 'percentage'::discount_types])", name: "chk_6b2988274f"
     t.check_constraint "due_date >= quote_date", name: "chk_due_date_gteq_quote_date"
     t.check_constraint "due_date IS NOT NULL", name: "chk_b0d4171069"
     t.check_constraint "quote_date IS NOT NULL", name: "chk_2250cfed48"
