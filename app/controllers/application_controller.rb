@@ -23,6 +23,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::DeleteRestrictionError do |exception|
     redirect_to :back, alert: exception.message
   end
+  rescue_from CanCan::AccessDenied, with: :forbidden
 
   before_action :authenticate_user!
   before_action :set_company, if: :user_signed_in?
@@ -58,6 +59,10 @@ class ApplicationController < ActionController::Base
     else
       Time.use_zone(Time.zone_default, &block)
     end
+  end
+
+  def forbidden
+    render "errors/forbidden", status: :forbidden, layout: "error"
   end
 
   def internal_server_error
