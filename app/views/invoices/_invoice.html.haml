@@ -42,43 +42,42 @@
           %td
           %td= invoice_status_badge(invoice)
           %td.actions
-            .dropdown
-              = link_to "javascript:void(0)", class: "text-default", data: {bs_toggle: "dropdown"}, aria: {expanded: false} do
-                = external_svg_tag("svgs/ellipsis-vertical.svg")
-              %ul.dropdown-menu.dropdown-menu-end
-                %li
-                  = link_to edit_invoice_path(invoice), class: "dropdown-item" do
-                    = external_svg_tag("svgs/pencil.svg")
-                    = button_text("edit")
-                %li
-                  = link_to "javascript:void(0)", class: "dropdown-item" do
-                    = external_svg_tag("svgs/envelope.svg")
-                    = button_text("send")
-                %li
-                  = link_to "javascript:void(0)", class: "dropdown-item" do
-                    = external_svg_tag("svgs/download.svg")
-                    = button_text("download")
-                %li
-                  = link_to "javascript:void(0)", class: "dropdown-item" do
-                    = external_svg_tag("svgs/alarm-clock.svg")
-                    = t(".reminder")
-                %li
-                  = link_to "javascript:void(0)", class: "dropdown-item" do
-                    = external_svg_tag("svgs/link.svg")
-                    = t(".invoice_url")
-                %li
-                  = link_to "javascript:void(0)", class: "dropdown-item" do
-                    = external_svg_tag("svgs/cancel.svg")
-                    = t(".mark_as_void")
-                %li
-                  = link_to "javascript:void(0)", class: "dropdown-item" do
-                    = external_svg_tag("svgs/cancel.svg")
-                    = t(".mark_as_uncollectible")
-                %li
-                  = link_to invoice_path(invoice), class: "dropdown-item dropdown-item-danger",
-                    data: {turbo_confirm: t(".delete_invoice_confirmation_text"), turbo_method: :delete} do
-                    = external_svg_tag("svgs/trash.svg")
-                    = button_text("delete")
+            = link_to "javascript:void(0)", class: "text-default", data: {bs_toggle: "dropdown"}, aria: {expanded: false} do
+              = external_svg_tag("svgs/ellipsis-vertical.svg")
+            %ul.dropdown-menu.dropdown-menu-end
+              %li
+                = link_to edit_invoice_path(invoice), class: "dropdown-item" do
+                  = external_svg_tag("svgs/pencil.svg")
+                  = button_text("edit")
+              %li
+                = link_to "javascript:void(0)", class: "dropdown-item" do
+                  = external_svg_tag("svgs/envelope.svg")
+                  = button_text("send")
+              %li
+                = link_to "javascript:void(0)", class: "dropdown-item" do
+                  = external_svg_tag("svgs/download.svg")
+                  = button_text("download")
+              %li
+                = link_to "javascript:void(0)", class: "dropdown-item" do
+                  = external_svg_tag("svgs/alarm-clock.svg")
+                  = t(".reminder")
+              %li
+                = link_to "javascript:void(0)", class: "dropdown-item" do
+                  = external_svg_tag("svgs/link.svg")
+                  = t(".invoice_url")
+              %li
+                = link_to "javascript:void(0)", class: "dropdown-item" do
+                  = external_svg_tag("svgs/cancel.svg")
+                  = t(".mark_as_void")
+              %li
+                = link_to "javascript:void(0)", class: "dropdown-item" do
+                  = external_svg_tag("svgs/cancel.svg")
+                  = t(".mark_as_uncollectible")
+              %li
+                = link_to invoice_path(invoice), class: "dropdown-item dropdown-item-danger",
+                  data: {turbo_confirm: t(".delete_invoice_confirmation_text"), turbo_method: :delete} do
+                  = external_svg_tag("svgs/trash.svg")
+                  = button_text("delete")
       - end.empty?
         %tr
           %td.no-data{colspan: ::Invoice.columns.count}
