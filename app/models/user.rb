@@ -73,7 +73,7 @@ class User < ApplicationRecord
      .join_sources
    joins(join).where(role_table[:name].eq(role_name))
   end
-  scope :admins, -> { with_role("admin") }
+  scope :vendors, -> { with_role("vendor") }
   scope :clients, -> { with_role("client") }
 
   delegate :preferred_locale, :preferred_locale=,
@@ -141,8 +141,8 @@ class User < ApplicationRecord
     super && is_active?
   end
 
-  def admin?
-    self.has_role?("admin")
+  def vendor?
+    self.has_role?("vendor")
   end
 
   def client?

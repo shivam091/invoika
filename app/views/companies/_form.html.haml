@@ -1,0 +1,30 @@
+= bootstrap_form_for @company, url: company_path, html: {enctype: "multipart/form-data"} do |form|
+  .subheader
+    = t(".company_details")
+  .row
+    .col-sm-12.col-md-6.col-lg-4
+      = form.text_field :name, data: {controller: "autofocus"}
+    .col-sm-12.col-md-6.col-lg-4
+      = form.text_field :email
+    .col-sm-12.col-md-6.col-lg-4
+      = form.text_field :phone_number
+    .col-sm-12.col-md-6.col-lg-4
+      = form.text_field :fax_number
+    .col-sm-12.col-md-6.col-lg-4
+      = form.text_field :registrant_name
+    .col-sm-12.col-md-6.col-lg-4
+      = form.date_field :established_on
+    .col-sm-12.col-md-6.col-lg-4
+      = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
+  .subheader
+    = t(".address")
+  = form.fields_for :address, include_id: false do |address_form_fields|
+    = render_if_exists("shared/address_form_fields", locals: {form: address_form_fields})
+  .actions
+    = button_tag type: :submit, class: "btn btn-primary" do
+      = external_svg_tag("svgs/floppy.svg")
+      %span.d-block.d-lg-none= button_text("update")
+      %span.d-none.d-lg-block= button_text("update_company")
+    = link_to company_path, class: "btn btn-secondary" do
+      = external_svg_tag("svgs/arrow-left.svg")
+      = button_text("go_back")

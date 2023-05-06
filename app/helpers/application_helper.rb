@@ -66,7 +66,7 @@ module ApplicationHelper
   #
   #   # On Admin::ApplicationController
   #   current_controller?(:application)         # => true
-  #   current_controller?("admin/application")  # => true
+  #   current_controller?("application")  # => true
   def current_controller?(*args)
     args.any? do |v|
       Invoika::Utils.safe_downcase!(v.to_s).in?([controller.controller_name, controller.controller_path])

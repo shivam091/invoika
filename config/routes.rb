@@ -41,7 +41,24 @@ Rails.application.routes.draw do
                registrations: "user/registrations"
              }
 
-  concern :shareable do
+  concern :toggleable do
+    collection do
+      get :active
+      get :inactive
+    end
+
+    member do
+      patch :activate
+      patch :deactivate
+    end
+  end
+
+  authenticated :admin do
+
+  end
+
+  authenticated :user do
+    resource :company, except: [:new, :create, :destroy]
     resource :dashboard, only: :show
     resource :profile, only: [:show, :edit, :update] do
       delete :remove_avatar, path: "remove-avatar", on: :member
@@ -54,6 +71,11 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :categories, except: :show, param: :uuid, concerns: :toggleable
+    resources :taxes, except: :show, param: :uuid, concerns: :toggleable
+    resources :products, param: :uuid, concerns: :toggleable do
+      delete :remove_image, path: "remove-image", on: :member
+    end
     resources :quotes, param: :uuid do
       collection do
         get :draft
@@ -71,37 +93,7 @@ Rails.application.routes.draw do
     end
   end
 
-  concern :toggleable do
-    collection do
-      get :active
-      get :inactive
-    end
-
-    member do
-      patch :activate
-      patch :deactivate
-    end
-  end
-
-  authenticated :user do
-    namespace :admin do
-      concerns :shareable
-
-      resource :company, except: [:new, :create, :destroy]
-
-      resources :categories, except: :show, param: :uuid, concerns: :toggleable
-      resources :taxes, except: :show, param: :uuid, concerns: :toggleable
-      resources :products, param: :uuid, concerns: :toggleable do
-        delete :remove_image, path: "remove-image", on: :member
-      end
-    end
-
-    namespace :client do
-      concerns :shareable
-    end
-  end
-
-  root to: "root#index"
+  root to: "dashboards#show"
 
   resources :states, only: :index
   resources :cities, only: :index
