@@ -17,11 +17,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
 
   # Custom types defined in this database.
   # Note that some types may not work with other database engines. Be careful if changing database.
-  create_enum "color_schemes", [["dark", "light"]]
-  create_enum "discount_types", [["fixed", "percentage"]]
-  create_enum "invoice_statuses", [["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]]
-  create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "rejected"]]
-  create_enum "tax_types", [["inclusive", "exclusive"]]
+  create_enum "color_schemes", ["dark", "light"]
+  create_enum "discount_types", ["fixed", "percentage"]
+  create_enum "invoice_statuses", ["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]
+  create_enum "quote_statuses", ["draft", "converted", "pending", "accepted", "rejected"]
+  create_enum "tax_types", ["inclusive", "exclusive"]
 
   create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
