@@ -46,7 +46,7 @@ class InvoicesController < ApplicationController
     @invoice = response.payload[:invoice]
     if response.success?
       flash[:notice] = response.message
-      redirect_to helpers.invoices_path
+      redirect_to invoices_path
     else
       flash.now[:alert] = response.message
       respond_to do |format|
@@ -70,7 +70,7 @@ class InvoicesController < ApplicationController
     @invoice = response.payload[:invoice]
     if response.success?
       flash[:notice] = response.message
-      redirect_to helpers.invoices_path
+      redirect_to invoices_path
     else
       flash.now[:alert] = response.message
       respond_to do |format|
@@ -93,7 +93,7 @@ class InvoicesController < ApplicationController
     else
       flash[:alert] = response.message
     end
-    redirect_to helpers.invoices_path
+    redirect_to invoices_path
   end
 
   private

@@ -1,4 +1,4 @@
-= bootstrap_form_for current_user, url: update_locale_path do |form|
+= bootstrap_form_for current_user, url: update_locale_user_preference_path do |form|
   = form.fields_for :user_preference, include_id: false do |user_preference_form|
     = user_preference_form.select :preferred_locale, selectable_locales_with_translation_level(2),
       {include_blank: t(".select_preferred_language")}, data: {controller: "autofocus"}

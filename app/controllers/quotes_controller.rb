@@ -40,7 +40,7 @@ class QuotesController < ApplicationController
     @quote = response.payload[:quote]
     if response.success?
       flash[:notice] = response.message
-      redirect_to helpers.quotes_path
+      redirect_to quotes_path
     else
       flash.now[:alert] = response.message
       respond_to do |format|
@@ -64,7 +64,7 @@ class QuotesController < ApplicationController
     @quote = response.payload[:quote]
     if response.success?
       flash[:notice] = response.message
-      redirect_to helpers.quotes_path
+      redirect_to quotes_path
     else
       flash.now[:alert] = response.message
       respond_to do |format|
@@ -87,7 +87,7 @@ class QuotesController < ApplicationController
     else
       flash[:alert] = response.message
     end
-    redirect_to helpers.quotes_path
+    redirect_to quotes_path
   end
 
   private

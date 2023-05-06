@@ -7,11 +7,11 @@
         .list-unstyled.d-flex.align-items-center
           .d-inline-block.middle-dot-divider
             - if current_user.preferred_color_scheme.eql?(::UserPreference.color_schemes[:light])
-              = link_to update_color_scheme_path, class: "text-default text-decoration-none",
+              = link_to update_color_scheme_user_preference_path, class: "text-default text-decoration-none",
                 title: t(".change_to_dark_mode"), data: {turbo_method: :patch} do
                 = external_svg_tag("svgs/moon.svg", height: "16px", width: "16px")
             - else
-              = link_to update_color_scheme_path, class: "text-default text-decoration-none",
+              = link_to update_color_scheme_user_preference_path, class: "text-default text-decoration-none",
                 title: t(".change_to_light_mode"), data: {turbo_method: :patch} do
                 = external_svg_tag("svgs/sun.svg", height: "16px", width: "16px")
           .d-inline-block.middle-dot-divider{data: {controller: "screen-mode", screen_mode_hidden_class: "d-none"}}
@@ -23,7 +23,7 @@
             = link_to "javascript:void(0)", class: "text-default text-decoration-none" do
               = external_svg_tag("svgs/bell-ringing.svg", height: "16px", width: "16px")
           .d-inline-block.middle-dot-divider
-            = link_to change_locale_path, class: "text-default text-decoration-none", data: {turbo_frame: :remote_modal} do
+            = link_to change_locale_user_preference_path, class: "text-default text-decoration-none", data: {turbo_frame: :remote_modal} do
               = t(".change_language")
   %nav.navbar.navbar-expand-lg.divider{aria: {label: t(".main_navigation")}}
     .container-fluid

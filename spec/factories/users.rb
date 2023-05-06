@@ -12,12 +12,12 @@ FactoryBot.define do
     password_automatically_set { false }
     association :company
 
-    factory :admin, parent: :user do
-      last_name { "Admin" }
-      email { "admin@invoika.com" }
+    factory :vendor, parent: :user do
+      last_name { "Vendor" }
+      email { "vendor@invoika.com" }
       mobile_number { generate(:mobile_number) }
 
-      association :role, factory: :admin_role
+      association :role, factory: :vendor_role
     end
 
     factory :client, parent: :user do
