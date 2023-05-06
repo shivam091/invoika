@@ -43,6 +43,9 @@ gem "turbo-rails", "~> 1.3"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
+# Authorization library
+gem "cancancan", "~> 3"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
