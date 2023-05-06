@@ -12,9 +12,10 @@
     = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/credit-card.svg")
       = t(".payments")
-    = link_to active_taxes_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("taxes"))}" do
-      = external_svg_tag("svgs/percentage.svg")
-      = t(".taxes")
+    - if can? :manage, ::Tax
+      = link_to active_taxes_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("taxes"))}" do
+        = external_svg_tag("svgs/percentage.svg")
+        = t(".taxes")
     = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/report.svg")
       = t(".reports")
