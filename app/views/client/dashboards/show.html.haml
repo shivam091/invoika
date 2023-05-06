@@ -1,3 +1,76 @@
 = title(t(".title"))
 .card.card-primary.border.border-primary
   .card-body
+    .row
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  = @company.quotes.where(client_id: current_user.id).count
+                %p.mb-2= t(".total_quotes")
+              .d-inline-block
+                = external_svg_tag("svgs/quote.svg", height: "48px", width: "48px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), "javascript:void(0)", class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  = @company.invoices.where(client_id: current_user.id).count
+                %p.mb-2= t(".total_invoices")
+              .d-inline-block
+                = external_svg_tag("svgs/file.svg", height: "36px", width: "36px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), "javascript:void(0)", class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  = @company.invoices.where(client_id: current_user.id).paid.count
+                %p.mb-2= t(".total_paid_invoices")
+              .d-inline-block
+                = external_svg_tag("svgs/file-check.svg", height: "36px", width: "36px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), "javascript:void(0)", class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  = @company.invoices.where(client_id: current_user.id).unpaid.count
+                %p.mb-2= t(".total_unpaid_invoices")
+              .d-inline-block
+                = external_svg_tag("svgs/file-times.svg", height: "36px", width: "36px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), "javascript:void(0)", class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  0
+                %p.mb-2= t(".total_payments")
+              .d-inline-block
+                = external_svg_tag("svgs/credit-card.svg", height: "48px", width: "48px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), "javascript:void(0)", class: "text-decoration-none"
+
+    .row
+      .col-12.d-flex
+        .card.flex-fill.mb-2
+          .card-header
+            .card-title= t(".top_purchased_products")
+          .card-body

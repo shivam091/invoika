@@ -11,7 +11,7 @@
           = t(".quotes")
       %li.nav-item
         = link_to client_invoices_path, class: "nav-link d-inline-flex align-items-center gap-1 #{active_when(current_controller?("client/invoices"))}" do
-          = external_svg_tag("svgs/file.svg")
+          = external_svg_tag("svgs/file.svg", height: 16, width: 16)
           = t(".invoices")
       %li.nav-item
         = link_to "javascript:void(0)", class: "nav-link d-inline-flex align-items-center gap-1" do
