@@ -9,8 +9,9 @@
       = link_to t(".your_profile"), profile_path, class: "dropdown-item"
     %li
       = link_to t(".your_preferences"), user_preference_path, class: "dropdown-item"
-    %li
-      = link_to t(".your_company"), company_path, class: "dropdown-item"
+    - if can? :read, ::Company
+      %li
+        = link_to t(".your_company"), company_path, class: "dropdown-item"
     %li.dropdown-divider
     %li
       = link_to t(".sign_out"), destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete}
