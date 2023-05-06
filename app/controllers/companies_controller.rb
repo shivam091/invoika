@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
     @user = response.payload[:user]
     if response.success?
       flash[:notice] = response.message
-      company_path
+      redirect_to company_path
     else
       flash.now[:alert] = response.message
       respond_to do |format|

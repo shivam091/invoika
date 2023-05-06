@@ -44,7 +44,7 @@
           address2: "Area, Street, Sector, Village, Suite, or Floor",
           city_id: "Town, City, Suburb, or Area",
           state_id: "State, Province, County, or Territory",
-          country_id: "Country",
+          country_id: "Country/Region",
           postal_code: "Postal code, Postcode, or PIN code",
         },
         tax: {

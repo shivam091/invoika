@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
     @user = response.payload[:user]
     if response.success?
       flash[:notice] = response.message
-      profile_path
+      redirect_to profile_path
     else
       flash.now[:alert] = response.message
       respond_to do |format|
