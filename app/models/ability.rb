@@ -14,6 +14,7 @@ class Ability
 
     if user.vendor?
       can :manage, ::Tax
+      can :manage, ::Product
     end
   end
 end

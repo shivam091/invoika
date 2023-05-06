@@ -5,6 +5,7 @@
 class ProductsController < ApplicationController
 
   before_action :find_product, except: [:index, :active, :inactive, :new, :create]
+  authorize_resource
 
   # GET /products
   def index
