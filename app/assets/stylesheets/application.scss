@@ -110,14 +110,11 @@ p {
 .modal-actions .btn + .btn {
   margin-right: 0.25rem;
 }
-.actions .btn + .btn {
+.btn + .btn, form + form {
   margin-left: 0.25rem;
 }
 .actions form {
   display: inline-block;
-}
-.actions form + form {
-  margin-left: 0.25rem;
 }
 #main-container {
   display: flex;
@@ -196,4 +193,14 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 .no-data {
   text-align: center;
   font-weight: bolder;
+}
+dl {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+dd {
+  margin-bottom: .5rem;
+}
+dl:last-child, dd:last-child {
+  margin-bottom: 0rem;
 }
