@@ -38,7 +38,7 @@ gem "aasm", "~> 5"
 gem "money"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails", "~> 1.3"
+gem "turbo-rails", "1.3"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
