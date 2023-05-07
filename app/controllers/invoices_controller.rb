@@ -6,41 +6,41 @@ class InvoicesController < ApplicationController
 
   before_action :find_invoice, only: [:edit, :update, :destroy]
 
-  # GET /(:role)/invoices
+  # GET /invoices
   def index
     @pagy, @invoices = pagy(invoices)
   end
 
-  # GET /(:role)/invoices/draft
+  # GET /invoices/draft
   def draft
     @invoices = invoices.draft
     @pagy, @invoices = pagy(@invoices)
   end
 
-  # GET /(:role)/invoices/paid
+  # GET /invoices/paid
   def paid
     @invoices = invoices.paid
     @pagy, @invoices = pagy(@invoices)
   end
 
-  # GET /(:role)/invoices/unpaid
+  # GET /invoices/unpaid
   def unpaid
     @invoices = invoices.unpaid
     @pagy, @invoices = pagy(@invoices)
   end
 
-  # GET /(:role)/invoices/overdue
+  # GET /invoices/overdue
   def overdue
     @invoices = invoices.overdue
     @pagy, @invoices = pagy(@invoices)
   end
 
-  # GET /(:role)/invoices/new
+  # GET /invoices/new
   def new
     @invoice = invoices.build
   end
 
-  # POST /(:role)/invoices
+  # POST /invoices
   def create
     response = ::Invoices::CreateService.(@company, invoice_params)
     @invoice = response.payload[:invoice]
@@ -60,11 +60,11 @@ class InvoicesController < ApplicationController
     end
   end
 
-  # GET /(:role)/invoices/:uuid/edit
+  # GET /invoices/:uuid/edit
   def edit
   end
 
-  # PUT/PATCH /(:role)/invoices/:uuid
+  # PUT/PATCH /invoices/:uuid
   def update
     response = ::Invoices::UpdateService.(@invoice, invoice_params)
     @invoice = response.payload[:invoice]
@@ -84,7 +84,7 @@ class InvoicesController < ApplicationController
     end
   end
 
-  # DELETE /(:role)/invoices/:uuid
+  # DELETE /invoices/:uuid
   def destroy
     response = ::Invoices::DestroyService.(@invoice)
     @invoice = response.payload[:invoice]

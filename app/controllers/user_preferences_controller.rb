@@ -3,15 +3,15 @@
 # -*- warn_indent: true -*-
 
 class UserPreferencesController < ApplicationController
-  # GET /(:role)/preference
+  # GET /preference
   def show
   end
 
-  # GET /(:role)/preference/edit
+  # GET /preference/edit
   def edit
   end
 
-  # PUT|PATCH /(:role)/preference
+  # PUT|PATCH /preference
   def update
     response = ::UserPreferences::UpdateService.(current_user, preference_params)
     @user = response.payload[:user]
@@ -31,11 +31,11 @@ class UserPreferencesController < ApplicationController
     end
   end
 
-  # GET /(:role)/preference/change-locale
+  # GET /preference/change-locale
   def change_locale
   end
 
-  # PATCH /(:role)/preference/update-locale
+  # PATCH /preference/update-locale
   def update_locale
     response = ::UserPreferences::UpdateLocaleService.(current_user, locale_attributes)
     @user = response.payload[:user]
@@ -55,7 +55,7 @@ class UserPreferencesController < ApplicationController
     end
   end
 
-  # PATCH /(:role)/preference/update-color-scheme
+  # PATCH /preference/update-color-scheme
   def update_color_scheme
     response = ::UserPreferences::UpdateColorSchemeService.(current_user)
     @user = response.payload[:user]
