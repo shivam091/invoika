@@ -1,0 +1,17 @@
+.table-responsive
+  %table.table.table-striped
+    %thead
+      %tr
+        %th{scope: "col", width: "25px"} #
+        %th{scope: "col"}= t(".product")
+        %th{scope: "col"}= t(".quantity")
+        %th{scope: "col"}= t(".unit_price")
+        %th{scope: "col"}= t(".amount")
+    %tbody
+      - quote.quote_items.each.with_index(1) do |quote_item, index|
+        %tr
+          %td= index
+          %td= link_to quote_item.product_name, product_path(quote_item.product), target: :_blank
+          %td= quote_item.quantity
+          %td= number_to_currency(quote_item.unit_price, unit: quote.currency.symbol)
+          %td= number_to_currency(quote_item.amount, unit: quote.currency.symbol)

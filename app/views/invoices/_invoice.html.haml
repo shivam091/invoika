@@ -29,7 +29,7 @@
                 .row
                   .col-lg-12
                     = link_to invoice.client_full_name, "javascript:void(0)", class: "me-1 fw-bold"
-                    = badge_tag invoice.code, {color: ::Invoika::Color.of("#006B75FF")}, {href: "javascript:void(0)"}
+                    = badge_tag invoice.code, {color: ::Invoika::Color.of("#006B75FF")}, {href: invoice_path(invoice)}
                     - if invoice.is_recurred?
                       %span{title: t(".recurring_enabled_for_period", days: invoice.recurring_cycle), data: {toggle: "tooltip"}}
                         = external_svg_tag("svgs/recycling.svg", class: "recurring-cycle-icon", width: 16, height: 16)

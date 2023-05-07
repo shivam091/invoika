@@ -4,7 +4,7 @@
 
 class QuotesController < ApplicationController
 
-  before_action :find_quote, only: [:edit, :update, :destroy]
+  before_action :find_quote, only: [:edit, :update, :destroy, :show]
 
   # GET /quotes
   def index
@@ -76,6 +76,10 @@ class QuotesController < ApplicationController
         end
       end
     end
+  end
+
+  # GET /quotes/:uuid
+  def show
   end
 
   # DELETE /quotes/:uuid

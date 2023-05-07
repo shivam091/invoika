@@ -43,7 +43,17 @@
         remove_image_confirmation_text: "Are you sure to remove image of this product?",
         guidelines_for_image: "Guidelines for uploading image",
         preview: "Preview",
-      }
+      },
+      show: {
+        code: "Code",
+        category: "Category",
+        unit_price: "Unit price",
+        sell_price: "Sell price",
+        description: "Description",
+        created: "Created",
+        updated: "Updated",
+        delete_product_confirmation_text: "Are you sure you want to delete the product '%{product_name}'?",
+      },
     }
   }
 }

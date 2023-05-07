@@ -4,7 +4,7 @@
 
 class InvoicesController < ApplicationController
 
-  before_action :find_invoice, only: [:edit, :update, :destroy]
+  before_action :find_invoice, only: [:edit, :update, :destroy, :show]
 
   # GET /invoices
   def index
@@ -82,6 +82,10 @@ class InvoicesController < ApplicationController
         end
       end
     end
+  end
+
+  # GET /invoices/:uuid
+  def show
   end
 
   # DELETE /invoices/:uuid

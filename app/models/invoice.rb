@@ -79,7 +79,7 @@ class Invoice < ApplicationRecord
                on: :update,
                if: :status_previously_changed?
 
-  delegate :full_name, :email, to: :client, prefix: true
+  delegate :full_name, :email, :mobile_number, to: :client, prefix: true
   delegate :name, to: :company, prefix: true
 
   default_scope -> { order_created_desc }

@@ -1,0 +1,18 @@
+.tooltip-inner {
+  background-color: var(--color-canvas-overlay);
+  color: var(--color-fg-default);
+  border: 1.5px solid var(--color-border-default);
+  z-index: 100 !important;
+}
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top: solid 5px var(--color-border-default) !important;
+}
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom: solid 5px var(--color-border-default) !important;
+}
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+  border-left: solid 5px var(--color-border-default) !important;
+}
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+  border-right: solid 5px var(--color-border-default) !important;
+}

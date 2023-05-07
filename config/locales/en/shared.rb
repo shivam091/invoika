@@ -16,6 +16,13 @@
         allowed_image_width: "Allowed image width: minimum %{allowed_image_min_width}px and maximum %{allowed_image_max_width}px",
         allowed_image_height: "Allowed image height: minimum %{allowed_image_min_height}px and maximum %{allowed_image_max_height}px"
       },
+      quote_invoice_notes_terms: {
+        notes: "Notes",
+        terms: "Terms",
+      },
+      due_date: {
+        due_date: "Due date",
+      },
     }
   }
 }

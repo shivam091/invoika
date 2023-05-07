@@ -62,7 +62,7 @@ class Quote < ApplicationRecord
   before_validation :remove_discount, unless: :discount_required?
   after_commit :broadcast_quotes_count, on: [:create, :destroy]
 
-  delegate :full_name, :email, to: :client, prefix: true
+  delegate :full_name, :email, :mobile_number, to: :client, prefix: true
   delegate :name, to: :company, prefix: true
 
   default_scope -> { order_created_desc }

@@ -64,6 +64,26 @@
       quote_item_form: {
         select_product: "Select product"
       },
+      show: {
+        quote_code: "Quote",
+        quote_date: "Quote date",
+        due_date: "Due date",
+        issued_by: "Issued by",
+        issued_for: "Issued for",
+        email_address: "Email address: %{email_address}",
+        phone_number: "Phone number: %{phone_number}",
+        mobile_number: "Mobile number: %{mobile_number}",
+        delete_quote_confirmation_text: "Are you sure you want to delete the quote?",
+      },
+      quote_date: {
+        quote_date: "Quote date",
+      },
+      quote_item: {
+        product: "Product",
+        quantity: "Quantity",
+        unit_price: "Unit price",
+        amount: "Amount",
+      },
     }
   }
 }
