@@ -20,6 +20,9 @@
         notes: "Notes",
         terms: "Terms",
       },
+      due_date: {
+        due_date: "Due date",
+      },
     }
   }
 }

@@ -90,9 +90,6 @@
       invoice_date: {
         invoice_date: "Invoice date",
       },
-      due_date: {
-        due_date: "Due date",
-      },
       invoice_item: {
         product: "Product",
         quantity: "Quantity",

@@ -78,9 +78,6 @@
       quote_date: {
         quote_date: "Quote date",
       },
-      due_date: {
-        due_date: "Due date",
-      },
       quote_item: {
         product: "Product",
         quantity: "Quantity",
