@@ -6,35 +6,35 @@ class QuotesController < ApplicationController
 
   before_action :find_quote, only: [:edit, :update, :destroy]
 
-  # GET /(:role)/quotes
+  # GET /quotes
   def index
     @pagy, @quotes = pagy(quotes)
   end
 
-  # GET /(:role)/quotes/draft
+  # GET /quotes/draft
   def draft
     @quotes = quotes.draft
     @pagy, @quotes = pagy(@quotes)
   end
 
-  # GET /(:role)/quotes/converted
+  # GET /quotes/converted
   def converted
     @quotes = quotes.converted
     @pagy, @quotes = pagy(@quotes)
   end
 
-  # GET /(:role)/quotes/accepted
+  # GET /quotes/accepted
   def accepted
     @quotes = quotes.accepted
     @pagy, @quotes = pagy(@quotes)
   end
 
-  # GET /(:role)/quotes/new
+  # GET /quotes/new
   def new
     @quote = quotes.build
   end
 
-  # POST /(:role)/quotes
+  # POST /quotes
   def create
     response = ::Quotes::CreateService.(@company, quote_params)
     @quote = response.payload[:quote]
@@ -54,11 +54,11 @@ class QuotesController < ApplicationController
     end
   end
 
-  # GET /(:role)/quotes/:uuid/edit
+  # GET /quotes/:uuid/edit
   def edit
   end
 
-  # PUT/PATCH /(:role)/quotes/:uuid
+  # PUT/PATCH /quotes/:uuid
   def update
     response = ::Quotes::UpdateService.(@quote, quote_params)
     @quote = response.payload[:quote]
@@ -78,7 +78,7 @@ class QuotesController < ApplicationController
     end
   end
 
-  # DELETE /(:role)/quotes/:uuid
+  # DELETE /quotes/:uuid
   def destroy
     response = ::Quotes::DestroyService.(@quote)
     @quote = response.payload[:quote]

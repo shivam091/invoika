@@ -4,15 +4,15 @@
 
 class ProfilesController < ApplicationController
 
-  # GET /(:role)/profile
+  # GET /profile
   def show
   end
 
-  # GET /(:role)/profile/edit
+  # GET /profile/edit
   def edit
   end
 
-  # PUT|PATCH /(:role)/profile
+  # PUT|PATCH /profile
   def update
     response = ::Profiles::UpdateService.(current_user, user_params)
     @user = response.payload[:user]
@@ -32,7 +32,7 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # PUT|PATCH /(:role)/profile/remove-avatar
+  # PUT|PATCH /profile/remove-avatar
   def remove_avatar
     response = ::Profiles::RemoveAvatarService.(current_user)
     @current_user = response.payload[:current_user]
