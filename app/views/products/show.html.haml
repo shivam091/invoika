@@ -1,0 +1,55 @@
+= title(@product.name)
+.card.card-primary.border.border-primary
+  .card-body
+    .card
+      .card-header
+        .row
+          .col-xxl-5.col-12
+            .d-sm-flex.align-items-center
+              .image.image-circle.image-mini.border.me-2
+                = image_tag @product.image_url
+              %h4.ms-0.ms-lg-2.mb-0= @product.name
+      .card-body
+        .row
+          .col-12.col-lg-6.d-flex.flex-column
+            %dl
+              %dt= t(".code")
+              %dd.text-muted= @product.code
+          .col-12.col-lg-6.d-flex.flex-column
+            %dl
+              %dt= t(".category")
+              %dd.text-muted= @product.category_name
+          .col-12.col-lg-6.d-flex.flex-column
+            %dl
+              %dt= t(".unit_price")
+              %dd.text-muted= number_to_currency(@product.unit_price, unit: @product.currency.symbol)
+          .col-12.col-lg-6.d-flex.flex-column
+            %dl
+              %dt= t(".sell_price")
+              %dd.text-muted= number_to_currency(@product.sell_price, unit: @product.currency.symbol)
+          .col-12.d-flex.flex-column
+            %dl
+              %dt= t(".description")
+              %dd.text-muted= @product.description
+          .col-12.col-lg-6.d-flex.flex-column
+            %dl
+              %dt= t(".created")
+              %dd.text-muted
+                %time= time_ago(@product.created_at)
+          .col-12.col-lg-6.d-flex.flex-column
+            %dl
+              %dt= t(".updated")
+              %dd.text-muted= time_ago(@product.updated_at)
+        .actions
+          = link_to edit_product_path(@product), class: "btn btn-primary" do
+            = external_svg_tag("svgs/pencil.svg")
+            %span.d-block.d-lg-none= button_text("edit")
+            %span.d-none.d-lg-block= button_text("edit_product")
+          = link_to product_path(@product), class: "btn btn-danger",
+            data: {turbo_method: :delete, turbo_confirm: t(".delete_product_confirmation_text", product_name: @product.name)} do
+            = external_svg_tag("svgs/pencil.svg")
+            %span.d-block.d-lg-none= button_text("edit")
+            %span.d-none.d-lg-block= button_text("edit_product")
+          = link_to products_path, class: "btn btn-secondary" do
+            = external_svg_tag("svgs/cancel.svg")
+            = button_text("cancel")

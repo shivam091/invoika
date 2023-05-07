@@ -24,7 +24,7 @@
               .image.image-circle.image-mini.border.me-2
                 = image_tag product.image_url
               .d-flex.flex-column
-                = link_to product.name, "javascript:void(0)", class: "fw-bold"
+                = link_to product.name, product_path(product), class: "fw-bold"
                 = product.code
           %td= product.category_name
           %td= number_to_currency(product.unit_price, unit: product.currency.symbol)

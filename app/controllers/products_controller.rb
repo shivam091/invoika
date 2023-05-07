@@ -73,6 +73,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  # GET /products/:uuid
+  def show
+  end
+
   # DELETE /products/:uuid
   def destroy
     response = ::Products::DestroyService.(@product)
