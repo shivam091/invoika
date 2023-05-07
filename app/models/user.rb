@@ -3,7 +3,7 @@
 # -*- warn_indent: true -*-
 
 class User < ApplicationRecord
-  include CaseSensitivity, StripAttribute, DowncaseAttribute, Validatable
+  include CaseSensitivity, StripAttribute, DowncaseAttribute, Validatable, Toggleable
 
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :validatable, :timeoutable, :trackable
