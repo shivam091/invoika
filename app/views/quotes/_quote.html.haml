@@ -28,7 +28,7 @@
                 .row
                   .col-lg-12
                     = link_to quote.client_full_name, "javascript:void(0)", class: "me-1 fw-bold"
-                    = badge_tag quote.code, {color: ::Invoika::Color.of("#006B75FF")}, {href: "javascript:void(0)"}
+                    = badge_tag quote.code, {color: ::Invoika::Color.of("#006B75FF")}, {href: quote_path(quote)}
                 %span.text-muted.text-start
                   = quote.client_email
           %td= badge_tag quote.quote_date.to_fs(:long), {color: ::Invoika::Color.of("#145DA0FF")}

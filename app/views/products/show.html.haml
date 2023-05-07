@@ -40,16 +40,16 @@
             %dl
               %dt= t(".updated")
               %dd.text-muted= time_ago(@product.updated_at)
-        .actions
-          = link_to edit_product_path(@product), class: "btn btn-primary" do
-            = external_svg_tag("svgs/pencil.svg")
-            %span.d-block.d-lg-none= button_text("edit")
-            %span.d-none.d-lg-block= button_text("edit_product")
-          = link_to product_path(@product), class: "btn btn-danger",
-            data: {turbo_method: :delete, turbo_confirm: t(".delete_product_confirmation_text", product_name: @product.name)} do
-            = external_svg_tag("svgs/pencil.svg")
-            %span.d-block.d-lg-none= button_text("edit")
-            %span.d-none.d-lg-block= button_text("edit_product")
-          = link_to products_path, class: "btn btn-secondary" do
-            = external_svg_tag("svgs/cancel.svg")
-            = button_text("cancel")
+      .card-footer
+        = link_to edit_product_path(@product), class: "btn btn-primary" do
+          = external_svg_tag("svgs/pencil.svg")
+          %span.d-block.d-lg-none= button_text("edit")
+          %span.d-none.d-lg-block= button_text("edit_product")
+        = link_to product_path(@product), class: "btn btn-danger",
+          data: {turbo_method: :delete, turbo_confirm: t(".delete_product_confirmation_text", product_name: @product.name)} do
+          = external_svg_tag("svgs/trash.svg")
+          %span.d-block.d-lg-none= button_text("delete")
+          %span.d-none.d-lg-block= button_text("delete_product")
+        = link_to products_path, class: "btn btn-secondary" do
+          = external_svg_tag("svgs/cancel.svg")
+          = button_text("cancel")
