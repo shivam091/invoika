@@ -35,11 +35,11 @@
             %dl
               %dt= t(".created")
               %dd.text-muted
-                %time= time_ago(@product.created_at)
+                %time= time_ago_with_tooltip(@product.created_at)
           .col-12.col-lg-6.d-flex.flex-column
             %dl
               %dt= t(".updated")
-              %dd.text-muted= time_ago(@product.updated_at)
+              %dd.text-muted= time_ago_with_tooltip(@product.updated_at)
       .card-footer
         = link_to edit_product_path(@product), class: "btn btn-primary" do
           = external_svg_tag("svgs/pencil.svg")
