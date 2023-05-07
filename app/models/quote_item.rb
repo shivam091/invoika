@@ -19,6 +19,8 @@ class QuoteItem < ApplicationRecord
   belongs_to :quote, inverse_of: :quote_items, touch: true
   belongs_to :product, inverse_of: :quote_items
 
+  delegate :name, to: :product, prefix: true
+
   def amount
     if product.present?
       if product.sell_price.eql?(unit_price)

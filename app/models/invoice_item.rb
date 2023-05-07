@@ -20,6 +20,8 @@ class InvoiceItem < ApplicationRecord
 
   before_save :remove_blank_elements_from_tax_ids
 
+  delegate :name, to: :product, prefix: true
+
   def taxable_amount
     if product.present?
       if product.sell_price.eql?(unit_price)
