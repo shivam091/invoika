@@ -1,0 +1,67 @@
+= title(@invoice.code)
+.card.card-primary.border.border-primary
+  .card-body
+    .card
+      .card-header
+        .row.align-items-center
+          .col-6.col-lg-3.text-start.mb-2.mb-lg-0
+            %h4.mb-0
+              = t(".invoice_code")
+              %span.text-muted= "##{@invoice.code}"
+          .col-6.col-lg-3.text-end.text-lg-center.mb-2.mb-lg-0
+            .d-none.d-lg-block
+              = render_if_exists("invoices/invoice_date")
+            .d-block.d-lg-none
+              = render_if_exists("invoices/print_button")
+          .col-6.col-lg-3.text-start.text-lg-center
+            .d-none.d-lg-block
+              = render_if_exists("invoices/due_date")
+            .d-block.d-lg-none
+              = render_if_exists("invoices/invoice_date")
+          .col-6.col-lg-3.text-end
+            .d-none.d-lg-block
+              = render_if_exists("invoices/print_button")
+            .d-block.d-lg-none
+              = render_if_exists("invoices/due_date")
+      .card-body
+        .row.align-items-start.my-2
+          .col-12.col-lg-6.border-0.border-lg-end.mb-2.mb-lg-0
+            %h5= t(".issued_by")
+            %dl
+              %dt= @company.name
+              %dd.text-muted
+                %address
+                  = @company.address.humanize
+              %dd.text-muted
+                = t(".email_address", email_address: mail_to(@company.email)).html_safe
+              %dd.text-muted
+                = t(".phone_number", phone_number: phone_to(@company.phone_number)).html_safe
+          .col-12.col-lg-6
+            %h5= t(".issued_for")
+            %dl
+              %dt= @invoice.client_full_name
+              %dd.text-muted
+                %address
+                  = @invoice.client.address.humanize
+              %dd.text-muted
+                = t(".email_address", email_address: mail_to(@invoice.client_email)).html_safe
+              %dd.text-muted
+                = t(".mobile_number", mobile_number: phone_to(@invoice.client_mobile_number)).html_safe
+        .row
+          = render_if_exists("invoices/invoice_item", locals: {invoice: @invoice})
+          = render_if_exists("invoices/invoice_summary")
+        .border-bottom
+        = render_if_exists("shared/quote_invoice_notes_terms", locals: {object: @quote})
+      .card-footer
+        = link_to edit_invoice_path(@invoice), class: "btn btn-primary" do
+          = external_svg_tag("svgs/pencil.svg")
+          %span.d-block.d-lg-none= button_text("edit")
+          %span.d-none.d-lg-block= button_text("edit_invoice")
+        = link_to invoice_path(@invoice), class: "btn btn-danger",
+          data: {turbo_method: :delete, turbo_confirm: t(".delete_invoice_confirmation_text")} do
+          = external_svg_tag("svgs/trash.svg")
+          %span.d-block.d-lg-none= button_text("delete")
+          %span.d-none.d-lg-block= button_text("delete_invoice")
+        = link_to invoices_path, class: "btn btn-secondary" do
+          = external_svg_tag("svgs/cancel.svg")
+          = button_text("cancel")
