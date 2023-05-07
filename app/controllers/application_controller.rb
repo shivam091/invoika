@@ -28,6 +28,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :set_company, if: :user_signed_in?
   before_action :set_active_storage_current_host
+  before_action :set_current_attributes, if: :user_signed_in?
 
   around_action :set_locale, :set_time_zone
 
@@ -44,6 +45,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_current_attributes
+    ::Current.user = current_user
+    ::Current.company = @company
+  end
 
   def set_locale(&block)
     if user_signed_in?

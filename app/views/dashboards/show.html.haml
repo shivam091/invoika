@@ -1,4 +1,8 @@
 = title(t(".title"))
+= turbo_stream_from :clients
+= turbo_stream_from :products
+= turbo_stream_from :quotes
+= turbo_stream_from :invoices
 .card.card-primary.border.border-primary
   .card-body
     .row
@@ -9,7 +13,8 @@
               .d-flex.align-items-start
                 .flex-grow-1
                   %h3.mb-2
-                    = @company.users.clients.count
+                    = turbo_frame_tag :clients_count do
+                      = @company.users.clients.count
                   %p.mb-2= t(".total_clients")
                 .d-inline-block
                   = external_svg_tag("svgs/users.svg", height: "48px", width: "48px")
@@ -22,7 +27,8 @@
               .d-flex.align-items-start
                 .flex-grow-1
                   %h3.mb-2
-                    = @company.products.count
+                    = turbo_frame_tag :products_count do
+                      = @company.products.count
                   %p.mb-2= t(".total_products")
                 .d-inline-block
                   = external_svg_tag("svgs/cube.svg", height: "48px", width: "48px")
@@ -35,7 +41,8 @@
             .d-flex.align-items-start
               .flex-grow-1
                 %h3.mb-2
-                  = ::Quote.accessible(current_user).count
+                  = turbo_frame_tag :quotes_count do
+                    = ::Quote.accessible(current_user).count
                 %p.mb-2= t(".total_quotes")
               .d-inline-block
                 = external_svg_tag("svgs/quote.svg", height: "48px", width: "48px")
@@ -61,7 +68,8 @@
             .d-flex.align-items-start
               .flex-grow-1
                 %h3.mb-2
-                  = ::Invoice.accessible(current_user).count
+                  = turbo_frame_tag :invoices_count do
+                    = ::Invoice.accessible(current_user).count
                 %p.mb-2= t(".total_invoices")
               .d-inline-block
                 = external_svg_tag("svgs/file.svg", height: "36px", width: "36px")
@@ -74,7 +82,8 @@
             .d-flex.align-items-start
               .flex-grow-1
                 %h3.mb-2
-                  = ::Invoice.accessible(current_user).paid.count
+                  = turbo_frame_tag :paid_invoices_count do
+                    = ::Invoice.accessible(current_user).paid.count
                 %p.mb-2= t(".total_paid_invoices")
               .d-inline-block
                 = external_svg_tag("svgs/file-check.svg", height: "36px", width: "36px")
@@ -87,7 +96,8 @@
             .d-flex.align-items-start
               .flex-grow-1
                 %h3.mb-2
-                  = ::Invoice.accessible(current_user).unpaid.count
+                  = turbo_frame_tag :unpaid_invoices_count do
+                    = ::Invoice.accessible(current_user).unpaid.count
                 %p.mb-2= t(".total_unpaid_invoices")
               .d-inline-block
                 = external_svg_tag("svgs/file-times.svg", height: "36px", width: "36px")
@@ -100,7 +110,8 @@
             .d-flex.align-items-start
               .flex-grow-1
                 %h3.mb-2
-                  = ::Invoice.accessible(current_user).overdue.count
+                  = turbo_frame_tag :overdue_invoices_count do
+                    = ::Invoice.accessible(current_user).overdue.count
                 %p.mb-2= t(".total_overdue_invoices")
               .d-inline-block
                 = external_svg_tag("svgs/exclamation-triangle.svg", height: "36px", width: "36px")

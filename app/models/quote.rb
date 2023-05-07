@@ -60,6 +60,7 @@ class Quote < ApplicationRecord
 
   after_initialize :set_code, if: :new_record?
   before_validation :remove_discount, unless: :discount_required?
+  after_commit :broadcast_quotes_count, on: [:create, :destroy]
 
   delegate :full_name, :email, to: :client, prefix: true
   delegate :name, to: :company, prefix: true
@@ -118,5 +119,13 @@ class Quote < ApplicationRecord
 
   def remove_discount
     self.discount = nil
+  end
+
+  def broadcast_quotes_count
+    broadcast_update_to(
+      :quotes,
+      target: :quotes_count,
+      html: ::Quote.accessible(::Current.user).count
+    )
   end
 end

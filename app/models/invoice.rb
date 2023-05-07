@@ -72,6 +72,12 @@ class Invoice < ApplicationRecord
   before_save :remove_blank_elements_from_tax_ids
   before_validation :remove_recurring_cycle, unless: :is_recurred?
   before_validation :remove_discount, unless: :discount_required?
+  after_commit :broadcast_invoices_count, on: [:create, :destroy]
+  after_commit :broadcast_paid_invoices_count,
+               :broadcast_unpaid_invoices_count,
+               :broadcast_overdue_invoices_count,
+               on: :update,
+               if: :status_previously_changed?
 
   delegate :full_name, :email, to: :client, prefix: true
   delegate :name, to: :company, prefix: true
@@ -154,5 +160,37 @@ class Invoice < ApplicationRecord
 
   def remove_discount
     self.discount = nil
+  end
+
+  def broadcast_invoices_count
+    broadcast_update_to(
+      :invoices,
+      target: :invoices_count,
+      html: ::Invoice.accessible(::Current.user).count
+    )
+  end
+
+  def broadcast_paid_invoices_count
+    broadcast_update_to(
+      :invoices,
+      target: :paid_invoices_count,
+      html: ::Invoice.accessible(::Current.user).paid.count
+    )
+  end
+
+  def broadcast_unpaid_invoices_count
+    broadcast_update_to(
+      :invoices,
+      target: :unpaid_invoices_count,
+      html: ::Invoice.accessible(::Current.user).unpaid.count
+    )
+  end
+
+  def broadcast_overdue_invoices_count
+    broadcast_update_to(
+      :invoices,
+      target: :overdue_invoices_count,
+      html: ::Invoice.accessible(::Current.user).overdue.count
+    )
   end
 end
