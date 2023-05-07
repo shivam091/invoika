@@ -17,8 +17,8 @@
           .d-inline-block.middle-dot-divider{data: {controller: "screen-mode", screen_mode_hidden_class: "d-none"}}
             = link_to "javascript:void(0)", class: "text-default text-decoration-none",
               data: {action: "click->screen-mode#toggleScreenMode"} do
-              = external_svg_tag("svgs/screen-full.svg", height: "16px", width: "16px", data: {screen_mode_target: "icon"})
-              = external_svg_tag("svgs/screen-normal.svg", height: "16px", width: "16px", class: "d-none", data: {screen_mode_target: "icon"})
+              = external_svg_tag("svgs/expand.svg", height: "16px", width: "16px", data: {screen_mode_target: "icon"})
+              = external_svg_tag("svgs/minimize.svg", height: "16px", width: "16px", class: "d-none", data: {screen_mode_target: "icon"})
           .d-inline-block.middle-dot-divider
             = link_to "javascript:void(0)", class: "text-default text-decoration-none" do
               = external_svg_tag("svgs/bell-ringing.svg", height: "16px", width: "16px")

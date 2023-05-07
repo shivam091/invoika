@@ -3,7 +3,7 @@
 # -*- warn_indent: true -*-
 
 class User < ApplicationRecord
-  include CaseSensitivity, StripAttribute, DowncaseAttribute, Validatable
+  include CaseSensitivity, StripAttribute, DowncaseAttribute, Validatable, Toggleable
 
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
          :recoverable, :rememberable, :validatable, :timeoutable, :trackable
@@ -62,6 +62,8 @@ class User < ApplicationRecord
 
   belongs_to :role
   belongs_to :company
+
+  after_commit :broadcast_clients_count, on: [:create, :destroy]
 
   delegate :name, to: :role, prefix: true
 
@@ -198,5 +200,13 @@ class User < ApplicationRecord
 
   def password_required?
     !!password_required
+  end
+
+  def broadcast_clients_count
+    broadcast_update_to(
+      :clients,
+      target: :clients_count,
+      html: ::Current.company.users.clients.count
+    )
   end
 end

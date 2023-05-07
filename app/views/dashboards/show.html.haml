@@ -1,3 +1,181 @@
 = title(t(".title"))
+= turbo_stream_from :clients
+= turbo_stream_from :products
+= turbo_stream_from :quotes
+= turbo_stream_from :invoices
 .card.card-primary.border.border-primary
   .card-body
+    .row
+      - if current_user.vendor?
+        .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+          .card.flex-fill.mb-2
+            .card-body
+              .d-flex.align-items-start
+                .flex-grow-1
+                  %h3.mb-2
+                    = turbo_frame_tag :clients_count do
+                      = @company.users.clients.count
+                  %p.mb-2= t(".total_clients")
+                .d-inline-block
+                  = external_svg_tag("svgs/users.svg", height: "48px", width: "48px")
+            .card-footer
+              .float-end
+                = link_to t(".view_all"), "javascript:void(0)", class: "text-decoration-none"
+        .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+          .card.flex-fill.mb-2
+            .card-body
+              .d-flex.align-items-start
+                .flex-grow-1
+                  %h3.mb-2
+                    = turbo_frame_tag :products_count do
+                      = @company.products.count
+                  %p.mb-2= t(".total_products")
+                .d-inline-block
+                  = external_svg_tag("svgs/cube.svg", height: "48px", width: "48px")
+            .card-footer
+              .float-end
+                = link_to t(".view_all"), products_path, class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  = turbo_frame_tag :quotes_count do
+                    = ::Quote.accessible(current_user).count
+                %p.mb-2= t(".total_quotes")
+              .d-inline-block
+                = external_svg_tag("svgs/quote.svg", height: "48px", width: "48px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), quotes_path, class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  0
+                %p.mb-2= t(".total_payments")
+              .d-inline-block
+                = external_svg_tag("svgs/credit-card.svg", height: "48px", width: "48px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), "javascript:void(0)", class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  = turbo_frame_tag :invoices_count do
+                    = ::Invoice.accessible(current_user).count
+                %p.mb-2= t(".total_invoices")
+              .d-inline-block
+                = external_svg_tag("svgs/file.svg", height: "36px", width: "36px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), invoices_path, class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  = turbo_frame_tag :paid_invoices_count do
+                    = ::Invoice.accessible(current_user).paid.count
+                %p.mb-2= t(".total_paid_invoices")
+              .d-inline-block
+                = external_svg_tag("svgs/file-check.svg", height: "36px", width: "36px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), paid_invoices_path, class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  = turbo_frame_tag :unpaid_invoices_count do
+                    = ::Invoice.accessible(current_user).unpaid.count
+                %p.mb-2= t(".total_unpaid_invoices")
+              .d-inline-block
+                = external_svg_tag("svgs/file-times.svg", height: "36px", width: "36px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), unpaid_invoices_path, class: "text-decoration-none"
+      .col-12.col-sm-6.col-lg-4.col-xxl-3.d-flex
+        .card.flex-fill.mb-2
+          .card-body
+            .d-flex.align-items-start
+              .flex-grow-1
+                %h3.mb-2
+                  = turbo_frame_tag :overdue_invoices_count do
+                    = ::Invoice.accessible(current_user).overdue.count
+                %p.mb-2= t(".total_overdue_invoices")
+              .d-inline-block
+                = external_svg_tag("svgs/exclamation-triangle.svg", height: "36px", width: "36px")
+          .card-footer
+            .float-end
+              = link_to t(".view_all"), overdue_invoices_path, class: "text-decoration-none"
+    - if current_user.vendor?
+      .row
+        .col-12.d-flex
+          .card.flex-fill.mb-2
+            .card-header
+              .card-title= t(".income_overview")
+            .card-body
+      .row
+        .col-12.col-lg-6.d-flex
+          .card.flex-fill.mb-2
+            .card-header
+              .card-title= t(".invoices_overview")
+            .card-body
+        .col-12.col-lg-6.d-flex
+          .card.flex-fill.mb-2
+            .card-header
+              .card-title= t(".payment_overview")
+            .card-body
+    .row
+      - if current_user.vendor?
+        .col-12.col-lg-6.d-flex
+          .card.flex-fill.mb-2
+            .card-header
+              .card-title= t(".recent_sold_products")
+            .card-body
+      - if current_user.client?
+        .col-12.col-lg-6.d-flex
+          .card.flex-fill.mb-2
+            .card-header
+              .card-title= t(".recent_purchased_products")
+            .card-body
+      .col-12.col-lg-6.d-flex
+        .card.flex-fill.mb-2
+          .card-header
+            .card-title= t(".recent_quotes")
+          .card-body
+    .row
+      .col-12.col-lg-6.d-flex
+        .card.flex-fill.mb-2
+          .card-header
+            .card-title= t(".recent_invoices")
+          .card-body
+      .col-12.col-lg-6.d-flex
+        .card.flex-fill.mb-2
+          .card-header
+            .card-title= t(".recent_payments")
+          .card-body
+    - if current_user.vendor?
+      .row
+        .col-12.d-flex
+          .card.flex-fill.mb-2
+            .card-header
+              .card-title= t(".top_clients")
+            .card-body
+    - if current_user.client?
+      .row
+        .col-12.d-flex
+          .card.flex-fill.mb-2
+            .card-header
+              .card-title= t(".top_purchased_products")
+            .card-body

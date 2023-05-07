@@ -4,6 +4,8 @@
 
 class CompaniesController < ApplicationController
 
+  authorize_resource
+
   # GET /company
   def show
   end

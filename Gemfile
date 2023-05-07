@@ -38,7 +38,7 @@ gem "aasm", "~> 5"
 gem "money"
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails", "~> 1.3"
+gem "turbo-rails", "1.3"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
@@ -84,13 +84,13 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+# gem "image_processing", "~> 1.2"
 
 # Validations for active_storage
 gem "active_storage_validations"
 
 # Image processing library
-# gem "ruby-vips"
+gem "ruby-vips"
 
 # Twilio APIs
 gem "twilio-ruby", "~> 5"

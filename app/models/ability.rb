@@ -16,6 +16,7 @@ class Ability
       can :manage, ::Tax
       can :manage, ::Category
       can :manage, ::Product
+      can [:read, :update], ::Company, user: user
     end
   end
 end

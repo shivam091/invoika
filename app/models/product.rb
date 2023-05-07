@@ -60,6 +60,7 @@ class Product < ApplicationRecord
   belongs_to :category, inverse_of: :products, counter_cache: :products_count
 
   after_initialize :set_code, :set_currency, if: :new_record?
+  after_commit :broadcast_products_count, on: [:create, :destroy]
 
   delegate :name, to: :category, prefix: true
   delegate :name, to: :company, prefix: true
@@ -88,5 +89,13 @@ class Product < ApplicationRecord
 
   def set_code
     self.code = SecureRandom.alphanumeric(8).upcase
+  end
+
+  def broadcast_products_count
+    broadcast_update_to(
+      :products,
+      target: :products_count,
+      html: ::Current.company.products.count
+    )
   end
 end
