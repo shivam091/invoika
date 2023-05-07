@@ -51,7 +51,7 @@
           = render_if_exists("invoices/invoice_item", locals: {invoice: @invoice})
           = render_if_exists("invoices/invoice_summary")
         .border-bottom
-        = render_if_exists("shared/quote_invoice_notes_terms", locals: {object: @quote})
+        = render_if_exists("shared/quote_invoice_notes_terms", locals: {object: @invoice})
       .card-footer
         = link_to edit_invoice_path(@invoice), class: "btn btn-primary" do
           = external_svg_tag("svgs/pencil.svg")
