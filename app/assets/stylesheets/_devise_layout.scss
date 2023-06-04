@@ -19,14 +19,19 @@
     text-align: center;
   }
 }
-.login-form input[name="user[email]"], password-reset-form input[name="user[password]"] {
+.login-form input[name="user[email]"] {
   margin-bottom: -1px;
+  border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+}
+.password-reset-form input[name="user[password]"] {
+  margin-bottom: -1px;
+  border-top-right-radius: 0.25rem !important;
   border-bottom-left-radius: 0;
 }
-.password-reset-form input[name="user[password_confirmation]"], .login-form input[name="user[password]"] {
+.login-form input[name="user[password]"], .password-reset-form input[name="user[password_confirmation]"] {
+  border-bottom-right-radius: 0.25rem !important;
   border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 .devise-section .auth-form .btn-secret-reveal {
   top: 31%;

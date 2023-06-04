@@ -16,7 +16,7 @@
       = t(".payments")
     - if can? :manage, ::Tax
       = link_to active_taxes_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("taxes"))}" do
-        = external_svg_tag("svgs/percentage.svg")
+        = external_svg_tag("svgs/percentage.svg", height: 16, width: 16)
         = t(".taxes")
     = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/report.svg")

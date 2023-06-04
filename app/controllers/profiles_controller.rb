@@ -41,7 +41,7 @@ class ProfilesController < ApplicationController
     else
       flash[:alert] = response.message
     end
-    profile_path
+    redirect_to profile_path
   end
 
   private

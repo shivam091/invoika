@@ -5,7 +5,5 @@
   %p=t (".password_reset_note")
 = bootstrap_form_with model: resource, as: resource_name, url: password_path(resource_name), data: {turbo: false} do |form|
   = form.text_field :email, autocomplete: "new-email", data: {controller: "autofocus"},
-    value: (params[:email] || resource.email), floating: true
-  = form.errors_on :email
-  = button_tag type: :submit, class: "w-100 justify-content-center btn btn-primary mt-2" do
-    = button_text("continue")
+    value: (params[:email] || resource.email), bootstrap: {floating: true}
+  = form.primary button_text("continue"), class: "w-100 justify-content-center"

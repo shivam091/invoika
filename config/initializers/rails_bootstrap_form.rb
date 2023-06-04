@@ -4,7 +4,6 @@
 
 # Be sure to restart your server when you modify this file.
 
-BootstrapForm.configure do |config|
-  # to make forms non-compliant with W3C.
-  config.default_form_attributes = {role: "form", novalidate: true}
+RailsBootstrapForm.configure do |config|
+  config.default_form_attributes = {novalidate: true}
 end

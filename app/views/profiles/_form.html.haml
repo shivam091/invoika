@@ -1,4 +1,4 @@
-= bootstrap_form_for current_user, url: profile_path, html: {enctype: "multipart/form-data"}, data: {controller: "image-preview"} do |form|
+= bootstrap_form_with model: current_user, url: profile_path, html: {enctype: "multipart/form-data"}, data: {controller: "image-preview"} do |form|
   .subheader
     = t(".profile_details")
   .row
@@ -25,13 +25,13 @@
               data: {turbo_method: :delete, turbo_confirm: t(".remove_avatar_confirmation_text")}
   .subheader
     = t(".address")
-  = form.fields_for :address, form.object.address, include_id: false do |address_form_fields|
+  = form.fields_for :address, include_id: false do |address_form_fields|
     = render_if_exists("shared/address_form_fields", locals: {form: address_form_fields})
   .actions
-    = button_tag type: :submit, class: "btn btn-primary" do
+    = form.primary do
       = external_svg_tag("svgs/floppy.svg")
       %span.d-block.d-lg-none= button_text("update")
       %span.d-none.d-lg-block= button_text("update_profile")
     = link_to profile_path, class: "btn btn-secondary" do
-      = external_svg_tag("svgs/arrow-left.svg")
-      = button_text("go_back")
+      = external_svg_tag("svgs/cancel.svg")
+      = button_text("cancel")

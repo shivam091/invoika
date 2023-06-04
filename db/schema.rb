@@ -224,7 +224,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.check_constraint "company_id IS NOT NULL", name: "chk_31398a365b"
     t.check_constraint "currency IS NOT NULL AND currency::text <> ''::text", name: "chk_1e9c039c7f"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_0a202cf2e7"
-    t.check_constraint "sell_price <= unit_price", name: "sell_price_lteq_unit_price"
+    t.check_constraint "sell_price > 0.0::money", name: "sell_price_gt_zero"
     t.check_constraint "sell_price IS NOT NULL", name: "chk_173f7aabf6"
     t.check_constraint "unit_price > 0.0::money", name: "unit_price_gt_zero"
     t.check_constraint "unit_price IS NOT NULL", name: "chk_8b63405e7f"

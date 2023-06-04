@@ -29,7 +29,7 @@ gem "pundit"
 gem "importmap-rails"
 
 # Bootstrap form builder
-gem "bootstrap_form"
+gem "rails_bootstrap_form", "0.9.3"
 
 # State machines
 gem "aasm", "~> 5"

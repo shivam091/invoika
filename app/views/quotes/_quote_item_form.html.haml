@@ -5,12 +5,14 @@
     = form.hidden_field :_destroy
   %td
     = form.select :product_id, options_for_select(::Product.select_options(current_user), form.object.product_id),
-      {include_blank: t(".select_product"), skip_label: true, wrapper_class: "mb-0"}, tabindex: "-1"
+      {include_blank: t(".select_product"), bootstrap: {skip_label: true, wrapper: false}}, tabindex: "-1"
   %td
-    = form.number_field :quantity, skip_label: true, wrapper_class: "mb-0", min: 1, oninput: "validity.valid||(value=value.replace(/\D+/g, ''))"
+    = form.number_field :quantity, min: 1, oninput: "validity.valid||(value=value.replace(/\D+/g, ''))",
+      bootstrap: {skip_label: true, wrapper: false}
   %td
-    = form.number_field :unit_price, skip_label: true, wrapper_class: "mb-0", oninput: "validity.valid||(value=value.replace(/[e\+\-]/gi,''))",
-      onkeypress: "if(this.value.length==8) return false;", min: 0, step: "0.01"
+    = form.number_field :unit_price, oninput: "validity.valid||(value=value.replace(/[e\+\-]/gi,''))",
+      onkeypress: "if(this.value.length==8) return false;", min: 0, step: "0.01",
+      bootstrap: {skip_label: true, wrapper: false}
   %td
     %span.text-center= number_to_currency(form.object.amount, unit: @quote.currency.symbol)
   %td

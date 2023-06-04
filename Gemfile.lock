@@ -93,9 +93,6 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 2.11.7, < 3)
       sassc-rails (>= 2.0.0)
-    bootstrap_form (5.1.0)
-      actionpack (>= 5.2)
-      activemodel (>= 5.2)
     builder (3.2.4)
     bullet (7.0.7)
       activesupport (>= 3.0.0)
@@ -177,7 +174,7 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    i18n (1.13.0)
+    i18n (1.14.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.6)
       actionpack (>= 6.0.0)
@@ -190,9 +187,9 @@ GEM
       activesupport (>= 5.0.0)
     json (2.6.3)
     jwt (2.7.0)
-    loofah (2.20.0)
+    loofah (2.21.3)
       crass (~> 1.0.2)
-      nokogiri (>= 1.5.9)
+      nokogiri (>= 1.12.0)
     lru_redux (1.1.0)
     mail (2.8.1)
       mini_mime (>= 0.1.1)
@@ -218,7 +215,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.14.3-x86_64-linux)
+    nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (5.10.1)
@@ -261,8 +258,12 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.5.0)
-      loofah (~> 2.19, >= 2.19.1)
+    rails-html-sanitizer (1.6.0)
+      loofah (~> 2.21)
+      nokogiri (~> 1.14)
+    rails_bootstrap_form (0.9.3)
+      actionpack (~> 7.0)
+      activemodel (~> 7.0)
     railties (7.0.4.3)
       actionpack (= 7.0.4.3)
       activesupport (= 7.0.4.3)
@@ -410,7 +411,6 @@ DEPENDENCIES
   awesome_print (~> 1.8)
   bootsnap
   bootstrap (~> 5.3.0.alpha3)
-  bootstrap_form
   bullet
   cancancan (~> 3)
   capybara
@@ -429,6 +429,7 @@ DEPENDENCIES
   puma (~> 5.6)
   pundit
   rails (= 7.0.4.3)
+  rails_bootstrap_form (= 0.9.3)
   redis (~> 4.7.1)
   redis-actionpack
   rspec-parameterized

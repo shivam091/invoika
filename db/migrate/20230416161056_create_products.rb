@@ -42,7 +42,7 @@ class CreateProducts < Invoika::Database::Migration[1.0]
       t.length_constraint :description, less_than_or_equal_to: 1000
 
       t.check_constraint "unit_price > CAST(0.0 AS MONEY)", name: "unit_price_gt_zero"
-      t.check_constraint "sell_price <= unit_price", name: "sell_price_lteq_unit_price"
+      t.check_constraint "sell_price > CAST(0.0 AS MONEY)", name: "sell_price_gt_zero"
 
       t.index [:name, :company_id], using: :btree, unique: true
       t.index [:code, :company_id], using: :btree, unique: true
