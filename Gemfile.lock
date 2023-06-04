@@ -174,7 +174,7 @@ GEM
       temple (>= 0.8.2)
       thor
       tilt
-    i18n (1.13.0)
+    i18n (1.14.0)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.6)
       actionpack (>= 6.0.0)
@@ -261,7 +261,7 @@ GEM
     rails-html-sanitizer (1.6.0)
       loofah (~> 2.21)
       nokogiri (~> 1.14)
-    rails_bootstrap_form (0.8.2)
+    rails_bootstrap_form (0.9.3)
       actionpack (~> 7.0)
       activemodel (~> 7.0)
     railties (7.0.4.3)
