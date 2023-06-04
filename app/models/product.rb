@@ -40,7 +40,7 @@ class Product < ApplicationRecord
             reduce: true
   validates :sell_price,
             presence: true,
-            numericality: {less_than_or_equal_to: :unit_price},
+            numericality: {greater_than: 0.0},
             reduce: true
   validates :image,
             content_type: IMAGE_CONTENT_TYPES,
