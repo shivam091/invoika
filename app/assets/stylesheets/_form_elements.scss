@@ -101,10 +101,6 @@ input[type="date"]::-webkit-calendar-picker-indicator, input[type="datetime-loca
 input[type="time"]::-webkit-calendar-picker-indicator {
   background-image: image-url("svgs/clock.svg");
 }
-div[class^="rails-bootstrap-forms"] select, div[class*="rails-bootstrap-forms"] select {
-  display: inline-block;
-  width: auto;
-}
 .form-select[multiple], .form-select[size]:not([size="1"]) {
   height: 35px !important;
 }
