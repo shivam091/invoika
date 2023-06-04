@@ -177,3 +177,6 @@ header .dropdown-menu.show {
   color: var(--color-fg-on-emphasis) !important;
   background: var(--color-danger-emphasis) !important;
 }
+.navbar-nav .dropdown-menu {
+  position: absolute !important;
+}
