@@ -1,4 +1,4 @@
-#current-date-time{data: {controller: "live-clock"}}
+#current-date-time{data: {controller: "live-clock", live_clock_user_time_zone_value: current_user.preferred_time_zone}}
   .date.d-inline-block.middle-dot-divider
     = external_svg_tag("svgs/calendar.svg")
     %span{data: {live_clock_target: "date"}}
