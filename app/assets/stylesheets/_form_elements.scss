@@ -2,7 +2,7 @@
   font-size: 0.875rem !important;
   border-radius: 0.25rem;
 }
-:not(.form-floating) > .form-label, .form-check-label {
+:not(.form-floating) > .form-label, .form-check-label, .col-form-label {
   font-weight: 600;
   vertical-align: middle;
 }
@@ -19,6 +19,9 @@
   border-color: var(--color-accent-emphasis);
   color: var(--color-fg-default);
 }
+.form-check {
+  margin-bottom: 0;
+}
 .form-check-input {
   background-color: var(--color-canvas-inset);
   border: 1px solid var(--color-border-default);
@@ -31,7 +34,7 @@
 .form-select, input[list] {
   background-image: image-url("svgs/select-list-arrow.svg");
   background-repeat: no-repeat;
-  background-position: right .25rem center;
+  background-position: right .9rem center;
   background-size: 16px;
 }
 .form-control:focus, .form-select:focus, .form-check-input:focus {
