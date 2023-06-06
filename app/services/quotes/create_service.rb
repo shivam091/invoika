@@ -3,8 +3,8 @@
 # -*- warn_indent: true -*-
 
 class Quotes::CreateService < ApplicationService
-  def initialize(company, quote_attributes)
-    @company = company
+  def initialize(user, quote_attributes)
+    @user = user
     @quote_attributes = quote_attributes.dup
   end
 
@@ -14,10 +14,10 @@ class Quotes::CreateService < ApplicationService
 
   private
 
-  attr_reader :company, :quote_attributes
+  attr_reader :user, :quote_attributes
 
   def create_quote
-    quote = company.quotes.build
+    quote = user.created_quotes.build(company: user.company)
     quote.assign_attributes(quote_attributes)
     if quote.save
       ::ServiceResponse.success(
