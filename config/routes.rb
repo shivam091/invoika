@@ -53,10 +53,6 @@ Rails.application.routes.draw do
     end
   end
 
-  authenticated :admin do
-
-  end
-
   authenticated :user do
     resource :company, except: [:new, :create, :destroy]
     resource :dashboard, only: :show

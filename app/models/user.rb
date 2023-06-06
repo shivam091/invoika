@@ -57,8 +57,10 @@ class User < ApplicationRecord
   has_one_attached :avatar, dependent: :purge_later
 
   has_many :request_logs, dependent: :nullify
-  has_many :invoices, dependent: :nullify
-  has_many :quotes, dependent: :nullify
+  has_many :created_invoices, dependent: :nullify, foreign_key: :vendor_id, class_name: "::Invoice"
+  has_many :invoices, dependent: :nullify, foreign_key: :client_id
+  has_many :created_quotes, dependent: :nullify, foreign_key: :vendor_id, class_name: "::Quote"
+  has_many :quotes, dependent: :nullify, foreign_key: :client_id
 
   belongs_to :role
   belongs_to :company
@@ -143,6 +145,10 @@ class User < ApplicationRecord
     super && is_active?
   end
 
+  def admin?
+    self.has_role?("admin")
+  end
+
   def vendor?
     self.has_role?("vendor")
   end
@@ -203,10 +209,10 @@ class User < ApplicationRecord
   end
 
   def broadcast_clients_count
-    broadcast_update_to(
-      :clients,
-      target: :clients_count,
-      html: ::Current.company.users.clients.count
-    )
+    # broadcast_update_to(
+    #   :clients,
+    #   target: :clients_count,
+    #   html: ::Current.company.users.clients.count
+    # )
   end
 end

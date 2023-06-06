@@ -12,12 +12,20 @@ FactoryBot.define do
     password_automatically_set { false }
     association :company
 
+    factory :admin, parent: :user do
+      last_name { "Admin" }
+      sequence(:email) { |n| "admin@invoika.com" }
+      mobile_number { generate(:mobile_number) }
+
+      role { ::Role.find_by(name: "admin") || create(:admin_role) }
+    end
+
     factory :vendor, parent: :user do
       last_name { "Vendor" }
       email { "vendor@invoika.com" }
       mobile_number { generate(:mobile_number) }
 
-      association :role, factory: :vendor_role
+      role { ::Role.find_by(name: "vendor") || create(:vendor_role) }
     end
 
     factory :client, parent: :user do
@@ -25,7 +33,7 @@ FactoryBot.define do
       email { "client@invoika.com" }
       mobile_number { generate(:mobile_number) }
 
-      association :role, factory: :client_role
+      role { ::Role.find_by(name: "client") || create(:client_role) }
     end
 
     trait :confirmed do
