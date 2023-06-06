@@ -31,7 +31,7 @@
                     = link_to invoice.client_full_name, "javascript:void(0)", class: "me-1 fw-bold"
                     = badge_tag invoice.code, {color: ::Invoika::Color.of("#006B75FF")}, {href: invoice_path(invoice)}
                     - if invoice.is_recurred?
-                      %span{title: t(".recurring_enabled_for_period", days: invoice.recurring_cycle), data: {toggle: "tooltip"}}
+                      %span{title: t(".recurring_enabled_for_period", date: invoice.recurred_till.to_fs(:long), days: invoice.recurring_cycle), data: {controller: "tooltip"}}
                         = external_svg_tag("svgs/recycling.svg", class: "recurring-cycle-icon", width: 16, height: 16)
                 %span.text-muted.text-start
                   = invoice.client_email
