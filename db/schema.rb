@@ -177,6 +177,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.text "notes"
     t.boolean "is_recurred", default: false
     t.integer "recurring_cycle"
+    t.date "recurred_till"
     t.uuid "tax_ids", default: [], array: true
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
@@ -199,6 +200,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.check_constraint "due_date >= invoice_date", name: "chk_due_date_gteq_invoice_date"
     t.check_constraint "due_date IS NOT NULL", name: "chk_ca757536a4"
     t.check_constraint "invoice_date IS NOT NULL", name: "chk_165db585b6"
+    t.check_constraint "recurred_till > CURRENT_DATE", name: "chk_recurred_till_gt_today"
     t.check_constraint "status = ANY (ARRAY['draft'::invoice_statuses, 'unpaid'::invoice_statuses, 'paid'::invoice_statuses, 'partially_paid'::invoice_statuses, 'processing'::invoice_statuses, 'overdue'::invoice_statuses, 'void'::invoice_statuses, 'uncollectible'::invoice_statuses])", name: "chk_df4579007e"
   end
 

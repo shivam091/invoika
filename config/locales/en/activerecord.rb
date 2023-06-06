@@ -103,6 +103,7 @@
           tax_ids: "Taxes",
           is_recurred: "Enable recurrence",
           recurring_cycle: "Recurring cycle",
+          recurred_till: "Recurred till",
         },
         invoice_item: {
           invoice_id: "Invoice",

@@ -59,6 +59,11 @@ class Invoice < ApplicationRecord
             presence: true,
             reduce: true,
             if: :is_recurred?
+  validates :recurred_till,
+            presence: true,
+            comparison: {greater_than: Date.current},
+            reduce: true,
+            if: :is_recurred?
   validates :currency,
             presence: true,
             reduce: true
