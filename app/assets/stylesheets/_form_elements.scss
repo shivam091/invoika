@@ -67,7 +67,7 @@ select > option {
   background-color: var(--color-canvas-inset);
 }
 select > option[selected] {
-  background-color: var(--color-canvas-overlay);
+  background-color: var(--color-accent-subtle);
 }
 fieldset:disabled, [disabled], .form-control:disabled, .form-select:disabled, .form-check-input[disabled] {
   cursor: not-allowed !important;

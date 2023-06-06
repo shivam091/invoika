@@ -12,7 +12,9 @@ export default class extends Controller {
     event?.preventDefault();
     if (this.discountTypeTarget.value) {
       this.discountTarget.removeAttributes("readonly", "disabled");
-      this.discountTarget.focus();
+      if (!this.discountTarget.value) {
+        this.discountTarget.focus();
+      }
     } else {
       this.discountTarget.value = "";
       this.discountTarget.setAttributes({"readonly": "readonly", "disabled": "disabled"});
