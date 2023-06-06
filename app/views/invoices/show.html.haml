@@ -49,7 +49,9 @@
                 = t(".mobile_number", mobile_number: phone_to(@invoice.client_mobile_number)).html_safe
         .row
           = render_if_exists("invoices/invoice_item", locals: {invoice: @invoice})
-          = render_if_exists("invoices/invoice_summary")
+        .row.justify-content-end
+          .col-12.col-md-6
+            = render_if_exists("invoices/invoice_summary")
         .border-bottom
         = render_if_exists("shared/quote_invoice_notes_terms", locals: {object: @invoice})
       .card-footer
