@@ -42,7 +42,7 @@ class InvoicesController < ApplicationController
 
   # POST /invoices
   def create
-    response = ::Invoices::CreateService.(@company, invoice_params)
+    response = ::Invoices::CreateService.(current_user, invoice_params)
     @invoice = response.payload[:invoice]
     if response.success?
       flash[:notice] = response.message

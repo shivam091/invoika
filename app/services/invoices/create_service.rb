@@ -3,8 +3,8 @@
 # -*- warn_indent: true -*-
 
 class Invoices::CreateService < ApplicationService
-  def initialize(company, invoice_attributes)
-    @company = company
+  def initialize(user, invoice_attributes)
+    @user = user
     @invoice_attributes = invoice_attributes.dup
   end
 
@@ -14,10 +14,10 @@ class Invoices::CreateService < ApplicationService
 
   private
 
-  attr_reader :company, :invoice_attributes
+  attr_reader :user, :invoice_attributes
 
   def create_invoice
-    invoice = company.invoices.build
+    invoice = user.created_invoices.build(company: user.company)
     invoice.assign_attributes(invoice_attributes)
     if invoice.save
       ::ServiceResponse.success(

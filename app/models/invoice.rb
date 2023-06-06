@@ -71,6 +71,7 @@ class Invoice < ApplicationRecord
   has_many :invoice_items, dependent: :destroy
 
   belongs_to :client, class_name: "::User", inverse_of: :invoices
+  belongs_to :vendor, class_name: "::User", inverse_of: :created_invoices
   belongs_to :company, inverse_of: :invoices
 
   after_initialize :set_code, if: :new_record?
@@ -95,8 +96,9 @@ class Invoice < ApplicationRecord
 
   class << self
     def accessible(user)
-      return user.company.invoices.where(client_id: user.id) if user.client?
-      user.company.invoices
+      return user.invoices.where(company: user.company) if user.client?
+      return user.created_invoices.where(company: user.company) if user.vendor?
+      all
     end
   end
 
