@@ -123,6 +123,7 @@ class InvoicesController < ApplicationController
       :terms,
       :is_recurred,
       :recurring_cycle,
+      :recurred_till,
       :currency,
       tax_ids: [],
       invoice_items_attributes: [

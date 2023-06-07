@@ -10,7 +10,7 @@ class UserPreference < ApplicationRecord
 
   attribute :preferred_color_scheme, :enum, default: color_schemes[:light]
   attribute :preferred_locale, default: "en"
-  attribute :preferred_time_zone, default: "Mumbai"
+  attribute :preferred_time_zone, default: "Asia/Kolkata"
   attribute :enable_notifications, default: true
 
   validates :preferred_locale, presence: true, reduce: true

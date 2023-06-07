@@ -32,6 +32,7 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.text :notes
       t.boolean :is_recurred, default: false, index: {using: :btree}
       t.integer :recurring_cycle
+      t.date :recurred_till
       t.uuid :tax_ids, array: true, default: []
 
       t.not_null_constraint :company_id
@@ -49,6 +50,7 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.length_constraint :notes, less_than_or_equal_to: 1000
 
       t.check_constraint "due_date >= invoice_date", name: "chk_due_date_gteq_invoice_date"
+      t.check_constraint "recurred_till > CURRENT_DATE", name: "chk_recurred_till_gt_today"
 
       t.inclusion_constraint :status, in: ["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]
       t.inclusion_constraint :discount_type, in: ["fixed", "percentage"]

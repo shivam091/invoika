@@ -109,9 +109,7 @@ module ApplicationHelper
   end
 
   def secret_reveal_button(for_devise_views: false)
-    classes = for_devise_views ? "btn-secret-reveal" : "btn btn-secondary"
-
-    button_tag type: :button, class: classes, data: {action: "click->secret-reveal#toggle"} do
+    tag.button(type: :button, class: "btn-secret-reveal", data: {action: "click->secret-reveal#toggle"}) do
       concat(external_svg_tag("svgs/eye-visible.svg", data: {secret_reveal_target: "icon"}))
       concat(external_svg_tag("svgs/eye-hidden.svg", class: "d-none", data: {secret_reveal_target: "icon"}))
     end

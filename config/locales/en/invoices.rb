@@ -31,7 +31,7 @@
         due_date: "Due date",
         amount: "Amount",
         transactions: "Transactions",
-        recurring_enabled_for_period: "Recurring enabled for %{days} days",
+        recurring_enabled_for_period: "Recurring is enabled until %{date} with %{days} days interval",
         reminder: "Reminder",
         invoice_url: "Invoice URL",
         mark_as_void: "Mark as void",

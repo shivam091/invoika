@@ -74,7 +74,7 @@ label.is-invalid {
   color: var(--color-danger-fg);
 }
 .required::after {
-  color: var(--color-danger-fg);
+  color: var(--color-danger-fg) !important;
   content: "*";
   padding-left: .25rem;
   top: -2px;
@@ -83,7 +83,4 @@ label.is-invalid {
 .form-floating > .form-control:focus ~ label::after, .form-floating > .form-control:not(:placeholder-shown) ~ label::after, .form-floating > .form-control-plaintext ~ label::after, .form-floating > .form-select ~ label::after {
   content: "*";
   inset: initial;
-}
-.form-check-inline .form-check-input ~ .invalid-feedback {
-  margin-left: 0;
 }
