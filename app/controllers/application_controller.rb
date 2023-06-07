@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::DeleteRestrictionError do |exception|
     redirect_to :back, alert: exception.message
   end
-  rescue_from CanCan::AccessDenied, with: :forbidden
+  rescue_from Pundit::NotAuthorizedError, with: :forbidden
 
   before_action :authenticate_user!
   before_action :set_company, if: :user_signed_in?
