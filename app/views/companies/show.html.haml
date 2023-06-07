@@ -7,10 +7,9 @@
           .widget-title
             = t(".your_company")
           .widget-help= t(".edit_company_details")
-        - if can? :update, ::Company
-          = link_to edit_company_path, class: "btn btn-secondary" do
-            = external_svg_tag("svgs/pencil.svg")
-            = button_text("edit")
+        = link_to edit_company_path, class: "btn btn-secondary" do
+          = external_svg_tag("svgs/pencil.svg")
+          = button_text("edit")
       .widget-row.d-flex
         .flex-auto
           .widget-row-title= t(".name")

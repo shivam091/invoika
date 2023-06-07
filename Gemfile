@@ -22,7 +22,7 @@ gem "pg", "~> 1.1"
 # Flexible authentication solution for Rails with Warden
 gem "devise", "4.9.2"
 
-# Authorization
+# Authorization library
 gem "pundit"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
@@ -42,9 +42,6 @@ gem "turbo-rails", "1.3"
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
-
-# Authorization library
-gem "cancancan", "~> 3"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"

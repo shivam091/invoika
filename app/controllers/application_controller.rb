@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   layout proc { false if request.xhr? }
 
   include Pagy::Backend,
-          WithoutTimestamps
+          WithoutTimestamps,
+          Pundit::Authorization
 
   # rescue_from Exception, with: :internal_server_error
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
@@ -23,7 +24,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::DeleteRestrictionError do |exception|
     redirect_to :back, alert: exception.message
   end
-  rescue_from CanCan::AccessDenied, with: :forbidden
+  rescue_from Pundit::NotAuthorizedError, with: :forbidden
 
   before_action :authenticate_user!
   before_action :set_company, if: :user_signed_in?

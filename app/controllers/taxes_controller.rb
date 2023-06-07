@@ -5,7 +5,6 @@
 class TaxesController < ApplicationController
 
   before_action :find_tax, except: [:index, :active, :inactive, :new, :create]
-  authorize_resource
 
   # GET /taxes
   def index
