@@ -5,7 +5,6 @@
 class CategoriesController < ApplicationController
 
   before_action :find_category, except: [:index, :active, :inactive, :new, :create]
-  authorize_resource
 
   # GET /categories
   def index

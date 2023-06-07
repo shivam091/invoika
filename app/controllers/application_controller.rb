@@ -8,7 +8,8 @@ class ApplicationController < ActionController::Base
   layout proc { false if request.xhr? }
 
   include Pagy::Backend,
-          WithoutTimestamps
+          WithoutTimestamps,
+          Pundit::Authorization
 
   # rescue_from Exception, with: :internal_server_error
   rescue_from ActionController::InvalidAuthenticityToken do |exception|
