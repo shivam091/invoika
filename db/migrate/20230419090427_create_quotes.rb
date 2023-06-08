@@ -13,6 +13,14 @@ class CreateQuotes < Invoika::Database::Migration[1.0]
                      on_delete: :cascade
                    },
                    index: {using: :btree}
+      t.references :vendor,
+                   type: :uuid,
+                   foreign_key: {
+                     to_table: :users,
+                     name: :fk_quotes_vendor_id_on_users,
+                     on_delete: :nullify
+                   },
+                   index: {using: :btree}
       t.references :client,
                    type: :uuid,
                    foreign_key: {

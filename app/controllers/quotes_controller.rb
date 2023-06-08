@@ -36,7 +36,7 @@ class QuotesController < ApplicationController
 
   # POST /quotes
   def create
-    response = ::Quotes::CreateService.(@company, quote_params)
+    response = ::Quotes::CreateService.(current_user, quote_params)
     @quote = response.payload[:quote]
     if response.success?
       flash[:notice] = response.message

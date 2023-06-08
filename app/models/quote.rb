@@ -56,6 +56,7 @@ class Quote < ApplicationRecord
   has_many :quote_items, dependent: :destroy
 
   belongs_to :client, class_name: "::User", inverse_of: :quotes
+  belongs_to :vendor, class_name: "::User", inverse_of: :created_quotes
   belongs_to :company, inverse_of: :quotes
 
   after_initialize :set_code, if: :new_record?
@@ -73,8 +74,9 @@ class Quote < ApplicationRecord
 
   class << self
     def accessible(user)
-      return user.company.quotes.where(client_id: user.id) if user.client?
-      user.company.quotes
+      return user.quotes.where(company: user.company) if user.client?
+      return user.created_quotes.where(company: user.company) if user.vendor?
+      all
     end
   end
 

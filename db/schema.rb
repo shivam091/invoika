@@ -165,6 +165,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
 
   create_table "invoices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "company_id"
+    t.uuid "vendor_id"
     t.uuid "client_id"
     t.string "code"
     t.date "invoice_date"
@@ -187,6 +188,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.index ["discount_type"], name: "index_invoices_on_discount_type"
     t.index ["is_recurred"], name: "index_invoices_on_is_recurred"
     t.index ["status"], name: "index_invoices_on_status"
+    t.index ["vendor_id"], name: "index_invoices_on_vendor_id"
     t.check_constraint "NOT discount IS NOT NULL OR discount_type IS NOT NULL", name: "chk_89d1f2f5e2"
     t.check_constraint "NOT discount_type IS NOT NULL OR discount IS NOT NULL", name: "chk_a8b865798a"
     t.check_constraint "NOT is_recurred IS TRUE OR recurring_cycle IS NOT NULL", name: "chk_cc9c8e2c41"
@@ -249,6 +251,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
 
   create_table "quotes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "company_id"
+    t.uuid "vendor_id"
     t.uuid "client_id"
     t.string "code"
     t.date "quote_date"
@@ -264,6 +267,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.index ["client_id"], name: "index_quotes_on_client_id"
     t.index ["code", "company_id"], name: "index_quotes_on_code_and_company_id", unique: true
     t.index ["company_id"], name: "index_quotes_on_company_id"
+    t.index ["vendor_id"], name: "index_quotes_on_vendor_id"
     t.check_constraint "NOT discount IS NOT NULL OR discount_type IS NOT NULL", name: "chk_139a0e61cb"
     t.check_constraint "NOT discount_type IS NOT NULL OR discount IS NOT NULL", name: "chk_21ec9f3ae2"
     t.check_constraint "char_length(code::text) <= 15", name: "chk_506fb1e130"
@@ -422,12 +426,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
   add_foreign_key "invoice_items", "products", name: "fk_invoice_items_product_id_on_products", on_delete: :restrict
   add_foreign_key "invoices", "companies", name: "fk_invoices_company_id_on_companies", on_delete: :cascade
   add_foreign_key "invoices", "users", column: "client_id", name: "fk_invoices_client_id_on_users", on_delete: :nullify
+  add_foreign_key "invoices", "users", column: "vendor_id", name: "fk_invoices_vendor_id_on_users", on_delete: :nullify
   add_foreign_key "products", "categories", name: "fk_products_category_id_on_categories", on_delete: :restrict
   add_foreign_key "products", "companies", name: "fk_products_company_id_on_companies", on_delete: :cascade
   add_foreign_key "quote_items", "products", name: "fk_quote_items_product_id_on_products", on_delete: :restrict
   add_foreign_key "quote_items", "quotes", name: "fk_quote_items_quote_id_on_quotes", on_delete: :cascade
   add_foreign_key "quotes", "companies", name: "fk_quotes_company_id_on_companies", on_delete: :cascade
   add_foreign_key "quotes", "users", column: "client_id", name: "fk_quotes_client_id_on_users", on_delete: :nullify
+  add_foreign_key "quotes", "users", column: "vendor_id", name: "fk_quotes_vendor_id_on_users", on_delete: :nullify
   add_foreign_key "request_logs", "users", name: "fk_request_logs_user_id_on_users", on_delete: :nullify
   add_foreign_key "states", "countries", name: "fk_states_country_id_on_countries", on_delete: :restrict
   add_foreign_key "taxes", "companies", name: "fk_taxes_company_id_on_companies", on_delete: :cascade
