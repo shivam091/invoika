@@ -5,6 +5,7 @@
 class CategoriesController < ApplicationController
 
   before_action :find_category, except: [:index, :active, :inactive, :new, :create]
+  before_action :authorize_category!
 
   # GET /categories
   def index
@@ -111,7 +112,15 @@ class CategoriesController < ApplicationController
   private
 
   def categories
-    ::Category.all
+    policy_scope(::Category)
+  end
+
+  def authorize_category!
+    if action_name.in?(%w(index active inactive new create))
+      authorize ::Category
+    else
+      authorize @category
+    end
   end
 
   def find_category
