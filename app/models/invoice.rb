@@ -4,7 +4,7 @@
 
 class Invoice < ApplicationRecord
 
-  include Sortable, NullifyIfBlank, ActsAsMoney
+  include Sortable, NullifyIfBlank, UniqueCode
 
   nullify_if_blank :discount_type
 
@@ -29,12 +29,7 @@ class Invoice < ApplicationRecord
   attribute :invoice_date, default: Date.current
   attribute :due_date, default: (Date.current + 1.day)
 
-  validates :client_id, :company_id, presence: true, reduce: true
-  validates :code,
-            presence: true,
-            uniqueness: {scope: :company_id},
-            length: {maximum: 15},
-            reduce: true
+  validates :client_id, presence: true, reduce: true
   validates :invoice_date, presence: true, reduce: true
   validates :due_date,
             presence: true,
@@ -64,29 +59,17 @@ class Invoice < ApplicationRecord
             comparison: {greater_than: Date.current},
             reduce: true,
             if: :is_recurred?
-  validates :currency,
-            presence: true,
-            reduce: true
 
   has_many :invoice_items, dependent: :destroy
 
   belongs_to :client, class_name: "::User", inverse_of: :invoices
   belongs_to :vendor, class_name: "::User", inverse_of: :created_invoices
-  belongs_to :company, inverse_of: :invoices
 
-  after_initialize :set_code, if: :new_record?
   before_save :remove_blank_elements_from_tax_ids
   before_validation :remove_recurring_cycle, unless: :is_recurred?
   before_validation :remove_discount, unless: :discount_required?
-  after_commit :broadcast_invoices_count, on: [:create, :destroy]
-  after_commit :broadcast_paid_invoices_count,
-               :broadcast_unpaid_invoices_count,
-               :broadcast_overdue_invoices_count,
-               on: :update,
-               if: :status_previously_changed?
 
   delegate :full_name, :email, :mobile_number, to: :client, prefix: true
-  delegate :name, to: :company, prefix: true
 
   default_scope -> { order_created_desc }
 
@@ -96,8 +79,8 @@ class Invoice < ApplicationRecord
 
   class << self
     def accessible(user)
-      return user.invoices.where(company: user.company) if user.client?
-      return user.created_invoices.where(company: user.company) if user.vendor?
+      return user.invoices if user.client?
+      return user.created_invoices if user.vendor?
       all
     end
   end
@@ -134,10 +117,6 @@ class Invoice < ApplicationRecord
 
   private
 
-  def set_code
-    self.code = SecureRandom.alphanumeric(8).upcase
-  end
-
   def discount_required?
     discount_type.present?
   end
@@ -167,37 +146,5 @@ class Invoice < ApplicationRecord
 
   def remove_discount
     self.discount = nil
-  end
-
-  def broadcast_invoices_count
-    broadcast_update_to(
-      :invoices,
-      target: :invoices_count,
-      html: ::Invoice.accessible(::Current.user).count
-    )
-  end
-
-  def broadcast_paid_invoices_count
-    broadcast_update_to(
-      :invoices,
-      target: :paid_invoices_count,
-      html: ::Invoice.accessible(::Current.user).paid.count
-    )
-  end
-
-  def broadcast_unpaid_invoices_count
-    broadcast_update_to(
-      :invoices,
-      target: :unpaid_invoices_count,
-      html: ::Invoice.accessible(::Current.user).unpaid.count
-    )
-  end
-
-  def broadcast_overdue_invoices_count
-    broadcast_update_to(
-      :invoices,
-      target: :overdue_invoices_count,
-      html: ::Invoice.accessible(::Current.user).overdue.count
-    )
   end
 end

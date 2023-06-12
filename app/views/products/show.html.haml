@@ -22,11 +22,11 @@
           .col-12.col-lg-6.d-flex.flex-column
             %dl
               %dt= t(".unit_price")
-              %dd.text-muted= number_to_currency(@product.unit_price, unit: @product.currency.symbol)
+              %dd.text-muted= number_to_currency(@product.unit_price, unit: @company.currency.symbol)
           .col-12.col-lg-6.d-flex.flex-column
             %dl
               %dt= t(".sell_price")
-              %dd.text-muted= number_to_currency(@product.sell_price, unit: @product.currency.symbol)
+              %dd.text-muted= number_to_currency(@product.sell_price, unit: @company.currency.symbol)
           .col-12.d-flex.flex-column
             %dl
               %dt= t(".description")

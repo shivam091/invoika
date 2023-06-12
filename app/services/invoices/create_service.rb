@@ -17,8 +17,7 @@ class Invoices::CreateService < ApplicationService
   attr_reader :user, :invoice_attributes
 
   def create_invoice
-    invoice = user.created_invoices.build(company: user.company)
-    invoice.assign_attributes(invoice_attributes)
+    invoice = user.created_invoices.build(invoice_attributes)
     if invoice.save
       ::ServiceResponse.success(
         message: t("invoices.create.success"),

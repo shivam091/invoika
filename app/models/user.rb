@@ -41,7 +41,6 @@ class User < ApplicationRecord
             presence: true,
             reduce: true,
             if: :password_required?
-  validates :company_id, presence: true, reduce: true
   validates :avatar,
             content_type: IMAGE_CONTENT_TYPES,
             size: {between: IMAGE_MIN_SIZE..IMAGE_MAX_SIZE},
@@ -63,9 +62,10 @@ class User < ApplicationRecord
   has_many :quotes, dependent: :nullify, foreign_key: :client_id
 
   belongs_to :role
-  belongs_to :company
 
-  after_commit :broadcast_clients_count, on: [:create, :destroy]
+  after_commit :broadcast_clients_count,
+               :broadcast_vendors_count,
+               on: [:create, :destroy]
 
   delegate :name, to: :role, prefix: true
 
@@ -209,10 +209,18 @@ class User < ApplicationRecord
   end
 
   def broadcast_clients_count
-    # broadcast_update_to(
-    #   :clients,
-    #   target: :clients_count,
-    #   html: ::Current.company.users.clients.count
-    # )
+    broadcast_update_to(
+      :users,
+      target: :clients_count,
+      html: ::User.clients.count
+    )
+  end
+
+  def broadcast_vendors_count
+    broadcast_update_to(
+      :users,
+      target: :vendors_count,
+      html: ::User.vendors.count
+    )
   end
 end

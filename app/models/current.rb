@@ -3,5 +3,5 @@
 # -*- warn_indent: true -*-
 
 class Current < ActiveSupport::CurrentAttributes
-  attribute :user, :company
+  attribute :user
 end

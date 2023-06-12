@@ -47,7 +47,6 @@
         select_status: "Select status",
         select_discount_type: "Select discount type",
         generate_code: "Generate code",
-        select_currency: "Select currency",
       },
       quote_summary: {
         subtotal: "Subtotal:",

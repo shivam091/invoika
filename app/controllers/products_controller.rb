@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
 
   # POST /products
   def create
-    response = ::Products::CreateService.(@company, product_params)
+    response = ::Products::CreateService.(product_params)
     @product = response.payload[:product]
     if response.success?
       flash[:notice] = response.message
@@ -127,7 +127,7 @@ class ProductsController < ApplicationController
   private
 
   def products
-    @company.products.with_attached_image
+    ::Product.with_attached_image
   end
 
   def find_product

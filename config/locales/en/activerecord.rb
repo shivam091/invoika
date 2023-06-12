@@ -123,6 +123,10 @@
         },
       },
       help_texts: {
+        user_preference: {
+          preferred_locale: "Specify your preferred language from a list of supported languages. This feature is experimental and translations are not complete yet.",
+          preferred_time_zone: "The chosen time zone influences the displayed dates and when notifications about overdue invoices are emailed."
+        },
       },
       errors: {
         format: "%{attribute} %{message}",

@@ -42,14 +42,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_company
-    @company = current_user.company
+    @company = ::Company.first
   end
 
   private
 
   def set_current_attributes
     ::Current.user = current_user
-    ::Current.company = @company
   end
 
   def set_locale(&block)

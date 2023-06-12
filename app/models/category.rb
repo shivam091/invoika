@@ -10,10 +10,9 @@ class Category < ApplicationRecord
 
   validates :name,
             presence: true,
-            uniqueness: {scope: :company_id},
+            uniqueness: true,
             length: {maximum: 55},
             reduce: true
-  validates :company_id, presence: true, reduce: true
   validates :products_count,
             presence: true,
             numericality: {
@@ -24,13 +23,11 @@ class Category < ApplicationRecord
 
   has_many :products, dependent: :restrict_with_exception
 
-  belongs_to :company, inverse_of: :categories
-
   default_scope -> { order_name_asc }
 
   class << self
     def select_options(user)
-      user.company.categories.active.pluck(:name, :id)
+      ::Category.active.pluck(:name, :id)
     end
   end
 end

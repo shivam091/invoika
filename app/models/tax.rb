@@ -17,10 +17,9 @@ class Tax < ApplicationRecord
 
   validates :name,
             presence: true,
-            uniqueness: {scope: :company_id},
+            uniqueness: true,
             length: {maximum: 55},
             reduce: true
-  validates :company_id, presence: true, reduce: true
   validates :rate,
             presence: true,
             numericality: {greater_than: 0.0},
@@ -30,13 +29,11 @@ class Tax < ApplicationRecord
             inclusion: {in: types.values},
             reduce: true
 
-  belongs_to :company, inverse_of: :taxes
-
   default_scope -> { order_name_asc }
 
   class << self
     def select_options(user)
-      user.company.taxes.active.collect do |t|
+      ::Tax.active.collect do |t|
         ["#{t.name} (#{t.rate}%)", t.id]
       end
     end

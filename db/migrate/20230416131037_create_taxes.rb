@@ -5,14 +5,6 @@
 class CreateTaxes < Invoika::Database::Migration[1.0]
   def change
     create_table_with_constraints :taxes, id: :uuid do |t|
-      t.references :company,
-                   type: :uuid,
-                   foreign_key: {
-                     to_table: :companies,
-                     name: :fk_taxes_company_id_on_companies,
-                     on_delete: :cascade
-                   },
-                   index: {using: :btree}
       t.string :name
       t.float :rate, default: 0.0
       t.enum :type, enum_type: :tax_types, default: "exclusive"
@@ -22,7 +14,6 @@ class CreateTaxes < Invoika::Database::Migration[1.0]
 
       t.not_null_constraint :type
       t.not_null_constraint :rate
-      t.not_null_constraint :company_id
 
       t.length_constraint :name, less_than_or_equal_to: 55
 
@@ -30,7 +21,7 @@ class CreateTaxes < Invoika::Database::Migration[1.0]
 
       t.inclusion_constraint :type, in: ["inclusive", "exclusive"]
 
-      t.index [:name, :company_id], using: :btree, unique: true
+      t.index :name, using: :btree, unique: true
 
       t.timestamps_with_timezone null: false
     end

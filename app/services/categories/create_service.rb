@@ -3,8 +3,7 @@
 # -*- warn_indent: true -*-
 
 class Categories::CreateService < ApplicationService
-  def initialize(company, category_attributes)
-    @company = company
+  def initialize(category_attributes)
     @category_attributes = category_attributes.dup
   end
 
@@ -14,10 +13,10 @@ class Categories::CreateService < ApplicationService
 
   private
 
-  attr_reader :company, :category_attributes
+  attr_reader :category_attributes
 
   def create_category
-    category = company.categories.build(category_attributes)
+    category = ::Category.new(category_attributes)
     if category.save
       ::ServiceResponse.success(
         message: t("categories.create.success", category_name: category.name),

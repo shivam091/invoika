@@ -14,7 +14,7 @@
       onkeypress: "if(this.value.length==8) return false;", min: 0, step: "0.01",
       bootstrap: {skip_label: true, wrapper: false}
   %td
-    %span.text-center= number_to_currency(form.object.amount, unit: @quote.currency.symbol)
+    %span.text-center= number_to_currency(form.object.amount, unit: @company.currency.symbol)
   %td
     = button_tag :remove, class: "btn btn-sm btn-danger", data: {action: "click->nested-forms#removeAssociation"} do
       = external_svg_tag("svgs/trash.svg")

@@ -5,7 +5,6 @@
     bootstrap: {append: generate_random_code_button}
   = form.date_field :quote_date
   = form.date_field :due_date
-  = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
   - if form.object.persisted?
     = form.select :status, enum_options_for_select(::Quote, :statuses), {include_blank: t(".select_status")}
   %hr

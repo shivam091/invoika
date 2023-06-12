@@ -8,7 +8,6 @@
   = form.date_field :due_date
   - if form.object.persisted?
     = form.select :status, enum_options_for_select(::Invoice, :statuses), {include_blank: t(".select_status")}
-  = form.select :currency, options_for_select(currencies, form.object.currency), {include_blank: t(".select_currency")}
   = form.check_box :is_recurred, data: {recurring_invoice_target: "isRecurred", action: "change->recurring-invoice#toggleRecurringFields"},
     bootstrap: {switch: true}
   = form.number_field :recurring_cycle, oninput: "validity.valid || (value = value.replace(/[e\+\-]/gi, ''))",

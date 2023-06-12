@@ -17,8 +17,7 @@ class Quotes::CreateService < ApplicationService
   attr_reader :user, :quote_attributes
 
   def create_quote
-    quote = user.created_quotes.build(company: user.company)
-    quote.assign_attributes(quote_attributes)
+    quote = user.created_quotes.build(quote_attributes)
     if quote.save
       ::ServiceResponse.success(
         message: t("quotes.create.success"),

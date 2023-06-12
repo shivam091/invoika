@@ -4,7 +4,7 @@
 
 class Quote < ApplicationRecord
 
-  include Sortable, NullifyIfBlank, ActsAsMoney
+  include Sortable, NullifyIfBlank, UniqueCode
 
   nullify_if_blank :discount_type
 
@@ -26,12 +26,7 @@ class Quote < ApplicationRecord
   attribute :quote_date, default: Date.current
   attribute :due_date, default: (Date.current + 1.day)
 
-  validates :client_id, :company_id, presence: true, reduce: true
-  validates :code,
-            presence: true,
-            uniqueness: {scope: :company_id},
-            length: {maximum: 15},
-            reduce: true
+  validates :client_id, :vendor_id, presence: true, reduce: true
   validates :quote_date, presence: true, reduce: true
   validates :due_date,
             presence: true,
@@ -57,14 +52,10 @@ class Quote < ApplicationRecord
 
   belongs_to :client, class_name: "::User", inverse_of: :quotes
   belongs_to :vendor, class_name: "::User", inverse_of: :created_quotes
-  belongs_to :company, inverse_of: :quotes
 
-  after_initialize :set_code, if: :new_record?
   before_validation :remove_discount, unless: :discount_required?
-  after_commit :broadcast_quotes_count, on: [:create, :destroy]
 
   delegate :full_name, :email, :mobile_number, to: :client, prefix: true
-  delegate :name, to: :company, prefix: true
 
   default_scope -> { order_created_desc }
 
@@ -74,8 +65,8 @@ class Quote < ApplicationRecord
 
   class << self
     def accessible(user)
-      return user.quotes.where(company: user.company) if user.client?
-      return user.created_quotes.where(company: user.company) if user.vendor?
+      return user.quotes if user.client?
+      return user.created_quotes if user.vendor?
       all
     end
   end
@@ -100,10 +91,6 @@ class Quote < ApplicationRecord
 
   private
 
-  def set_code
-    self.code = SecureRandom.alphanumeric(8).upcase
-  end
-
   def reject_quote_item?(attributes)
     [
       attributes[:product_id],
@@ -121,13 +108,5 @@ class Quote < ApplicationRecord
 
   def remove_discount
     self.discount = nil
-  end
-
-  def broadcast_quotes_count
-    broadcast_update_to(
-      :quotes,
-      target: :quotes_count,
-      html: ::Quote.accessible(::Current.user).count
-    )
   end
 end

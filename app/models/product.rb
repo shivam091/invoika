@@ -3,8 +3,8 @@
 # -*- warn_indent: true -*-
 
 class Product < ApplicationRecord
-  include Sortable, Filterable, Toggleable, UpcaseAttribute, ActsAsMoney,
-          ActiveStorageValidations, Validatable
+  include Sortable, Filterable, Toggleable, Validatable, ActiveStorageValidations,
+          UniqueCode
 
   IMAGE_MIN_SIZE = 10.kilobytes.freeze
   IMAGE_MAX_SIZE = 500.kilobytes.freeze
@@ -16,24 +16,17 @@ class Product < ApplicationRecord
   attribute :sell_price, default: 0.0
   attribute :is_active, default: false
 
-  upcase_attributes! :code
-
   validates :name,
             presence: true,
-            uniqueness: {scope: :company_id},
+            uniqueness: true,
             length: {maximum: 55},
-            reduce: true
-  validates :code,
-            presence: true,
-            uniqueness: {scope: :company_id},
-            length: {maximum: 15},
             reduce: true
   validates :description,
             length: {maximum: 1000},
             allow_nil: true,
             allow_blank: true,
             reduce: true
-  validates :company_id, :category_id, presence: true, reduce: true
+  validates :category_id, presence: true, reduce: true
   validates :unit_price,
             presence: true,
             numericality: {greater_than: 0.0},
@@ -56,20 +49,17 @@ class Product < ApplicationRecord
   has_many :quote_items, dependent: :restrict_with_exception
   has_many :invoice_items, dependent: :restrict_with_exception
 
-  belongs_to :company, inverse_of: :products
   belongs_to :category, inverse_of: :products, counter_cache: :products_count
 
-  after_initialize :set_code, :set_currency, if: :new_record?
   after_commit :broadcast_products_count, on: [:create, :destroy]
 
   delegate :name, to: :category, prefix: true
-  delegate :name, to: :company, prefix: true
 
   default_scope -> { order_name_asc }
 
   class << self
     def select_options(user)
-      user.company.products.active.pluck(:name, :id)
+      ::Product.active.pluck(:name, :id)
     end
   end
 
@@ -83,19 +73,11 @@ class Product < ApplicationRecord
 
   private
 
-  def set_currency
-    self.currency = self.company.currency
-  end
-
-  def set_code
-    self.code = SecureRandom.alphanumeric(8).upcase
-  end
-
   def broadcast_products_count
     broadcast_update_to(
       :products,
       target: :products_count,
-      html: ::Current.company.products.count
+      html: ::Product.count
     )
   end
 end

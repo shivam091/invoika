@@ -51,14 +51,6 @@ class CreateUsers < Invoika::Database::Migration[1.0]
                      on_delete: :restrict
                    },
                    index: {using: :btree}
-       t.references :company,
-                    type: :uuid,
-                    foreign_key: {
-                      to_table: :companies,
-                      name: :fk_users_company_id_on_companies,
-                      on_delete: :restrict
-                    },
-                    index: {using: :btree}
 
       t.timestamps_with_timezone null: false
 
@@ -69,7 +61,6 @@ class CreateUsers < Invoika::Database::Migration[1.0]
       t.not_null_constraint :sign_in_count
       t.not_null_constraint :failed_attempts
       t.not_null_constraint :role_id
-      t.not_null_constraint :company_id
 
       t.not_null_and_empty_constraint :email
       t.not_null_and_empty_constraint :first_name

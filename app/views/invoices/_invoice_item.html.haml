@@ -13,5 +13,5 @@
           %td= index
           %td= link_to invoice_item.product_name, product_path(invoice_item.product), target: :_blank
           %td= invoice_item.quantity
-          %td= number_to_currency(invoice_item.unit_price, unit: invoice.currency.symbol)
-          %td= number_to_currency(invoice_item.amount, unit: invoice.currency.symbol)
+          %td= number_to_currency(invoice_item.unit_price, unit: @company.currency.symbol)
+          %td= number_to_currency(invoice_item.amount, unit: @company.currency.symbol)

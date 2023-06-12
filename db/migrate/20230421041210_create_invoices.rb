@@ -5,14 +5,6 @@
 class CreateInvoices < Invoika::Database::Migration[1.0]
   def change
     create_table_with_constraints :invoices, id: :uuid do |t|
-      t.references :company,
-                   type: :uuid,
-                   foreign_key: {
-                     to_table: :companies,
-                     name: :fk_invoices_company_id_on_companies,
-                     on_delete: :cascade
-                   },
-                   index: {using: :btree}
       t.references :vendor,
                    type: :uuid,
                    foreign_key: {
@@ -33,7 +25,6 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.date :invoice_date
       t.date :due_date
       t.enum :status, enum_type: :invoice_statuses, default: "draft", index: {using: :btree}
-      t.string :currency, default: Money.default_currency.iso_code
       t.float :discount
       t.enum :discount_type, enum_type: :discount_types, default: "fixed", index: {using: :btree}
       t.text :terms
@@ -43,7 +34,6 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.date :recurred_till
       t.uuid :tax_ids, array: true, default: []
 
-      t.not_null_constraint :company_id
       t.not_null_constraint :invoice_date
       t.not_null_constraint :due_date
       t.not_null_constraint :discount, if: "discount_type IS NOT NULL"
@@ -51,7 +41,6 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.not_null_constraint :recurring_cycle, if: "is_recurred IS TRUE"
 
       t.not_null_and_empty_constraint :code
-      t.not_null_and_empty_constraint :currency
 
       t.length_constraint :code, less_than_or_equal_to: 15
       t.length_constraint :terms, less_than_or_equal_to: 1000
@@ -63,7 +52,7 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.inclusion_constraint :status, in: ["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]
       t.inclusion_constraint :discount_type, in: ["fixed", "percentage"]
 
-      t.index [:code, :company_id], using: :btree, unique: true
+      t.index :code, using: :btree, unique: true
 
       t.timestamps_with_timezone null: false
     end

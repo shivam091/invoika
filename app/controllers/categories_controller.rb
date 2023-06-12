@@ -30,7 +30,7 @@ class CategoriesController < ApplicationController
 
   # POST /categories
   def create
-    response = ::Categories::CreateService.(@company, category_params)
+    response = ::Categories::CreateService.(category_params)
     @category = response.payload[:category]
     if response.success?
       flash[:notice] = response.message
@@ -111,7 +111,7 @@ class CategoriesController < ApplicationController
   private
 
   def categories
-    @company.categories
+    ::Category.all
   end
 
   def find_category

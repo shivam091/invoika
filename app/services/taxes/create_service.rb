@@ -3,8 +3,7 @@
 # -*- warn_indent: true -*-
 
 class Taxes::CreateService < ApplicationService
-  def initialize(company, tax_attributes)
-    @company = company
+  def initialize(tax_attributes)
     @tax_attributes = tax_attributes.dup
   end
 
@@ -14,10 +13,10 @@ class Taxes::CreateService < ApplicationService
 
   private
 
-  attr_reader :company, :tax_attributes
+  attr_reader :tax_attributes
 
   def create_tax
-    tax = company.taxes.build(tax_attributes)
+    tax = ::Tax.new(tax_attributes)
     if tax.save
       ::ServiceResponse.success(
         message: t("taxes.create.success", tax_name: tax.name),

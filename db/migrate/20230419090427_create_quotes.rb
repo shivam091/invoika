@@ -5,14 +5,6 @@
 class CreateQuotes < Invoika::Database::Migration[1.0]
   def change
     create_table_with_constraints :quotes, id: :uuid do |t|
-      t.references :company,
-                   type: :uuid,
-                   foreign_key: {
-                     to_table: :companies,
-                     name: :fk_quotes_company_id_on_companies,
-                     on_delete: :cascade
-                   },
-                   index: {using: :btree}
       t.references :vendor,
                    type: :uuid,
                    foreign_key: {
@@ -37,11 +29,7 @@ class CreateQuotes < Invoika::Database::Migration[1.0]
       t.enum :discount_type, enum_type: :discount_types, default: "fixed"
       t.text :terms
       t.text :notes
-      t.string :currency, default: Money.default_currency.iso_code
 
-      t.not_null_and_empty_constraint :currency
-
-      t.not_null_constraint :company_id
       t.not_null_constraint :quote_date
       t.not_null_constraint :due_date
       t.not_null_constraint :discount, if: "discount_type IS NOT NULL"
@@ -58,7 +46,7 @@ class CreateQuotes < Invoika::Database::Migration[1.0]
       t.inclusion_constraint :status, in: ["draft", "converted", "pending", "accepted", "rejected"]
       t.inclusion_constraint :discount_type, in: ["fixed", "percentage"]
 
-      t.index [:code, :company_id], using: :btree, unique: true
+      t.index :code, using: :btree, unique: true
 
       t.timestamps_with_timezone null: false
     end

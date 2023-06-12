@@ -13,5 +13,5 @@
           %td= index
           %td= link_to quote_item.product_name, product_path(quote_item.product), target: :_blank
           %td= quote_item.quantity
-          %td= number_to_currency(quote_item.unit_price, unit: quote.currency.symbol)
-          %td= number_to_currency(quote_item.amount, unit: quote.currency.symbol)
+          %td= number_to_currency(quote_item.unit_price, unit: @company.currency.symbol)
+          %td= number_to_currency(quote_item.amount, unit: @company.currency.symbol)

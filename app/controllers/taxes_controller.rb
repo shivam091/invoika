@@ -30,7 +30,7 @@ class TaxesController < ApplicationController
 
   # POST /taxes
   def create
-    response = ::Taxes::CreateService.(@company, tax_params)
+    response = ::Taxes::CreateService.(tax_params)
     @tax = response.payload[:tax]
     if response.success?
       flash[:notice] = response.message
@@ -111,7 +111,7 @@ class TaxesController < ApplicationController
   private
 
   def taxes
-    @company.taxes
+    ::Tax.all
   end
 
   def find_tax

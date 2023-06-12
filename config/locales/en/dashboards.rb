@@ -7,6 +7,7 @@
     dashboards: {
       show: {
         title: "Dashboard",
+        total_vendors: "Total vendors",
         total_clients: "Total clients",
         total_products: "Total products",
         total_quotes: "Total quotes",

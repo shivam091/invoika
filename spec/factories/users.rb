@@ -10,7 +10,6 @@ FactoryBot.define do
     last_password_updated_at { DateTime.now }
     password_expires_at { ::User::DEFAULT_PASSWORD_EXPIRY_PERIOD }
     password_automatically_set { false }
-    association :company
 
     factory :admin, parent: :user do
       last_name { "Admin" }
