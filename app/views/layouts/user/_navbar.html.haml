@@ -1,9 +1,10 @@
 .nav-scroller.shadow-sm.border-bottom
   %nav.nav.nav-underline{aria: {label: t(".secondary_navigation")}}
-    = link_to active_categories_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("categories"))}" do
-      = external_svg_tag("svgs/table.svg")
-      = t(".categories")
-    = link_to active_products_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("products"))}" do
+    - if policy(::Category).index?
+      = link_to categories_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("categories"))}" do
+        = external_svg_tag("svgs/table.svg")
+        = t(".categories")
+    = link_to products_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("products"))}" do
       = external_svg_tag("svgs/cube.svg")
       = t(".products")
     = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
@@ -12,9 +13,10 @@
     = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/credit-card.svg")
       = t(".payments")
-    = link_to active_taxes_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("taxes"))}" do
-      = external_svg_tag("svgs/percentage.svg", height: 16, width: 16)
-      = t(".taxes")
+    - if policy(::Tax).index?
+      = link_to taxes_path, class: "nav-link d-flex align-items-center #{active_when(current_controller?("taxes"))}" do
+        = external_svg_tag("svgs/percentage.svg", height: 16, width: 16)
+        = t(".taxes")
     = link_to "javascript:void(0)", class: "nav-link d-flex align-items-center" do
       = external_svg_tag("svgs/report.svg")
       = t(".reports")

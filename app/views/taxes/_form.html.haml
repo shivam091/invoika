@@ -4,12 +4,12 @@
   = form.select :type, enum_options_for_select(::Tax, :type), {include_blank: t(".select_type")}
   = form.check_box :is_active, bootstrap: {switch: true}
   .modal-actions
-    - if form.object.new_record?
+    - if form.object.new_record? && policy(@tax).create?
       = form.primary do
         = external_svg_tag("svgs/plus.svg")
         %span.d-block.d-lg-none= button_text("create")
         %span.d-none.d-lg-block= button_text("create_tax")
-    - if form.object.persisted?
+    - if form.object.persisted? && policy(@tax).update?
       = form.primary do
         = external_svg_tag("svgs/floppy.svg")
         %span.d-block.d-lg-none= button_text("update")
