@@ -29,15 +29,16 @@
         %ul.list-unstyled.d-flex.align-items-center
           %li.d-inline-block.middle-dot-divider
             = form.object.image.blob.filename
-          %li.d-inline-block.middle-dot-divider
-            = link_to t(".remove_image"), remove_image_product_path(form.object), data: {turbo_method: :delete, turbo_confirm: t(".remove_image_confirmation_text")}
+          - if policy(@product).remove_image?
+            %li.d-inline-block.middle-dot-divider
+              = link_to t(".remove_image"), remove_image_product_path(form.object), data: {turbo_method: :delete, turbo_confirm: t(".remove_image_confirmation_text")}
   .actions
-    - if form.object.new_record?
+    - if form.object.new_record? && policy(@product).create?
       = form.primary do
         = external_svg_tag("svgs/plus.svg")
         %span.d-block.d-lg-none= button_text("create")
         %span.d-none.d-lg-block= button_text("create_product")
-    - if form.object.persisted?
+    - if form.object.persisted? && policy(@product).update?
       = form.primary do
         = external_svg_tag("svgs/floppy.svg")
         %span.d-block.d-lg-none= button_text("update")
