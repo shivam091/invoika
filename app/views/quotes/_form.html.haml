@@ -27,12 +27,12 @@
     .col-12.col-lg-6
       = form.text_area :terms, bootstrap: {layout: :vertical}
   .actions
-    - if form.object.new_record?
+    - if form.object.new_record? && policy(@quote).create?
       = form.primary do
         = external_svg_tag("svgs/plus.svg")
         %span.d-block.d-lg-none= button_text("create")
         %span.d-none.d-lg-block= button_text("create_quote")
-    - if form.object.persisted?
+    - if form.object.persisted? && policy(@quote).update?
       = form.primary do
         = external_svg_tag("svgs/floppy.svg")
         %span.d-block.d-lg-none= button_text("update")
