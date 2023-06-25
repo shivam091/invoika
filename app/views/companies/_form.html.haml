@@ -21,10 +21,11 @@
   = form.fields_for :address, include_id: false do |address_form_fields|
     = render_if_exists("shared/address_form_fields", locals: {form: address_form_fields})
   .actions
-    = form.primary do
-      = external_svg_tag("svgs/floppy.svg")
-      %span.d-block.d-lg-none= button_text("update")
-      %span.d-none.d-lg-block= button_text("update_company")
+    - if policy(@company).show?
+      = form.primary do
+        = external_svg_tag("svgs/floppy.svg")
+        %span.d-block.d-lg-none= button_text("update")
+        %span.d-none.d-lg-block= button_text("update_company")
     = link_to company_path, class: "btn btn-secondary" do
       = external_svg_tag("svgs/cancel.svg")
       = button_text("cancel")

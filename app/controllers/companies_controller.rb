@@ -4,6 +4,8 @@
 
 class CompaniesController < ApplicationController
 
+  before_action :authorize_company!
+
   # GET /company
   def show
   end
@@ -52,5 +54,9 @@ class CompaniesController < ApplicationController
         :postal_code
       ]
     )
+  end
+
+  def authorize_company!
+    authorize @company
   end
 end
