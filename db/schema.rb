@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_25_152637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
   create_enum "color_schemes", [["dark", "light"]]
   create_enum "discount_types", [["fixed", "percentage"]]
   create_enum "invoice_statuses", [["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]]
+  create_enum "payment_modes", [["cash", "manual", "stripe", "razorpay", "paypal"]]
+  create_enum "payment_types", [["full_payment", "partial_payment"]]
   create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "rejected"]]
   create_enum "tax_types", [["inclusive", "exclusive"]]
 
