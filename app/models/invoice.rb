@@ -61,6 +61,7 @@ class Invoice < ApplicationRecord
             if: :is_recurred?
 
   has_many :invoice_items, dependent: :destroy
+  has_many :invoice_payments, dependent: :destroy
 
   belongs_to :client, class_name: "::User", inverse_of: :invoices
   belongs_to :vendor, class_name: "::User", inverse_of: :created_invoices

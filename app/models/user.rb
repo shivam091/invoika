@@ -60,6 +60,7 @@ class User < ApplicationRecord
   has_many :invoices, dependent: :nullify, foreign_key: :client_id
   has_many :created_quotes, dependent: :nullify, foreign_key: :vendor_id, class_name: "::Quote"
   has_many :quotes, dependent: :nullify, foreign_key: :client_id
+  has_many :invoice_payments, dependent: :nullify
 
   belongs_to :role
 
