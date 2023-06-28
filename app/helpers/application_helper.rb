@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-# -*- frozen_string_literal: true -*-
+# -*- frozen_string_literal: false -*-
 # -*- warn_indent: true -*-
 
 module ApplicationHelper
@@ -142,5 +142,21 @@ module ApplicationHelper
     else
       []
     end
+  end
+
+  def pattern(string, case_sensitive: true)
+    pattern = "^"
+    string.chars.each do |char|
+      if (/[[:digit:]]/.match?(char) || /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.match?(char))
+        pattern.concat(char)
+      else
+        chars = [char]
+        if case_sensitive.eql?(false)
+          chars << (/[[:upper:]]/.match?(char) ? char.downcase : char.upcase)
+        end
+        pattern.concat("[#{chars.join}]")
+      end
+    end
+    pattern.concat("$")
   end
 end
