@@ -15,7 +15,6 @@ class CreateProducts < Invoika::Database::Migration[1.0]
                    index: {using: :btree}
       t.string :name
       t.string :code
-      t.text :description
       t.money :unit_price, default: 0.0
       t.money :sell_price, default: 0.0
       t.boolean :is_active, default: false
@@ -27,7 +26,6 @@ class CreateProducts < Invoika::Database::Migration[1.0]
 
       t.length_constraint :name, less_than_or_equal_to: 55
       t.length_constraint :code, less_than_or_equal_to: 15
-      t.length_constraint :description, less_than_or_equal_to: 1000
 
       t.check_constraint "unit_price > CAST(0.0 AS MONEY)", name: "unit_price_gt_zero"
       t.check_constraint "sell_price > CAST(0.0 AS MONEY)", name: "sell_price_gt_zero"

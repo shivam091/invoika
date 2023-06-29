@@ -27,8 +27,6 @@ class CreateQuotes < Invoika::Database::Migration[1.0]
       t.enum :status, enum_type: :quote_statuses, default: "draft"
       t.float :discount
       t.enum :discount_type, enum_type: :discount_types, default: "fixed"
-      t.text :terms
-      t.text :notes
 
       t.not_null_constraint :quote_date
       t.not_null_constraint :due_date
@@ -38,8 +36,6 @@ class CreateQuotes < Invoika::Database::Migration[1.0]
       t.not_null_and_empty_constraint :code
 
       t.length_constraint :code, less_than_or_equal_to: 15
-      t.length_constraint :terms, less_than_or_equal_to: 1000
-      t.length_constraint :notes, less_than_or_equal_to: 1000
 
       t.check_constraint "due_date >= quote_date", name: "chk_due_date_gteq_quote_date"
 
