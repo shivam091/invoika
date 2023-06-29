@@ -2,9 +2,9 @@
 # -*- frozen_string_literal: true -*-
 # -*- warn_indent: true -*-
 
-# spec/services/profiles/remove_avatar_service_spec.rb
+# spec/models/invoice_payment_spec.rb
 
 require "spec_helper"
 
-RSpec.describe Profiles::RemoveAvatarService, type: :service do
+RSpec.describe InvoicePayment, type: :model do
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_26_142827) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -20,6 +20,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
   create_enum "color_schemes", [["dark", "light"]]
   create_enum "discount_types", [["fixed", "percentage"]]
   create_enum "invoice_statuses", [["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]]
+  create_enum "payment_modes", [["cash", "manual", "stripe", "razorpay", "paypal"]]
+  create_enum "payment_statuses", [["pending", "declined", "denied", "failed", "cancelled", "processing", "paid", "completed"]]
+  create_enum "payment_types", [["full_payment", "partial_payment"]]
   create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "rejected"]]
   create_enum "tax_types", [["inclusive", "exclusive"]]
 
@@ -158,6 +161,37 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.check_constraint "product_id IS NOT NULL", name: "chk_ce126e28bd"
     t.check_constraint "quantity IS NOT NULL", name: "chk_37e358a3cb"
     t.check_constraint "unit_price IS NOT NULL", name: "chk_da198cd4b0"
+  end
+
+  create_table "invoice_payments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "invoice_id"
+    t.uuid "user_id"
+    t.string "code"
+    t.timestamptz "payment_date"
+    t.money "amount", scale: 2, default: "0.0"
+    t.enum "payment_mode", default: "cash", enum_type: "payment_modes"
+    t.enum "payment_type", default: "full_payment", enum_type: "payment_types"
+    t.enum "payment_status", default: "processing", enum_type: "payment_statuses"
+    t.text "notes"
+    t.string "transaction_id"
+    t.timestamptz "created_at", null: false
+    t.timestamptz "updated_at", null: false
+    t.index ["code"], name: "index_invoice_payments_on_code", unique: true
+    t.index ["invoice_id"], name: "index_invoice_payments_on_invoice_id"
+    t.index ["user_id"], name: "index_invoice_payments_on_user_id"
+    t.check_constraint "NOT payment_mode = 'manual'::payment_modes OR transaction_id IS NOT NULL", name: "chk_e56ea020c8"
+    t.check_constraint "amount IS NOT NULL", name: "chk_20584287b0"
+    t.check_constraint "char_length(code::text) <= 15", name: "chk_49aa618f1b"
+    t.check_constraint "char_length(notes) <= 1000", name: "chk_63aa2050f0"
+    t.check_constraint "code IS NOT NULL AND code::text <> ''::text", name: "chk_0a5911f495"
+    t.check_constraint "invoice_id IS NOT NULL", name: "chk_92dcd0161d"
+    t.check_constraint "payment_date IS NOT NULL", name: "chk_b0e490ddd2"
+    t.check_constraint "payment_mode = ANY (ARRAY['cash'::payment_modes, 'manual'::payment_modes, 'stripe'::payment_modes, 'razorpay'::payment_modes, 'paypal'::payment_modes])", name: "chk_c7f08bd2af"
+    t.check_constraint "payment_mode IS NOT NULL", name: "chk_948ce11059"
+    t.check_constraint "payment_status = ANY (ARRAY['pending'::payment_statuses, 'declined'::payment_statuses, 'denied'::payment_statuses, 'failed'::payment_statuses, 'cancelled'::payment_statuses, 'processing'::payment_statuses, 'paid'::payment_statuses, 'completed'::payment_statuses])", name: "chk_2355098689"
+    t.check_constraint "payment_type = ANY (ARRAY['full_payment'::payment_types, 'partial_payment'::payment_types])", name: "chk_d5b832cf12"
+    t.check_constraint "payment_type IS NOT NULL", name: "chk_9627b23efd"
+    t.check_constraint "user_id IS NOT NULL", name: "chk_487f70f478"
   end
 
   create_table "invoices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -399,6 +433,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
   add_foreign_key "cities", "states", name: "fk_cities_state_id_on_states", on_delete: :restrict
   add_foreign_key "invoice_items", "invoices", name: "fk_invoice_items_invoice_id_on_invoices", on_delete: :cascade
   add_foreign_key "invoice_items", "products", name: "fk_invoice_items_product_id_on_products", on_delete: :restrict
+  add_foreign_key "invoice_payments", "invoices", name: "fk_invoice_payments_invoice_id_on_invoices", on_delete: :cascade
+  add_foreign_key "invoice_payments", "users", name: "fk_invoice_payments_user_id_on_users", on_delete: :cascade
   add_foreign_key "invoices", "users", column: "client_id", name: "fk_invoices_client_id_on_users", on_delete: :nullify
   add_foreign_key "invoices", "users", column: "vendor_id", name: "fk_invoices_vendor_id_on_users", on_delete: :nullify
   add_foreign_key "products", "categories", name: "fk_products_category_id_on_categories", on_delete: :restrict
