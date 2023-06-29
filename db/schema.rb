@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_140903) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
   create_enum "invoice_statuses", [["draft", "unpaid", "paid", "partially_paid", "processing", "overdue", "void", "uncollectible"]]
   create_enum "quote_statuses", [["draft", "converted", "pending", "accepted", "rejected"]]
   create_enum "tax_types", [["inclusive", "exclusive"]]
+
+  create_table "action_text_rich_texts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.uuid "record_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -169,8 +179,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.enum "status", default: "draft", enum_type: "invoice_statuses"
     t.float "discount"
     t.enum "discount_type", default: "fixed", enum_type: "discount_types"
-    t.text "terms"
-    t.text "notes"
     t.boolean "is_recurred", default: false
     t.integer "recurring_cycle"
     t.date "recurred_till"
@@ -187,8 +195,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.check_constraint "NOT discount_type IS NOT NULL OR discount IS NOT NULL", name: "chk_a8b865798a"
     t.check_constraint "NOT is_recurred IS TRUE OR recurring_cycle IS NOT NULL", name: "chk_cc9c8e2c41"
     t.check_constraint "char_length(code::text) <= 15", name: "chk_c7c07b85de"
-    t.check_constraint "char_length(notes) <= 1000", name: "chk_4cbae24169"
-    t.check_constraint "char_length(terms) <= 1000", name: "chk_85e9e8be38"
     t.check_constraint "code IS NOT NULL AND code::text <> ''::text", name: "chk_924a9da806"
     t.check_constraint "discount_type = ANY (ARRAY['fixed'::discount_types, 'percentage'::discount_types])", name: "chk_afbdabbd82"
     t.check_constraint "due_date >= invoice_date", name: "chk_due_date_gteq_invoice_date"
@@ -202,7 +208,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.uuid "category_id"
     t.string "name"
     t.string "code"
-    t.text "description"
     t.money "unit_price", scale: 2, default: "0.0"
     t.money "sell_price", scale: 2, default: "0.0"
     t.boolean "is_active", default: false
@@ -212,7 +217,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.index ["code"], name: "index_products_on_code", unique: true
     t.index ["name"], name: "index_products_on_name", unique: true
     t.check_constraint "char_length(code::text) <= 15", name: "chk_a39680f5ff"
-    t.check_constraint "char_length(description) <= 1000", name: "chk_a25291fb10"
     t.check_constraint "char_length(name::text) <= 55", name: "chk_f40320f388"
     t.check_constraint "name IS NOT NULL AND name::text <> ''::text", name: "chk_0a202cf2e7"
     t.check_constraint "sell_price > 0.0::money", name: "sell_price_gt_zero"
@@ -245,8 +249,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.enum "status", default: "draft", enum_type: "quote_statuses"
     t.float "discount"
     t.enum "discount_type", default: "fixed", enum_type: "discount_types"
-    t.text "terms"
-    t.text "notes"
     t.timestamptz "created_at", null: false
     t.timestamptz "updated_at", null: false
     t.index ["client_id"], name: "index_quotes_on_client_id"
@@ -255,8 +257,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_30_124229) do
     t.check_constraint "NOT discount IS NOT NULL OR discount_type IS NOT NULL", name: "chk_139a0e61cb"
     t.check_constraint "NOT discount_type IS NOT NULL OR discount IS NOT NULL", name: "chk_21ec9f3ae2"
     t.check_constraint "char_length(code::text) <= 15", name: "chk_506fb1e130"
-    t.check_constraint "char_length(notes) <= 1000", name: "chk_a7a378d842"
-    t.check_constraint "char_length(terms) <= 1000", name: "chk_643f9aa96a"
     t.check_constraint "code IS NOT NULL AND code::text <> ''::text", name: "chk_10664e013c"
     t.check_constraint "discount_type = ANY (ARRAY['fixed'::discount_types, 'percentage'::discount_types])", name: "chk_6b2988274f"
     t.check_constraint "due_date >= quote_date", name: "chk_due_date_gteq_quote_date"
