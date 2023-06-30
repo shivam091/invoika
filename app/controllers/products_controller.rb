@@ -5,6 +5,7 @@
 class ProductsController < ApplicationController
 
   before_action :find_product, except: [:index, :active, :inactive, :new, :create]
+  before_action :authorize_product!
 
   # GET /products
   def index
@@ -127,11 +128,19 @@ class ProductsController < ApplicationController
   private
 
   def products
-    ::Product.with_attached_image
+    policy_scope(::Product).with_attached_image
   end
 
   def find_product
     @product = products.find(params.fetch(:uuid))
+  end
+
+  def authorize_product!
+    if action_name.in?(%w(index active inactive new create))
+      authorize ::Product
+    else
+      authorize @product
+    end
   end
 
   def product_params

@@ -27,8 +27,6 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.enum :status, enum_type: :invoice_statuses, default: "draft", index: {using: :btree}
       t.float :discount
       t.enum :discount_type, enum_type: :discount_types, default: "fixed", index: {using: :btree}
-      t.text :terms
-      t.text :notes
       t.boolean :is_recurred, default: false, index: {using: :btree}
       t.integer :recurring_cycle
       t.date :recurred_till
@@ -43,8 +41,6 @@ class CreateInvoices < Invoika::Database::Migration[1.0]
       t.not_null_and_empty_constraint :code
 
       t.length_constraint :code, less_than_or_equal_to: 15
-      t.length_constraint :terms, less_than_or_equal_to: 1000
-      t.length_constraint :notes, less_than_or_equal_to: 1000
 
       t.check_constraint "due_date >= invoice_date", name: "chk_due_date_gteq_invoice_date"
       t.check_constraint "recurred_till > CURRENT_DATE", name: "chk_recurred_till_gt_today"

@@ -28,7 +28,8 @@
                 .row
                   .col-lg-12
                     = link_to quote.client_full_name, "javascript:void(0)", class: "me-1 fw-bold"
-                    = badge_tag quote.code, {color: ::Invoika::Color.of("#006B75FF")}, {href: quote_path(quote)}
+                    = conditional_link_to policy(quote).show?, quote_path(quote) do
+                      = badge_tag quote.code, {color: ::Invoika::Color.of("#006B75FF")}
                 %span.text-muted.text-start
                   = quote.client_email
           %td= badge_tag quote.quote_date.to_fs(:long), {color: ::Invoika::Color.of("#145DA0FF")}
@@ -40,10 +41,11 @@
             = link_to "javascript:void(0)", class: "text-default", data: {bs_toggle: "dropdown"}, aria: {expanded: false} do
               = external_svg_tag("svgs/ellipsis-vertical.svg")
             %ul.dropdown-menu
-              %li
-                = link_to edit_quote_path(quote), class: "dropdown-item" do
-                  = external_svg_tag("svgs/pencil.svg")
-                  = button_text("edit")
+              - if policy(quote).update?
+                %li
+                  = link_to edit_quote_path(quote), class: "dropdown-item" do
+                    = external_svg_tag("svgs/pencil.svg")
+                    = button_text("edit")
               %li
                 = link_to "javascript:void(0)", class: "dropdown-item" do
                   = external_svg_tag("svgs/envelope.svg")
@@ -52,27 +54,31 @@
                 = link_to "javascript:void(0)", class: "dropdown-item" do
                   = external_svg_tag("svgs/download.svg")
                   = button_text("download")
-              %li
-                = link_to "javascript:void(0)", class: "dropdown-item" do
-                  = external_svg_tag("svgs/file.svg")
-                  = t(".convert_to_invoice")
+              - if policy(quote).convert_to_invoice?
+                %li
+                  = link_to "javascript:void(0)", class: "dropdown-item" do
+                    = external_svg_tag("svgs/file.svg")
+                    = t(".convert_to_invoice")
               %li
                 = link_to "javascript:void(0)", class: "dropdown-item" do
                   = external_svg_tag("svgs/link.svg")
                   = t(".quote_url")
-              %li
-                = link_to "javascript:void(0)", class: "dropdown-item" do
-                  = external_svg_tag("svgs/check-mark.svg")
-                  = button_text("accept")
-              %li
-                = link_to "javascript:void(0)", class: "dropdown-item" do
-                  = external_svg_tag("svgs/cancel.svg")
-                  = button_text("reject")
-              %li
-                = link_to quote_path(quote), class: "dropdown-item dropdown-item-danger",
-                  data: {turbo_confirm: t(".delete_quote_confirmation_text"), turbo_method: :delete} do
-                  = external_svg_tag("svgs/trash.svg")
-                  = button_text("delete")
+              - if policy(quote).accept?
+                %li
+                  = link_to "javascript:void(0)", class: "dropdown-item" do
+                    = external_svg_tag("svgs/check-mark.svg")
+                    = button_text("accept")
+              - if policy(quote).reject?
+                %li
+                  = link_to "javascript:void(0)", class: "dropdown-item" do
+                    = external_svg_tag("svgs/cancel.svg")
+                    = button_text("reject")
+              - if policy(quote).destroy?
+                %li
+                  = link_to quote_path(quote), class: "dropdown-item dropdown-item-danger",
+                    data: {turbo_confirm: t(".delete_quote_confirmation_text"), turbo_method: :delete} do
+                    = external_svg_tag("svgs/trash.svg")
+                    = button_text("delete")
       - end.empty?
         %tr
           %td.no-data{colspan: ::Quote.columns.count}

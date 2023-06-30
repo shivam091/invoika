@@ -5,6 +5,7 @@
 class QuotesController < ApplicationController
 
   before_action :find_quote, only: [:edit, :update, :destroy, :show]
+  before_action :authorize_quote!
 
   # GET /quotes
   def index
@@ -97,11 +98,19 @@ class QuotesController < ApplicationController
   private
 
   def quotes
-    ::Quote.accessible(current_user).includes(:client, :quote_items)
+    policy_scope(::Quote).includes(:client, :quote_items)
   end
 
   def find_quote
     @quote = quotes.find(params.fetch(:uuid))
+  end
+
+  def authorize_quote!
+    if action_name.in?(%w(index draft converted accepted new create))
+      authorize ::Quote
+    else
+      authorize @quote
+    end
   end
 
   def quote_params

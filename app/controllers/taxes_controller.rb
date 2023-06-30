@@ -5,6 +5,7 @@
 class TaxesController < ApplicationController
 
   before_action :find_tax, except: [:index, :active, :inactive, :new, :create]
+  before_action :authorize_tax!
 
   # GET /taxes
   def index
@@ -111,7 +112,15 @@ class TaxesController < ApplicationController
   private
 
   def taxes
-    ::Tax.all
+    policy_scope(::Tax)
+  end
+
+  def authorize_tax!
+    if action_name.in?(%w(index active inactive new create))
+      authorize ::Tax
+    else
+      authorize @tax
+    end
   end
 
   def find_tax

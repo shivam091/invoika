@@ -22,16 +22,18 @@
           %td= number_to_percentage(tax.rate, precision: 2)
           %td= enum_i18n(::Tax, :types, tax.type)
           %td.actions
-            = link_to external_svg_tag("svgs/pencil.svg"), edit_tax_path(tax), class: "btn btn-sm btn-secondary",
-              data: {turbo_frame: :remote_modal}
-            - if tax.is_active?
+            - if policy(tax).update?
+              = link_to external_svg_tag("svgs/pencil.svg"), edit_tax_path(tax), class: "btn btn-sm btn-secondary",
+                data: {turbo_frame: :remote_modal}
+            - if tax.is_active? && policy(tax).deactivate?
               = link_to external_svg_tag("svgs/cancel.svg"), deactivate_tax_path(tax), class: "btn btn-sm btn-secondary",
                 data: {turbo_confirm: t(".deactivate_tax_confirmation_text", tax_name: tax.name), turbo_method: :patch}
-            - if !tax.is_active?
+            - if !tax.is_active? && policy(tax).activate?
               = link_to external_svg_tag("svgs/check-mark.svg"), activate_tax_path(tax), class: "btn btn-sm btn-secondary",
                 data: {turbo_confirm: t(".activate_tax_confirmation_text", tax_name: tax.name), turbo_method: :patch}
-            = link_to external_svg_tag("svgs/trash.svg"), tax_path(tax), class: "btn btn-sm btn-danger",
-              data: {turbo_confirm: t(".delete_tax_confirmation_text", tax_name: tax.name), turbo_method: :delete}
+            - if policy(tax).destroy?
+              = link_to external_svg_tag("svgs/trash.svg"), tax_path(tax), class: "btn btn-sm btn-danger",
+                data: {turbo_confirm: t(".delete_tax_confirmation_text", tax_name: tax.name), turbo_method: :delete}
       - end.empty?
         %tr
           %td.no-data{colspan: ::Tax.columns.count}
