@@ -86,9 +86,6 @@ gem "image_processing", "~> 1.2"
 # Validations for Active Storage
 gem "active_storage_validations"
 
-# Image processing library
-gem "ruby-vips"
-
 # Preview PDF files attached using Active Storage
 gem "poppler", '~> 4.1'
 

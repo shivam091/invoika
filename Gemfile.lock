@@ -462,7 +462,6 @@ DEPENDENCIES
   redis-actionpack
   rspec-parameterized
   rspec-rails (~> 5.0.0)
-  ruby-vips
   sassc-rails
   selenium-webdriver
   shoulda-matchers (~> 5.0)
