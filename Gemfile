@@ -81,13 +81,16 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
-# Validations for active_storage
+# Validations for Active Storage
 gem "active_storage_validations"
 
 # Image processing library
 gem "ruby-vips"
+
+# Preview PDF files attached using Active Storage
+gem "poppler", '~> 4.1'
 
 # Twilio APIs
 gem "twilio-ruby", "~> 5"

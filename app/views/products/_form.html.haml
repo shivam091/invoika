@@ -9,7 +9,7 @@
       = form.text_field :code, data: {random_string_generator_target: "field"},
         bootstrap: {append: generate_random_code_button}
     .col-12
-      = form.text_area :description
+      = form.rich_text_area :description
     .col-sm-12.col-md-6.col-lg-4
       = form.number_field :unit_price, bootstrap: {append: @company.currency.symbol}
     .col-sm-12.col-md-6.col-lg-4

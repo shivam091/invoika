@@ -60,6 +60,9 @@ class Invoice < ApplicationRecord
             reduce: true,
             if: :is_recurred?
 
+  has_rich_text :notes
+  has_rich_text :terms
+
   has_many :invoice_items, dependent: :destroy
 
   belongs_to :client, class_name: "::User", inverse_of: :invoices
