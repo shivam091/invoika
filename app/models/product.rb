@@ -21,11 +21,6 @@ class Product < ApplicationRecord
             uniqueness: true,
             length: {maximum: 55},
             reduce: true
-  validates :description,
-            length: {maximum: 1000},
-            allow_nil: true,
-            allow_blank: true,
-            reduce: true
   validates :category_id, presence: true, reduce: true
   validates :unit_price,
             presence: true,
@@ -43,6 +38,8 @@ class Product < ApplicationRecord
               height: {in: IMAGE_MIN_HEIGHT..IMAGE_MAX_HEIGHT}
             },
             reduce: true
+
+  has_rich_text :description
 
   has_one_attached :image, dependent: :purge_later
 

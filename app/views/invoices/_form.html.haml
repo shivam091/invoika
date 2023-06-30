@@ -32,9 +32,9 @@
       = render_if_exists("invoices/invoice_summary")
   .row
     .col-12.col-lg-6
-      = form.text_area :notes, bootstrap: {layout: :vertical}
+      = form.rich_text_area :notes, bootstrap: {layout: :vertical}
     .col-12.col-lg-6
-      = form.text_area :terms, bootstrap: {layout: :vertical}
+      = form.rich_text_area :terms, bootstrap: {layout: :vertical}
   .actions
     - if form.object.new_record?
       = form.primary do

@@ -43,10 +43,12 @@ class Quote < ApplicationRecord
   validates :discount, presence: true, if: :discount_required?, reduce: true
   validates :discount_type, presence: true, if: :discount_type_required?, reduce: true
   validates :notes, :terms,
-            length: {maximum: 1000},
             allow_nil: true,
             allow_blank: true,
             reduce: true
+
+  has_rich_text :notes
+  has_rich_text :terms
 
   has_many :quote_items, dependent: :destroy
 
