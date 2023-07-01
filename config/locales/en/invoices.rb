@@ -43,7 +43,6 @@
         no_unpaid_invoices_to_display: "There are no unpaid invoices to display.",
         no_overdue_invoices_to_display: "There are no overdue invoices to display.",
         no_invoices_to_display: "There are no invoices to display.",
-        delete_invoice_confirmation_text: "Are you sure you want to delete the invoice?"
       },
       new: {
         title: "New invoice",
@@ -84,7 +83,6 @@
         email_address: "Email address: %{email_address}",
         phone_number: "Phone number: %{phone_number}",
         mobile_number: "Mobile number: %{mobile_number}",
-        delete_invoice_confirmation_text: "Are you sure you want to delete the invoice?",
       },
       invoice_date: {
         invoice_date: "Invoice date",

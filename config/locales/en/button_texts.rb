@@ -15,6 +15,8 @@
       update: "Update",
       delete: "Delete",
       cancel: "Cancel",
+      activate: "Activate",
+      deactivate: "Deactivate",
       yes_delete: "Yes, delete",
       no_cancel: "No, cancel",
       print: "Print",

@@ -22,7 +22,6 @@
         rate: "Rate",
         type: "Type",
         actions: "Actions",
-        delete_tax_confirmation_text: "Are you sure you want to delete the tax '%{tax_name}'?",
         activate_tax_confirmation_text: "Are you sure you want to activate the tax '%{tax_name}'?",
         deactivate_tax_confirmation_text: "Are you sure you want to deactivate the tax '%{tax_name}'?",
         no_taxes_to_display: "There are no taxes to display.",

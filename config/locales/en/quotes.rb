@@ -34,7 +34,6 @@
         no_draft_quotes_to_display: "There are no quotes in draft to display.",
         no_accepted_quotes_to_display: "There are no accepted quotes to display.",
         no_quotes_to_display: "There are no quotes to display.",
-        delete_quote_confirmation_text: "Are you sure you want to delete the quote?"
       },
       new: {
         title: "New quote",
@@ -72,7 +71,6 @@
         email_address: "Email address: %{email_address}",
         phone_number: "Phone number: %{phone_number}",
         mobile_number: "Mobile number: %{mobile_number}",
-        delete_quote_confirmation_text: "Are you sure you want to delete the quote?",
       },
       quote_date: {
         quote_date: "Quote date",

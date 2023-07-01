@@ -21,7 +21,6 @@
         name: "Name",
         products_count: "No. of Products",
         actions: "Actions",
-        delete_category_confirmation_text: "Are you sure you want to delete the category '%{category_name}'?",
         activate_category_confirmation_text: "Are you sure you want to activate the category '%{category_name}'?",
         deactivate_category_confirmation_text: "Are you sure you want to deactivate the category '%{category_name}'?",
         no_categories_to_display: "There are no categories to display.",

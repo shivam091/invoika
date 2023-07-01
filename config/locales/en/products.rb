@@ -23,7 +23,6 @@
         unit_price: "Unit price",
         sell_price: "Sell price",
         actions: "Actions",
-        delete_product_confirmation_text: "Are you sure you want to delete the product '%{product_name}'?",
         activate_product_confirmation_text: "Are you sure you want to activate the product '%{product_name}'?",
         deactivate_product_confirmation_text: "Are you sure you want to deactivate the product '%{product_name}'?",
         no_products_to_display: "There are no products to display.",
@@ -52,7 +51,6 @@
         description: "Description",
         created: "Created",
         updated: "Updated",
-        delete_product_confirmation_text: "Are you sure you want to delete the product '%{product_name}'?",
       },
       confirm_destroy: {
         title: "Delete the product?",
