@@ -138,6 +138,15 @@
           }
         },
         models: {
+          product: {
+            must_type_correct_name: "You must type product name to confirm."
+          },
+          quote: {
+            must_type_correct_code: "You must type quote code to confirm."
+          },
+          invoice: {
+            must_type_correct_code: "You must type invoice code to confirm."
+          },
         },
         messages: {
           label_already_exists_at_group_level: "already exists at group level for %{group}. Please choose another one.",

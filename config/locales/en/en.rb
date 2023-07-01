@@ -10,7 +10,6 @@
       "no": "No",
       nil: "Nothing",
     },
-
     datetime: {
       time_ago: {
         about_x_weeks_ago: {

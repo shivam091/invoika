@@ -54,6 +54,15 @@
         updated: "Updated",
         delete_product_confirmation_text: "Are you sure you want to delete the product '%{product_name}'?",
       },
+      confirm_destroy: {
+        title: "Delete the product?",
+      },
+      confirm_destroy_modal: {
+        unexpected_bad_things_will_happen: "Unexpected bad things will happen if you don’t read this!",
+        this_cannot_be_undone: "This action cannot be undone and the product cannot be recovered.",
+        delete_product_confirmation_text: "This will permanently delete the product '%{product_name}' including its associated quotes and invoices.",
+        type_product_name_to_confirm: "Please type '%{product_name}' to confirm.",
+      },
     }
   }
 }
