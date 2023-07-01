@@ -6,4 +6,8 @@ class ProductPolicy < AdminPolicy
   def remove_image?
     user.admin?
   end
+
+  def confirm_destroy?
+    user.admin?
+  end
 end

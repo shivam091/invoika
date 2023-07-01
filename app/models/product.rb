@@ -43,8 +43,8 @@ class Product < ApplicationRecord
 
   has_one_attached :image, dependent: :purge_later
 
-  has_many :quote_items, dependent: :restrict_with_exception
-  has_many :invoice_items, dependent: :restrict_with_exception
+  has_many :quote_items, dependent: :destroy
+  has_many :invoice_items, dependent: :destroy
 
   belongs_to :category, inverse_of: :products, counter_cache: :products_count
 

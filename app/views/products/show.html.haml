@@ -45,11 +45,11 @@
           = external_svg_tag("svgs/pencil.svg")
           %span.d-block.d-lg-none= button_text("edit")
           %span.d-none.d-lg-block= button_text("edit_product")
-        = link_to product_path(@product), class: "btn btn-danger",
-          data: {turbo_method: :delete, turbo_confirm: t(".delete_product_confirmation_text", product_name: @product.name)} do
-          = external_svg_tag("svgs/trash.svg")
-          %span.d-block.d-lg-none= button_text("delete")
-          %span.d-none.d-lg-block= button_text("delete_product")
+        - if policy(@product).destroy?
+          = link_to confirm_destroy_product_path(@product), class: "btn btn-danger", data: {turbo_frame: :remote_modal} do
+            = external_svg_tag("svgs/trash.svg")
+            %span.d-block.d-lg-none= button_text("delete")
+            %span.d-none.d-lg-block= button_text("delete_product")
         = link_to products_path, class: "btn btn-secondary" do
           = external_svg_tag("svgs/cancel.svg")
           = button_text("cancel")

@@ -70,7 +70,10 @@ Rails.application.routes.draw do
     resources :categories, except: :show, param: :uuid, concerns: :toggleable
     resources :taxes, except: :show, param: :uuid, concerns: :toggleable
     resources :products, param: :uuid, concerns: :toggleable do
-      delete :remove_image, path: "remove-image", on: :member
+      member do
+        delete :remove_image, path: "remove-image"
+        get :confirm_destroy, path: "confirm-destroy"
+      end
     end
     resources :quotes, param: :uuid do
       collection do
