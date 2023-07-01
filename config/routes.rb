@@ -92,6 +92,9 @@ Rails.application.routes.draw do
         get :paid
         get :overdue
       end
+      member do
+        get :confirm_destroy, path: "confirm-destroy"
+      end
     end
   end
 

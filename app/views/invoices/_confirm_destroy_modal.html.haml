@@ -1,0 +1,11 @@
+.text-center
+  .alert.alert-danger.d-flex.align-items-center
+    = external_svg_tag("svgs/exclamation-triangle.svg", height: 24, width: 24, class: "me-2")
+    = t(".unexpected_bad_things_will_happen")
+%ul.mb-2.list-unstyled
+  %li.custom= t(".delete_invoice_confirmation_text", invoice_code: "<strong>#{@invoice.code}</strong>").html_safe
+  %li.custom= t(".this_cannot_be_undone")
+%p.mb-2
+  = t(".type_invoice_code_to_confirm", invoice_code: "<strong>#{@invoice.code}</strong>").html_safe
+= turbo_frame_tag :invoice_destroy_form do
+  = render_if_exists("invoices/confirm_destroy_form")

@@ -95,6 +95,15 @@
         unit_price: "Unit price",
         amount: "Amount",
       },
+      confirm_destroy: {
+        title: "Delete the invoice?",
+      },
+      confirm_destroy_modal: {
+        unexpected_bad_things_will_happen: "Unexpected bad things will happen if you don’t read this!",
+        this_cannot_be_undone: "This action cannot be undone and the invoice cannot be recovered.",
+        delete_invoice_confirmation_text: "This will permanently delete the invoice '%{invoice_code}'.",
+        type_invoice_code_to_confirm: "Please type '%{invoice_code}' to confirm.",
+      },
     }
   }
 }

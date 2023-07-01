@@ -59,8 +59,8 @@
           = external_svg_tag("svgs/pencil.svg")
           %span.d-block.d-lg-none= button_text("edit")
           %span.d-none.d-lg-block= button_text("edit_invoice")
-        = link_to invoice_path(@invoice), class: "btn btn-danger",
-          data: {turbo_method: :delete, turbo_confirm: t(".delete_invoice_confirmation_text")} do
+        = link_to confirm_destroy_invoice_path(@invoice), class: "btn btn-danger",
+          data: {turbo_frame: :remote_modal} do
           = external_svg_tag("svgs/trash.svg")
           %span.d-block.d-lg-none= button_text("delete")
           %span.d-none.d-lg-block= button_text("delete_invoice")

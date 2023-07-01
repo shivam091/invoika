@@ -1,0 +1,10 @@
+= bootstrap_form_with model: @invoice, url: invoice_path(@invoice), method: :delete, data: {controller: "confirmation-text-validation"} do |form|
+  = form.text_field :code, value: params.dig(:invoice, :code), bootstrap: {skip_label: true},
+    data: {pattern: pattern(@invoice.code), confirmation_text_validation_target: "confirmationText", action: "input->confirmation-text-validation#validateConfirmationText"}
+  .modal-actions
+    = form.danger data: {confirmation_text_validation_target: "confirmButton", turbo_method: :delete} do
+      = external_svg_tag("svgs/trash.svg")
+      = button_text("yes_delete")
+    = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->remote-modal#hide"} do
+      = external_svg_tag("svgs/cancel.svg")
+      = button_text("no_cancel")
