@@ -8,6 +8,6 @@ class ProductPolicy < AdminPolicy
   end
 
   def confirm_destroy?
-    user.admin?
+    destroy?
   end
 end

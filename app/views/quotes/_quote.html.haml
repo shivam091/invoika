@@ -75,8 +75,8 @@
                     = button_text("reject")
               - if policy(quote).destroy?
                 %li
-                  = link_to quote_path(quote), class: "dropdown-item dropdown-item-danger",
-                    data: {turbo_confirm: t(".delete_quote_confirmation_text"), turbo_method: :delete} do
+                  = link_to confirm_destroy_quote_path(quote), class: "dropdown-item dropdown-item-danger",
+                    data: {turbo_frame: :remote_modal} do
                     = external_svg_tag("svgs/trash.svg")
                     = button_text("delete")
       - end.empty?

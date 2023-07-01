@@ -81,6 +81,9 @@ Rails.application.routes.draw do
         get :converted
         get :accepted
       end
+      member do
+        get :confirm_destroy, path: "confirm-destroy"
+      end
     end
     resources :invoices, param: :uuid do
       collection do

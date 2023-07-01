@@ -40,4 +40,8 @@ class QuotePolicy < ApplicationPolicy
     user.client? && record.client.eql?(user)
   end
   alias_method :reject?, :accept?
+
+  def confirm_destroy?
+    destroy?
+  end
 end

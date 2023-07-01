@@ -83,6 +83,15 @@
         unit_price: "Unit price",
         amount: "Amount",
       },
+      confirm_destroy: {
+        title: "Delete the quote?",
+      },
+      confirm_destroy_modal: {
+        unexpected_bad_things_will_happen: "Unexpected bad things will happen if you don’t read this!",
+        this_cannot_be_undone: "This action cannot be undone and the quote cannot be recovered.",
+        delete_quote_confirmation_text: "This will permanently delete the quote '%{quote_code}'.",
+        type_quote_code_to_confirm: "Please type '%{quote_code}' to confirm.",
+      },
     }
   }
 }
