@@ -72,7 +72,11 @@ Rails.application.routes.draw do
         get :confirm_destroy, path: "confirm-destroy"
       end
     end
-    resources :taxes, except: :show, param: :uuid, concerns: :toggleable
+    resources :taxes, except: :show, param: :uuid, concerns: :toggleable do
+      member do
+        get :confirm_destroy, path: "confirm-destroy"
+      end
+    end
     resources :products, param: :uuid, concerns: :toggleable do
       member do
         delete :remove_image, path: "remove-image"

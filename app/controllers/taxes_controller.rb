@@ -109,6 +109,33 @@ class TaxesController < ApplicationController
     redirect_to taxes_path
   end
 
+  # GET /taxes/:uuid/confirm-destroy
+  def confirm_destroy
+  end
+
+  # DELETE /taxes/:uuid
+  def destroy
+    if params.dig(:tax, :name).eql?(@tax.name)
+      response = ::Taxes::DestroyService.(@tax)
+      @tax = response.payload[:tax]
+      if response.success?
+        flash[:notice] = response.message
+      else
+        flash[:alert] = response.message
+      end
+      redirect_to taxes_path
+    else
+      @tax.errors.add(:name, :must_type_correct_name)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:tax_destroy_form, partial: "taxes/confirm_destroy_form")
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   private
 
   def taxes

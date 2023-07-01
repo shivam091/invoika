@@ -144,6 +144,9 @@
           product: {
             must_type_correct_name: "You must type product name to confirm."
           },
+          tax: {
+            must_type_correct_name: "You must type tax name to confirm."
+          },
           quote: {
             must_type_correct_code: "You must type quote code to confirm."
           },
