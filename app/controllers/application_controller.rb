@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from ActionController::RoutingError, with: :not_found
   rescue_from ActiveRecord::DeleteRestrictionError do |exception|
-    redirect_to :back, alert: exception.message
+    redirect_to request.referrer, alert: exception.message
   end
   rescue_from Pundit::NotAuthorizedError, with: :forbidden
 

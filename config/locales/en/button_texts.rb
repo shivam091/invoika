@@ -15,6 +15,8 @@
       update: "Update",
       delete: "Delete",
       cancel: "Cancel",
+      yes_delete: "Yes, delete",
+      no_cancel: "No, cancel",
       print: "Print",
       go_back: "Go back",
       go_to_home: "Go to home",

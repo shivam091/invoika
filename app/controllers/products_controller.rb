@@ -77,16 +77,31 @@ class ProductsController < ApplicationController
   def show
   end
 
+  # GET /products/:uuid/confirm-destroy
+  def confirm_destroy
+  end
+
   # DELETE /products/:uuid
   def destroy
-    response = ::Products::DestroyService.(@product)
-    @product = response.payload[:product]
-    if response.success?
-      flash[:notice] = response.message
+    if params.dig(:product, :name).eql?(@product.name)
+      response = ::Products::DestroyService.(@product)
+      @product = response.payload[:product]
+      if response.success?
+        flash[:notice] = response.message
+      else
+        flash[:alert] = response.message
+      end
+      redirect_to products_path
     else
-      flash[:alert] = response.message
+      @product.errors.add(:name, :must_type_correct_name)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:product_destroy_form, partial: "products/confirm_destroy_form")
+          ], status: :unprocessable_entity
+        end
+      end
     end
-    redirect_to products_path
   end
 
   # PATCH /products/:uuid/deactivate

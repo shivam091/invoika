@@ -138,6 +138,9 @@
           }
         },
         models: {
+          product: {
+            must_type_correct_name: "You must type name of the product to confirm."
+          },
         },
         messages: {
           label_already_exists_at_group_level: "already exists at group level for %{group}. Please choose another one.",

@@ -1,0 +1,11 @@
+.text-center
+  .alert.alert-danger.d-flex.align-items-center
+    = external_svg_tag("svgs/exclamation-triangle.svg", height: 24, width: 24, class: "me-2")
+    = t(".unexpected_bad_things_will_happen")
+%ul.mb-2.list-unstyled
+  %li.custom= t(".this_cannot_be_undone")
+  %li.custom= t(".delete_product_confirmation_text", product_name: "<strong>#{@product.name}</strong>").html_safe
+%p.mb-2
+  = t(".type_product_name_to_confirm", product_name: "<strong>#{@product.name}</strong>").html_safe
+= turbo_frame_tag :product_destroy_form do
+  = render_if_exists("products/confirm_destroy_form")

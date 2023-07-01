@@ -41,8 +41,8 @@
               = link_to external_svg_tag("svgs/check-mark.svg"), activate_product_path(product), class: "btn btn-sm btn-secondary",
                 data: {turbo_confirm: t(".activate_product_confirmation_text", product_name: product.name), turbo_method: :patch}
             - if policy(product).destroy?
-              = link_to external_svg_tag("svgs/trash.svg"), product_path(product), class: "btn btn-sm btn-danger",
-                data: {turbo_confirm: t(".delete_product_confirmation_text", product_name: product.name), turbo_method: :delete}
+              = link_to external_svg_tag("svgs/trash.svg"), confirm_destroy_product_path(product), class: "btn btn-sm btn-danger",
+                data: {turbo_frame: :remote_modal}
       - end.empty?
         %tr
           %td.no-data{colspan: ::Product.columns.count}
