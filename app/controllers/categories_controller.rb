@@ -85,6 +85,33 @@ class CategoriesController < ApplicationController
     redirect_to categories_path
   end
 
+  # GET /categories/:uuid/confirm-destroy
+  def confirm_destroy
+  end
+
+  # DELETE /categories/:uuid
+  def destroy
+    if params.dig(:category, :name).eql?(@category.name)
+      response = ::Categories::DestroyService.(@category)
+      @category = response.payload[:category]
+      if response.success?
+        flash[:notice] = response.message
+      else
+        flash[:alert] = response.message
+      end
+      redirect_to categories_path
+    else
+      @category.errors.add(:name, :must_type_correct_name)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:category_destroy_form, partial: "categories/confirm_destroy_form")
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   # PATCH /categories/:uuid/deactivate
   def activate
     response = ::Categories::ActivateService.(@category)

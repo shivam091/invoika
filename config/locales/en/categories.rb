@@ -33,7 +33,16 @@
       },
       edit: {
         title: "Edit category",
-      }
+      },
+      confirm_destroy: {
+        title: "Delete the category?",
+      },
+      confirm_destroy_modal: {
+        unexpected_bad_things_will_happen: "Unexpected bad things will happen if you don’t read this!",
+        this_cannot_be_undone: "This action cannot be undone and the category cannot be recovered.",
+        delete_category_confirmation_text: "This will permanently delete the category '%{category_name}' including its associated products.",
+        type_category_name_to_confirm: "Please type '%{category_name}' to confirm.",
+      },
     }
   }
 }

@@ -67,7 +67,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :categories, except: :show, param: :uuid, concerns: :toggleable
+    resources :categories, except: :show, param: :uuid, concerns: :toggleable do
+      member do
+        get :confirm_destroy, path: "confirm-destroy"
+      end
+    end
     resources :taxes, except: :show, param: :uuid, concerns: :toggleable
     resources :products, param: :uuid, concerns: :toggleable do
       member do

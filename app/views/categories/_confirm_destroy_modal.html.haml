@@ -1,0 +1,11 @@
+.text-center
+  .alert.alert-danger.d-flex.align-items-center
+    = external_svg_tag("svgs/exclamation-triangle.svg", height: 24, width: 24, class: "me-2")
+    = t(".unexpected_bad_things_will_happen")
+%ul.mb-2.list-unstyled
+  %li.custom= t(".delete_category_confirmation_text", category_name: "<strong>#{@category.name}</strong>").html_safe
+  %li.custom= t(".this_cannot_be_undone")
+%p.mb-2
+  = t(".type_category_name_to_confirm", category_name: "<strong>#{@category.name}</strong>").html_safe
+= turbo_frame_tag :category_destroy_form do
+  = render_if_exists("categories/confirm_destroy_form")

@@ -138,6 +138,9 @@
           }
         },
         models: {
+          category: {
+            must_type_correct_name: "You must type category name to confirm."
+          },
           product: {
             must_type_correct_name: "You must type product name to confirm."
           },

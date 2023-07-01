@@ -104,7 +104,6 @@ class ProductsController < ApplicationController
     end
   end
 
-
   # PATCH /products/:uuid/deactivate
   def activate
     response = ::Products::ActivateService.(@product)

@@ -3,4 +3,7 @@
 # -*- warn_indent: true -*-
 
 class CategoryPolicy < AdminPolicy
+  def confirm_destroy?
+    destroy?
+  end
 end
