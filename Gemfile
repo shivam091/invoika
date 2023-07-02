@@ -87,7 +87,10 @@ gem "image_processing", "~> 1.2"
 gem "active_storage_validations"
 
 # Preview PDF files attached using Active Storage
-gem "poppler", '~> 4.1'
+gem "poppler", "~> 4.1"
+
+# Image processing library
+gem "ruby-vips"
 
 # Twilio APIs
 gem "twilio-ruby", "~> 5"
