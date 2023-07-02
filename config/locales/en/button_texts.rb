@@ -17,6 +17,8 @@
       cancel: "Cancel",
       activate: "Activate",
       deactivate: "Deactivate",
+      yes_activate: "Yes, activate",
+      yes_deactivate: "Yes, deactivate",
       yes_delete: "Yes, delete",
       no_cancel: "No, cancel",
       print: "Print",

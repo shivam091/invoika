@@ -73,18 +73,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-  # DELETE /categories/:uuid
-  def destroy
-    response = ::Categories::DestroyService.(@category)
-    @category = response.payload[:category]
-    if response.success?
-      flash[:notice] = response.message
-    else
-      flash[:alert] = response.message
-    end
-    redirect_to categories_path
-  end
-
   # GET /categories/:uuid/confirm-destroy
   def confirm_destroy
   end
@@ -112,6 +100,10 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # GET /categories/:uuid/confirm-activate
+  def confirm_activate
+  end
+
   # PATCH /categories/:uuid/deactivate
   def activate
     response = ::Categories::ActivateService.(@category)
@@ -122,6 +114,10 @@ class CategoriesController < ApplicationController
       flash[:alert] = response.message
     end
     redirect_to categories_path
+  end
+
+  # GET /categories/:uuid/confirm-deactivate
+  def confirm_deactivate
   end
 
   # PATCH /categories/:uuid/deactivate

@@ -1,0 +1,10 @@
+%p.mb-2= t(".activate_category_confirmation_text") % { category_name: @category.name }
+.modal-actions
+  - if policy(@category).activate?
+    = link_to activate_category_path(@category), class: "btn btn-primary",
+      data: {turbo_method: :patch} do
+      = external_svg_tag("svgs/unarchive.svg")
+      = button_text("yes_activate")
+  = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->remote-modal#hide"} do
+    = external_svg_tag("svgs/cancel.svg")
+    = button_text("no_cancel")

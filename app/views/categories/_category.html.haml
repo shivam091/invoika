@@ -24,11 +24,11 @@
               = link_to external_svg_tag("svgs/pencil.svg"), edit_category_path(category), class: "btn btn-sm btn-secondary",
                 data: {turbo_frame: :remote_modal}
             - if category.is_active? && policy(category).deactivate?
-              = link_to external_svg_tag("svgs/cancel.svg"), deactivate_category_path(category), class: "btn btn-sm btn-secondary",
-                data: {turbo_confirm: t(".deactivate_category_confirmation_text", category_name: category.name), turbo_method: :patch}
+              = link_to external_svg_tag("svgs/archive.svg"), confirm_deactivate_category_path(category), class: "btn btn-sm btn-secondary",
+                data: {turbo_frame: :remote_modal}
             - if !category.is_active? && policy(category).activate?
-              = link_to external_svg_tag("svgs/check-mark.svg"), activate_category_path(category), class: "btn btn-sm btn-secondary",
-                data: {turbo_confirm: t(".activate_category_confirmation_text", category_name: category.name), turbo_method: :patch}
+              = link_to external_svg_tag("svgs/unarchive.svg"), confirm_activate_category_path(category), class: "btn btn-sm btn-secondary",
+                data: {turbo_frame: :remote_modal}
             - if policy(category).destroy?
               = link_to external_svg_tag("svgs/trash.svg"), confirm_destroy_category_path(category), class: "btn btn-sm btn-danger",
                 data: {turbo_frame: :remote_modal}
