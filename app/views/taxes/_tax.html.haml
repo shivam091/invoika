@@ -26,11 +26,11 @@
               = link_to external_svg_tag("svgs/pencil.svg"), edit_tax_path(tax), class: "btn btn-sm btn-secondary",
                 data: {turbo_frame: :remote_modal}
             - if tax.is_active? && policy(tax).deactivate?
-              = link_to external_svg_tag("svgs/archive.svg"), deactivate_tax_path(tax), class: "btn btn-sm btn-secondary",
-                data: {turbo_confirm: t(".deactivate_tax_confirmation_text", tax_name: tax.name), turbo_method: :patch}
+              = link_to external_svg_tag("svgs/archive.svg"), confirm_deactivate_tax_path(tax), class: "btn btn-sm btn-secondary",
+                data: {turbo_frame: :remote_modal}
             - if !tax.is_active? && policy(tax).activate?
-              = link_to external_svg_tag("svgs/unarchive.svg"), activate_tax_path(tax), class: "btn btn-sm btn-secondary",
-                data: {turbo_confirm: t(".activate_tax_confirmation_text", tax_name: tax.name), turbo_method: :patch}
+              = link_to external_svg_tag("svgs/unarchive.svg"), confirm_activate_tax_path(tax), class: "btn btn-sm btn-secondary",
+                data: {turbo_frame: :remote_modal}
             - if policy(tax).destroy?
               = link_to external_svg_tag("svgs/trash.svg"), confirm_destroy_tax_path(tax), class: "btn btn-sm btn-danger",
                 data: {turbo_frame: :remote_modal}

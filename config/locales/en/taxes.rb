@@ -46,6 +46,18 @@
         delete_tax_confirmation_text: "This will permanently delete the tax '%{tax_name}'.",
         type_tax_name_to_confirm: "Please type '%{tax_name}' to confirm.",
       },
+      confirm_deactivate: {
+        title: "Deactivate the tax?"
+      },
+      confirm_deactivate_modal: {
+        deactivate_tax_confirmation_text: "Are you sure you want to deactivate the tax '%{tax_name}'?",
+      },
+      confirm_activate: {
+        title: "Activate the tax?"
+      },
+      confirm_activate_modal: {
+        activate_tax_confirmation_text: "Are you sure you want to activate the tax '%{tax_name}'?",
+      },
     }
   }
 }

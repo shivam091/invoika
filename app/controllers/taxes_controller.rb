@@ -85,6 +85,10 @@ class TaxesController < ApplicationController
     redirect_to taxes_path
   end
 
+  # GET /taxes/:uuid/confirm-activate
+  def confirm_activate
+  end
+
   # PATCH /taxes/:uuid/deactivate
   def activate
     response = ::Taxes::ActivateService.(@tax)
@@ -95,6 +99,10 @@ class TaxesController < ApplicationController
       flash[:alert] = response.message
     end
     redirect_to taxes_path
+  end
+
+  # GET /taxes/:uuid/confirm-deactivate
+  def confirm_deactivate
   end
 
   # PATCH /taxes/:uuid/deactivate
