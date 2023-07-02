@@ -71,6 +71,12 @@
       confirm_activate_modal: {
         activate_product_confirmation_text: "Are you sure you want to activate the product '%{product_name}'?",
       },
+      confirm_remove_image: {
+        title: "Remove product image?"
+      },
+      confirm_remove_image_modal: {
+        remove_image_confirmation_text: "Are you sure to remove image of the product?",
+      }
     }
   }
 }

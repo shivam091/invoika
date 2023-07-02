@@ -89,6 +89,7 @@ Rails.application.routes.draw do
 
     resources :products, param: :uuid, concerns: :toggleable do
       member do
+        get :confirm_remove_image, path: "confirm-remove-image"
         delete :remove_image, path: "remove-image"
         get :confirm_destroy, path: "confirm-destroy"
       end

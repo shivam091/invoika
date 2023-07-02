@@ -3,6 +3,10 @@
 # -*- warn_indent: true -*-
 
 class ProductPolicy < AdminPolicy
+  def confirm_remove_image?
+    remove_image?
+  end
+
   def remove_image?
     user.admin?
   end

@@ -136,6 +136,10 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  # GET /products/:uuid/confirm-remove-image
+  def confirm_remove_image
+  end
+
   # DELETE /products/:uuid/remove-image
   def remove_image
     response = ::Products::RemoveImageService.(@product)

@@ -31,7 +31,7 @@
             = form.object.image.blob.filename
           - if policy(@product).remove_image?
             %li.d-inline-block.middle-dot-divider
-              = link_to t(".remove_image"), remove_image_product_path(form.object), data: {turbo_method: :delete, turbo_confirm: t(".remove_image_confirmation_text")}
+              = link_to t(".remove_image"), confirm_remove_image_product_path(@product), data: {turbo_frame: :remote_modal}
   .actions
     - if form.object.new_record? && policy(@product).create?
       = form.primary do
