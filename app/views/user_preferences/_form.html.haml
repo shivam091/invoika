@@ -6,7 +6,7 @@
           {include_blank: t(".select_preferred_language")}, data: {controller: "autofocus"}
       .col-sm-12.col-md-6.col-lg-4
         = user_preference_form.collection_radio_buttons :preferred_color_scheme, enum_options_for_select(::UserPreference, :color_schemes), :last, :first,
-          {checked: user_preference_form.object.preferred_color_scheme, bootstrap: {inline: true}}
+          {checked: current_user.preferred_color_scheme, bootstrap: {inline: true}}
       .col-sm-12.col-md-6.col-lg-4
         = user_preference_form.select :preferred_time_zone, ActiveSupport::TimeZone.all.collect { |tz| ["(GMT #{ActiveSupport::TimeZone.seconds_to_utc_offset(tz.utc_offset)}) #{tz.name}", tz.tzinfo.name] },
           {include_blank: t(".select_time_zone")}

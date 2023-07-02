@@ -1,11 +1,11 @@
 = bootstrap_form_with model: @quote, data: {controller: "discount-field random-string-generator"}, bootstrap: {layout: :horizontal} do |form|
-  = form.select :client_id, options_for_select(::User.clients.select_options, form.object.client_id),
+  = form.select :client_id, options_for_select(::User.clients.select_options, @quote.client_id),
     {include_blank: t(".select_client")}, data: {controller: "autofocus"}
   = form.text_field :code, data: {random_string_generator_target: "field"},
     bootstrap: {append: generate_random_code_button}
   = form.date_field :quote_date
   = form.date_field :due_date
-  - if form.object.persisted?
+  - if @quote.persisted?
     = form.select :status, enum_options_for_select(::Quote, :statuses), {include_blank: t(".select_status")}
   %hr
   %div{data: {controller: "nested-forms", nested_forms_wrapper_selector_value: ".quote-item-form-wrapper"}}
@@ -16,7 +16,7 @@
       .input-group.flex-nowrap
         = form.number_field :discount, oninput: "validity.valid || (value = value.replace(/[e\\+\\-]/gi, ''))",
           pattern: "^\\d*(\\.\\d{0,2})?$", step: ".01", min: 0, data: {discount_field_target: "discount"}, style: "width: 270px !important;",
-          readonly: (form.object.discount_type.nil?), disabled: (form.object.discount_type.nil?), bootstrap: {layout: :vertical}
+          readonly: (@quote.discount_type.nil?), disabled: (@quote.discount_type.nil?), bootstrap: {layout: :vertical}
         = form.select :discount_type, enum_options_for_select(::Quote, :discount_types), {include_blank: t(".select_discount_type"), bootstrap: {layout: :vertical}},
           data: {discount_field_target: "discountType", action: "change->discount-field#toggleDiscountField"}, style: "width: 270px !important;"
     .col-12.col-lg-6
@@ -27,12 +27,12 @@
     .col-12.col-lg-6
       = form.rich_text_area :terms, bootstrap: {layout: :vertical}
   .actions
-    - if form.object.new_record? && policy(@quote).create?
+    - if @quote.new_record? && policy(@quote).create?
       = form.primary do
         = external_svg_tag("svgs/plus.svg")
         %span.d-block.d-lg-none= button_text("create")
         %span.d-none.d-lg-block= button_text("create_quote")
-    - if form.object.persisted? && policy(@quote).update?
+    - if @quote.persisted? && policy(@quote).update?
       = form.primary do
         = external_svg_tag("svgs/floppy.svg")
         %span.d-block.d-lg-none= button_text("update")

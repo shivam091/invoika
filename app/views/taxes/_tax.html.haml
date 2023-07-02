@@ -22,18 +22,29 @@
           %td= number_to_percentage(tax.rate, precision: 2)
           %td= enum_i18n(::Tax, :types, tax.type)
           %td.actions
-            - if policy(tax).update?
-              = link_to external_svg_tag("svgs/pencil.svg"), edit_tax_path(tax), class: "btn btn-sm btn-secondary",
-                data: {turbo_frame: :remote_modal}
-            - if tax.is_active? && policy(tax).deactivate?
-              = link_to external_svg_tag("svgs/archive.svg"), confirm_deactivate_tax_path(tax), class: "btn btn-sm btn-secondary",
-                data: {turbo_frame: :remote_modal}
-            - if !tax.is_active? && policy(tax).activate?
-              = link_to external_svg_tag("svgs/unarchive.svg"), confirm_activate_tax_path(tax), class: "btn btn-sm btn-secondary",
-                data: {turbo_frame: :remote_modal}
-            - if policy(tax).destroy?
-              = link_to external_svg_tag("svgs/trash.svg"), confirm_destroy_tax_path(tax), class: "btn btn-sm btn-danger",
-                data: {turbo_frame: :remote_modal}
+            = link_to "javascript:void(0)", class: "text-default", data: {bs_toggle: "dropdown"}, aria: {expanded: false} do
+              = external_svg_tag("svgs/ellipsis-vertical.svg")
+            %ul.dropdown-menu
+              - if policy(tax).update?
+                %li
+                  = link_to edit_tax_path(tax), class: "dropdown-item" do
+                    = external_svg_tag("svgs/pencil.svg")
+                    = button_text("edit")
+              - if tax.is_active? && policy(tax).deactivate?
+                %li
+                  = link_to confirm_deactivate_tax_path(tax), class: "dropdown-item", data: {turbo_frame: :remote_modal} do
+                    = external_svg_tag("svgs/archive.svg")
+                    = button_text("deactivate")
+              - if !tax.is_active? && policy(tax).activate?
+                %li
+                  = link_to confirm_activate_tax_path(tax), class: "dropdown-item", data: {turbo_frame: :remote_modal} do
+                    = external_svg_tag("svgs/unarchive.svg")
+                    = button_text("activate")
+              - if policy(tax).destroy?
+                %li
+                  = link_to confirm_destroy_tax_path(tax), class: "dropdown-item dropdown-item-danger", data: {turbo_frame: :remote_modal} do
+                    = external_svg_tag("svgs/trash.svg")
+                    = button_text("delete")
       - end.empty?
         %tr
           %td.no-data{colspan: ::Tax.columns.count}

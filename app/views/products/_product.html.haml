@@ -32,17 +32,29 @@
           %td= number_to_currency(product.unit_price, unit: @company.currency.symbol)
           %td= number_to_currency(product.sell_price, unit: @company.currency.symbol)
           %td.actions
-            - if policy(product).update?
-              = link_to external_svg_tag("svgs/pencil.svg"), edit_product_path(product), class: "btn btn-sm btn-secondary"
-            - if product.is_active? && policy(product).deactivate?
-              = link_to external_svg_tag("svgs/archive.svg"), confirm_deactivate_product_path(product), class: "btn btn-sm btn-secondary",
-                data: {turbo_frame: :remote_modal}
-            - if !product.is_active? && policy(product).activate?
-              = link_to external_svg_tag("svgs/unarchive.svg"), confirm_activate_product_path(product), class: "btn btn-sm btn-secondary",
-                data: {turbo_frame: :remote_modal}
-            - if policy(product).destroy?
-              = link_to external_svg_tag("svgs/trash.svg"), confirm_destroy_product_path(product), class: "btn btn-sm btn-danger",
-                data: {turbo_frame: :remote_modal}
+            = link_to "javascript:void(0)", class: "text-default", data: {bs_toggle: "dropdown"}, aria: {expanded: false} do
+              = external_svg_tag("svgs/ellipsis-vertical.svg")
+            %ul.dropdown-menu
+              - if policy(product).update?
+                %li
+                  = link_to edit_product_path(product), class: "dropdown-item" do
+                    = external_svg_tag("svgs/pencil.svg")
+                    = button_text("edit")
+              - if product.is_active? && policy(product).deactivate?
+                %li
+                  = link_to confirm_deactivate_product_path(product), class: "dropdown-item", data: {turbo_frame: :remote_modal} do
+                    = external_svg_tag("svgs/archive.svg")
+                    = button_text("deactivate")
+              - if !product.is_active? && policy(product).activate?
+                %li
+                  = link_to confirm_activate_product_path(product), class: "dropdown-item", data: {turbo_frame: :remote_modal} do
+                    = external_svg_tag("svgs/unarchive.svg")
+                    = button_text("activate")
+              - if policy(product).destroy?
+                %li
+                  = link_to confirm_destroy_product_path(product), class: "dropdown-item dropdown-item-danger", data: {turbo_frame: :remote_modal} do
+                    = external_svg_tag("svgs/trash.svg")
+                    = button_text("delete")
       - end.empty?
         %tr
           %td.no-data{colspan: ::Product.columns.count}

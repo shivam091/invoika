@@ -3,7 +3,7 @@
     .col-sm-12.col-md-12.col-lg-4
       = form.text_field :name, data: {controller: "autofocus"}
     .col-sm-12.col-md-6.col-lg-4
-      = form.select :category_id, options_for_select(::Category.select_options(current_user), form.object.category_id),
+      = form.select :category_id, options_for_select(::Category.select_options(current_user), @product.category_id),
         {include_blank: t(".select_category")}
     .col-sm-12.col-md-6.col-lg-4{data: {controller: "random-string-generator"}}
       = form.text_field :code, data: {random_string_generator_target: "field"},
@@ -19,26 +19,26 @@
     .col-sm-12.col-md-6.col-lg-4
       = form.label :image, t(".guidelines_for_image"), class: "form-label"
       = render_if_exists("shared/image_upload_file_guidelines", locals: {object: ::Product})
-      - if form.object.image.attached? && form.object.persisted?
-        = form.hidden_field :image, value: form.object.image.signed_id
+      - if @product.image.attached? && @product.persisted?
+        = form.hidden_field :image, value: @product.image.signed_id
       = form.file_field :image, accept: "image/jpeg,image/png", data: {action: "change->image-preview#readURL"}
     .col-sm-12.col-md-6.col-lg-4
       = form.label :preview, t(".preview"), class: "form-label"
-      = image_tag form.object.image_url, class: "image-preview", data: {image_preview_target: "output"}
-      - if form.object.image.attached? && form.object.valid_attribute?(:image)
+      = image_tag @product.image_url, class: "image-preview", data: {image_preview_target: "output"}
+      - if @product.image.attached? && @product.valid_attribute?(:image)
         %ul.list-unstyled.d-flex.align-items-center
           %li.d-inline-block.middle-dot-divider
-            = form.object.image.blob.filename
+            = @product.image.blob.filename
           - if policy(@product).remove_image?
             %li.d-inline-block.middle-dot-divider
               = link_to t(".remove_image"), confirm_remove_image_product_path(@product), data: {turbo_frame: :remote_modal}
   .actions
-    - if form.object.new_record? && policy(@product).create?
+    - if @product.new_record? && policy(@product).create?
       = form.primary do
         = external_svg_tag("svgs/plus.svg")
         %span.d-block.d-lg-none= button_text("create")
         %span.d-none.d-lg-block= button_text("create_product")
-    - if form.object.persisted? && policy(@product).update?
+    - if @product.persisted? && policy(@product).update?
       = form.primary do
         = external_svg_tag("svgs/floppy.svg")
         %span.d-block.d-lg-none= button_text("update")
