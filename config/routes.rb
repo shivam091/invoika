@@ -61,7 +61,10 @@ Rails.application.routes.draw do
     resource :company, except: [:new, :create, :destroy]
 
     resource :profile, only: [:show, :edit, :update] do
-      delete :remove_avatar, path: "remove-avatar", on: :member
+      member do
+        get :confirm_remove_avatar, path: "confirm-remove-avatar"
+        delete :remove_avatar, path: "remove-avatar"
+      end
     end
 
     resource :user_preference, path: "preference", only: [:show, :edit, :update] do

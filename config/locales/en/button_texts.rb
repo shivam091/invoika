@@ -21,6 +21,7 @@
       yes_deactivate: "Yes, deactivate",
       yes_delete: "Yes, delete",
       no_cancel: "No, cancel",
+      yes_remove: "Yes, remove",
       print: "Print",
       go_back: "Go back",
       go_to_home: "Go to home",

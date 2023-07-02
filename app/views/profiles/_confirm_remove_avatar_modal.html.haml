@@ -1,0 +1,8 @@
+%p.mb-2= t(".remove_avatar_confirmation_text")
+.modal-actions
+  = link_to remove_avatar_profile_path, class: "btn btn-danger", data: {turbo_method: :delete} do
+    = external_svg_tag("svgs/trash.svg")
+    = button_text("yes_remove")
+  = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->remote-modal#hide"} do
+    = external_svg_tag("svgs/cancel.svg")
+    = button_text("no_cancel")
