@@ -1,7 +1,7 @@
-%p.mb-2= t(".activate_category_confirmation_text", category_name: "<strong>#{@category.name}</strong>").html_safe
+%p.mb-2= t(".activate_product_confirmation_text", product_name: "<strong>#{@product.name}</strong>").html_safe
 .modal-actions
-  - if policy(@category).activate?
-    = link_to activate_category_path(@category), class: "btn btn-primary",
+  - if policy(@product).activate?
+    = link_to activate_product_path(@product), class: "btn btn-primary",
       data: {turbo_method: :patch} do
       = external_svg_tag("svgs/unarchive.svg")
       = button_text("yes_activate")

@@ -104,6 +104,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  # GET /products/:uuid/confirm-activate
+  def confirm_activate
+  end
+
   # PATCH /products/:uuid/deactivate
   def activate
     response = ::Products::ActivateService.(@product)
@@ -114,6 +118,10 @@ class ProductsController < ApplicationController
       flash[:alert] = response.message
     end
     redirect_to products_path
+  end
+
+  # GET /products/:uuid/confirm-deactivate
+  def confirm_deactivate
   end
 
   # PATCH /products/:uuid/deactivate

@@ -23,8 +23,6 @@
         unit_price: "Unit price",
         sell_price: "Sell price",
         actions: "Actions",
-        activate_product_confirmation_text: "Are you sure you want to activate the product '%{product_name}'?",
-        deactivate_product_confirmation_text: "Are you sure you want to deactivate the product '%{product_name}'?",
         no_products_to_display: "There are no products to display.",
         no_active_products_to_display: "There are no active products to display.",
         no_inactive_products_to_display: "There are no inactive products to display.",
@@ -60,6 +58,18 @@
         this_cannot_be_undone: "This action cannot be undone and the product cannot be recovered.",
         delete_product_confirmation_text: "This will permanently delete the product '%{product_name}' including its associated quotes and invoices.",
         type_product_name_to_confirm: "Please type '%{product_name}' to confirm.",
+      },
+      confirm_deactivate: {
+        title: "Deactivate the product?"
+      },
+      confirm_deactivate_modal: {
+        deactivate_product_confirmation_text: "Are you sure you want to deactivate the product '%{product_name}'?",
+      },
+      confirm_activate: {
+        title: "Activate the product?"
+      },
+      confirm_activate_modal: {
+        activate_product_confirmation_text: "Are you sure you want to activate the product '%{product_name}'?",
       },
     }
   }
