@@ -35,10 +35,10 @@
             - if policy(product).update?
               = link_to external_svg_tag("svgs/pencil.svg"), edit_product_path(product), class: "btn btn-sm btn-secondary"
             - if product.is_active? && policy(product).deactivate?
-              = link_to external_svg_tag("svgs/cancel.svg"), deactivate_product_path(product), class: "btn btn-sm btn-secondary",
+              = link_to external_svg_tag("svgs/archive.svg"), deactivate_product_path(product), class: "btn btn-sm btn-secondary",
                 data: {turbo_confirm: t(".deactivate_product_confirmation_text", product_name: product.name), turbo_method: :patch}
             - if !product.is_active? && policy(product).activate?
-              = link_to external_svg_tag("svgs/check-mark.svg"), activate_product_path(product), class: "btn btn-sm btn-secondary",
+              = link_to external_svg_tag("svgs/unarchive.svg"), activate_product_path(product), class: "btn btn-sm btn-secondary",
                 data: {turbo_confirm: t(".activate_product_confirmation_text", product_name: product.name), turbo_method: :patch}
             - if policy(product).destroy?
               = link_to external_svg_tag("svgs/trash.svg"), confirm_destroy_product_path(product), class: "btn btn-sm btn-danger",
