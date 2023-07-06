@@ -86,14 +86,17 @@ gem "image_processing", "~> 1.2"
 # Validations for Active Storage
 gem "active_storage_validations"
 
-# Preview PDF files attached using Active Storage
-gem "poppler", "~> 4.1"
-
 # Image processing library
 gem "ruby-vips"
 
+# Preview PDF files attached using Active Storage
+gem "poppler", '~> 4.1'
+
 # Twilio APIs
 gem "twilio-ruby", "~> 5"
+
+# Import widely used core extensions
+gem "rb_core_extensions"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
