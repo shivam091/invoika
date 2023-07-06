@@ -1,12 +1,12 @@
 = bootstrap_form_with model: @invoice, data: {controller: "discount-field random-string-generator recurring-invoice"},
   bootstrap: {layout: :horizontal} do |form|
-  = form.select :client_id, options_for_select(::User.clients.select_options, form.object.client_id),
+  = form.select :client_id, options_for_select(::User.clients.select_options, @invoice.client_id),
     {include_blank: t(".select_client")}, data: {controller: "autofocus"}
   = form.text_field :code, data: {random_string_generator_target: "field"},
     bootstrap: {append: generate_random_code_button}
   = form.date_field :invoice_date
   = form.date_field :due_date
-  - if form.object.persisted?
+  - if @invoice.persisted?
     = form.select :status, enum_options_for_select(::Invoice, :statuses), {include_blank: t(".select_status")}
   = form.check_box :is_recurred, data: {recurring_invoice_target: "isRecurred", action: "change->recurring-invoice#toggleRecurringFields"},
     bootstrap: {switch: true}
@@ -22,26 +22,26 @@
       .input-group.flex-nowrap
         = form.number_field :discount, oninput: "validity.valid || (value = value.replace(/[e\\+\\-]/gi, ''))",
           pattern: "^\\d*(\\.\\d{0,2})?$", step: ".01", min: 0, data: {discount_field_target: "discount"}, style: "width: 270px !important;",
-          readonly: (form.object.discount_type.nil?), disabled: (form.object.discount_type.nil?), bootstrap: {layout: :vertical}
+          readonly: (@invoice.discount_type.nil?), disabled: (@invoice.discount_type.nil?), bootstrap: {layout: :vertical}
         = form.select :discount_type, enum_options_for_select(::Invoice, :discount_types), {include_blank: t(".select_discount_type"), bootstrap: {layout: :vertical}},
           data: {discount_field_target: "discountType", action: "change->discount-field#toggleDiscountField"}, style: "width: 270px !important;"
       .col-6
-        = form.select :tax_ids, options_for_select(::Tax.select_options(current_user), form.object.tax_ids),
+        = form.select :tax_ids, options_for_select(::Tax.select_options(current_user), @invoice.tax_ids),
           {include_blank: t(".select_taxes"), bootstrap: {layout: :vertical}}, multiple: true, size: 1, style: "width: 540px !important;"
     .col-12.col-lg-6
       = render_if_exists("invoices/invoice_summary")
   .row
     .col-12.col-lg-6
-      = form.text_area :notes, bootstrap: {layout: :vertical}
+      = form.rich_text_area :notes, bootstrap: {layout: :vertical}
     .col-12.col-lg-6
-      = form.text_area :terms, bootstrap: {layout: :vertical}
+      = form.rich_text_area :terms, bootstrap: {layout: :vertical}
   .actions
-    - if form.object.new_record?
+    - if @invoice.new_record?
       = form.primary do
         = external_svg_tag("svgs/plus.svg")
         %span.d-block.d-lg-none= button_text("create")
         %span.d-none.d-lg-block= button_text("create_invoice")
-    - if form.object.persisted?
+    - if @invoice.persisted?
       = form.primary do
         = external_svg_tag("svgs/floppy.svg")
         %span.d-block.d-lg-none= button_text("update")

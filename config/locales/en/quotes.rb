@@ -34,7 +34,6 @@
         no_draft_quotes_to_display: "There are no quotes in draft to display.",
         no_accepted_quotes_to_display: "There are no accepted quotes to display.",
         no_quotes_to_display: "There are no quotes to display.",
-        delete_quote_confirmation_text: "Are you sure you want to delete the quote?"
       },
       new: {
         title: "New quote",
@@ -72,7 +71,6 @@
         email_address: "Email address: %{email_address}",
         phone_number: "Phone number: %{phone_number}",
         mobile_number: "Mobile number: %{mobile_number}",
-        delete_quote_confirmation_text: "Are you sure you want to delete the quote?",
       },
       quote_date: {
         quote_date: "Quote date",
@@ -82,6 +80,15 @@
         quantity: "Quantity",
         unit_price: "Unit price",
         amount: "Amount",
+      },
+      confirm_destroy: {
+        title: "Delete the quote?",
+      },
+      confirm_destroy_modal: {
+        unexpected_bad_things_will_happen: "Unexpected bad things will happen if you don’t read this!",
+        this_cannot_be_undone: "This action cannot be undone and the quote cannot be recovered.",
+        delete_quote_confirmation_text: "This will permanently delete the quote '%{quote_code}'.",
+        type_quote_code_to_confirm: "Please type '%{quote_code}' to confirm.",
       },
     }
   }

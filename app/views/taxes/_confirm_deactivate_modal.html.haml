@@ -1,0 +1,10 @@
+%p.mb-2= t(".deactivate_tax_confirmation_text", tax_name: "<strong>#{@tax.name}</strong>").html_safe
+.modal-actions
+  - if policy(@tax).deactivate?
+    = link_to deactivate_tax_path(@tax), class: "btn btn-primary",
+      data: {turbo_method: :patch} do
+      = external_svg_tag("svgs/archive.svg")
+      = button_text("yes_deactivate")
+  = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->remote-modal#hide"} do
+    = external_svg_tag("svgs/cancel.svg")
+    = button_text("no_cancel")

@@ -55,15 +55,17 @@
         .border-bottom
         = render_if_exists("shared/quote_invoice_notes_terms", locals: {object: @quote})
       .card-footer
-        = link_to edit_quote_path(@quote), class: "btn btn-primary" do
-          = external_svg_tag("svgs/pencil.svg")
-          %span.d-block.d-lg-none= button_text("edit")
-          %span.d-none.d-lg-block= button_text("edit_quote")
-        = link_to quote_path(@quote), class: "btn btn-danger",
-          data: {turbo_method: :delete, turbo_confirm: t(".delete_quote_confirmation_text")} do
-          = external_svg_tag("svgs/trash.svg")
-          %span.d-block.d-lg-none= button_text("delete")
-          %span.d-none.d-lg-block= button_text("delete_quote")
+        - if policy(@quote).update?
+          = link_to edit_quote_path(@quote), class: "btn btn-primary" do
+            = external_svg_tag("svgs/pencil.svg")
+            %span.d-block.d-lg-none= button_text("edit")
+            %span.d-none.d-lg-block= button_text("edit_quote")
+        - if policy(@quote).destroy?
+          = link_to confirm_destroy_quote_path(@quote), class: "btn btn-danger",
+            data: {turbo_frame: :remote_modal} do
+            = external_svg_tag("svgs/trash.svg")
+            %span.d-block.d-lg-none= button_text("delete")
+            %span.d-none.d-lg-block= button_text("delete_quote")
         = link_to quotes_path, class: "btn btn-secondary" do
           = external_svg_tag("svgs/cancel.svg")
           = button_text("cancel")

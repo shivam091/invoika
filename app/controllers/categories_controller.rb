@@ -5,6 +5,7 @@
 class CategoriesController < ApplicationController
 
   before_action :find_category, except: [:index, :active, :inactive, :new, :create]
+  before_action :authorize_category!
 
   # GET /categories
   def index
@@ -72,16 +73,35 @@ class CategoriesController < ApplicationController
     end
   end
 
+  # GET /categories/:uuid/confirm-destroy
+  def confirm_destroy
+  end
+
   # DELETE /categories/:uuid
   def destroy
-    response = ::Categories::DestroyService.(@category)
-    @category = response.payload[:category]
-    if response.success?
-      flash[:notice] = response.message
+    if params.dig(:category, :name).eql?(@category.name)
+      response = ::Categories::DestroyService.(@category)
+      @category = response.payload[:category]
+      if response.success?
+        flash[:notice] = response.message
+      else
+        flash[:alert] = response.message
+      end
+      redirect_to categories_path
     else
-      flash[:alert] = response.message
+      @category.errors.add(:name, :must_type_correct_name)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:category_destroy_form, partial: "categories/confirm_destroy_form")
+          ], status: :unprocessable_entity
+        end
+      end
     end
-    redirect_to categories_path
+  end
+
+  # GET /categories/:uuid/confirm-activate
+  def confirm_activate
   end
 
   # PATCH /categories/:uuid/deactivate
@@ -94,6 +114,10 @@ class CategoriesController < ApplicationController
       flash[:alert] = response.message
     end
     redirect_to categories_path
+  end
+
+  # GET /categories/:uuid/confirm-deactivate
+  def confirm_deactivate
   end
 
   # PATCH /categories/:uuid/deactivate
@@ -111,7 +135,15 @@ class CategoriesController < ApplicationController
   private
 
   def categories
-    ::Category.all
+    policy_scope(::Category)
+  end
+
+  def authorize_category!
+    if action_name.in?(%w(index active inactive new create))
+      authorize ::Category
+    else
+      authorize @category
+    end
   end
 
   def find_category

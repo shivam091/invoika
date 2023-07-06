@@ -1,0 +1,10 @@
+%p.mb-2= t(".deactivate_category_confirmation_text", category_name: "<strong>#{@category.name}</strong>").html_safe
+.modal-actions
+  - if policy(@category).deactivate?
+    = link_to deactivate_category_path(@category), class: "btn btn-primary",
+      data: {turbo_method: :patch} do
+      = external_svg_tag("svgs/archive.svg")
+      = button_text("yes_deactivate")
+  = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->remote-modal#hide"} do
+    = external_svg_tag("svgs/cancel.svg")
+    = button_text("no_cancel")

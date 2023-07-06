@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import "bootstrap";
+@import "actiontext";
 @import "rails_bootstrap_form";
 @import "variables";
 @import "mixins";
@@ -205,4 +206,16 @@ dd {
 }
 dl:last-child, dd:last-child {
   margin-bottom: 0rem;
+}
+li.custom:before {
+  background-color: var(--color-fg-muted);
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  margin: 0 9px 1px 0px;
+  box-sizing: border-box;
 }

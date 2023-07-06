@@ -29,7 +29,7 @@ gem "pundit"
 gem "importmap-rails"
 
 # Bootstrap form builder
-gem "rails_bootstrap_form", "0.9.3"
+gem "rails_bootstrap_form", "0.9.8"
 
 # State machines
 gem "aasm", "~> 5"
@@ -81,9 +81,9 @@ gem "bootsnap", require: false
 gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
-# Validations for active_storage
+# Validations for Active Storage
 gem "active_storage_validations"
 
 # Image processing library

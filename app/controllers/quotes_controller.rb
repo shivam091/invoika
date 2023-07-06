@@ -4,7 +4,8 @@
 
 class QuotesController < ApplicationController
 
-  before_action :find_quote, only: [:edit, :update, :destroy, :show]
+  before_action :find_quote, only: [:edit, :update, :confirm_destroy, :destroy, :show]
+  before_action :authorize_quote!
 
   # GET /quotes
   def index
@@ -82,26 +83,49 @@ class QuotesController < ApplicationController
   def show
   end
 
+  # GET /quotes/:uuid/confirm-destroy
+  def confirm_destroy
+  end
+
   # DELETE /quotes/:uuid
   def destroy
-    response = ::Quotes::DestroyService.(@quote)
-    @quote = response.payload[:quote]
-    if response.success?
-      flash[:notice] = response.message
+    if params.dig(:quote, :code).eql?(@quote.code)
+      response = ::Quotes::DestroyService.(@quote)
+      @quote = response.payload[:quote]
+      if response.success?
+        flash[:notice] = response.message
+      else
+        flash[:alert] = response.message
+      end
+      redirect_to quotes_path
     else
-      flash[:alert] = response.message
+      @quote.errors.add(:code, :must_type_correct_code)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:quote_destroy_form, partial: "quotes/confirm_destroy_form")
+          ], status: :unprocessable_entity
+        end
+      end
     end
-    redirect_to quotes_path
   end
 
   private
 
   def quotes
-    ::Quote.accessible(current_user).includes(:client, :quote_items)
+    policy_scope(::Quote).includes(:client, :quote_items)
   end
 
   def find_quote
     @quote = quotes.find(params.fetch(:uuid))
+  end
+
+  def authorize_quote!
+    if action_name.in?(%w(index draft converted accepted new create))
+      authorize ::Quote
+    else
+      authorize @quote
+    end
   end
 
   def quote_params

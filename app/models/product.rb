@@ -21,11 +21,6 @@ class Product < ApplicationRecord
             uniqueness: true,
             length: {maximum: 55},
             reduce: true
-  validates :description,
-            length: {maximum: 1000},
-            allow_nil: true,
-            allow_blank: true,
-            reduce: true
   validates :category_id, presence: true, reduce: true
   validates :unit_price,
             presence: true,
@@ -44,10 +39,12 @@ class Product < ApplicationRecord
             },
             reduce: true
 
+  has_rich_text :description
+
   has_one_attached :image, dependent: :purge_later
 
-  has_many :quote_items, dependent: :restrict_with_exception
-  has_many :invoice_items, dependent: :restrict_with_exception
+  has_many :quote_items, dependent: :destroy
+  has_many :invoice_items, dependent: :destroy
 
   belongs_to :category, inverse_of: :products, counter_cache: :products_count
 

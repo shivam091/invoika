@@ -25,9 +25,14 @@
         profile_details: "Profile details",
         address: "Address",
         remove_avatar: "Remove avatar",
-        remove_avatar_confirmation_text: "Are you sure to remove avatar from your profile?",
         guidelines_for_avatar: "Guidelines for uploading avatar",
         preview: "Preview",
+      },
+      confirm_remove_avatar: {
+        title: "Remove your avatar?"
+      },
+      confirm_remove_avatar_modal: {
+        remove_avatar_confirmation_text: "You will lose your current avatar if you remove it. Are you sure to remove avatar from your profile?",
       }
     }
   }

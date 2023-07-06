@@ -20,16 +20,29 @@
           %td.fw-bold= category.name
           %td= category.products_count
           %td.actions
-            = link_to external_svg_tag("svgs/pencil.svg"), edit_category_path(category), class: "btn btn-sm btn-secondary",
-              data: {turbo_frame: :remote_modal}
-            - if category.is_active?
-              = link_to external_svg_tag("svgs/cancel.svg"), deactivate_category_path(category), class: "btn btn-sm btn-secondary",
-                data: {turbo_confirm: t(".deactivate_category_confirmation_text", category_name: category.name), turbo_method: :patch}
-            - if !category.is_active?
-              = link_to external_svg_tag("svgs/check-mark.svg"), activate_category_path(category), class: "btn btn-sm btn-secondary",
-                data: {turbo_confirm: t(".activate_category_confirmation_text", category_name: category.name), turbo_method: :patch}
-            = link_to external_svg_tag("svgs/trash.svg"), category_path(category), class: "btn btn-sm btn-danger",
-              data: {turbo_confirm: t(".delete_category_confirmation_text", category_name: category.name), turbo_method: :delete}
+            = link_to "javascript:void(0)", class: "text-default", data: {bs_toggle: "dropdown"}, aria: {expanded: false} do
+              = external_svg_tag("svgs/ellipsis-vertical.svg")
+            %ul.dropdown-menu
+              - if policy(category).update?
+                %li
+                  = link_to edit_category_path(category), class: "dropdown-item" do
+                    = external_svg_tag("svgs/pencil.svg")
+                    = button_text("edit")
+              - if category.is_active? && policy(category).deactivate?
+                %li
+                  = link_to confirm_deactivate_category_path(category), class: "dropdown-item", data: {turbo_frame: :remote_modal} do
+                    = external_svg_tag("svgs/archive.svg")
+                    = button_text("deactivate")
+              - if !category.is_active? && policy(category).activate?
+                %li
+                  = link_to confirm_activate_category_path(category), class: "dropdown-item", data: {turbo_frame: :remote_modal} do
+                    = external_svg_tag("svgs/unarchive.svg")
+                    = button_text("activate")
+              - if policy(category).destroy?
+                %li
+                  = link_to confirm_destroy_category_path(category), class: "dropdown-item dropdown-item-danger", data: {turbo_frame: :remote_modal} do
+                    = external_svg_tag("svgs/trash.svg")
+                    = button_text("delete")
       - end.empty?
         %tr
           %td.no-data{colspan: ::Category.columns.count}

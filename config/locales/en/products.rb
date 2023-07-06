@@ -23,9 +23,6 @@
         unit_price: "Unit price",
         sell_price: "Sell price",
         actions: "Actions",
-        delete_product_confirmation_text: "Are you sure you want to delete the product '%{product_name}'?",
-        activate_product_confirmation_text: "Are you sure you want to activate the product '%{product_name}'?",
-        deactivate_product_confirmation_text: "Are you sure you want to deactivate the product '%{product_name}'?",
         no_products_to_display: "There are no products to display.",
         no_active_products_to_display: "There are no active products to display.",
         no_inactive_products_to_display: "There are no inactive products to display.",
@@ -52,8 +49,34 @@
         description: "Description",
         created: "Created",
         updated: "Updated",
-        delete_product_confirmation_text: "Are you sure you want to delete the product '%{product_name}'?",
       },
+      confirm_destroy: {
+        title: "Delete the product?",
+      },
+      confirm_destroy_modal: {
+        unexpected_bad_things_will_happen: "Unexpected bad things will happen if you don’t read this!",
+        this_cannot_be_undone: "This action cannot be undone and the product cannot be recovered.",
+        delete_product_confirmation_text: "This will permanently delete the product '%{product_name}' including its associated quotes and invoices.",
+        type_product_name_to_confirm: "Please type '%{product_name}' to confirm.",
+      },
+      confirm_deactivate: {
+        title: "Deactivate the product?"
+      },
+      confirm_deactivate_modal: {
+        deactivate_product_confirmation_text: "Are you sure you want to deactivate the product '%{product_name}'?",
+      },
+      confirm_activate: {
+        title: "Activate the product?"
+      },
+      confirm_activate_modal: {
+        activate_product_confirmation_text: "Are you sure you want to activate the product '%{product_name}'?",
+      },
+      confirm_remove_image: {
+        title: "Remove product image?"
+      },
+      confirm_remove_image_modal: {
+        remove_image_confirmation_text: "Are you sure to remove image of the product?",
+      }
     }
   }
 }

@@ -12,19 +12,36 @@ class QuotePolicy < ApplicationPolicy
   def index?
     user.admin? || user.vendor? || user.client?
   end
+  alias_methods [:draft?, :converted?, :accepted?], :index?
 
-  def draft?
-    user.admin? || user.vendor? || user.client?
+  def create?
+    user.admin? || user.vendor?
   end
 
-  def converted?
-    user.admin? || user.vendor? || user.client?
+  def update?
+    user.admin? || (user.vendor? && record.vendor.eql?(user))
   end
 
-  def accepted?
-    user.admin? || user.vendor? || user.client?
+  def show?
+    user.admin? ||
+      (user.vendor? && record.vendor.eql?(user)) ||
+      (user.client? && record.client.eql?(user))
   end
 
-  # delegate :draft?, :converted?, :accepted?, to: :index?
-  # alias_methods :index?, [:draft?, :converted?, :accepted?]
+  def destroy?
+    user.admin? || (user.vendor? && record.vendor.eql?(user))
+  end
+
+  def convert_to_invoice?
+    user.admin? || (user.vendor? && record.vendor.eql?(user))
+  end
+
+  def accept?
+    user.client? && record.client.eql?(user)
+  end
+  alias_method :reject?, :accept?
+
+  def confirm_destroy?
+    destroy?
+  end
 end

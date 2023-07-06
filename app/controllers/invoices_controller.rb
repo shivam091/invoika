@@ -4,7 +4,7 @@
 
 class InvoicesController < ApplicationController
 
-  before_action :find_invoice, only: [:edit, :update, :destroy, :show]
+  before_action :find_invoice, only: [:edit, :update, :confirm_destroy, :destroy, :show]
 
   # GET /invoices
   def index
@@ -88,16 +88,31 @@ class InvoicesController < ApplicationController
   def show
   end
 
+  # GET /invoices/:uuid/confirm-destroy
+  def confirm_destroy
+  end
+
   # DELETE /invoices/:uuid
   def destroy
-    response = ::Invoices::DestroyService.(@invoice)
-    @invoice = response.payload[:invoice]
-    if response.success?
-      flash[:notice] = response.message
+    if params.dig(:invoice, :code).eql?(@invoice.code)
+      response = ::Invoices::DestroyService.(@invoice)
+      @invoice = response.payload[:invoice]
+      if response.success?
+        flash[:notice] = response.message
+      else
+        flash[:alert] = response.message
+      end
+      redirect_to invoices_path
     else
-      flash[:alert] = response.message
+      @invoice.errors.add(:code, :must_type_correct_code)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:invoice_destroy_form, partial: "invoices/confirm_destroy_form")
+          ], status: :unprocessable_entity
+        end
+      end
     end
-    redirect_to invoices_path
   end
 
   private

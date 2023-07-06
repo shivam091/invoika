@@ -48,17 +48,25 @@ Rails.application.routes.draw do
     end
 
     member do
+      get :confirm_activate, path: "confirm-activate"
+      get :confirm_deactivate, path: "confirm-deactivate"
       patch :activate
       patch :deactivate
     end
   end
 
   authenticated :user do
-    resource :company, except: [:new, :create, :destroy]
     resource :dashboard, only: :show
+
+    resource :company, except: [:new, :create, :destroy]
+
     resource :profile, only: [:show, :edit, :update] do
-      delete :remove_avatar, path: "remove-avatar", on: :member
+      member do
+        get :confirm_remove_avatar, path: "confirm-remove-avatar"
+        delete :remove_avatar, path: "remove-avatar"
+      end
     end
+
     resource :user_preference, path: "preference", only: [:show, :edit, :update] do
       collection do
         get :change_locale, path: "change-locale"
@@ -67,24 +75,46 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :categories, except: :show, param: :uuid, concerns: :toggleable
-    resources :taxes, except: :show, param: :uuid, concerns: :toggleable
-    resources :products, param: :uuid, concerns: :toggleable do
-      delete :remove_image, path: "remove-image", on: :member
+    resources :categories, except: :show, param: :uuid, concerns: :toggleable do
+      member do
+        get :confirm_destroy, path: "confirm-destroy"
+      end
     end
+
+    resources :taxes, except: :show, param: :uuid, concerns: :toggleable do
+      member do
+        get :confirm_destroy, path: "confirm-destroy"
+      end
+    end
+
+    resources :products, param: :uuid, concerns: :toggleable do
+      member do
+        get :confirm_remove_image, path: "confirm-remove-image"
+        delete :remove_image, path: "remove-image"
+        get :confirm_destroy, path: "confirm-destroy"
+      end
+    end
+
     resources :quotes, param: :uuid do
       collection do
         get :draft
         get :converted
         get :accepted
       end
+      member do
+        get :confirm_destroy, path: "confirm-destroy"
+      end
     end
+
     resources :invoices, param: :uuid do
       collection do
         get :draft
         get :unpaid
         get :paid
         get :overdue
+      end
+      member do
+        get :confirm_destroy, path: "confirm-destroy"
       end
     end
   end

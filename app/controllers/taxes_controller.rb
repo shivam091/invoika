@@ -5,6 +5,7 @@
 class TaxesController < ApplicationController
 
   before_action :find_tax, except: [:index, :active, :inactive, :new, :create]
+  before_action :authorize_tax!
 
   # GET /taxes
   def index
@@ -84,6 +85,10 @@ class TaxesController < ApplicationController
     redirect_to taxes_path
   end
 
+  # GET /taxes/:uuid/confirm-activate
+  def confirm_activate
+  end
+
   # PATCH /taxes/:uuid/deactivate
   def activate
     response = ::Taxes::ActivateService.(@tax)
@@ -94,6 +99,10 @@ class TaxesController < ApplicationController
       flash[:alert] = response.message
     end
     redirect_to taxes_path
+  end
+
+  # GET /taxes/:uuid/confirm-deactivate
+  def confirm_deactivate
   end
 
   # PATCH /taxes/:uuid/deactivate
@@ -108,10 +117,45 @@ class TaxesController < ApplicationController
     redirect_to taxes_path
   end
 
+  # GET /taxes/:uuid/confirm-destroy
+  def confirm_destroy
+  end
+
+  # DELETE /taxes/:uuid
+  def destroy
+    if params.dig(:tax, :name).eql?(@tax.name)
+      response = ::Taxes::DestroyService.(@tax)
+      @tax = response.payload[:tax]
+      if response.success?
+        flash[:notice] = response.message
+      else
+        flash[:alert] = response.message
+      end
+      redirect_to taxes_path
+    else
+      @tax.errors.add(:name, :must_type_correct_name)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.update(:tax_destroy_form, partial: "taxes/confirm_destroy_form")
+          ], status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   private
 
   def taxes
-    ::Tax.all
+    policy_scope(::Tax)
+  end
+
+  def authorize_tax!
+    if action_name.in?(%w(index active inactive new create))
+      authorize ::Tax
+    else
+      authorize @tax
+    end
   end
 
   def find_tax

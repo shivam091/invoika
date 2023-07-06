@@ -1,0 +1,10 @@
+%p.mb-2= t(".activate_tax_confirmation_text", tax_name: "<strong>#{@tax.name}</strong>").html_safe
+.modal-actions
+  - if policy(@tax).activate?
+    = link_to activate_tax_path(@tax), class: "btn btn-primary",
+      data: {turbo_method: :patch} do
+      = external_svg_tag("svgs/unarchive.svg")
+      = button_text("yes_activate")
+  = button_tag type: :button, class: "btn btn-secondary", data: {action: "click->remote-modal#hide"} do
+    = external_svg_tag("svgs/cancel.svg")
+    = button_text("no_cancel")

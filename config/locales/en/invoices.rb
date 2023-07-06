@@ -43,7 +43,6 @@
         no_unpaid_invoices_to_display: "There are no unpaid invoices to display.",
         no_overdue_invoices_to_display: "There are no overdue invoices to display.",
         no_invoices_to_display: "There are no invoices to display.",
-        delete_invoice_confirmation_text: "Are you sure you want to delete the invoice?"
       },
       new: {
         title: "New invoice",
@@ -84,7 +83,6 @@
         email_address: "Email address: %{email_address}",
         phone_number: "Phone number: %{phone_number}",
         mobile_number: "Mobile number: %{mobile_number}",
-        delete_invoice_confirmation_text: "Are you sure you want to delete the invoice?",
       },
       invoice_date: {
         invoice_date: "Invoice date",
@@ -94,6 +92,15 @@
         quantity: "Quantity",
         unit_price: "Unit price",
         amount: "Amount",
+      },
+      confirm_destroy: {
+        title: "Delete the invoice?",
+      },
+      confirm_destroy_modal: {
+        unexpected_bad_things_will_happen: "Unexpected bad things will happen if you don’t read this!",
+        this_cannot_be_undone: "This action cannot be undone and the invoice cannot be recovered.",
+        delete_invoice_confirmation_text: "This will permanently delete the invoice '%{invoice_code}'.",
+        type_invoice_code_to_confirm: "Please type '%{invoice_code}' to confirm.",
       },
     }
   }

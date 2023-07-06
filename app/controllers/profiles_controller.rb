@@ -32,7 +32,11 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # PUT|PATCH /profile/remove-avatar
+  # GET /profile/confirm-remove-avatar
+  def confirm_remove_avatar
+  end
+
+  # DELETE /profile/remove-avatar
   def remove_avatar
     response = ::Profiles::RemoveAvatarService.(current_user)
     @current_user = response.payload[:current_user]

@@ -19,11 +19,8 @@
       },
       category: {
         name: "Name",
-        products_count: "No. of Products",
+        products_count: "No. of products",
         actions: "Actions",
-        delete_category_confirmation_text: "Are you sure you want to delete the category '%{category_name}'?",
-        activate_category_confirmation_text: "Are you sure you want to activate the category '%{category_name}'?",
-        deactivate_category_confirmation_text: "Are you sure you want to deactivate the category '%{category_name}'?",
         no_categories_to_display: "There are no categories to display.",
         no_active_categories_to_display: "There are no active categories to display.",
         no_inactive_categories_to_display: "There are no inactive categories to display.",
@@ -33,7 +30,28 @@
       },
       edit: {
         title: "Edit category",
-      }
+      },
+      confirm_destroy: {
+        title: "Delete the category?",
+      },
+      confirm_destroy_modal: {
+        unexpected_bad_things_will_happen: "Unexpected bad things will happen if you don’t read this!",
+        this_cannot_be_undone: "This action cannot be undone and the category cannot be recovered.",
+        delete_category_confirmation_text: "This will permanently delete the category '%{category_name}' including its associated products.",
+        type_category_name_to_confirm: "Please type '%{category_name}' to confirm.",
+      },
+      confirm_deactivate: {
+        title: "Deactivate the category?"
+      },
+      confirm_deactivate_modal: {
+        deactivate_category_confirmation_text: "Are you sure you want to deactivate the category '%{category_name}'?",
+      },
+      confirm_activate: {
+        title: "Activate the category?"
+      },
+      confirm_activate_modal: {
+        activate_category_confirmation_text: "Are you sure you want to activate the category '%{category_name}'?",
+      },
     }
   }
 }
